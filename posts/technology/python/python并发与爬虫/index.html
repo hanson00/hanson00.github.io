@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Python并发与爬虫 | Hanson&#39;s Blog</title>
+<meta name="keywords" content="Python并发与爬虫, 异步爬虫, 爬虫实战">
+<meta name="description" content="Python并发与爬虫">
+<meta name="author" content="
+作者:&nbsp;hanson">
+<link rel="canonical" href="https://hanson00.github.io/posts/technology/python/python%E5%B9%B6%E5%8F%91%E4%B8%8E%E7%88%AC%E8%99%AB/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.90e638a5d4448bfb1fe445aebfe0f00ba8831874539fc42477608012af462729.css" integrity="sha256-kOY4pdREi/sf5EWuv&#43;DwC6iDGHRTn8Qkd2CAEq9GJyk=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hanson00.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hanson00.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hanson00.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hanson00.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hanson00.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Python并发与爬虫" />
+<meta property="og:description" content="Python并发与爬虫" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanson00.github.io/posts/technology/python/python%E5%B9%B6%E5%8F%91%E4%B8%8E%E7%88%AC%E8%99%AB/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-26T17:19:22&#43;08:00" />
+<meta property="article:modified_time" content="2022-06-26T17:19:22&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python并发与爬虫"/>
+<meta name="twitter:description" content="Python并发与爬虫"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hanson00.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "💻技术类文章",
+      "item": "https://hanson00.github.io/posts/technology/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Python文章",
+      "item": "https://hanson00.github.io/posts/technology/python/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Python并发与爬虫",
+      "item": "https://hanson00.github.io/posts/technology/python/python%E5%B9%B6%E5%8F%91%E4%B8%8E%E7%88%AC%E8%99%AB/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Python并发与爬虫",
+  "name": "Python并发与爬虫",
+  "description": "Python并发与爬虫",
+  "keywords": [
+    "Python并发与爬虫", "异步爬虫", "爬虫实战"
+  ],
+  "articleBody": "Python并发与爬虫 进程与线程 每个主进程中至少都会有一个线程，当你创建一个新的线程时，就相当于有两个员工(线程)在工作具体的工作顺序由CPU决定，主线程会继续往下面执行，子线程也会自己执行自己的任务\n在Python中一般不创建多进程，因为进程消耗的内存资源较大\n线程执行案例 t.start()，当前线程准备就绪，等待CPU调度 t.join()等待当前任务执行完成，当前任务执行完成之后才会往后面执行\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51  # import threading # # # 线程如果想传参一定要通过arg=(元组的形式进行传递) # def func(name): # for i in range(1000): # print(name, i) # # if __name__ == \"__main__\": # t1 = threading.Thread(target=func, args=(\"Rose\",) ) # t1.start() # t2 = threading.Thread(target=func, args=(\"你太牛\",) ) # t2.start() # for i in range(1000): # print(\"main\", i) from threading import Thread class Mythread(Thread): def run(self): #固定写法 for i in range(1000): print(self.name, i) if __name__ == \"__main__\": t1 = Mythread() t1.start() t2 = Mythread() t2.start() for i in range(1000): print(\"main\", i) #Thread-2 main984  #Thread-2867  #985main  #Thread-2 868 #main986 #Thread-2 869 #main 870 #main987 #Thread-2 988 871 #Thread-2  #main989  #872 #Thread-2 main 873990 #Thread-2 #main 991 #Thread-2 992 #874Thread-2 # main 875993 #Thread-2 main994 #Thread-2 995 876   进程执行案例 1 2 3 4 5 6 7 8 9 10 11  from multiprocessing import Process def func(): for i in range(100000): print(\"函数里\", i) if __name__ == '__main__': t = Process(target=func) t.start() for i in range(100000): print(\"main\", i)    线程池：一次性创建一批线程，然后我们用户把任务分配给线程池，然后线程池分配任务给线程池里面的线程\n1 2 3 4 5 6 7 8 9 10 11  from concurrent.futures import ThreadPoolExecutor def func(name): for i in range(100): print(name, i) if __name__ == '__main__': with ThreadPoolExecutor(50) as t: for i in range(10): t.submit(func, name=f\"线程{i}\") print(\"OVER\")    北京新发地爬虫与多线程 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41  # coding:utf-8 # @Time : 2022/5/17 14:41 # @Author : 软件1194温铭军 # @file : 北京新发地多线程.py # $software : PyCharm import requests from concurrent.futures import ThreadPoolExecutor import csv url = \"http://www.xinfadi.com.cn/getPriceData.html\" header = { \"User-Agent\": \"Mozilla / 5.0(Windows NT 10.0;Win64;x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 94.0.4606.71Safari / 537.36\" } def getdata(data): url = \"http://www.xinfadi.com.cn/getPriceData.html\" response = requests.post(url, headers=header, data=data) result = response.json() ts = result[\"list\"] with open(\"北京新发地农产品数据.csv\", \"a\", newline='') as f: csvwriter = csv.DictWriter(f, fieldnames=['prodName', 'lowPrice', 'highPrice', 'avgPrice', 'place', 'unitInfo', 'pubDate'], extrasaction='ignore') csvwriter.writeheader() for i in range(len(ts)): csvwriter.writerow(ts[i]) if __name__ == '__main__': with ThreadPoolExecutor(20) as t: for i in range(1, 60): data = { 'limit': '', 'current': f'{i}', 'pubDateStartTime': '', 'pubDateEndTime': '', 'prodPcatid': '', 'prodCatid': '', 'prodName': '' } t.submit(getdata, data) print(\"OVER\")   协程(多任务异步协程) 协程是在单线程的基础上操作（多线程协作可以充分地利用CPU）\n 切换条件：当程序遇到IO操作时可以选择切换到其他任务(计算类型的任务)上\n在微观上一个任务一个任务进行切换，切换条件是遇到IO操作(单线程的多个任务来回切换运行)\n在宏观上就是多个任务共同运行\n 会使程序陷入阻塞状态的有：IO操作和requests.get()在网络请求返回前都会处于阻塞状态\n 协程分配的任务是由人来调度，线程池是由系统来调度的\n 异步任务和同步任务看是否需要等待某一操作\n在编写协程代码时要注意：await(挂起)要写到async的函数里面，放在协程对象里面\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39  #协程的编写 import time import asyncio async def func1(): #async:将该函数定义成异步协程函数 print(\"我爱我们\") # time.sleep(3) #当前线程处于阻塞状态，CPU不为我工作,time.sleep()是串形同步操作，使得异步中断了 await asyncio.sleep(3) print(\"这是第二次我爱你\") async def func2(): #async:将该函数定义成异步协程函数 print(\"我爱22\") # time.sleep(3) #当前线程处于阻塞状态，CPU不为我工作 await asyncio.sleep(3) print(\"这是第二次我爱22\") async def func3(): #async:将该函数定义成异步协程函数 print(\"我爱33\") # time.sleep(3) #当前线程处于阻塞状态，CPU不为我工作 await asyncio.sleep(4) #改成这个异步操作代码就可以实现协程的异步处理 print(\"这是第二次我33\") if __name__ == '__main__': #input()也会让CPU处于阻塞状态 #requests.get()也会使程序处于阻塞状态 #当程序处于IO操作时程序会陷入阻塞状态 #协程：当程序遇到IO操作时，可以选择性的切换到其他任务 #如果执行函数就会得到一个协程对象 #协程函数的运行需要asyncio模块的支持 t1 = time.time() f1 = func1() f2 = func2() f3 = func3() task = [f1, f2, f3] #一次性启动多个任务（协程） #多任务同时启动就需要asyncio.wait,把多个任务交给asyncio.wait(),而启动就需要asyncio.run() asyncio.run(asyncio.wait(task)) t2 = time.time() print(t2-t1)   上面代码是同步操作的协程\n下面代码是加入异步的协程\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34  #协程的编写 import time import asyncio async def func1(): print(\"我爱我们\") await asyncio.sleep(3) print(\"这是第二次我爱你\") async def func2(): print(\"我爱22\") await asyncio.sleep(3) print(\"这是第二次我爱22\") async def func3(): print(\"我爱33\") await asyncio.sleep(4) print(\"这是第二次我33\") #Python官方推荐的写法 def main(): pass if __name__ == '__main__': t1 = time.time() f1 = func1() f2 = func2() f3 = func3() task = [f1, f2, f3] #一次性启动多个任务（协程） #多任务同时启动就需要asyncio.wait,把多个任务交给asyncio.wait(),而启动就需要asyncio.run() asyncio.run(asyncio.wait(task)) t2 = time.time() print(t2-t1)   1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38  import asyncio import time async def func1(): print(\"我是第一\") await asyncio.sleep(3) print(\"我是第一\") async def func2(): print(\"我是第2\") await asyncio.sleep(2) print(\"我是第2\") async def func3(): print(\"我是第3\") await asyncio.sleep(4) print(\"我是第3\") async def main(): task = [] task = [asyncio.create_task(func1()), asyncio.create_task(func2()), asyncio.create_task(func3())] await asyncio.wait(task) if __name__ == '__main__': t1 = time.time() asyncio.run(main()) t2 = time.time() print(t2-t1) #output:我是第一 # 我是第2 # 我是第3 # 我是第2 # 我是第一 # 我是第3 # 4.009669780731201   使用异步协程爬取图片\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37  # coding:utf-8 # @Time : 2022/5/18 15:41 # @Author : 软件1194温铭军 # @file : aiohttp_umei.py # $software : PyCharm #aiohttp异步爬取优美图库 # requests.get()该操作是同步操作，如果想要 # 使用异步操作的话，就得使用aiohttp import asyncio import aiohttp import time urls = [ \"http://kr.shanghai-jiuxin.com/file/mm/20211130/zkc0inje5x0.jpg\", \"http://kr.shanghai-jiuxin.com/file/mm/20211130/ufmo0xczdbg.jpg\", \"http://kr.shanghai-jiuxin.com/file/mm/20211130/15dujfems5v.jpg\" ] async def downsave(url): name = url.split(\"/\")[-1] async with aiohttp.ClientSession() as sessions: # 这部的操作就相当于  requests async with sessions.get(url) as s: with open(f\"{name}.jpg\", \"wb\") as f: f.write(await s.content.read()) print(\"OVER\") async def main(): task = [] for url in urls: task.append(downsave(url)) await asyncio.wait(task) if __name__ == '__main__': t1 = time.time() asyncio.run(main()) t2 = time.time() print(t2-t1)    个人对于协程的理解 asyncio.run()是用来运行最高层级的入口点\n",
+  "wordCount" : "2534",
+  "inLanguage": "en",
+  "datePublished": "2022-06-26T17:19:22+08:00",
+  "dateModified": "2022-06-26T17:19:22+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "hanson"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hanson00.github.io/posts/technology/python/python%E5%B9%B6%E5%8F%91%E4%B8%8E%E7%88%AC%E8%99%AB/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hanson's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hanson00.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hanson00.github.io/" accesskey="h" title="Hanson&#39;s Blog (Alt + H)">Hanson&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hanson00.github.io/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/python/">Python文章</a></div>
+    <h1 class="post-title">
+      Python并发与爬虫
+    </h1>
+    <div class="post-description">
+      Python并发与爬虫
+    </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6 min&nbsp;|&nbsp;2534 words&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#python%e5%b9%b6%e5%8f%91%e4%b8%8e%e7%88%ac%e8%99%ab" aria-label="Python并发与爬虫">Python并发与爬虫</a><ul>
+                                    
+                        <li>
+                            <a href="#%e8%bf%9b%e7%a8%8b%e4%b8%8e%e7%ba%bf%e7%a8%8b" aria-label="进程与线程">进程与线程</a><ul>
+                                    <ul>
+                                    
+                        <li>
+                            <a href="#%e7%ba%bf%e7%a8%8b%e6%89%a7%e8%a1%8c%e6%a1%88%e4%be%8b" aria-label="线程执行案例">线程执行案例</a></li>
+                        <li>
+                            <a href="#%e8%bf%9b%e7%a8%8b%e6%89%a7%e8%a1%8c%e6%a1%88%e4%be%8b" aria-label="进程执行案例">进程执行案例</a></li></ul>
+                                
+                        <li>
+                            <a href="#%e5%8c%97%e4%ba%ac%e6%96%b0%e5%8f%91%e5%9c%b0%e7%88%ac%e8%99%ab%e4%b8%8e%e5%a4%9a%e7%ba%bf%e7%a8%8b" aria-label="北京新发地爬虫与多线程">北京新发地爬虫与多线程</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#%e5%8d%8f%e7%a8%8b%e5%a4%9a%e4%bb%bb%e5%8a%a1%e5%bc%82%e6%ad%a5%e5%8d%8f%e7%a8%8b" aria-label="协程(多任务异步协程)">协程(多任务异步协程)</a><ul>
+                                    
+                        <li>
+                            <a href="#%e4%b8%aa%e4%ba%ba%e5%af%b9%e4%ba%8e%e5%8d%8f%e7%a8%8b%e7%9a%84%e7%90%86%e8%a7%a3" aria-label="个人对于协程的理解">个人对于协程的理解</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h1 id="python并发与爬虫">Python并发与爬虫<a hidden class="anchor" aria-hidden="true" href="#python并发与爬虫">#</a></h1>
+<h2 id="进程与线程">进程与线程<a hidden class="anchor" aria-hidden="true" href="#进程与线程">#</a></h2>
+<p>每个主进程中至少都会有一个线程，当你创建一个新的线程时，就相当于有两个员工(线程)在工作具体的工作顺序由CPU决定，主线程会继续往下面执行，子线程也会自己执行自己的任务</p>
+<p>在Python中一般不创建多进程，因为进程消耗的内存资源较大</p>
+<h4 id="线程执行案例">线程执行案例<a hidden class="anchor" aria-hidden="true" href="#线程执行案例">#</a></h4>
+<p><code>t.start()，当前线程准备就绪，等待CPU调度</code>
+<code>t.join()等待当前任务执行完成，当前任务执行完成之后才会往后面执行</code></p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">51
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># import threading</span>
+<span style="color:#007f7f">#</span>
+<span style="color:#007f7f"># # 线程如果想传参一定要通过arg=(元组的形式进行传递)</span>
+<span style="color:#007f7f"># def func(name):</span>
+<span style="color:#007f7f">#     for i in range(1000):</span>
+<span style="color:#007f7f">#         print(name, i)</span>
+<span style="color:#007f7f">#</span>
+<span style="color:#007f7f"># if __name__ == &#34;__main__&#34;:</span>
+<span style="color:#007f7f">#     t1 = threading.Thread(target=func, args=(&#34;Rose&#34;,) )</span>
+<span style="color:#007f7f">#     t1.start()</span>
+<span style="color:#007f7f">#     t2 = threading.Thread(target=func, args=(&#34;你太牛&#34;,) )</span>
+<span style="color:#007f7f">#     t2.start()</span>
+<span style="color:#007f7f">#     for i in range(1000):</span>
+<span style="color:#007f7f">#         print(&#34;main&#34;, i)</span>
+
+
+<span style="color:#fff;font-weight:bold">from</span> threading <span style="color:#fff;font-weight:bold">import</span> Thread
+<span style="color:#fff;font-weight:bold">class</span> Mythread(Thread):
+    <span style="color:#fff;font-weight:bold">def</span> run(self):  <span style="color:#007f7f">#固定写法</span>
+        <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">1000</span>):
+            <span style="color:#fff;font-weight:bold">print</span>(self.name, i)
+
+<span style="color:#fff;font-weight:bold">if</span> __name__ == <span style="color:#0ff;font-weight:bold">&#34;__main__&#34;</span>:
+    t1 = Mythread()
+    t1.start()
+    t2 = Mythread()
+    t2.start()
+    <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">1000</span>):
+        <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;main&#34;</span>, i)
+        
+        
+<span style="color:#007f7f">#Thread-2 main984 </span>
+<span style="color:#007f7f">#Thread-2867 </span>
+<span style="color:#007f7f">#985main </span>
+<span style="color:#007f7f">#Thread-2 868</span>
+<span style="color:#007f7f">#main986</span>
+<span style="color:#007f7f">#Thread-2  869</span>
+<span style="color:#007f7f">#main 870</span>
+<span style="color:#007f7f">#main987</span>
+<span style="color:#007f7f">#Thread-2 988 871</span>
+<span style="color:#007f7f">#Thread-2 </span>
+<span style="color:#007f7f">#main989 </span>
+<span style="color:#007f7f">#872</span>
+<span style="color:#007f7f">#Thread-2 main 873990</span>
+<span style="color:#007f7f">#Thread-2</span>
+<span style="color:#007f7f">#main  991</span>
+<span style="color:#007f7f">#Thread-2 992</span>
+<span style="color:#007f7f">#874Thread-2</span>
+<span style="color:#007f7f"># main 875993</span>
+<span style="color:#007f7f">#Thread-2 main994</span>
+<span style="color:#007f7f">#Thread-2 995 876</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="进程执行案例">进程执行案例<a hidden class="anchor" aria-hidden="true" href="#进程执行案例">#</a></h4>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> multiprocessing <span style="color:#fff;font-weight:bold">import</span> Process
+
+<span style="color:#fff;font-weight:bold">def</span> func():
+    <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">100000</span>):
+        <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;函数里&#34;</span>, i)
+
+<span style="color:#fff;font-weight:bold">if</span> __name__ == <span style="color:#0ff;font-weight:bold">&#39;__main__&#39;</span>:
+    t = Process(target=func)
+    t.start()
+    <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">100000</span>):
+        <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;main&#34;</span>, i)
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>线程池：一次性创建一批线程，然后我们用户把任务分配给线程池，然后线程池分配任务给线程池里面的线程</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> concurrent.futures <span style="color:#fff;font-weight:bold">import</span> ThreadPoolExecutor
+
+<span style="color:#fff;font-weight:bold">def</span> func(name):
+ <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">100</span>):
+     <span style="color:#fff;font-weight:bold">print</span>(name, i)
+
+<span style="color:#fff;font-weight:bold">if</span> __name__ == <span style="color:#0ff;font-weight:bold">&#39;__main__&#39;</span>:
+ <span style="color:#fff;font-weight:bold">with</span> ThreadPoolExecutor(<span style="color:#ff0;font-weight:bold">50</span>) <span style="color:#fff;font-weight:bold">as</span> t:
+     <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">10</span>):
+         t.submit(func, name=<span style="color:#0ff;font-weight:bold">f</span><span style="color:#0ff;font-weight:bold">&#34;线程</span><span style="color:#0ff;font-weight:bold">{</span>i<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&#34;</span>)
+ <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;OVER&#34;</span>)
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h3 id="北京新发地爬虫与多线程">北京新发地爬虫与多线程<a hidden class="anchor" aria-hidden="true" href="#北京新发地爬虫与多线程">#</a></h3>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">41
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># coding:utf-8</span>
+<span style="color:#007f7f"># @Time : 2022/5/17 14:41</span>
+<span style="color:#007f7f"># @Author : 软件1194温铭军</span>
+<span style="color:#007f7f"># @file : 北京新发地多线程.py</span>
+<span style="color:#007f7f"># $software : PyCharm</span>
+<span style="color:#fff;font-weight:bold">import</span> requests
+<span style="color:#fff;font-weight:bold">from</span> concurrent.futures <span style="color:#fff;font-weight:bold">import</span> ThreadPoolExecutor
+<span style="color:#fff;font-weight:bold">import</span> csv
+url = <span style="color:#0ff;font-weight:bold">&#34;http://www.xinfadi.com.cn/getPriceData.html&#34;</span>
+header = {
+<span style="color:#0ff;font-weight:bold">&#34;User-Agent&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Mozilla / 5.0(Windows NT 10.0;Win64;x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 94.0.4606.71Safari / 537.36&#34;</span>
+}
+
+<span style="color:#fff;font-weight:bold">def</span> getdata(data):
+    url = <span style="color:#0ff;font-weight:bold">&#34;http://www.xinfadi.com.cn/getPriceData.html&#34;</span>
+    response = requests.post(url, headers=header, data=data)
+    result = response.json()
+    ts = result[<span style="color:#0ff;font-weight:bold">&#34;list&#34;</span>]
+    <span style="color:#fff;font-weight:bold">with</span> <span style="color:#fff;font-weight:bold">open</span>(<span style="color:#0ff;font-weight:bold">&#34;北京新发地农产品数据.csv&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;a&#34;</span>, newline=<span style="color:#0ff;font-weight:bold">&#39;&#39;</span>) <span style="color:#fff;font-weight:bold">as</span> f:
+        csvwriter = csv.DictWriter(f, fieldnames=[<span style="color:#0ff;font-weight:bold">&#39;prodName&#39;</span>, <span style="color:#0ff;font-weight:bold">&#39;lowPrice&#39;</span>, <span style="color:#0ff;font-weight:bold">&#39;highPrice&#39;</span>, <span style="color:#0ff;font-weight:bold">&#39;avgPrice&#39;</span>, <span style="color:#0ff;font-weight:bold">&#39;place&#39;</span>, <span style="color:#0ff;font-weight:bold">&#39;unitInfo&#39;</span>,
+                                                  <span style="color:#0ff;font-weight:bold">&#39;pubDate&#39;</span>],
+                                   extrasaction=<span style="color:#0ff;font-weight:bold">&#39;ignore&#39;</span>)
+        csvwriter.writeheader()
+        <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#fff;font-weight:bold">len</span>(ts)):
+            csvwriter.writerow(ts[i])
+
+
+<span style="color:#fff;font-weight:bold">if</span> __name__ == <span style="color:#0ff;font-weight:bold">&#39;__main__&#39;</span>:
+    <span style="color:#fff;font-weight:bold">with</span> ThreadPoolExecutor(<span style="color:#ff0;font-weight:bold">20</span>) <span style="color:#fff;font-weight:bold">as</span> t:
+        <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">60</span>):
+            data = {
+                <span style="color:#0ff;font-weight:bold">&#39;limit&#39;</span>: <span style="color:#0ff;font-weight:bold">&#39;&#39;</span>,
+                <span style="color:#0ff;font-weight:bold">&#39;current&#39;</span>: <span style="color:#0ff;font-weight:bold">f</span><span style="color:#0ff;font-weight:bold">&#39;</span><span style="color:#0ff;font-weight:bold">{</span>i<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&#39;</span>,
+                <span style="color:#0ff;font-weight:bold">&#39;pubDateStartTime&#39;</span>: <span style="color:#0ff;font-weight:bold">&#39;&#39;</span>,
+                <span style="color:#0ff;font-weight:bold">&#39;pubDateEndTime&#39;</span>: <span style="color:#0ff;font-weight:bold">&#39;&#39;</span>,
+                <span style="color:#0ff;font-weight:bold">&#39;prodPcatid&#39;</span>: <span style="color:#0ff;font-weight:bold">&#39;&#39;</span>,
+                <span style="color:#0ff;font-weight:bold">&#39;prodCatid&#39;</span>: <span style="color:#0ff;font-weight:bold">&#39;&#39;</span>,
+                <span style="color:#0ff;font-weight:bold">&#39;prodName&#39;</span>: <span style="color:#0ff;font-weight:bold">&#39;&#39;</span>
+            }
+            t.submit(getdata, data)
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;OVER&#34;</span>)
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="协程多任务异步协程">协程(多任务异步协程)<a hidden class="anchor" aria-hidden="true" href="#协程多任务异步协程">#</a></h2>
+<p>协程是在<strong>单线程</strong>的基础上操作（多线程协作可以充分地利用CPU）</p>
+<blockquote>
+<p><strong>切换条件</strong>：当程序遇到IO操作时可以选择切换到其他任务(计算类型的任务)上</p>
+<p>在微观上一个任务一个任务进行切换，切换条件是遇到IO操作(单线程的多个任务来回切换运行)</p>
+<p>在宏观上就是多个任务共同运行</p>
+</blockquote>
+<p>会使程序陷入阻塞状态的有：IO操作和requests.get()在网络请求返回前都会处于阻塞状态</p>
+<blockquote>
+<p>协程分配的任务是由人来调度，线程池是由系统来调度的</p>
+</blockquote>
+<p>异步任务和同步任务看是否需要等待某一操作</p>
+<p>在编写协程代码时要注意：await(挂起)要写到async的函数里面，放在协程对象里面</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">39
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f">#协程的编写</span>
+<span style="color:#fff;font-weight:bold">import</span> time
+<span style="color:#fff;font-weight:bold">import</span> asyncio
+<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">def</span> func1():   <span style="color:#007f7f">#async:将该函数定义成异步协程函数</span>
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;我爱我们&#34;</span>)
+    <span style="color:#007f7f"># time.sleep(3)   #当前线程处于阻塞状态，CPU不为我工作,time.sleep()是串形同步操作，使得异步中断了</span>
+    <span style="color:#fff;font-weight:bold">await</span> asyncio.sleep(<span style="color:#ff0;font-weight:bold">3</span>)
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;这是第二次我爱你&#34;</span>)
+
+<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">def</span> func2():   <span style="color:#007f7f">#async:将该函数定义成异步协程函数</span>
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;我爱22&#34;</span>)
+    <span style="color:#007f7f"># time.sleep(3)   #当前线程处于阻塞状态，CPU不为我工作</span>
+    <span style="color:#fff;font-weight:bold">await</span> asyncio.sleep(<span style="color:#ff0;font-weight:bold">3</span>)
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;这是第二次我爱22&#34;</span>)
+
+<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">def</span> func3():   <span style="color:#007f7f">#async:将该函数定义成异步协程函数</span>
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;我爱33&#34;</span>)
+    <span style="color:#007f7f"># time.sleep(3)   #当前线程处于阻塞状态，CPU不为我工作</span>
+    <span style="color:#fff;font-weight:bold">await</span> asyncio.sleep(<span style="color:#ff0;font-weight:bold">4</span>)  <span style="color:#007f7f">#改成这个异步操作代码就可以实现协程的异步处理</span>
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;这是第二次我33&#34;</span>)
+
+<span style="color:#fff;font-weight:bold">if</span> __name__ == <span style="color:#0ff;font-weight:bold">&#39;__main__&#39;</span>:
+
+    <span style="color:#007f7f">#input()也会让CPU处于阻塞状态</span>
+    <span style="color:#007f7f">#requests.get()也会使程序处于阻塞状态</span>
+    <span style="color:#007f7f">#当程序处于IO操作时程序会陷入阻塞状态</span>
+    <span style="color:#007f7f">#协程：当程序遇到IO操作时，可以选择性的切换到其他任务</span>
+      <span style="color:#007f7f">#如果执行函数就会得到一个协程对象</span>
+      <span style="color:#007f7f">#协程函数的运行需要asyncio模块的支持</span>
+    t1 = time.time()
+    f1 = func1()
+    f2 = func2()
+    f3 = func3()
+    task = [f1, f2, f3]
+    <span style="color:#007f7f">#一次性启动多个任务（协程）</span>
+    <span style="color:#007f7f">#多任务同时启动就需要asyncio.wait,把多个任务交给asyncio.wait(),而启动就需要asyncio.run()</span>
+    asyncio.run(asyncio.wait(task))
+    t2 = time.time()
+    <span style="color:#fff;font-weight:bold">print</span>(t2-t1)
+</code></pre></td></tr></table>
+</div>
+</div><p>上面代码是同步操作的协程</p>
+<p>下面代码是加入异步的协程</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">34
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f">#协程的编写</span>
+<span style="color:#fff;font-weight:bold">import</span> time
+<span style="color:#fff;font-weight:bold">import</span> asyncio
+<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">def</span> func1():
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;我爱我们&#34;</span>)
+    <span style="color:#fff;font-weight:bold">await</span> asyncio.sleep(<span style="color:#ff0;font-weight:bold">3</span>)
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;这是第二次我爱你&#34;</span>)
+
+<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">def</span> func2():
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;我爱22&#34;</span>)
+    <span style="color:#fff;font-weight:bold">await</span> asyncio.sleep(<span style="color:#ff0;font-weight:bold">3</span>)
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;这是第二次我爱22&#34;</span>)
+
+<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">def</span> func3():
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;我爱33&#34;</span>)
+    <span style="color:#fff;font-weight:bold">await</span> asyncio.sleep(<span style="color:#ff0;font-weight:bold">4</span>)
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;这是第二次我33&#34;</span>)
+
+<span style="color:#007f7f">#Python官方推荐的写法</span>
+<span style="color:#fff;font-weight:bold">def</span> main():
+    <span style="color:#fff;font-weight:bold">pass</span>
+
+<span style="color:#fff;font-weight:bold">if</span> __name__ == <span style="color:#0ff;font-weight:bold">&#39;__main__&#39;</span>:
+
+    t1 = time.time()
+    f1 = func1()
+    f2 = func2()
+    f3 = func3()
+    task = [f1, f2, f3]
+    <span style="color:#007f7f">#一次性启动多个任务（协程）</span>
+    <span style="color:#007f7f">#多任务同时启动就需要asyncio.wait,把多个任务交给asyncio.wait(),而启动就需要asyncio.run()</span>
+    asyncio.run(asyncio.wait(task))
+    t2 = time.time()
+    <span style="color:#fff;font-weight:bold">print</span>(t2-t1)
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">38
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> asyncio
+<span style="color:#fff;font-weight:bold">import</span> time
+
+
+<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">def</span> func1():
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;我是第一&#34;</span>)
+    <span style="color:#fff;font-weight:bold">await</span> asyncio.sleep(<span style="color:#ff0;font-weight:bold">3</span>)
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;我是第一&#34;</span>)
+
+<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">def</span> func2():
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;我是第2&#34;</span>)
+    <span style="color:#fff;font-weight:bold">await</span> asyncio.sleep(<span style="color:#ff0;font-weight:bold">2</span>)
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;我是第2&#34;</span>)
+
+<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">def</span> func3():
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;我是第3&#34;</span>)
+    <span style="color:#fff;font-weight:bold">await</span> asyncio.sleep(<span style="color:#ff0;font-weight:bold">4</span>)
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;我是第3&#34;</span>)
+
+<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">def</span> main():
+    task = []
+    task = [asyncio.create_task(func1()),
+            asyncio.create_task(func2()),
+            asyncio.create_task(func3())]
+    <span style="color:#fff;font-weight:bold">await</span> asyncio.wait(task)
+
+<span style="color:#fff;font-weight:bold">if</span> __name__ == <span style="color:#0ff;font-weight:bold">&#39;__main__&#39;</span>:
+    t1 = time.time()
+    asyncio.run(main())
+    t2 = time.time()
+    <span style="color:#fff;font-weight:bold">print</span>(t2-t1)
+    <span style="color:#007f7f">#output:我是第一</span>
+<span style="color:#007f7f"># 我是第2</span>
+<span style="color:#007f7f"># 我是第3</span>
+<span style="color:#007f7f"># 我是第2</span>
+<span style="color:#007f7f"># 我是第一</span>
+<span style="color:#007f7f"># 我是第3</span>
+<span style="color:#007f7f"># 4.009669780731201</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使用异步协程爬取图片</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">37
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># coding:utf-8</span>
+<span style="color:#007f7f"># @Time : 2022/5/18 15:41</span>
+<span style="color:#007f7f"># @Author : 软件1194温铭军</span>
+<span style="color:#007f7f"># @file : aiohttp_umei.py</span>
+<span style="color:#007f7f"># $software : PyCharm</span>
+<span style="color:#007f7f">#aiohttp异步爬取优美图库</span>
+<span style="color:#007f7f"># requests.get()该操作是同步操作，如果想要</span>
+<span style="color:#007f7f"># 使用异步操作的话，就得使用aiohttp</span>
+<span style="color:#fff;font-weight:bold">import</span> asyncio
+<span style="color:#fff;font-weight:bold">import</span> aiohttp
+<span style="color:#fff;font-weight:bold">import</span> time
+
+urls = [
+    <span style="color:#0ff;font-weight:bold">&#34;http://kr.shanghai-jiuxin.com/file/mm/20211130/zkc0inje5x0.jpg&#34;</span>,
+    <span style="color:#0ff;font-weight:bold">&#34;http://kr.shanghai-jiuxin.com/file/mm/20211130/ufmo0xczdbg.jpg&#34;</span>,
+    <span style="color:#0ff;font-weight:bold">&#34;http://kr.shanghai-jiuxin.com/file/mm/20211130/15dujfems5v.jpg&#34;</span>
+]
+
+<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">def</span> downsave(url):
+    name = url.split(<span style="color:#0ff;font-weight:bold">&#34;/&#34;</span>)[-<span style="color:#ff0;font-weight:bold">1</span>]
+    <span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">with</span> aiohttp.ClientSession() <span style="color:#fff;font-weight:bold">as</span> sessions:  <span style="color:#007f7f"># 这部的操作就相当于   &lt;==&gt; requests</span>
+        <span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">with</span> sessions.get(url) <span style="color:#fff;font-weight:bold">as</span> s:
+            <span style="color:#fff;font-weight:bold">with</span> <span style="color:#fff;font-weight:bold">open</span>(<span style="color:#0ff;font-weight:bold">f</span><span style="color:#0ff;font-weight:bold">&#34;</span><span style="color:#0ff;font-weight:bold">{</span>name<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">.jpg&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;wb&#34;</span>) <span style="color:#fff;font-weight:bold">as</span> f:
+                f.write(<span style="color:#fff;font-weight:bold">await</span> s.content.read())
+    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;OVER&#34;</span>)
+
+<span style="color:#fff;font-weight:bold">async</span> <span style="color:#fff;font-weight:bold">def</span> main():
+    task = []
+    <span style="color:#fff;font-weight:bold">for</span> url in urls:
+        task.append(downsave(url))
+    <span style="color:#fff;font-weight:bold">await</span> asyncio.wait(task)
+
+<span style="color:#fff;font-weight:bold">if</span> __name__ == <span style="color:#0ff;font-weight:bold">&#39;__main__&#39;</span>:
+    t1 = time.time()
+    asyncio.run(main())
+    t2 = time.time()
+    <span style="color:#fff;font-weight:bold">print</span>(t2-t1)
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="个人对于协程的理解">个人对于协程的理解<a hidden class="anchor" aria-hidden="true" href="#个人对于协程的理解">#</a></h3>
+<p><code>asyncio.run()是用来运行最高层级的入口点</code></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://hanson00.github.io/posts/technology/python/python-selenium/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Python Selenium</span>
+  </a>
+  <a class="next" href="https://hanson00.github.io/posts/technology/python/python-csv%E5%AD%A6%E4%B9%A0/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Python Csv学习</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

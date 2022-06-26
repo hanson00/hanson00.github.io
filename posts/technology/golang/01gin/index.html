@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>01gin | Hanson&#39;s Blog</title>
+<meta name="keywords" content="gin的基本使用1">
+<meta name="description" content="gin的基本使用1">
+<meta name="author" content="
+作者:&nbsp;hanson">
+<link rel="canonical" href="https://hanson00.github.io/posts/technology/golang/01gin/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.90e638a5d4448bfb1fe445aebfe0f00ba8831874539fc42477608012af462729.css" integrity="sha256-kOY4pdREi/sf5EWuv&#43;DwC6iDGHRTn8Qkd2CAEq9GJyk=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hanson00.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hanson00.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hanson00.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hanson00.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hanson00.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="01gin" />
+<meta property="og:description" content="gin的基本使用1" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanson00.github.io/posts/technology/golang/01gin/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-26T17:11:46&#43;08:00" />
+<meta property="article:modified_time" content="2022-06-26T17:11:46&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="01gin"/>
+<meta name="twitter:description" content="gin的基本使用1"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hanson00.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "💻技术类文章",
+      "item": "https://hanson00.github.io/posts/technology/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Golang文章",
+      "item": "https://hanson00.github.io/posts/technology/golang/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "01gin",
+      "item": "https://hanson00.github.io/posts/technology/golang/01gin/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "01gin",
+  "name": "01gin",
+  "description": "gin的基本使用1",
+  "keywords": [
+    "gin的基本使用1"
+  ],
+  "articleBody": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64  package main import ( \"github.com/gin-gonic/gin\" \"net/http\" ) type Person struct { age int name string } func main() { //创建一个默认路由 \troute := gin.Default() //配置模板文件 \troute.LoadHTMLGlob(\"templates/*\") //配置路由 \troute.GET(\"/\", func(c *gin.Context) { c.String(http.StatusOK, \"欢迎来到首页\") }) route.POST(\"/post\", func(c *gin.Context) { c.String(http.StatusOK, \"欢迎来到post页面\") }) route.GET(\"json1\", func(c *gin.Context) { c.JSON(http.StatusOK, map[string]interface{}{ \"json1\": \"666\", \"第一个json页面\": \"666\", }) }) route.GET(\"json2\", func(c *gin.Context) { c.JSON(http.StatusOK, gin.H{ \"json2\": \"666\", \"第2个json页面\": \"666\", }) }) route.GET(\"json3\", func(c *gin.Context) { tom := \u0026Person{ 18, \"tom\", } c.JSON(http.StatusOK, tom) }) route.GET(\"xml\", func(c *gin.Context) { c.XML(http.StatusOK, map[string]interface{}{ \"xml\": \"6666\", }) }) route.GET(\"index\", func(c *gin.Context) { c.HTML(http.StatusOK, \"index.html\", map[string]interface{}{ \"title\": \"后台的标题\", }) }) route.Run(\":8821\") }   模板渲染 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59  package main import ( \"github.com/gin-gonic/gin\" \"net/http\" ) type Aticle struct { Title string Content string } func main() { //创建一个默认路由 \troute := gin.Default() //配置模板路径 \t//route.LoadHTMLGlob(\"templates/*\") \t//如果有多层模板目录/**代表一层目录 \troute.LoadHTMLGlob(\"templates/**/*\") //前台路由 \troute.GET(\"/\", func(c *gin.Context) { //这里的html名称要和渲染的htmldefine后面的名称一致 \tc.HTML(http.StatusOK, \"templates/default/beindex.html\", gin.H{ \"title\": \"首页\", }) }) route.GET(\"/new\", func(c *gin.Context) { news := \u0026Aticle{ \"新闻标题\", \"内容在这里\", } c.HTML(http.StatusOK, \"templates/default/benew.html\", gin.H{ \"title\": \"首页\", \"new\": news, }) }) //后台路由 \troute.GET(\"/admin\", func(c *gin.Context) { c.HTML(http.StatusOK, \"templates/admin/adindex.html\", gin.H{ \"title\": \"首页\", }) }) route.GET(\"/adminnew\", func(c *gin.Context) { news := \u0026Aticle{ \"新闻标题\", \"内容在这里\", } c.HTML(http.StatusOK, \"templates/admin/adnew.html\", gin.H{ \"title\": \"首页\", \"new\": news, }) }) route.Run(\":8848\") }   ",
+  "wordCount" : "612",
+  "inLanguage": "en",
+  "datePublished": "2022-06-26T17:11:46+08:00",
+  "dateModified": "2022-06-26T17:11:46+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "hanson"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hanson00.github.io/posts/technology/golang/01gin/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hanson's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hanson00.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hanson00.github.io/" accesskey="h" title="Hanson&#39;s Blog (Alt + H)">Hanson&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hanson00.github.io/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/golang/">Golang文章</a></div>
+    <h1 class="post-title">
+      01gin
+    </h1>
+    <div class="post-description">
+      gin的基本使用1
+    </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2 min&nbsp;|&nbsp;612 words&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#%e6%a8%a1%e6%9d%bf%e6%b8%b2%e6%9f%93" aria-label="模板渲染">模板渲染</a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">64
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#fff;font-weight:bold">package</span> main
+
+<span style="color:#fff;font-weight:bold">import</span> (
+	<span style="color:#0ff;font-weight:bold">&#34;github.com/gin-gonic/gin&#34;</span>
+	<span style="color:#0ff;font-weight:bold">&#34;net/http&#34;</span>
+)
+
+<span style="color:#fff;font-weight:bold">type</span> Person <span style="color:#fff;font-weight:bold">struct</span> {
+	age  <span style="color:#fff;font-weight:bold">int</span>
+	name <span style="color:#fff;font-weight:bold">string</span>
+}
+
+<span style="color:#fff;font-weight:bold">func</span> main() {
+	<span style="color:#007f7f">//创建一个默认路由
+</span><span style="color:#007f7f"></span>	route := gin.Default()
+
+	<span style="color:#007f7f">//配置模板文件
+</span><span style="color:#007f7f"></span>	route.LoadHTMLGlob(<span style="color:#0ff;font-weight:bold">&#34;templates/*&#34;</span>)
+
+	<span style="color:#007f7f">//配置路由
+</span><span style="color:#007f7f"></span>	route.GET(<span style="color:#0ff;font-weight:bold">&#34;/&#34;</span>, <span style="color:#fff;font-weight:bold">func</span>(c *gin.Context) {
+		c.String(http.StatusOK, <span style="color:#0ff;font-weight:bold">&#34;欢迎来到首页&#34;</span>)
+	})
+
+	route.POST(<span style="color:#0ff;font-weight:bold">&#34;/post&#34;</span>, <span style="color:#fff;font-weight:bold">func</span>(c *gin.Context) {
+		c.String(http.StatusOK, <span style="color:#0ff;font-weight:bold">&#34;欢迎来到post页面&#34;</span>)
+	})
+
+	route.GET(<span style="color:#0ff;font-weight:bold">&#34;json1&#34;</span>, <span style="color:#fff;font-weight:bold">func</span>(c *gin.Context) {
+		c.JSON(http.StatusOK, <span style="color:#fff;font-weight:bold">map</span>[<span style="color:#fff;font-weight:bold">string</span>]<span style="color:#fff;font-weight:bold">interface</span>{}{
+			<span style="color:#0ff;font-weight:bold">&#34;json1&#34;</span>:     <span style="color:#0ff;font-weight:bold">&#34;666&#34;</span>,
+			<span style="color:#0ff;font-weight:bold">&#34;第一个json页面&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;666&#34;</span>,
+		})
+	})
+
+	route.GET(<span style="color:#0ff;font-weight:bold">&#34;json2&#34;</span>, <span style="color:#fff;font-weight:bold">func</span>(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			<span style="color:#0ff;font-weight:bold">&#34;json2&#34;</span>:     <span style="color:#0ff;font-weight:bold">&#34;666&#34;</span>,
+			<span style="color:#0ff;font-weight:bold">&#34;第2个json页面&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;666&#34;</span>,
+		})
+	})
+
+	route.GET(<span style="color:#0ff;font-weight:bold">&#34;json3&#34;</span>, <span style="color:#fff;font-weight:bold">func</span>(c *gin.Context) {
+		tom := &amp;Person{
+			<span style="color:#ff0;font-weight:bold">18</span>,
+			<span style="color:#0ff;font-weight:bold">&#34;tom&#34;</span>,
+		}
+		c.JSON(http.StatusOK, tom)
+	})
+
+	route.GET(<span style="color:#0ff;font-weight:bold">&#34;xml&#34;</span>, <span style="color:#fff;font-weight:bold">func</span>(c *gin.Context) {
+		c.XML(http.StatusOK, <span style="color:#fff;font-weight:bold">map</span>[<span style="color:#fff;font-weight:bold">string</span>]<span style="color:#fff;font-weight:bold">interface</span>{}{
+			<span style="color:#0ff;font-weight:bold">&#34;xml&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;6666&#34;</span>,
+		})
+	})
+
+	route.GET(<span style="color:#0ff;font-weight:bold">&#34;index&#34;</span>, <span style="color:#fff;font-weight:bold">func</span>(c *gin.Context) {
+		c.HTML(http.StatusOK, <span style="color:#0ff;font-weight:bold">&#34;index.html&#34;</span>, <span style="color:#fff;font-weight:bold">map</span>[<span style="color:#fff;font-weight:bold">string</span>]<span style="color:#fff;font-weight:bold">interface</span>{}{
+			<span style="color:#0ff;font-weight:bold">&#34;title&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;后台的标题&#34;</span>,
+		})
+	})
+
+	route.Run(<span style="color:#0ff;font-weight:bold">&#34;:8821&#34;</span>)
+}
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="模板渲染">模板渲染<a hidden class="anchor" aria-hidden="true" href="#模板渲染">#</a></h4>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">59
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#fff;font-weight:bold">package</span> main
+
+<span style="color:#fff;font-weight:bold">import</span> (
+	<span style="color:#0ff;font-weight:bold">&#34;github.com/gin-gonic/gin&#34;</span>
+	<span style="color:#0ff;font-weight:bold">&#34;net/http&#34;</span>
+)
+
+<span style="color:#fff;font-weight:bold">type</span> Aticle <span style="color:#fff;font-weight:bold">struct</span> {
+	Title   <span style="color:#fff;font-weight:bold">string</span>
+	Content <span style="color:#fff;font-weight:bold">string</span>
+}
+
+<span style="color:#fff;font-weight:bold">func</span> main() {
+	<span style="color:#007f7f">//创建一个默认路由
+</span><span style="color:#007f7f"></span>	route := gin.Default()
+
+	<span style="color:#007f7f">//配置模板路径
+</span><span style="color:#007f7f"></span>	<span style="color:#007f7f">//route.LoadHTMLGlob(&#34;templates/*&#34;)
+</span><span style="color:#007f7f"></span>	<span style="color:#007f7f">//如果有多层模板目录/**代表一层目录
+</span><span style="color:#007f7f"></span>	route.LoadHTMLGlob(<span style="color:#0ff;font-weight:bold">&#34;templates/**/*&#34;</span>)
+
+	<span style="color:#007f7f">//前台路由
+</span><span style="color:#007f7f"></span>	route.GET(<span style="color:#0ff;font-weight:bold">&#34;/&#34;</span>, <span style="color:#fff;font-weight:bold">func</span>(c *gin.Context) {
+		<span style="color:#007f7f">//这里的html名称要和渲染的htmldefine后面的名称一致
+</span><span style="color:#007f7f"></span>		c.HTML(http.StatusOK, <span style="color:#0ff;font-weight:bold">&#34;templates/default/beindex.html&#34;</span>, gin.H{
+			<span style="color:#0ff;font-weight:bold">&#34;title&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;首页&#34;</span>,
+		})
+	})
+
+	route.GET(<span style="color:#0ff;font-weight:bold">&#34;/new&#34;</span>, <span style="color:#fff;font-weight:bold">func</span>(c *gin.Context) {
+		news := &amp;Aticle{
+			<span style="color:#0ff;font-weight:bold">&#34;新闻标题&#34;</span>,
+			<span style="color:#0ff;font-weight:bold">&#34;内容在这里&#34;</span>,
+		}
+		c.HTML(http.StatusOK, <span style="color:#0ff;font-weight:bold">&#34;templates/default/benew.html&#34;</span>, gin.H{
+			<span style="color:#0ff;font-weight:bold">&#34;title&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;首页&#34;</span>,
+			<span style="color:#0ff;font-weight:bold">&#34;new&#34;</span>:   news,
+		})
+	})
+
+	<span style="color:#007f7f">//后台路由
+</span><span style="color:#007f7f"></span>	route.GET(<span style="color:#0ff;font-weight:bold">&#34;/admin&#34;</span>, <span style="color:#fff;font-weight:bold">func</span>(c *gin.Context) {
+		c.HTML(http.StatusOK, <span style="color:#0ff;font-weight:bold">&#34;templates/admin/adindex.html&#34;</span>, gin.H{
+			<span style="color:#0ff;font-weight:bold">&#34;title&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;首页&#34;</span>,
+		})
+	})
+
+	route.GET(<span style="color:#0ff;font-weight:bold">&#34;/adminnew&#34;</span>, <span style="color:#fff;font-weight:bold">func</span>(c *gin.Context) {
+		news := &amp;Aticle{
+			<span style="color:#0ff;font-weight:bold">&#34;新闻标题&#34;</span>,
+			<span style="color:#0ff;font-weight:bold">&#34;内容在这里&#34;</span>,
+		}
+		c.HTML(http.StatusOK, <span style="color:#0ff;font-weight:bold">&#34;templates/admin/adnew.html&#34;</span>, gin.H{
+			<span style="color:#0ff;font-weight:bold">&#34;title&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;首页&#34;</span>,
+			<span style="color:#0ff;font-weight:bold">&#34;new&#34;</span>:   news,
+		})
+	})
+	route.Run(<span style="color:#0ff;font-weight:bold">&#34;:8848&#34;</span>)
+}
+</code></pre></td></tr></table>
+</div>
+</div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hanson00.github.io/tags/gin/">gin</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://hanson00.github.io/posts/technology/python/%E6%9D%8E%E5%B7%8D%E7%88%AC%E8%99%AB/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>李巍爬虫</span>
+  </a>
+  <a class="next" href="https://hanson00.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3/git%E5%AD%A6%E4%B9%A0/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Git学习</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

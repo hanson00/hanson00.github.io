@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Git学习 | Hanson&#39;s Blog</title>
+<meta name="keywords" content="Git基本使用">
+<meta name="description" content="Git基本使用">
+<meta name="author" content="
+作者:&nbsp;hanson">
+<link rel="canonical" href="https://hanson00.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3/git%E5%AD%A6%E4%B9%A0/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.90e638a5d4448bfb1fe445aebfe0f00ba8831874539fc42477608012af462729.css" integrity="sha256-kOY4pdREi/sf5EWuv&#43;DwC6iDGHRTn8Qkd2CAEq9GJyk=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hanson00.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hanson00.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hanson00.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hanson00.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hanson00.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Git学习" />
+<meta property="og:description" content="Git基本使用" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanson00.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3/git%E5%AD%A6%E4%B9%A0/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-26T17:05:39&#43;08:00" />
+<meta property="article:modified_time" content="2022-06-26T17:05:39&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Git学习"/>
+<meta name="twitter:description" content="Git基本使用"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hanson00.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Git学习",
+      "item": "https://hanson00.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3/git%E5%AD%A6%E4%B9%A0/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Git学习",
+  "name": "Git学习",
+  "description": "Git基本使用",
+  "keywords": [
+    "Git基本使用"
+  ],
+  "articleBody": "Git Learning HEAD是指当前所在分支\ngit branch 显示所在分支\ngit check cat 切换到cat分支\n  git init 初始化库，并让git对其控制 git status 检查目录状态–(new file 表示文件已经被安置到暂存区，稍后会与其他文件一起放到存储库) git add –all全部文件添加到暂存区 git commit -m**“init commit”** commit只会把暂存区里面的文件提交到存储库，加粗字体段为提交文件的说明描述一定要添加否则会打开vim编辑器进行再次补充 额外点：二段式：git commit -a -m “描述补充信息”（一次直接add 和commit） git log 查看日志信息   使用git查询历史记录时的常见问题  git log git log welcome.html 访问特定文件的日志信息 git log –oneline 显示一行日志 git reflog 可以移动指针次数有所记录方便回调版本 想要查找某个人或者某些人的commit –git log –oneline –author=“作者名称” 使用\"\\|“表示或者 git log –oneline –grep=“关键字信息” 在关键字的内容中进行查询 git log –oneline –since=“9am” –untill=“12am” 找到早上九点到十二点的所有commit git log –oneline –since=“9am” –untill=“12am” –after=“2022-01” 从2022-01之后的每天的早上九点到十二点的所有commit   在git中删除或者修改文件  直接删除，使用系统直接删除或者使用rm  删除后还要使用git add “要删除的文件名称” git add 1.txt 移入暂存区 add后还要进行commit操作 git commit -m “描述信息” 提交到存储库   使用git进行删除 git rm 2.txt 直接完成add操作后面只需使用commit操作即可完成   如果不想git在对文件进行控制可以使用git rm “2.txt文件名” –cached 变更文件名  使用系统直接改变名称后 使用git add –all git commit -m “描述信息”   或者直接使用git进行改名 git mv filename1 filename2 修改commit描述记录 git commit –amend -m “描述信息” 使用amend只能修改最后一条记录 git blame 找出哪段代码谁是修改的 git checkout welcome.html 挽救误删的文件   版本前进后退  git reflog git reset –hard hash值 前进后退到某一个文档  git diff 文件名 将工作区文件和暂存区文件作比较\ngit diff HEAD 文件名 与本地库做对比\ngit diff 全部文件做比较\n 分支  git branch 获取当前分支 git branch cat 创建cat分支 git branch -d cat 删除cat分支 -D强制删除 git checkout cat 切换分支 git branch -v 查看有什么分支  分支合并 1.先切换到要合并的分支 git merge     git与GitHub   如果是全新的项目创建的话git init\n  git add 1.txt\n  git commit -m “git one file”\n  接下来要把内容推送到远端的git服务器上\n git remote add origin GitHub服务器地址 origin只是默认的代名词，代指后面的那个服务器地址，可以改名 （起别名，以后可以用这个别名代替远程库地址） git push -u origin master push指令： 例如 远端节点为wmj，选择cat分支推送上去 git push wmj cat  把master分支的内容推送到origin位置 如果远端服务器不存在master分支，会自动创建 如果服务器上存在master分支，则会把master分支的位置指向最新的状态 -u其实就是upstream（上游），其实就是另一个分支的名称而已，在git里，每个分支都可以设置一个上游，它会自动跟踪某个分支 git push -u origin master 会把origin/master设置为本地master的分支的upstream，当下次执行git push时不添加任何指令，git会猜测推送给远端节点origin，并把master分支推上去 git push origin master=git push origin master:master 如果想把分支推上去后进行改名则git push origin master:cat      把推送的内容拉回来更新  git fetch git merge origin/master    推送命令 git pull =git fetch+git merge\n  git pull -rebase 可以使得产生的额外commit取消\n  有时候push推送失败是因为在线版本的内容比本地内容新此时需要 先拉再推 git pull –rebase\n  看到有趣的项目时单击clone or download 或者使用 git clone git@github.com:…. 复制下来地址后面还可以加目录名\n与其他开发者互动pull request（待续） ",
+  "wordCount" : "1546",
+  "inLanguage": "en",
+  "datePublished": "2022-06-26T17:05:39+08:00",
+  "dateModified": "2022-06-26T17:05:39+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "hanson"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hanson00.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3/git%E5%AD%A6%E4%B9%A0/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hanson's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hanson00.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hanson00.github.io/" accesskey="h" title="Hanson&#39;s Blog (Alt + H)">Hanson&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hanson00.github.io/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a></div>
+    <h1 class="post-title">
+      Git学习
+    </h1>
+    <div class="post-description">
+      Git基本使用
+    </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4 min&nbsp;|&nbsp;1546 words&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#git-learning" aria-label="Git Learning">Git Learning</a><ul>
+                                    
+                        <li>
+                            <a href="#%e4%bd%bf%e7%94%a8git%e6%9f%a5%e8%af%a2%e5%8e%86%e5%8f%b2%e8%ae%b0%e5%bd%95%e6%97%b6%e7%9a%84%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98" aria-label="使用git查询历史记录时的常见问题">使用git查询历史记录时的常见问题</a></li>
+                        <li>
+                            <a href="#%e5%9c%a8git%e4%b8%ad%e5%88%a0%e9%99%a4%e6%88%96%e8%80%85%e4%bf%ae%e6%94%b9%e6%96%87%e4%bb%b6" aria-label="在git中删除或者修改文件">在git中删除或者修改文件</a></li>
+                        <li>
+                            <a href="#%e7%89%88%e6%9c%ac%e5%89%8d%e8%bf%9b%e5%90%8e%e9%80%80" aria-label="版本前进后退">版本前进后退</a></li>
+                        <li>
+                            <a href="#%e5%88%86%e6%94%af" aria-label="分支">分支</a></li>
+                        <li>
+                            <a href="#git%e4%b8%8egithub" aria-label="git与GitHub">git与GitHub</a></li>
+                        <li>
+                            <a href="#%e6%8a%8a%e6%8e%a8%e9%80%81%e7%9a%84%e5%86%85%e5%ae%b9%e6%8b%89%e5%9b%9e%e6%9d%a5%e6%9b%b4%e6%96%b0" aria-label="把推送的内容拉回来更新">把推送的内容拉回来<strong>更新</strong></a></li>
+                        <li>
+                            <a href="#%e7%9c%8b%e5%88%b0%e6%9c%89%e8%b6%a3%e7%9a%84%e9%a1%b9%e7%9b%ae%e6%97%b6%e5%8d%95%e5%87%bbclone-or-download" aria-label="看到有趣的项目时单击clone or download">看到有趣的项目时单击clone or download</a></li>
+                        <li>
+                            <a href="#%e4%b8%8e%e5%85%b6%e4%bb%96%e5%bc%80%e5%8f%91%e8%80%85%e4%ba%92%e5%8a%a8pull-request%e5%be%85%e7%bb%ad" aria-label="与其他开发者互动pull request（待续）">与其他开发者互动pull request（待续）</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h1 id="git-learning">Git Learning<a hidden class="anchor" aria-hidden="true" href="#git-learning">#</a></h1>
+<p>HEAD是指当前所在分支</p>
+<p>git branch   显示所在分支</p>
+<p>git check cat  切换到cat分支</p>
+<hr>
+<ul>
+<li>git init 初始化库，并让git对其控制</li>
+<li>git status 检查目录状态&ndash;(new file 表示文件已经被安置到暂存区，稍后会与其他文件一起放到存储库)</li>
+<li>git add &ndash;all全部文件添加到<strong>暂存区</strong></li>
+<li>git commit -m**&ldquo;init commit&rdquo;**  commit只会把暂存区里面的文件提交到存储库，加粗字体段为提交文件的说明描述一定要添加否则会打开vim编辑器进行再次补充</li>
+<li>额外点：二段式：git commit -a -m &ldquo;描述补充信息&rdquo;（一次直接add 和commit）</li>
+<li>git log 查看日志信息</li>
+</ul>
+<hr>
+<h2 id="使用git查询历史记录时的常见问题">使用git查询历史记录时的常见问题<a hidden class="anchor" aria-hidden="true" href="#使用git查询历史记录时的常见问题">#</a></h2>
+<ul>
+<li>git log</li>
+<li>git log welcome.html   访问特定文件的日志信息</li>
+<li>git log &ndash;oneline   显示一行日志</li>
+<li>git reflog  可以移动指针次数有所记录方便回调版本</li>
+<li>想要查找某个人或者某些人的commit  &ndash;git log &ndash;oneline &ndash;author=&ldquo;作者名称&rdquo;    使用&quot;\|&ldquo;表示或者</li>
+<li>git log &ndash;oneline &ndash;grep=&ldquo;关键字信息&rdquo;  在关键字的内容中进行查询</li>
+<li>git log &ndash;oneline &ndash;since=&ldquo;9am&rdquo; &ndash;untill=&ldquo;12am&rdquo; 找到早上九点到十二点的所有commit</li>
+<li>git log &ndash;oneline &ndash;since=&ldquo;9am&rdquo; &ndash;untill=&ldquo;12am&rdquo; &ndash;after=&ldquo;2022-01&rdquo;  从2022-01之后的每天的早上九点到十二点的所有commit</li>
+</ul>
+<hr>
+<h2 id="在git中删除或者修改文件">在git中删除或者修改文件<a hidden class="anchor" aria-hidden="true" href="#在git中删除或者修改文件">#</a></h2>
+<ol>
+<li>直接删除，使用系统直接删除或者使用rm
+<ol>
+<li>删除后还要使用git add &ldquo;要删除的文件名称&rdquo;  git add 1.txt   移入暂存区</li>
+<li>add后还要进行commit操作 git commit -m &ldquo;描述信息&rdquo;   提交到存储库</li>
+</ol>
+</li>
+<li>使用git进行删除 git rm 2.txt  直接完成add操作后面只需使用commit操作即可完成</li>
+</ol>
+<ul>
+<li>如果不想git在对文件进行控制可以使用git rm &ldquo;2.txt文件名&rdquo; &ndash;cached</li>
+<li>变更文件名
+<ul>
+<li>使用系统直接改变名称后</li>
+<li>使用git add &ndash;all</li>
+<li>git commit -m &ldquo;描述信息&rdquo;</li>
+</ul>
+</li>
+<li>或者直接使用git进行改名 git mv filename1 filename2</li>
+<li>修改commit描述记录 git commit &ndash;amend -m &ldquo;描述信息&rdquo; 使用amend只能修改最后一条记录</li>
+<li>git blame   找出哪段代码谁是修改的</li>
+<li>git checkout welcome.html   挽救误删的文件</li>
+</ul>
+<hr>
+<h2 id="版本前进后退">版本前进后退<a hidden class="anchor" aria-hidden="true" href="#版本前进后退">#</a></h2>
+<ul>
+<li>git reflog</li>
+<li>git reset &ndash;hard hash值   前进后退到某一个文档</li>
+</ul>
+<p>git diff 文件名   将工作区文件和暂存区文件作比较</p>
+<p>git diff HEAD 文件名  与本地库做对比</p>
+<p>git diff 全部文件做比较</p>
+<hr>
+<h2 id="分支">分支<a hidden class="anchor" aria-hidden="true" href="#分支">#</a></h2>
+<ul>
+<li>git branch 获取当前分支</li>
+<li>git branch cat  创建cat分支</li>
+<li>git branch -d cat  删除cat分支   -D强制删除</li>
+<li>git checkout cat  切换分支</li>
+<li>git branch -v  查看有什么分支
+<ul>
+<li>分支合并</li>
+<li>1.先切换到要合并的分支</li>
+<li>git merge</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="git与github">git与GitHub<a hidden class="anchor" aria-hidden="true" href="#git与github">#</a></h2>
+<ol>
+<li>
+<p>如果是全新的项目创建的话git init</p>
+</li>
+<li>
+<p>git add 1.txt</p>
+</li>
+<li>
+<p>git commit -m &ldquo;git one file&rdquo;</p>
+</li>
+<li>
+<p>接下来要把内容<strong>推送</strong>到远端的git服务器上</p>
+<ol>
+<li>git remote add origin GitHub服务器地址   origin只是默认的代名词，代指后面的那个服务器地址，可以改名   （起别名，以后可以用这个别名代替远程库地址）</li>
+<li>git push -u origin master  push指令：    例如 远端节点为wmj，选择cat分支推送上去 git push wmj cat
+<ol>
+<li>把master分支的内容推送到origin位置</li>
+<li>如果远端服务器不存在master分支，会自动创建</li>
+<li>如果服务器上存在master分支，则会把master分支的位置指向最新的状态</li>
+<li>-u其实就是upstream（上游），其实就是另一个分支的名称而已，在git里，每个分支都可以设置一个上游，它会自动跟踪某个分支</li>
+<li>git push -u origin master   会把origin/master设置为本地master的分支的upstream，当下次执行git push时不添加任何指令，git会猜测推送给远端节点origin，并把master分支推上去</li>
+<li>git push origin master=git push origin master:master</li>
+<li>如果想把分支推上去后进行改名则git push origin master:cat</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<h2 id="把推送的内容拉回来更新">把推送的内容拉回来<strong>更新</strong><a hidden class="anchor" aria-hidden="true" href="#把推送的内容拉回来更新">#</a></h2>
+<ol>
+<li>git fetch</li>
+<li>git merge origin/master</li>
+</ol>
+</li>
+<li>
+<p>推送命令  git pull =git fetch+git merge</p>
+</li>
+<li>
+<p>git pull -rebase  可以使得产生的额外commit取消</p>
+</li>
+<li>
+<p>有时候push推送失败是因为在线版本的内容比本地内容新此时需要   先拉再推  git pull &ndash;rebase</p>
+</li>
+</ol>
+<h2 id="看到有趣的项目时单击clone-or-download">看到有趣的项目时单击clone or download<a hidden class="anchor" aria-hidden="true" href="#看到有趣的项目时单击clone-or-download">#</a></h2>
+<p>或者使用  git clone <a href="mailto:git@github.com">git@github.com</a>:&hellip;.  复制下来地址后面还可以加目录名</p>
+<h2 id="与其他开发者互动pull-request待续">与其他开发者互动pull request（待续）<a hidden class="anchor" aria-hidden="true" href="#与其他开发者互动pull-request待续">#</a></h2>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hanson00.github.io/tags/git/">Git</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://hanson00.github.io/posts/technology/golang/01gin/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>01gin</span>
+  </a>
+  <a class="next" href="https://hanson00.github.io/posts/technology/python/%E8%B7%AF%E9%A3%9E%E7%88%AC%E8%99%AB/">
+    <span class="title">Next »</span>
+    <br>
+    <span>路飞爬虫</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
