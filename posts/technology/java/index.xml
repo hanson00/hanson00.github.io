@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Java文章 on Hanson&#39;s Blog</title>
+    <link>https://hanson00.github.io/posts/technology/java/</link>
+    <description>Recent content in Java文章 on Hanson&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 02 Jul 2022 14:20:22 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/posts/technology/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>04Servlet</title>
+      <link>https://hanson00.github.io/posts/technology/java/04servlet/</link>
+      <pubDate>Sat, 02 Jul 2022 14:20:22 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/java/04servlet/</guid>
+      <description>JavaWeb相关学习</description>
+    </item>
+    
+    <item>
+      <title>03MyBatis</title>
+      <link>https://hanson00.github.io/posts/technology/java/03mybatis/</link>
+      <pubDate>Sat, 02 Jul 2022 14:18:00 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/java/03mybatis/</guid>
+      <description>JavaWeb相关学习</description>
+    </item>
+    
+    <item>
+      <title>03maven</title>
+      <link>https://hanson00.github.io/posts/technology/java/03maven/</link>
+      <pubDate>Sat, 02 Jul 2022 14:11:32 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/java/03maven/</guid>
+      <description>JavaWeb相关学习</description>
+    </item>
+    
+    <item>
+      <title>02JDBC</title>
+      <link>https://hanson00.github.io/posts/technology/java/02jdbc/</link>
+      <pubDate>Sat, 02 Jul 2022 14:09:32 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/java/02jdbc/</guid>
+      <description>JavaWeb相关学习</description>
+    </item>
+    
+    <item>
+      <title>01mysql</title>
+      <link>https://hanson00.github.io/posts/technology/java/01mysql/</link>
+      <pubDate>Sat, 02 Jul 2022 13:58:37 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/java/01mysql/</guid>
+      <description>JavaWeb的MySQL学习</description>
+    </item>
+    
+  </channel>
+</rss>

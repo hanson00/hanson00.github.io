@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>01mysql | Hanson&#39;s Blog</title>
+<meta name="keywords" content="MySQL学习数据">
+<meta name="description" content="JavaWeb的MySQL学习">
+<meta name="author" content="
+作者:&nbsp;hanson">
+<link rel="canonical" href="https://hanson00.github.io/posts/technology/java/01mysql/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.90e638a5d4448bfb1fe445aebfe0f00ba8831874539fc42477608012af462729.css" integrity="sha256-kOY4pdREi/sf5EWuv&#43;DwC6iDGHRTn8Qkd2CAEq9GJyk=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hanson00.github.io/posts/imgs/favicon16x16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hanson00.github.io/posts/imgs/favicon32x32.ico">
+<link rel="apple-touch-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="mask-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="01mysql" />
+<meta property="og:description" content="JavaWeb的MySQL学习" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanson00.github.io/posts/technology/java/01mysql/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-02T13:58:37&#43;08:00" />
+<meta property="article:modified_time" content="2022-07-02T13:58:37&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="01mysql"/>
+<meta name="twitter:description" content="JavaWeb的MySQL学习"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hanson00.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "💻技术类文章",
+      "item": "https://hanson00.github.io/posts/technology/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Java文章",
+      "item": "https://hanson00.github.io/posts/technology/java/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "01mysql",
+      "item": "https://hanson00.github.io/posts/technology/java/01mysql/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "01mysql",
+  "name": "01mysql",
+  "description": "JavaWeb的MySQL学习",
+  "keywords": [
+    "MySQL学习数据"
+  ],
+  "articleBody": "MySQL的学习 1.命令行的基本命令 数据库操作：通过命令行登录MySQL使用命令:mysql -uroot -p1234 ( -uMySQL用户名,-pMySQL密码 )\n show databases; 查询本地数据库\n  create database 数据库名称; 创建数据库\n  一般采用该语句用于创建数据库\ncreate database if not exists 数据库名称; \n  drop database 数据库名称; 删除数据库\n  一般采用该语句用于删除数据库\ndrop database if exists 数据库名称;\n  use 数据库名称; 使用数据库\n  select database(); 查看当前使用的数据库\n  表操作：\n show tables; 查看当前数据库的表名称\n  desc 表名称; 查询表结构\n  1 2 3 4 5 6 7 8 9 10  --创建表 create table 表名( 列名1,数据类型， 列名2,数据类型， 列名3,数据类型， 列名n,数据类型)；     drop table 表名; 删除表\n  drop table if exists 表名; 删除表并判断是否存在\n  alter table 表名 rename 新表名 修改表名\n  alter table 表名 add 新列名 数据类型; 添加一列\n  alter table 表名 modify 列名 新的数据类型; 修改数据类型\n  alter table 表名 change 列名 新的数据类型; 修改列名和数据类型\n  alter table 表名 drop 列名; 删除列\n  insert into 表名(列名1,列名2,...) values(值1,值2,值3); 给指定的列添加数据\n  insert into 表名 values(值1,值2,值3,...); 给全部列添加数据\n  insert into 表名 values(值1,值2,值3,...),(值1,值2,值3,...),(值1,值2,值3,...); 批量添加数据\n  ==查询语法DQL详细学习见后面自学==\n 条件查询 排序查询 聚合函数 分组查询 分页查询 约束实现 多表查询中的内连接，外连接 多表查询的子查询 事务   ",
+  "wordCount" : "574",
+  "inLanguage": "en",
+  "datePublished": "2022-07-02T13:58:37+08:00",
+  "dateModified": "2022-07-02T13:58:37+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "hanson"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hanson00.github.io/posts/technology/java/01mysql/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hanson's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hanson00.github.io/posts/imgs/66.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hanson00.github.io/" accesskey="h" title="Hanson&#39;s Blog (Alt + H)">Hanson&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hanson00.github.io/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/java/">Java文章</a></div>
+    <h1 class="post-title">
+      01mysql
+    </h1>
+    <div class="post-description">
+      JavaWeb的MySQL学习
+    </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2 min&nbsp;|&nbsp;574 words&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#mysql%e7%9a%84%e5%ad%a6%e4%b9%a0" aria-label="MySQL的学习">MySQL的学习</a><ul>
+                                    
+                        <li>
+                            <a href="#1%e5%91%bd%e4%bb%a4%e8%a1%8c%e7%9a%84%e5%9f%ba%e6%9c%ac%e5%91%bd%e4%bb%a4" aria-label="1.命令行的基本命令">1.命令行的基本命令</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h1 id="mysql的学习">MySQL的学习<a hidden class="anchor" aria-hidden="true" href="#mysql的学习">#</a></h1>
+<h2 id="1命令行的基本命令">1.命令行的基本命令<a hidden class="anchor" aria-hidden="true" href="#1命令行的基本命令">#</a></h2>
+<p>数据库操作：通过命令行登录MySQL使用命令:<code>mysql -uroot -p1234</code> ( -uMySQL用户名,-pMySQL密码 )</p>
+<blockquote>
+<p><code>show databases;</code> 查询本地数据库</p>
+</blockquote>
+<blockquote>
+<p><code>create database 数据库名称;</code> 创建数据库</p>
+</blockquote>
+<blockquote>
+<p>一般采用该语句用于创建数据库</p>
+<p><code>create database if not exists 数据库名称; </code></p>
+</blockquote>
+<blockquote>
+<p><code>drop database 数据库名称;</code> 删除数据库</p>
+</blockquote>
+<blockquote>
+<p>一般采用该语句用于删除数据库</p>
+<p><code>drop database if exists 数据库名称;</code></p>
+</blockquote>
+<blockquote>
+<p><code>use 数据库名称;</code> 使用数据库</p>
+</blockquote>
+<blockquote>
+<p><code>select database();</code> 查看当前使用的数据库</p>
+</blockquote>
+<hr>
+<p>表操作：</p>
+<blockquote>
+<p><code>show tables;</code> 查看当前数据库的表名称</p>
+</blockquote>
+<blockquote>
+<p><code>desc 表名称;</code> 查询表结构</p>
+</blockquote>
+<blockquote>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql">--<span style="color:#f00">创建表</span>
+<span style="color:#fff;font-weight:bold">create</span> <span style="color:#fff;font-weight:bold">table</span> <span style="color:#f00">表名</span>(
+
+<span style="color:#f00">列名</span><span style="color:#ff0;font-weight:bold">1</span>,<span style="color:#f00">数据类型，</span>
+
+<span style="color:#f00">列名</span><span style="color:#ff0;font-weight:bold">2</span>,<span style="color:#f00">数据类型，</span>
+
+<span style="color:#f00">列名</span><span style="color:#ff0;font-weight:bold">3</span>,<span style="color:#f00">数据类型，</span>
+
+<span style="color:#f00">列名</span>n,<span style="color:#f00">数据类型</span>)<span style="color:#f00">；</span>
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<blockquote>
+<p><code>drop table 表名;</code> 删除表</p>
+</blockquote>
+<blockquote>
+<p><code>drop table if exists 表名;</code> 删除表并判断是否存在</p>
+</blockquote>
+<blockquote>
+<p><code>alter table 表名 rename 新表名</code> 修改表名</p>
+</blockquote>
+<blockquote>
+<p><code>alter table 表名 add 新列名 数据类型;</code> 添加一列</p>
+</blockquote>
+<blockquote>
+<p><code>alter table 表名 modify 列名 新的数据类型;</code> 修改数据类型</p>
+</blockquote>
+<blockquote>
+<p><code>alter table 表名 change 列名 新的数据类型;</code> 修改列名和数据类型</p>
+</blockquote>
+<blockquote>
+<p><code>alter table 表名 drop 列名;</code> 删除列</p>
+</blockquote>
+<blockquote>
+<p><code>insert into 表名(列名1,列名2,...) values(值1,值2,值3);</code> 给指定的列添加数据</p>
+</blockquote>
+<blockquote>
+<p><code>insert into 表名 values(值1,值2,值3,...);</code> 给全部列添加数据</p>
+</blockquote>
+<blockquote>
+<p><code>insert into 表名 values(值1,值2,值3,...),(值1,值2,值3,...),(值1,值2,值3,...);</code> 批量添加数据</p>
+</blockquote>
+<hr>
+<p>==查询语法DQL详细学习见后面自学==</p>
+<ol>
+<li>条件查询</li>
+<li>排序查询</li>
+<li>聚合函数</li>
+<li>分组查询</li>
+<li>分页查询</li>
+<li>约束实现</li>
+<li>多表查询中的内连接，外连接</li>
+<li>多表查询的子查询</li>
+<li>事务
+<img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/MySQL%e7%9a%84%e5%ad%a6%e4%b9%a0.png" alt="01"  />
+</li>
+</ol>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hanson00.github.io/tags/javaweb%E7%9B%B8%E5%85%B3%E5%AD%A6%E4%B9%A0/">JavaWeb相关学习</a></li>
+      <li><a href="https://hanson00.github.io/tags/mysql/">MySQL</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://hanson00.github.io/posts/technology/java/02jdbc/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>02JDBC</span>
+  </a>
+  <a class="next" href="https://hanson00.github.io/posts/linux/ts/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Ts</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
