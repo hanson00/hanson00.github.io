@@ -61,8 +61,8 @@
 <meta property="og:description" content="Git基本使用" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hanson00.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3/git%E5%AD%A6%E4%B9%A0/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-06-26T17:05:39&#43;08:00" />
-<meta property="article:modified_time" content="2022-06-26T17:05:39&#43;08:00" />
+<meta property="article:published_time" content="2022-06-25T17:05:39&#43;08:00" />
+<meta property="article:modified_time" content="2022-06-25T17:05:39&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Git学习"/>
@@ -102,8 +102,8 @@
   "articleBody": "Git Learning HEAD是指当前所在分支\ngit branch 显示所在分支\ngit check cat 切换到cat分支\n  git init 初始化库，并让git对其控制 git status 检查目录状态–(new file 表示文件已经被安置到暂存区，稍后会与其他文件一起放到存储库) git add –all全部文件添加到暂存区 git commit -m**“init commit”** commit只会把暂存区里面的文件提交到存储库，加粗字体段为提交文件的说明描述一定要添加否则会打开vim编辑器进行再次补充 额外点：二段式：git commit -a -m “描述补充信息”（一次直接add 和commit） git log 查看日志信息   使用git查询历史记录时的常见问题  git log git log welcome.html 访问特定文件的日志信息 git log –oneline 显示一行日志 git reflog 可以移动指针次数有所记录方便回调版本 想要查找某个人或者某些人的commit –git log –oneline –author=“作者名称” 使用\"\\|“表示或者 git log –oneline –grep=“关键字信息” 在关键字的内容中进行查询 git log –oneline –since=“9am” –untill=“12am” 找到早上九点到十二点的所有commit git log –oneline –since=“9am” –untill=“12am” –after=“2022-01” 从2022-01之后的每天的早上九点到十二点的所有commit   在git中删除或者修改文件  直接删除，使用系统直接删除或者使用rm  删除后还要使用git add “要删除的文件名称” git add 1.txt 移入暂存区 add后还要进行commit操作 git commit -m “描述信息” 提交到存储库   使用git进行删除 git rm 2.txt 直接完成add操作后面只需使用commit操作即可完成   如果不想git在对文件进行控制可以使用git rm “2.txt文件名” –cached 变更文件名  使用系统直接改变名称后 使用git add –all git commit -m “描述信息”   或者直接使用git进行改名 git mv filename1 filename2 修改commit描述记录 git commit –amend -m “描述信息” 使用amend只能修改最后一条记录 git blame 找出哪段代码谁是修改的 git checkout welcome.html 挽救误删的文件   版本前进后退  git reflog git reset –hard hash值 前进后退到某一个文档  git diff 文件名 将工作区文件和暂存区文件作比较\ngit diff HEAD 文件名 与本地库做对比\ngit diff 全部文件做比较\n 分支  git branch 获取当前分支 git branch cat 创建cat分支 git branch -d cat 删除cat分支 -D强制删除 git checkout cat 切换分支 git branch -v 查看有什么分支  分支合并 1.先切换到要合并的分支 git merge     git与GitHub   如果是全新的项目创建的话git init\n  git add 1.txt\n  git commit -m “git one file”\n  接下来要把内容推送到远端的git服务器上\n git remote add origin GitHub服务器地址 origin只是默认的代名词，代指后面的那个服务器地址，可以改名 （起别名，以后可以用这个别名代替远程库地址） git push -u origin master push指令： 例如 远端节点为wmj，选择cat分支推送上去 git push wmj cat  把master分支的内容推送到origin位置 如果远端服务器不存在master分支，会自动创建 如果服务器上存在master分支，则会把master分支的位置指向最新的状态 -u其实就是upstream（上游），其实就是另一个分支的名称而已，在git里，每个分支都可以设置一个上游，它会自动跟踪某个分支 git push -u origin master 会把origin/master设置为本地master的分支的upstream，当下次执行git push时不添加任何指令，git会猜测推送给远端节点origin，并把master分支推上去 git push origin master=git push origin master:master 如果想把分支推上去后进行改名则git push origin master:cat      把推送的内容拉回来更新  git fetch git merge origin/master    推送命令 git pull =git fetch+git merge\n  git pull -rebase 可以使得产生的额外commit取消\n  有时候push推送失败是因为在线版本的内容比本地内容新此时需要 先拉再推 git pull –rebase\n  看到有趣的项目时单击clone or download 或者使用 git clone git@github.com:…. 复制下来地址后面还可以加目录名\n与其他开发者互动pull request（待续） ",
   "wordCount" : "1546",
   "inLanguage": "en",
-  "datePublished": "2022-06-26T17:05:39+08:00",
-  "dateModified": "2022-06-26T17:05:39+08:00",
+  "datePublished": "2022-06-25T17:05:39+08:00",
+  "dateModified": "2022-06-25T17:05:39+08:00",
   "author":[{
     "@type": "Person",
     "name": "hanson"
@@ -200,6 +200,7 @@
 <main class="main">
 
 <article class="post-single">
+
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a></div>
     <h1 class="post-title">
@@ -208,6 +209,28 @@
     <div class="post-description">
       Git基本使用
     </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;2022-06-25&nbsp;|&nbsp;字数:&nbsp;1546字&nbsp;|&nbsp;时长: 4分钟&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
+      <ul class="post-tags-meta">
+        <a href="https://hanson00.github.io/tags/git/">Git</a>
+      </ul>
+
+      <span id="busuanzi_container_page_pv">
+        &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+      </span>
+
+</div>
   </header> <aside id="toc-container" class="toc-container wide">
         <div class="toc">
             <details  open>
@@ -434,19 +457,31 @@
       <li><a href="https://hanson00.github.io/tags/git/">Git</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://hanson00.github.io/posts/technology/golang/01gin/">
+  <a class="prev" href="https://hanson00.github.io/posts/technology/python/%E8%B7%AF%E9%A3%9E%E7%88%AC%E8%99%AB/">
     <span class="title">« Prev</span>
-    <br>
-    <span>01gin</span>
-  </a>
-  <a class="next" href="https://hanson00.github.io/posts/technology/python/%E8%B7%AF%E9%A3%9E%E7%88%AC%E8%99%AB/">
-    <span class="title">Next »</span>
     <br>
     <span>路飞爬虫</span>
   </a>
 </nav>
 
   </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo1-mu.vercel.app/",  
+            el: "#tcomment",
+            lang: 'zh-CN',
+            region: 'ap-guangzhou',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
 </article>
     </main>
     

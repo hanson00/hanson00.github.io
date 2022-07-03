@@ -105,8 +105,8 @@
   "keywords": [
     ""
   ],
-  "articleBody": "sodjsondonsdad ",
-  "wordCount" : "1",
+  "articleBody": "sodjsondonsdad 《软件工程实践》课程报告\n专业名称： 软件工程 班 级： 软件1194 学 号： 201911701426 姓 名： 温铭军 指导老师： 段兴 完成日期： 2022.6.24\n海大体育馆管理系统需求规格说明书 编号：GDOU-RJXQYFX-VISION\n版本:1.0\n作者：\t日期： Email：\t组号： 审批：\t日期：\n 变更记录 日期\t版本\t变更说明\t作者\n 简介 1.1目的 本文档定义了海大体育馆管理系统的高层业务需求。本文档不是对于需求进行详尽的叙述，而是指出了业务需求的大方向。本系统的开发目的是为了更加高效地对体育馆的各种资源进行统一管理，减少不必要工作人员带来的开支，同时也使广大学生能更加方便地使用体育场馆。 1.2海大体育馆管理系统的业务范围 本系统包括体育赛事管理，体育器材管理，体育场地管理等。以web应用形式提供服务，可以通过互联网进行访问。 建议的解决方案 3.1主要的功能性需求（建议方案） 1．能够进行用户管理，包括： \t添加管理员用户 \t删除管理员用户 \t查询管理员用户 \t管理员用户登录 \t学生用户注册 \t学生用户登录 \t用户修改密码 \t*更新管理员角色 \t馆内设施罚款条例公告  2．能够进行场地使用管理，包括： \t添加场地 \t删除场地 \t场地预约（用一卡通号码预约，一周内预约） \t场地预约退订 \t场地预约修改 \t场地预约失约处理 \t校队预留（使用）场地 \t上课使用场地 \t场地使用（有开始计时，结束计时，一卡通付费） \t场地一周信息查询 \t场地收费标准查询 \t场馆公告\n3．能够进行体育赛事管理，包括： \t赛事创建（预告） \t赛事取消 \t赛事查询 \t比赛场地安排 \t赛事器材使用 \t裁判简介公告\n4．能够进行器材管理，包括： \t器材购置新增 \t器材维护报修 \t器材报废删除 \t器材查询 \t器材租用 \t器材回收 \t器材租用收费标准查询 *器材损毁赔偿\n场地管理主要业务流程 3.1场地管理流程 管理员可以进行场地的添加删除预留以及失约处理并且拥有所有普通用户的基础使用功能包括有：场地预约，场地预约退订，修改，使用等  图1\n每个功能的用例规约 用例名称：\t添加场地 用例ID：\tESM- ZZJG -1 角色：\t系统管理员，体育馆管理员 用例说明：\t管理员添加场地。 前置条件：\t管理员已经登录系统 基本事件流：\t1.\t管理员请求添加场地 管理员输入场地名称，场地位置，场地用途，场地当前状态（可用/不可用） 管理员点击保存，系统添加场地成功 其它事件流：\t4.管理员输入的场地信息不完整，如某一项没有填写，并选择“保存”，系统给出提示信息 5.管理员r输入的场地信息不符合格式要求，并选择“保存”，系统给出提示信息 6.管理员，选择“取消”，系统返回场地信息页面 7.如果系统已经有重名的场地名，系统不保存新建的岗位，系统给出提示信息：“此场地已经存在” 异常事件流：\t无 后置条件：\t无  用例名称：\t场地预约 用例ID：\tESM- ZZJG -2 角色：\t所有用户 用例说明：\t用户请求预约场地。 前置条件：\t用户已经登录系统 基本事件流：\t1.\t用户一卡通学号登录系统 2.\t用户从场地列表中选取需要预约的场地和预约时间，并输入一卡通号码进行预约 3.\t预约成功后系统将该场地该时间段设为不可选 其它事件流：\t4.用户输入的场地信息已被预约\n异常事件流：\t无 后置条件：\t无\n用例名称：\t场地失约处理 用例ID：\tESM- ZZJG -3 角色：\t体育馆管理员 用例说明：\t体育馆管理员对失约信息处理。 前置条件：\t体育馆管理员已经登录系统 基本事件流：\t1.\t场地预约时间结束后没有履约，系统将该条预约消息存入场地预约失约管理中 2.\t管理员查看失约名单列表\n3.管理员给出失约处理方案\n其它事件流：\t无\n异常事件流：\t无 后置条件：\t无\n表1\n场地数据建模  用类图表达 把关键抽象作为对象，它的属性就作为对象的属性，用类图表达，名称为“中文+英文”的形式，英文按照类名及其类属性名的命名规则简写、改写，如下所示：\n1．\t类图（不涉及类方法）（模块）\n2．\t关键对象的状态图（模块）【场地状态】\n架构设计 一、\t数据库架构\n二、\t后端架构\n三、\t前端架构\n一、详细设计总则： 详细设计是在架构的基础上对概要设计的细化，即对架构中的类的详细描述，产生设计模型，它可以直接指导编码。\n详细设计主要表达： \t各个类的存放路径； \t静态的设计类图； \t对各个类的详细描述，包括：属性和方法的说明，关键方法的实现伪代码； \t各用例的操作顺序、系统执行顺序的描述； \t配置文件的描述等。\n以下为各模块的详细设计 二、组织结构管理模块 （一）文件列表及存放路径——（按照包图的设计填写） 名称\t类型\t存放位置\t说明 Index.vue\tPsa单页面路由\tFont-end/vue-admin-template/src/views/login/index.vue\t用户登录 Index.vue\tPsa单页面路由\tFont-end/vue-admin-template/src/views/ground/index.vue\t场地展示页面 Form.vue\tPSA单页面路由\tFont-end/vue-admin-template/src/views/ground/form.vue\t场地展示表格 addER.vue\tPSA单页面路由\tFont-end/vue-admin-template/src/views/ground/ adder/adder.vue\t场地添加租借页面 Form.vue\tPSA单页面路由\tFont-end/vue-admin-template/src/views/ground/adder/adder.form\t场地添加租借表格 addE.vue\tPSA单页面路由\tFont-end/vue-admin-template/src/views/ground/adde/addE.vue\t场地添加页面 Form.vue\tPSA单页面路由\tFont-end/vue-admin-template/src/views/ground/adder.form\t场地添加表格 Form.vue\tPSA单页面路由\tFont-end/vue-admin-template/src/views/ financial/form.vue\t场地扣费表格 Index.vue\tPSA单页面路由\tFont-end/vue-admin-template/src/views/ground/index.vue\t场地扣费页面 Ground.js\t路由\tBackend/router/ Ground.js\t场地路由 Ground.js\t路由\tBackend/router-handler/ Ground.js\t场地路由实现 Index.js\t配置文件\tBackend/db/index.js\t连接数据库 公共组件类\t路由\tSrc/util/zzjg/\t公共类 App.js\t主文件\tSrc/springMVC.xml\t配置springMVC框架\n（二）数据库详细设计 数据库名： user（用户）表： 序号\t列名\tPK\tFK\t类型\t长度\t备注 1\tuId\tYes\tVarchar\t16\t用户主键 2\tuName\tVarchar\t16\t用户名 3\tuPassword\tVarchar\t64\t用户密码 4\tstatus\tchar\t1\t用户状态 admin（管理员）表： 序号\t列名\tPK\tFK\t属性\t长度\t备注 1\taId\tYes\tInt\t12\t员主键，自增 2\taName\tVarchar\t15\t管理员姓名 3\taPassword\tVarchar\t64\t管理员密码 4\tidCardNo\tVarchar\t18\t管理员卡号 5\tpower\tDate\t11\t管理员权限 6\tstatus\tVarchar\t15\t管理员状态\nground（场地）表： 序号\t列名\tPK\tFK\t属性\t长度\t备注 1\tgId\tYes\tInt\t8\t场地主键，自增 2\tgName\tVarchar\t16\t场地名 3\tgFee\tFloat\t8\t场地费用 groundbook（场地预约）表：。 序号\t列名\tPK\tFK\t属性\t长度\t备注 1\tbId\tYes\tInt\t8\t场地预约号主键 2\tuId\tChar\t16\t一卡通账号 3\tgId\tvarchar\t16\t场地类型id 4\tbStartTime\tDatetime\t0\t预约场地开始时间 5\tbEndTime\tDatetime\t0\t预约场地结束时间 6\tbFee\tfloat\t8\t场地预约费用 7\tbStatus\tChar\t1\t场地当前状态\ngroundtype（场地种类信息）表：。 序号\t列名\tPK\tFK\t属性\t长度\t备注 1\ttId\tYes\tInt\t8\t场地种类号 2\ttName\tvarchar\t16\t场地种类名称 表之间的关系图（PDM）\n（三）时序图 场地添加\n场地查询\n修改场地信息\n删除场地信息\n（四）路由的详细描述 9、ground路由的详细描述 名称\tGround.js\t说明 功能描述\t\t添加场地 \t删除场地 \t场地预约 \t场地预约退订 \t场地预约修改 \t场地预约失约处理 \t上课使用场地 \t场地使用（有开始计时，结束计时，一卡通付费） 方法\trouter.post('/addG', groundHandler.addG) router.post('/updateG', groundHandler.updateG) router.get('/searchG', groundHandler.searchG) router.get('/searchGB', groundHandler.searchGB) router.post('/addGB', groundHandler.addGB) router.post('/updateGB', groundHandler.updateGB) router.delete('/deleteGB', groundHandler.deleteGB) 添加场地 修改场地费用 查询场地 查询场地借出 添加场地借出 修改场地借出 删除场地借出\n关键代码实现，配对路由以及路由函数实现\n// 添加场地 router.post('/addG', groundHandler.addG) 路由函数 exports.addG = (req, res) = { const data = req.body const sqlStr = ‘insert into ground set ?’ db.query(sqlStr, data, (err, result) = { if (err) { return res.cc(err) } return res.send({ status: 200, message: ‘添加成功’ }) }) }\n// 修改场地费用 router.post('/updateG', groundHandler.updateG) 路由函数 exports.updateG = (req, res) = { const data = req.body const sqlStr = update ground set gFee=${data.gFee} where gId=${data.gId} db.query(sqlStr, (err, result) = { if (err) { return res.cc(err) } return res.send({ status: 200, message: ‘修改成功’ }) }) } // 查询场地 router.get('/searchG', groundHandler.searchG) 路由函数 exports.searchG = (req, res) = { const data = req.body const sqlStr = select * from ground db.query(sqlStr, (err, result) = { if (err) { return res.cc(err) } return res.send({ status: 200, message: result }) }) }\n// 查询场地借出 router.get('/searchGB', groundHandler.searchGB) 路由函数 exports.searchGB = (req, res) = { const data = req.body const sqlStr = select * from groundbook db.query(sqlStr, (err, result) = { if (err) { return res.cc(err) } return res.send({ status: 200, message: result }) }) }\n// 添加场地借出 router.post('/addGB', groundHandler.addGB) 路由函数 exports.addGB = (req, res) = { const data = req.body let hours = (new Date(data.bEndTime) - new Date(data.bStartTime)) / 1000 / 60 / 60 // 查找这个场地的收费标准 const sqlStr1 = ‘select gFee from ground where gId=?’ db.query(sqlStr1, data.gId, (err, result) = { if (err) { return res.cc(err) } data.bFee = result[0].gFee * hours const sqlStr = ‘insert into groundbook set ?’ console.log(data) db.query(sqlStr, data, (err, result) = { if (err) { return res.cc(err) } return res.send({ status: 200, message: ‘添加成功’ }) }) }) }\n// 修改场地借出 router.post('/updateGB', groundHandler.updateGB) 路由函数 exports.updateGB = (req, res) = { const data = req.body const sqlStr = update groundbook set bStatus=${data.bStatus} where bId=${data.bId} db.query(sqlStr, (err, result) = { if (err) { return res.cc(err) } // return res.send({ // status: 200, // message: ‘修改成功’ // }) const sqlStr3 = ‘insert into financial set ?’ db.query(sqlStr3, { fIn: data.bFee, fInType: 1, date: new Date() }, (err, result) = { if (err) { return res.cc(err) } return res.send({ status: 200, message: ‘添加成功’ }) }) }) }\n// 删除场地借出 router.delete('/deleteGB', groundHandler.deleteGB) 路由函数 exports.deleteGB = (req, res) = { const data = req.body const sqlStr = delete from groundbook where bId=${data.bId} db.query(sqlStr, (err, result) = { if (err) { return res.cc(err) } return res.send({ status: 200, message: ‘删除成功’ }) }) }\n系统模型图 基本场地页面\n添加场地\n场地借用/归还功能页面\n修改场地费用\n数据库脚本 /* Navicat MySQL Data Transfer\nSource Server : JUN Source Server Version : 50724 Source Host : 127.0.0.1:3306 Source Database : software\nTarget Server Type : MYSQL Target Server Version : 50724 File Encoding : 65001\nDate: 2022-06-24 13:01:40 */\nSET FOREIGN_KEY_CHECKS=0;\n – Table structure for admin\n DROP TABLE IF EXISTS admin; CREATE TABLE admin ( aId int(12) NOT NULL AUTO_INCREMENT, aName varchar(15) NOT NULL, aPassword varchar(64) NOT NULL, idCardNo varchar(18) NOT NULL, power int(11) NOT NULL COMMENT ‘1-普通管理员 2-超级管理员’, status varchar(15) NOT NULL, PRIMARY KEY (aId) ) ENGINE=InnoDB AUTO_INCREMENT=100015 DEFAULT CHARSET=utf8;\n – Records of admin\n INSERT INTO admin VALUES (‘100000’, ‘剑锋’, ‘25d55ad2ff8a400af466c86d713c07ad’, ‘441333333333333333’, ‘2’, ‘1’); INSERT INTO admin VALUES (‘100001’, ‘软件1102’, ‘202cb962ac59079b964b07152d234b70’, ‘231512345678987898’, ‘1’, ‘0’); INSERT INTO admin VALUES (‘100002’, ‘xiaofei’, ‘6893ea0ff855c76e74bc2ff8136f39f4’, ‘xiaofei’, ‘1’, ‘0’); INSERT INTO admin VALUES (‘100003’, ‘xiaofei’, ‘ff83eaff8d55c76e74bc27f8136f3ff8’, ‘xiaofei’, ‘1’, ‘0’); INSERT INTO admin VALUES (‘100004’, ‘云飞’, ‘6ae7d4ff840f63f3ffcfad8ff869c660’, ‘441111111111111111’, ‘1’, ‘1’); INSERT INTO admin VALUES (‘100005’, ‘云飞’, ‘6893ea02fff8c76ec4bc2ff8136f39f4’, ‘123’, ‘1’, ‘1’); INSERT INTO admin VALUES (‘100006’, ‘chen’, ‘47bce5c74ff89f4867dbd57e9ca9f808’, ‘322352352’, ‘1’, ‘1’); INSERT INTO admin VALUES (‘100007’, ‘admin’, ‘$2a$10$GM1nmqbrAZRd7UtPwsXIiu1Ag’, ‘20191170142’, ‘2’, ‘1’); INSERT INTO admin VALUES (‘100009’, ‘admin’, ‘$2a$10$Kgo6KV5YPuMmsfZObk5WY.o2Y’, ‘111’, ‘2’, ‘1’); INSERT INTO admin VALUES (‘100014’, ‘admin’, ‘$2a$10$io09wi3EQnXnAkaclulU2OO6nPFusXmuwq0WIGZ6ZQQ0vg54XxzHi’, ‘201911701427’, ‘2’, ‘1’);\n – Table structure for equipment\n DROP TABLE IF EXISTS equipment; CREATE TABLE equipment ( eId int(8) NOT NULL AUTO_INCREMENT, eTypeId int(8) NOT NULL, buyDate date NOT NULL, buyCost float(8,2) NOT NULL, buyNum int(32) NOT NULL, PRIMARY KEY (eId) ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;\n – Records of equipment\n INSERT INTO equipment VALUES (‘1’, ‘1’, ‘2013-01-03’, ‘1000.00’, ‘200’); INSERT INTO equipment VALUES (‘2’, ‘2’, ‘2013-01-03’, ‘2000.00’, ‘300’); INSERT INTO equipment VALUES (‘3’, ‘3’, ‘2013-01-03’, ‘800.00’, ‘200’); INSERT INTO equipment VALUES (‘10’, ‘10’, ‘2013-01-03’, ‘130.00’, ‘60’); INSERT INTO equipment VALUES (‘18’, ‘1’, ‘2013-01-03’, ‘500.00’, ‘60’); INSERT INTO equipment VALUES (‘19’, ‘1’, ‘2013-01-03’, ‘500.00’, ‘60’); INSERT INTO equipment VALUES (‘20’, ‘1’, ‘2013-01-03’, ‘500.00’, ‘60’); INSERT INTO equipment VALUES (‘21’, ‘1’, ‘2013-01-03’, ‘500.00’, ‘60’); INSERT INTO equipment VALUES (‘22’, ‘1’, ‘2013-01-03’, ‘500.00’, ‘60’); INSERT INTO equipment VALUES (‘23’, ‘1’, ‘2013-01-03’, ‘500.00’, ‘60’); INSERT INTO equipment VALUES (‘24’, ‘1’, ‘2013-01-03’, ‘500.00’, ‘60’); INSERT INTO equipment VALUES (‘25’, ‘1’, ‘2013-01-03’, ‘500.00’, ‘60’); INSERT INTO equipment VALUES (‘26’, ‘1’, ‘2013-01-03’, ‘500.00’, ‘60’); INSERT INTO equipment VALUES (‘27’, ‘1’, ‘2013-01-03’, ‘500.00’, ‘60’); INSERT INTO equipment VALUES (‘30’, ‘0’, ‘2022-06-13’, ‘123.00’, ‘123’);\n – Table structure for equipmentrent\n DROP TABLE IF EXISTS equipmentrent; CREATE TABLE equipmentrent ( eRentId int(8) NOT NULL AUTO_INCREMENT, eTypeId int(8) NOT NULL, uId char(16) NOT NULL, borrowBegin datetime NOT NULL, borrowEnd datetime NOT NULL, borrowNum int(32) NOT NULL, status int(3) NOT NULL COMMENT ‘0为审核中\\r\\n1为未归还\\r\\n2为已归还’, borrowFee float(8,2) NOT NULL, PRIMARY KEY (eRentId) ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;\n – Records of equipmentrent\n INSERT INTO equipmentrent VALUES (‘2’, ‘1’, ‘201011701212’, ‘2013-01-04 11:00:00’, ‘2013-01-04 12:00:00’, ‘42’, ‘2’, ‘966.00’); INSERT INTO equipmentrent VALUES (‘13’, ‘1’, ‘201911701427’, ‘2013-01-04 08:00:00’, ‘2013-01-04 17:00:00’, ‘42’, ‘1’, ‘0.00’); INSERT INTO equipmentrent VALUES (‘20’, ‘2’, ‘201911701427’, ‘2022-06-12 16:00:00’, ‘2022-06-15 16:00:00’, ‘123’, ‘1’, ‘738.00’); INSERT INTO equipmentrent VALUES (‘21’, ‘1’, ‘201911701427’, ‘2022-06-07 16:00:00’, ‘2022-06-22 16:00:00’, ‘32’, ‘2’, ‘736.00’); INSERT INTO equipmentrent VALUES (‘22’, ‘1’, ‘201911701427’, ‘2022-06-06 16:00:00’, ‘2022-06-23 16:00:00’, ‘12’, ‘1’, ‘276.00’);\n – Table structure for equipmenttype\n DROP TABLE IF EXISTS equipmenttype; CREATE TABLE equipmenttype ( eTypeId int(8) NOT NULL AUTO_INCREMENT, eTypeName varchar(16) NOT NULL, totalNum int(32) NOT NULL, borrowNum int(32) NOT NULL, eFee float(8,2) NOT NULL, PRIMARY KEY (eTypeId) ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;\n – Records of equipmenttype\n INSERT INTO equipmenttype VALUES (‘1’, ‘羽毛球拍’, ‘802’, ‘0’, ‘23.00’); INSERT INTO equipmenttype VALUES (‘2’, ‘篮球’, ‘300’, ‘12’, ‘6.00’); INSERT INTO equipmenttype VALUES (‘3’, ‘乒乓球拍’, ‘200’, ‘107’, ‘8.00’); INSERT INTO equipmenttype VALUES (‘19’, ‘网球’, ‘100’, ‘0’, ‘20.00’); INSERT INTO equipmenttype VALUES (‘20’, ‘网球’, ‘100’, ‘0’, ‘20.00’);\n – Table structure for financial\n DROP TABLE IF EXISTS financial; CREATE TABLE financial ( fId int(8) NOT NULL AUTO_INCREMENT, fIn float(8,2) NOT NULL COMMENT ‘收支’, fInType char(2) NOT NULL COMMENT ‘1-场地租用收入 2-器材租用收入’, date date NOT NULL, notes varchar(255) NOT NULL, PRIMARY KEY (fId) ) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;\n – Records of financial\n INSERT INTO financial VALUES (‘3’, ‘10.00’, ‘1’, ‘2013-01-04’, ‘201011701212,器材1’); INSERT INTO financial VALUES (‘4’, ‘26664.00’, ‘0’, ‘2013-01-04’, ‘201011701207,场地28’); INSERT INTO financial VALUES (‘10’, ‘-500.00’, ‘2’, ‘2013-01-03’, ‘'); INSERT INTO financial VALUES (‘47’, ‘738.00’, ‘1’, ‘2022-06-15’, ‘'); INSERT INTO financial VALUES (‘48’, ‘6000.00’, ‘1’, ‘0000-00-00’, ‘'); INSERT INTO financial VALUES (‘49’, ‘2400.00’, ‘1’, ‘2022-06-15’, ‘'); INSERT INTO financial VALUES (‘50’, ‘736.00’, ‘1’, ‘2022-06-17’, ‘'); INSERT INTO financial VALUES (‘51’, ‘276.00’, ‘1’, ‘2022-06-17’, ‘'); INSERT INTO financial VALUES (‘52’, ‘966.00’, ‘1’, ‘2022-06-17’, ‘'); INSERT INTO financial VALUES (‘53’, ‘6000.00’, ‘1’, ‘2022-06-17’, ‘'); INSERT INTO financial VALUES (‘54’, ‘6000.00’, ‘1’, ‘2022-06-17’, ‘'); INSERT INTO financial VALUES (‘55’, ‘2400.00’, ‘1’, ‘2022-06-17’, ‘'); INSERT INTO financial VALUES (‘56’, ‘2400.00’, ‘1’, ‘2022-06-17’, ‘'); INSERT INTO financial VALUES (‘57’, ‘2400.00’, ‘1’, ‘2022-06-17’, ‘'); INSERT INTO financial VALUES (‘58’, ‘6000.00’, ‘1’, ‘2022-06-17’, ‘'); INSERT INTO financial VALUES (‘59’, ‘6000.00’, ‘1’, ‘2022-06-17’, ‘');\n – Table structure for ground\n DROP TABLE IF EXISTS ground; CREATE TABLE ground ( gId int(8) NOT NULL AUTO_INCREMENT, gName varchar(16) NOT NULL, gFee float(8,2) NOT NULL, PRIMARY KEY (gId) ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;\n – Records of ground\n INSERT INTO ground VALUES (‘1’, ‘羽毛球1-1’, ‘100.00’); INSERT INTO ground VALUES (‘2’, ‘羽毛球1-2’, ‘100.00’); INSERT INTO ground VALUES (‘3’, ‘羽毛球1-3’, ‘100.00’); INSERT INTO ground VALUES (‘4’, ‘羽毛球2-1’, ‘60.00’); INSERT INTO ground VALUES (‘5’, ‘羽毛球2-2’, ‘60.00’); INSERT INTO ground VALUES (‘6’, ‘羽毛球2-3’, ‘60.00’); INSERT INTO ground VALUES (‘7’, ‘羽毛球3-1’, ‘50.00’); INSERT INTO ground VALUES (‘8’, ‘篮球1-1’, ‘50.00’); INSERT INTO ground VALUES (‘9’, ‘篮球1-2’, ‘40.00’); INSERT INTO ground VALUES (‘10’, ‘兵乓球1-1’, ‘20.00’); INSERT INTO ground VALUES (‘11’, ‘兵乓球1-2’, ‘20.00’); INSERT INTO ground VALUES (‘12’, ‘兵乓球2-1’, ‘25.00’); INSERT INTO ground VALUES (‘13’, ‘兵乓球2-2’, ‘25.00’); INSERT INTO ground VALUES (‘14’, ‘排球1-1’, ‘40.00’); INSERT INTO ground VALUES (‘15’, ‘排球1-2’, ‘40.00’); INSERT INTO ground VALUES (‘16’, ‘游泳池1-1’, ‘5.00’); INSERT INTO ground VALUES (‘17’, ‘游泳池1-2’, ‘8.00’); INSERT INTO ground VALUES (‘18’, ‘足球场1’, ‘500.00’); INSERT INTO ground VALUES (‘19’, ‘足球场2’, ‘550.00’); INSERT INTO ground VALUES (‘29’, ‘篮球1-3’, ‘600.00’); INSERT INTO ground VALUES (‘31’, ‘w’, ‘0.00’);\n – Table structure for groundbook\n DROP TABLE IF EXISTS groundbook; CREATE TABLE groundbook ( bId int(8) NOT NULL AUTO_INCREMENT, uId char(16) NOT NULL, gId varchar(16) NOT NULL, bStartTime datetime NOT NULL, bEndTime datetime NOT NULL, bFee float(8,2) NOT NULL, bStatus char(1) NOT NULL COMMENT ‘1=预定状态 2=使用中 3=已完成 0=审核中’, PRIMARY KEY (bId) ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;\n – Records of groundbook\n INSERT INTO groundbook VALUES (‘7’, ‘201911701427’, ‘1’, ‘2020-01-01 08:00:00’, ‘2020-01-02 08:00:00’, ‘6000.00’, ‘3’); INSERT INTO groundbook VALUES (‘14’, ‘201911701427’, ‘1’, ‘2020-01-01 08:00:00’, ‘2020-01-02 08:00:00’, ‘6000.00’, ‘3’); INSERT INTO groundbook VALUES (‘20’, ‘201911701427’, ‘1’, ‘2020-01-01 08:00:00’, ‘2020-01-02 08:00:00’, ‘6000.00’, ‘1’); INSERT INTO groundbook VALUES (‘21’, ‘201911701427’, ‘1’, ‘2020-01-01 08:00:00’, ‘2020-01-02 08:00:00’, ‘100.00’, ‘3’); INSERT INTO groundbook VALUES (‘22’, ‘201911701427’, ‘1’, ‘2020-01-01 08:00:00’, ‘2020-01-02 08:00:00’, ‘2400.00’, ‘3’); INSERT INTO groundbook VALUES (‘24’, ‘201911701427’, ‘1’, ‘2020-01-01 08:00:00’, ‘2020-01-02 08:00:00’, ‘2400.00’, ‘1’); INSERT INTO groundbook VALUES (‘25’, ‘201911701427’, ‘1’, ‘2020-01-01 08:00:00’, ‘2020-01-02 08:00:00’, ‘2400.00’, ‘1’); INSERT INTO groundbook VALUES (‘26’, ‘201911701427’, ‘1’, ‘2020-01-01 08:00:00’, ‘2020-01-02 08:00:00’, ‘2400.00’, ‘1’); INSERT INTO groundbook VALUES (‘27’, ‘201911701427’, ‘1’, ‘2022-06-06 16:00:00’, ‘2022-06-13 16:00:00’, ‘16800.00’, ‘0’); INSERT INTO groundbook VALUES (‘28’, ‘201911701427’, ‘1’, ‘2022-06-06 16:00:00’, ‘2022-06-13 16:00:00’, ‘16800.00’, ‘0’); INSERT INTO groundbook VALUES (‘29’, ‘201911701427’, ‘1’, ‘2022-06-06 16:00:00’, ‘2022-06-07 16:00:00’, ‘2400.00’, ‘0’);\n – Table structure for groundtype\n DROP TABLE IF EXISTS groundtype; CREATE TABLE groundtype ( tId int(8) NOT NULL AUTO_INCREMENT, tName varchar(8) NOT NULL, PRIMARY KEY (tId) ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;\n – Records of groundtype\n INSERT INTO groundtype VALUES (‘1’, ‘羽毛球’); INSERT INTO groundtype VALUES (‘2’, ‘篮球’); INSERT INTO groundtype VALUES (‘3’, ‘乒乓球’); INSERT INTO groundtype VALUES (‘4’, ‘排球’); INSERT INTO groundtype VALUES (‘5’, ‘标枪’); INSERT INTO groundtype VALUES (‘6’, ‘铁饼’); INSERT INTO groundtype VALUES (‘7’, ‘举重’); INSERT INTO groundtype VALUES (‘8’, ‘游泳’); INSERT INTO groundtype VALUES (‘9’, ‘足球’); INSERT INTO groundtype VALUES (‘10’, ‘橄榄球’); INSERT INTO groundtype VALUES (‘11’, ‘田径’); INSERT INTO groundtype VALUES (‘12’, ‘高尔夫球场’);\n – Table structure for match\n DROP TABLE IF EXISTS match; CREATE TABLE match ( mId int(8) NOT NULL AUTO_INCREMENT, mName varchar(50) NOT NULL, text text NOT NULL, mDate date NOT NULL, aId int(8) NOT NULL, status char(1) NOT NULL, PRIMARY KEY (mId) ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;\n – Records of match\n INSERT INTO match VALUES (‘1’, ‘第11届短池游泳世锦赛’, ‘\\r\\n 12月作为一年中的最后一个月，是众多项目的收官之月。 \\r\\n\n\\r\\n\\r\\n 本月最重要的赛事将是12月12日至16日在土耳其伊斯坦布尔举行的第11届短池游泳世锦赛，尽管是25米泳池，但争夺也十分激烈，中国泳军在经历了奥运会之后，谁会成为这里最闪耀的明星？ \\r\\n\n\\r\\n\\r\\n  \\r\\n\n\\r\\n\\r\\n \\r\\n\n\\r\\n\\r\\n \\r\\n\n\\r\\n\\r\\n \\r\\n\n\\r\\n\\r\\n \\r\\n\n’, ‘2013-01-01’, ‘10000’, ‘1’); INSERT INTO match VALUES (‘2’, ‘全国冬运会开始新年序章’, ‘\\r\\n 2012年是中国的龙年，更是体坛龙腾虎跃的一年。我们可以预言，在这样的年份里，人类的运动极限将再次遭遇挑战，体育迷的想象力可以更加狂野。那么，这一年究竟有哪些比赛值得我们期待?\\r\\n\n\\r\\n\\r\\n 与往年一样，2012年的“开年大餐”绝不会单调。作为一项传统赛事，达喀尔拉力赛已在热情的南美拉开序幕，这是属于勇敢者的游戏，但也希望车手们能一路平安。\\r\\n\n\\r\\n\\r\\n 在北半球的冰雪季节里，第12届全国冬运会揭开战幕，各路冰雪好手齐聚长春展开争夺。而全世界“好雪”的年轻人们则将在奥地利迎来首届冬季青奥会。\\r\\n\n\\r\\n\\r\\n 同样在1月份，网球也将拉开漫长的赛季，先是各站巡回赛，随后开年的第一个大满贯——澳网将于16日至29日进行。去年李娜在法网上的折桂，激起了国人对于网球的关注，也希望新的一年娜姐能一改去年下半年的颓势，在新的一年再夺佳绩。\\r\\n\n\\r\\n\\r\\n  \\r\\n\n\\r\\n\\r\\n \\r\\n\n\\r\\n’, ‘2013-01-01’, ‘10000’, ‘1’); INSERT INTO match VALUES (‘3’, ‘跳水世界杯在伦敦上演’, ‘\\r\\n 对于中国跳水军团来说，2月下旬在伦敦举行的跳水世界杯将是伦敦奥运会前最重要的一次练兵。不过在已经拿到满额参赛席位的情况下，这支跳水梦之队可以轻松上阵来熟悉场地及竞争对手。\\r\\n\n\\r\\n\\r\\n 149天停摆的阴霾已经成为过去，NBA在艰难中迎来了2011－2012赛季。在这样只有66场常规赛的缩水季，一切都变得与以往不同。虽然损失了几百场比赛，但幸运的是，赛季最终被保留了下来。更幸运的是，全明星赛最终被保留了下来。全世界的球迷依然能享受到NBA最顶尖的球星们带来的视觉大餐。\\r\\n\n\\r\\n\\r\\n 此外，CBA全明星周末也将如期在广州举行，在CBA 联赛竞争水平和娱乐性都有了进一步提升的一年，相信众球星将为球迷朋友们带来一届更为精彩的全明星篮球盛宴。\\r\\n\n\\r\\n\\r\\n \\r\\n\n\\r\\n\\r\\n \\r\\n\n\\r\\n\\r\\n \\r\\n\n’, ‘2013-01-01’, ‘10000’, ‘1’); INSERT INTO match VALUES (‘4’, ‘冰雪盛宴观众一饱眼福’, ‘\\r\\n 被开除出国家队的冬奥会冠军王濛已经确定无缘全国冬运会，而能否现身上海参加短道速滑世锦赛，则依然是个未知数。作为中国当前“短道速滑第一人”，如果王濛无法及时回归国家队参加国际比赛，那么想要在2014年索契冬奥会卫冕冠军，将十分艰难。\\r\\n\n\\r\\n\\r\\n 除了短道速滑之外，3月份还将有一系列单项世锦赛值得人们期待。刘翔将第5次参加室内田径世锦赛的60米栏比赛。这是奥运前最后一次高手过招的机会，刘翔需要的是在这里争取信心。\\r\\n\n\\r\\n\\r\\n \\r\\n\n\\r\\n\\r\\n \\r\\n\n\\r\\n\\r\\n \\r\\n\n’, ‘2013-01-02’, ‘10000’, ‘1’);\n – Table structure for matchlist\n DROP TABLE IF EXISTS matchlist; CREATE TABLE matchlist ( mId int(12) NOT NULL AUTO_INCREMENT, mName varchar(64) NOT NULL, text text NOT NULL, date date NOT NULL, eRentId int(8) NOT NULL, bId int(8) NOT NULL, PRIMARY KEY (mId) ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;\n – Records of matchlist\n INSERT INTO matchlist VALUES (‘3’, ‘花样滑冰’, ‘ddd’, ‘2022-06-13’, ‘2’, ‘3’); INSERT INTO matchlist VALUES (‘6’, ‘Monster Hunter Rise Battle’, ‘666’, ‘2013-06-15’, ‘2’, ‘3’);\n – Table structure for notice\n DROP TABLE IF EXISTS notice; CREATE TABLE notice ( nId int(11) NOT NULL AUTO_INCREMENT, nTitle varchar(1000) NOT NULL, nText text NOT NULL, nDate datetime NOT NULL, aId int(11) NOT NULL, PRIMARY KEY (nId) ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;\n – Records of notice\n INSERT INTO notice VALUES (‘1’, ' 广东海洋大学体育馆网上系统即将发布，敬请期待！’, ‘\\r\\n 广东海洋大学体育馆网上系统即将发布，敬请期待！\\r\\n\n\\r\\n\\r\\n \\r\\n\n\\r\\n\\r\\n\\r\\n \\r\\n\n’, ‘2013-01-03 19:24:56’, ‘1000’); INSERT INTO notice VALUES (‘2’, ‘关于如何使用本系统’, ‘\\r\\n 如何预约场地\\r\\n\\r\\n\\r\\n 1.点击场地预订导航栏；\\r\\n\\r\\n\\r\\n 2.选择自己需要预定的场地，然后后点击其后面的“预定”；\\r\\n\\r\\n\\r\\n 3.选择需要预定的起止时间，点击提交。\\r\\n\\r\\n\\r\\n \\r\\n\\r\\n\\r\\n 如何租借器材\\r\\n\\r\\n\\r\\n 1.点击器材租借导航栏；\\r\\n\\r\\n\\r\\n 2.选择自己需要租借的器材，然后点击其后面的“租借”；\\r\\n\\r\\n\\r\\n 3.选择需要租借的起止时间，点击提交。\\r\\n\\r\\n\\r\\n \\r\\n\\r\\n\\r\\n 惩罚措施\\r\\n\\r\\n\\r\\n 1.如果预约场地失约（即预约了没有在预约时间内到场使用），则需要缴清预约费用，并加收10%违约金。\\r\\n\\r\\n\\r\\n 2.如果失约没有缴清预约费用和违约金，则账户会被冻结，无法继续使用此系统，并且毕业后由学校统一补收。\\r\\n’, ‘2013-01-03 19:35:19’, ‘1000’); INSERT INTO notice VALUES (‘3’, ‘冬季运动会’, ‘冬季运动会’, ‘2013-01-04 11:07:13’, ‘1000’); INSERT INTO notice VALUES (‘5’, ‘广东海洋大学第十二届田径运动会圆满落幕’, ‘\\r\\n 2011年12月11日上午，广东海洋大学第十二届田径运动会顺利完成了各项比赛任务，圆满地落下了帷幕。闭幕式在东区体育场隆重举行。广东海洋大学何真校长、校党委张兰英副书记，陈泽球副校长和叶春海副校长等人出席了闭幕式。\\r\\n\\r\\n\\r\\n 11时30分，闭幕式正式开始，闭幕式由校党委张兰英副书记主持。运动员、裁判员入场仪式首先进行，各学院代表队缓缓步入会场，他们整齐有序，有的在欢呼雀跃，有的在高喊口号，意气风发。\\r\\n\\r\\n\\r\\n 随后，由本届运动会总裁判长宣布比赛成绩，教工组中，体育与休闲学院以总分136分夺得团体总分冠军，行政机关和后勤公会分别以111分和87分获得第二名和第三名，学生组中，获得团体总分冠军的分别是职业技术学院和经管学院，获得亚军的是体育与休闲学院和航海学院，获得季军的是寸金学院。另外，外国语学院和理学院获得学生体育道德风尚奖，中歌艺术学院和职业技术学院则获得学生最佳组织奖。在之后的颁奖仪式上，学校领导为颁奖单位颁发奖牌和锦旗并合影留念。\\r\\n\\r\\n\\r\\n 据悉，本次校运会是历届校运会中气温最低，天气最寒冷的一次校运会，尽管如此，比赛场上的运动员们却并没被寒冷所吓倒，他们挺着昂扬的斗志，带着永不熄灭的激情，创下一个又一个佳绩。本届运动会也刷新了5项校运会记录，成绩喜人。\\r\\n\\r\\n\\r\\n 过后，广东海洋大学学校体育运动委员会主任叶春海副校长致闭幕词，叶春海副校长首先对全体裁判员、运动员以及老师和同学表示衷心的感谢，他指出，虽然只有短短的2天半时间，但海大人\"坚韧不拔，自强不息\"的精神得到充分的彰显，他希望全体师生能够更加注重体育锻炼，以更强健的体魄、更饱满的精神状态投入到今后的学习、工作、生活当中去，创造更加辉煌的成绩。最后，何真校长宣布，广东海洋大学第十二届校运动会胜利闭幕。\\r\\n\\r\\n\\r\\n 校运会的召开，是海大全体师生以实际行动彰显运动精神的体现，让我们共同期待校运会取得更加丰硕的成果。\\r\\n’, ‘2013-01-04 11:26:44’, ‘1000’); INSERT INTO notice VALUES (‘6’, ‘广东海洋大学第八届校运会开幕’, ‘\\r\\n  碧海银沙网讯（图/伍静文 文/何永聪 编辑/皓 雪）广东海洋大学第八届校运会开幕式于12月13日上午八点在东区体育场简单而隆重举行。开幕式上由红旗手,鲜花队,裁判队,教职工队的带领下,各院的方队纷纷亮相,何真校长主持升旗仪式,并由运动员代表,裁判员代表宣誓。\\r\\n\n\\r\\n\\r\\n \\r\\n \\r\\n \\r\\n \\r\\n \\r\\n \\r\\n \\r\\n \\r\\n \\r\\n ’, ‘2013-01-04 11:30:04’, ‘1000’);\n – Table structure for user\n DROP TABLE IF EXISTS user; CREATE TABLE user ( uId varchar(16) NOT NULL, uName varchar(16) NOT NULL, uPassword varchar(64) NOT NULL, status char(1) NOT NULL, PRIMARY KEY (uId) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;\n – Records of user\n INSERT INTO user VALUES (‘110’, ‘兔斯基’, ‘202cb962ac59075b964b07152d234b70’, ‘0’); INSERT INTO user VALUES (‘111111’, ‘大大’, ‘698d51a19d8a121ce581499d7b701668’, ‘0’); INSERT INTO user VALUES (‘123’, ‘兔斯基’, ‘202cb962ac59075b964b07152d234b70’, ‘1’); INSERT INTO user VALUES (‘1234’, ‘123’, ‘202cb962ac59075b964b07152d234b70’, ‘1’); INSERT INTO user VALUES (‘2010117’, ‘sdadad’, ‘698d51a19d8a121ce581499d7b701668’, ‘1’); INSERT INTO user VALUES (‘201011700000’, ‘剑锋’, ‘0e4ff8ad66ec4f08e101ac9b28bc805d’, ‘1’); INSERT INTO user VALUES (‘201011701207’, ‘剑锋’, ‘202cb962ac59075b964b071ff8234b70’, ‘1’); INSERT INTO user VALUES (‘201011701211’, ‘黄萌’, ‘96e7921ff85eb72c92a549dd5a330112’, ‘1’); INSERT INTO user VALUES (‘201011701212’, ‘黄明的’, ‘698d51a19d8a121ce581ff8d7b701668’, ‘1’); INSERT INTO user VALUES (‘20191170142’, ‘admin’, ‘$2a$10$Fz1AFco8qPuXitMppPxLOutO3’, ‘0’); INSERT INTO user VALUES (‘201911701427’, ‘admin’, ‘$2a$10$Z1kkei1C0eAjbesSXcc5S.Yfq/enRMgAoVwjjyBQDu1CsFh7.3fmW’, ‘0’); INSERT INTO user VALUES (‘222’, ‘fdgssrd’, ‘47bce5c74f58ff8867dbd57e9ca9f808’, ‘1’);\n",
+  "wordCount" : "9321",
   "inLanguage": "en",
   "datePublished": "2022-06-26T19:59:08+08:00",
   "dateModified": "2022-06-26T19:59:08+08:00",
@@ -206,6 +206,7 @@
 <main class="main">
 
 <article class="post-single">
+
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/linux/">👥Linux相关</a></div>
     <h1 class="post-title">
@@ -214,10 +215,771 @@
     <div class="post-description">
       描述信息
     </div>
-  </header> 
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;2022-06-26&nbsp;|&nbsp;字数:&nbsp;9321字&nbsp;|&nbsp;时长: 19分钟&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
+      <ul class="post-tags-meta">
+        <a href="https://hanson00.github.io/tags/%E6%B5%8B%E8%AF%95/">测试</a>
+      </ul>
+
+      <span id="busuanzi_container_page_pv">
+        &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+      </span>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#" aria-label="\r\n &amp;lt;span style=&amp;quot;color:#e53333;&amp;quot;&amp;gt;如何租借器材\r\n">\r\n      &lt;span style=&quot;color:#e53333;&quot;&gt;如何租借器材</span>\r\n</a></li>
+                        <li>
+                            <a href="#" aria-label="\r\n &amp;lt;span style=&amp;quot;color:#e53333;&amp;quot;&amp;gt;惩罚措施\r\n">\r\n      &lt;span style=&quot;color:#e53333;&quot;&gt;惩罚措施</span>\r\n</a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
   <div class="post-content"><p>sodjsondonsdad
 <img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/blog/QQ%e5%9b%be%e7%89%8720220408210524.6clqi51xhb00.webp" alt="QQ图片20220408210524"  />
 </p>
+<p>《软件工程实践》课程报告</p>
+<p>专业名称：  软件工程    <br>
+班    级：     软件1194         <br>
+学    号：       201911701426       <br>
+姓    名：       温铭军       <br>
+指导老师：       段兴       <br>
+完成日期：     2022.6.24</p>
+<p>海大体育馆管理系统需求规格说明书
+编号：GDOU-RJXQYFX-VISION</p>
+<p>版本:1.0</p>
+<p>作者：		日期：
+Email：		组号：
+审批：		日期：</p>
+<p> 
+变更记录
+日期	版本	变更说明	作者</p>
+<ol>
+<li>简介
+1.1目的
+本文档定义了海大体育馆管理系统的高层业务需求。本文档不是对于需求进行详尽的叙述，而是指出了业务需求的大方向。本系统的开发目的是为了更加高效地对体育馆的各种资源进行统一管理，减少不必要工作人员带来的开支，同时也使广大学生能更加方便地使用体育场馆。
+1.2海大体育馆管理系统的业务范围
+本系统包括体育赛事管理，体育器材管理，体育场地管理等。以web应用形式提供服务，可以通过互联网进行访问。</li>
+<li>建议的解决方案
+3.1主要的功能性需求（建议方案）
+1．能够进行用户管理，包括：
+	添加管理员用户
+	删除管理员用户
+	查询管理员用户
+	管理员用户登录
+	学生用户注册
+	学生用户登录
+	用户修改密码
+	*更新管理员角色
+	馆内设施罚款条例公告</li>
+</ol>
+<p>2．能够进行场地使用管理，包括：
+	添加场地
+	删除场地
+	场地预约（用一卡通号码预约，一周内预约）
+	场地预约退订
+	场地预约修改
+	场地预约失约处理
+	校队预留（使用）场地
+	上课使用场地
+	场地使用（有开始计时，结束计时，一卡通付费）
+	场地一周信息查询
+	场地收费标准查询
+	场馆公告</p>
+<p>3．能够进行体育赛事管理，包括：
+	赛事创建（预告）
+	赛事取消
+	赛事查询
+	比赛场地安排
+	赛事器材使用
+	裁判简介公告</p>
+<p>4．能够进行器材管理，包括：
+	器材购置新增
+	器材维护报修
+	器材报废删除
+	器材查询
+	器材租用
+	器材回收
+	器材租用收费标准查询
+*器材损毁赔偿</p>
+<ol start="3">
+<li>场地管理主要业务流程
+3.1场地管理流程
+管理员可以进行场地的添加删除预留以及失约处理并且拥有所有普通用户的基础使用功能包括有：场地预约，场地预约退订，修改，使用等</li>
+</ol>
+<p>图1</p>
+<ol start="4">
+<li>每个功能的用例规约
+用例名称：	添加场地
+用例ID：	ESM- ZZJG -1
+角色：	系统管理员，体育馆管理员
+用例说明：	管理员添加场地。
+前置条件：	管理员已经登录系统
+基本事件流：	1.	管理员请求添加场地</li>
+<li>管理员输入场地名称，场地位置，场地用途，场地当前状态（可用/不可用）</li>
+<li>管理员点击保存，系统添加场地成功
+其它事件流：	4.管理员输入的场地信息不完整，如某一项没有填写，并选择“保存”，系统给出提示信息
+5.管理员r输入的场地信息不符合格式要求，并选择“保存”，系统给出提示信息
+6.管理员，选择“取消”，系统返回场地信息页面
+7.如果系统已经有重名的场地名，系统不保存新建的岗位，系统给出提示信息：“此场地已经存在”
+异常事件流：	无
+后置条件：	无</li>
+</ol>
+<p>用例名称：	场地预约
+用例ID：	ESM- ZZJG -2
+角色：	所有用户
+用例说明：	用户请求预约场地。
+前置条件：	用户已经登录系统
+基本事件流：	1.	用户一卡通学号登录系统
+2.	用户从场地列表中选取需要预约的场地和预约时间，并输入一卡通号码进行预约
+3.	预约成功后系统将该场地该时间段设为不可选
+其它事件流：	4.用户输入的场地信息已被预约</p>
+<p>异常事件流：	无
+后置条件：	无</p>
+<p>用例名称：	场地失约处理
+用例ID：	ESM- ZZJG -3
+角色：	体育馆管理员
+用例说明：	体育馆管理员对失约信息处理。
+前置条件：	体育馆管理员已经登录系统
+基本事件流：	1.	场地预约时间结束后没有履约，系统将该条预约消息存入场地预约失约管理中
+2.	管理员查看失约名单列表</p>
+<p>3.管理员给出失约处理方案</p>
+<p>其它事件流：	无</p>
+<p>异常事件流：	无
+后置条件：	无</p>
+<p>表1</p>
+<ol start="4">
+<li>场地数据建模</li>
+</ol>
+<p>用类图表达
+把关键抽象作为对象，它的属性就作为对象的属性，用类图表达，名称为“中文+英文”的形式，英文按照类名及其类属性名的命名规则简写、改写，如下所示：</p>
+<p>1．	类图（不涉及类方法）（模块）</p>
+<p>2．	关键对象的状态图（模块）【场地状态】</p>
+<p>架构设计
+一、	数据库架构</p>
+<p>二、	后端架构</p>
+<p>三、	前端架构</p>
+<p>一、详细设计总则：
+详细设计是在架构的基础上对概要设计的细化，即对架构中的类的详细描述，产生设计模型，它可以直接指导编码。</p>
+<p>详细设计主要表达：
+	各个类的存放路径；
+	静态的设计类图；
+	对各个类的详细描述，包括：属性和方法的说明，关键方法的实现伪代码；
+	各用例的操作顺序、系统执行顺序的描述；
+	配置文件的描述等。</p>
+<p>以下为各模块的详细设计
+二、组织结构管理模块
+（一）文件列表及存放路径——（按照包图的设计填写）
+名称	类型	存放位置	说明
+Index.vue	Psa单页面路由	Font-end/vue-admin-template/src/views/login/index.vue	用户登录
+Index.vue	Psa单页面路由	Font-end/vue-admin-template/src/views/ground/index.vue	场地展示页面
+Form.vue	PSA单页面路由	Font-end/vue-admin-template/src/views/ground/form.vue	场地展示表格
+addER.vue	PSA单页面路由	Font-end/vue-admin-template/src/views/ground/ adder/adder.vue	场地添加租借页面
+Form.vue	PSA单页面路由	Font-end/vue-admin-template/src/views/ground/adder/adder.form	场地添加租借表格
+addE.vue	PSA单页面路由	Font-end/vue-admin-template/src/views/ground/adde/addE.vue	场地添加页面
+Form.vue	PSA单页面路由	Font-end/vue-admin-template/src/views/ground/adder.form	场地添加表格
+Form.vue	PSA单页面路由	Font-end/vue-admin-template/src/views/ financial/form.vue	场地扣费表格
+Index.vue	PSA单页面路由	Font-end/vue-admin-template/src/views/ground/index.vue	场地扣费页面
+Ground.js	路由	Backend/router/ Ground.js	场地路由
+Ground.js	路由	Backend/router-handler/ Ground.js	场地路由实现
+Index.js	配置文件	Backend/db/index.js	连接数据库
+公共组件类	路由	Src/util/zzjg/	公共类
+App.js	主文件	Src/springMVC.xml	配置springMVC框架</p>
+<p>（二）数据库详细设计
+数据库名：
+user（用户）表：
+序号		列名		PK	FK	类型	长度	备注
+1	uId	Yes		Varchar	16	用户主键
+2	uName			Varchar	16	用户名
+3	uPassword			Varchar	64	用户密码
+4	status			char	1	用户状态
+admin（管理员）表：
+序号	列名	PK	FK	属性	长度	备注
+1	aId	Yes		Int	12	员主键，自增
+2	aName			Varchar	 15	管理员姓名
+3	aPassword			Varchar	64	管理员密码
+4	idCardNo			Varchar	18	管理员卡号
+5	power			Date	11	管理员权限
+6	status			Varchar	15	管理员状态</p>
+<p>ground（场地）表：
+序号	列名	PK	FK	属性	长度	备注
+1	gId	Yes		Int	8	场地主键，自增
+2	gName			Varchar	16	场地名
+3	gFee			Float	8	场地费用
+groundbook（场地预约）表：。
+序号	列名	PK	FK	属性	长度	备注
+1	bId	Yes		Int	8	场地预约号主键
+2	uId			Char	16	一卡通账号
+3	gId			varchar	16	场地类型id
+4	bStartTime			Datetime	0	预约场地开始时间
+5	bEndTime			Datetime	0	预约场地结束时间
+6	bFee				float	8	场地预约费用
+7	bStatus			Char	1	场地当前状态</p>
+<p>groundtype（场地种类信息）表：。
+序号	列名	PK	FK	属性	长度	备注
+1	tId	Yes		Int	8	场地种类号
+2	tName			varchar	16	场地种类名称
+表之间的关系图（PDM）</p>
+<p>（三）时序图
+场地添加</p>
+<p>场地查询</p>
+<p>修改场地信息</p>
+<p>删除场地信息</p>
+<p>（四）路由的详细描述
+9、ground路由的详细描述
+名称	Ground.js	说明
+功能描述		添加场地
+	删除场地
+	场地预约
+	场地预约退订
+	场地预约修改
+	场地预约失约处理
+	上课使用场地
+	场地使用（有开始计时，结束计时，一卡通付费）
+方法	router.post('/addG', groundHandler.addG)
+router.post('/updateG', groundHandler.updateG)
+router.get('/searchG', groundHandler.searchG)
+router.get('/searchGB', groundHandler.searchGB)
+router.post('/addGB', groundHandler.addGB)
+router.post('/updateGB', groundHandler.updateGB)
+router.delete('/deleteGB', groundHandler.deleteGB)
+添加场地
+修改场地费用
+查询场地
+查询场地借出
+添加场地借出
+修改场地借出
+删除场地借出</p>
+<p>关键代码实现，配对路由以及路由函数实现</p>
+<p>// 添加场地
+router.post('/addG', groundHandler.addG)
+路由函数
+exports.addG = (req, res) =&gt; {
+const data = req.body
+const sqlStr = &lsquo;insert into ground set ?&rsquo;
+db.query(sqlStr, data, (err, result) =&gt; {
+if (err) {
+return res.cc(err)
+}
+return res.send({
+status: 200,
+message: &lsquo;添加成功&rsquo;
+})
+})
+}</p>
+<p>// 修改场地费用
+router.post('/updateG', groundHandler.updateG)
+路由函数
+exports.updateG = (req, res) =&gt; {
+const data = req.body
+const sqlStr = <code>update ground set gFee=${data.gFee} where gId=${data.gId}</code>
+db.query(sqlStr, (err, result) =&gt; {
+if (err) {
+return res.cc(err)
+}
+return res.send({
+status: 200,
+message: &lsquo;修改成功&rsquo;
+})
+})
+}
+// 查询场地
+router.get('/searchG', groundHandler.searchG)
+路由函数
+exports.searchG = (req, res) =&gt; {
+const data = req.body
+const sqlStr = <code>select * from ground</code>
+db.query(sqlStr, (err, result) =&gt; {
+if (err) {
+return res.cc(err)
+}
+return res.send({
+status: 200,
+message: result
+})
+})
+}</p>
+<p>// 查询场地借出
+router.get('/searchGB', groundHandler.searchGB)
+路由函数
+exports.searchGB = (req, res) =&gt; {
+const data = req.body
+const sqlStr = <code>select * from groundbook</code>
+db.query(sqlStr, (err, result) =&gt; {
+if (err) {
+return res.cc(err)
+}
+return res.send({
+status: 200,
+message: result
+})
+})
+}</p>
+<p>// 添加场地借出
+router.post('/addGB', groundHandler.addGB)
+路由函数
+exports.addGB = (req, res) =&gt; {
+const data = req.body
+let hours = (new Date(data.bEndTime) - new Date(data.bStartTime)) / 1000 / 60 / 60
+// 查找这个场地的收费标准
+const sqlStr1 = &lsquo;select gFee from ground where gId=?&rsquo;
+db.query(sqlStr1, data.gId, (err, result) =&gt; {
+if (err) {
+return res.cc(err)
+}
+data.bFee = result[0].gFee * hours
+const sqlStr = &lsquo;insert into groundbook set ?&rsquo;
+console.log(data)
+db.query(sqlStr, data, (err, result) =&gt; {
+if (err) {
+return res.cc(err)
+}
+return res.send({
+status: 200,
+message: &lsquo;添加成功&rsquo;
+})
+})
+})
+}</p>
+<p>// 修改场地借出
+router.post('/updateGB', groundHandler.updateGB)
+路由函数
+exports.updateGB = (req, res) =&gt; {
+const data = req.body
+const sqlStr = <code>update groundbook set bStatus=${data.bStatus} where bId=${data.bId}</code>
+db.query(sqlStr, (err, result) =&gt; {
+if (err) {
+return res.cc(err)
+}
+// return res.send({
+//     status: 200,
+//     message: &lsquo;修改成功&rsquo;
+// })
+const sqlStr3 = &lsquo;insert into financial set ?&rsquo;
+db.query(sqlStr3, { fIn: data.bFee, fInType: 1, date: new Date() }, (err, result) =&gt; {
+if (err) {
+return res.cc(err)
+}
+return res.send({
+status: 200,
+message: &lsquo;添加成功&rsquo;
+})
+})
+})
+}</p>
+<p>// 删除场地借出
+router.delete('/deleteGB', groundHandler.deleteGB)
+路由函数
+exports.deleteGB = (req, res) =&gt; {
+const data = req.body
+const sqlStr = <code>delete from groundbook where bId=${data.bId}</code>
+db.query(sqlStr, (err, result) =&gt; {
+if (err) {
+return res.cc(err)
+}
+return res.send({
+status: 200,
+message: &lsquo;删除成功&rsquo;
+})
+})
+}</p>
+<p>系统模型图
+基本场地页面</p>
+<p>添加场地</p>
+<p>场地借用/归还功能页面</p>
+<p>修改场地费用</p>
+<p>数据库脚本
+/*
+Navicat MySQL Data Transfer</p>
+<p>Source Server         : JUN
+Source Server Version : 50724
+Source Host           : 127.0.0.1:3306
+Source Database       : software</p>
+<p>Target Server Type    : MYSQL
+Target Server Version : 50724
+File Encoding         : 65001</p>
+<p>Date: 2022-06-24 13:01:40
+*/</p>
+<p>SET FOREIGN_KEY_CHECKS=0;</p>
+<hr>
+<p>&ndash; Table structure for admin</p>
+<hr>
+<p>DROP TABLE IF EXISTS <code>admin</code>;
+CREATE TABLE <code>admin</code> (
+<code>aId</code> int(12) NOT NULL AUTO_INCREMENT,
+<code>aName</code> varchar(15) NOT NULL,
+<code>aPassword</code> varchar(64) NOT NULL,
+<code>idCardNo</code> varchar(18) NOT NULL,
+<code>power</code> int(11) NOT NULL COMMENT &lsquo;1-普通管理员    2-超级管理员&rsquo;,
+<code>status</code> varchar(15) NOT NULL,
+PRIMARY KEY (<code>aId</code>)
+) ENGINE=InnoDB AUTO_INCREMENT=100015 DEFAULT CHARSET=utf8;</p>
+<hr>
+<p>&ndash; Records of admin</p>
+<hr>
+<p>INSERT INTO <code>admin</code> VALUES (&lsquo;100000&rsquo;, &lsquo;剑锋&rsquo;, &lsquo;25d55ad2ff8a400af466c86d713c07ad&rsquo;, &lsquo;441333333333333333&rsquo;, &lsquo;2&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>admin</code> VALUES (&lsquo;100001&rsquo;, &lsquo;软件1102&rsquo;, &lsquo;202cb962ac59079b964b07152d234b70&rsquo;, &lsquo;231512345678987898&rsquo;, &lsquo;1&rsquo;, &lsquo;0&rsquo;);
+INSERT INTO <code>admin</code> VALUES (&lsquo;100002&rsquo;, &lsquo;xiaofei&rsquo;, &lsquo;6893ea0ff855c76e74bc2ff8136f39f4&rsquo;, &lsquo;xiaofei&rsquo;, &lsquo;1&rsquo;, &lsquo;0&rsquo;);
+INSERT INTO <code>admin</code> VALUES (&lsquo;100003&rsquo;, &lsquo;xiaofei&rsquo;, &lsquo;ff83eaff8d55c76e74bc27f8136f3ff8&rsquo;, &lsquo;xiaofei&rsquo;, &lsquo;1&rsquo;, &lsquo;0&rsquo;);
+INSERT INTO <code>admin</code> VALUES (&lsquo;100004&rsquo;, &lsquo;云飞&rsquo;, &lsquo;6ae7d4ff840f63f3ffcfad8ff869c660&rsquo;, &lsquo;441111111111111111&rsquo;, &lsquo;1&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>admin</code> VALUES (&lsquo;100005&rsquo;, &lsquo;云飞&rsquo;, &lsquo;6893ea02fff8c76ec4bc2ff8136f39f4&rsquo;, &lsquo;123&rsquo;, &lsquo;1&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>admin</code> VALUES (&lsquo;100006&rsquo;, &lsquo;chen&rsquo;, &lsquo;47bce5c74ff89f4867dbd57e9ca9f808&rsquo;, &lsquo;322352352&rsquo;, &lsquo;1&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>admin</code> VALUES (&lsquo;100007&rsquo;, &lsquo;admin&rsquo;, &lsquo;$2a$10$GM1nmqbrAZRd7UtPwsXIiu1Ag&rsquo;, &lsquo;20191170142&rsquo;, &lsquo;2&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>admin</code> VALUES (&lsquo;100009&rsquo;, &lsquo;admin&rsquo;, &lsquo;$2a$10$Kgo6KV5YPuMmsfZObk5WY.o2Y&rsquo;, &lsquo;111&rsquo;, &lsquo;2&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>admin</code> VALUES (&lsquo;100014&rsquo;, &lsquo;admin&rsquo;, &lsquo;$2a$10$io09wi3EQnXnAkaclulU2OO6nPFusXmuwq0WIGZ6ZQQ0vg54XxzHi&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;2&rsquo;, &lsquo;1&rsquo;);</p>
+<hr>
+<p>&ndash; Table structure for equipment</p>
+<hr>
+<p>DROP TABLE IF EXISTS <code>equipment</code>;
+CREATE TABLE <code>equipment</code> (
+<code>eId</code> int(8) NOT NULL AUTO_INCREMENT,
+<code>eTypeId</code> int(8) NOT NULL,
+<code>buyDate</code> date NOT NULL,
+<code>buyCost</code> float(8,2) NOT NULL,
+<code>buyNum</code> int(32) NOT NULL,
+PRIMARY KEY (<code>eId</code>)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;</p>
+<hr>
+<p>&ndash; Records of equipment</p>
+<hr>
+<p>INSERT INTO <code>equipment</code> VALUES (&lsquo;1&rsquo;, &lsquo;1&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;1000.00&rsquo;, &lsquo;200&rsquo;);
+INSERT INTO <code>equipment</code> VALUES (&lsquo;2&rsquo;, &lsquo;2&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;2000.00&rsquo;, &lsquo;300&rsquo;);
+INSERT INTO <code>equipment</code> VALUES (&lsquo;3&rsquo;, &lsquo;3&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;800.00&rsquo;, &lsquo;200&rsquo;);
+INSERT INTO <code>equipment</code> VALUES (&lsquo;10&rsquo;, &lsquo;10&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;130.00&rsquo;, &lsquo;60&rsquo;);
+INSERT INTO <code>equipment</code> VALUES (&lsquo;18&rsquo;, &lsquo;1&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;500.00&rsquo;, &lsquo;60&rsquo;);
+INSERT INTO <code>equipment</code> VALUES (&lsquo;19&rsquo;, &lsquo;1&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;500.00&rsquo;, &lsquo;60&rsquo;);
+INSERT INTO <code>equipment</code> VALUES (&lsquo;20&rsquo;, &lsquo;1&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;500.00&rsquo;, &lsquo;60&rsquo;);
+INSERT INTO <code>equipment</code> VALUES (&lsquo;21&rsquo;, &lsquo;1&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;500.00&rsquo;, &lsquo;60&rsquo;);
+INSERT INTO <code>equipment</code> VALUES (&lsquo;22&rsquo;, &lsquo;1&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;500.00&rsquo;, &lsquo;60&rsquo;);
+INSERT INTO <code>equipment</code> VALUES (&lsquo;23&rsquo;, &lsquo;1&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;500.00&rsquo;, &lsquo;60&rsquo;);
+INSERT INTO <code>equipment</code> VALUES (&lsquo;24&rsquo;, &lsquo;1&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;500.00&rsquo;, &lsquo;60&rsquo;);
+INSERT INTO <code>equipment</code> VALUES (&lsquo;25&rsquo;, &lsquo;1&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;500.00&rsquo;, &lsquo;60&rsquo;);
+INSERT INTO <code>equipment</code> VALUES (&lsquo;26&rsquo;, &lsquo;1&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;500.00&rsquo;, &lsquo;60&rsquo;);
+INSERT INTO <code>equipment</code> VALUES (&lsquo;27&rsquo;, &lsquo;1&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;500.00&rsquo;, &lsquo;60&rsquo;);
+INSERT INTO <code>equipment</code> VALUES (&lsquo;30&rsquo;, &lsquo;0&rsquo;, &lsquo;2022-06-13&rsquo;, &lsquo;123.00&rsquo;, &lsquo;123&rsquo;);</p>
+<hr>
+<p>&ndash; Table structure for equipmentrent</p>
+<hr>
+<p>DROP TABLE IF EXISTS <code>equipmentrent</code>;
+CREATE TABLE <code>equipmentrent</code> (
+<code>eRentId</code> int(8) NOT NULL AUTO_INCREMENT,
+<code>eTypeId</code> int(8) NOT NULL,
+<code>uId</code> char(16) NOT NULL,
+<code>borrowBegin</code> datetime NOT NULL,
+<code>borrowEnd</code> datetime NOT NULL,
+<code>borrowNum</code> int(32) NOT NULL,
+<code>status</code> int(3) NOT NULL COMMENT &lsquo;0为审核中\r\n1为未归还\r\n2为已归还&rsquo;,
+<code>borrowFee</code> float(8,2) NOT NULL,
+PRIMARY KEY (<code>eRentId</code>)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;</p>
+<hr>
+<p>&ndash; Records of equipmentrent</p>
+<hr>
+<p>INSERT INTO <code>equipmentrent</code> VALUES (&lsquo;2&rsquo;, &lsquo;1&rsquo;, &lsquo;201011701212&rsquo;, &lsquo;2013-01-04 11:00:00&rsquo;, &lsquo;2013-01-04 12:00:00&rsquo;, &lsquo;42&rsquo;, &lsquo;2&rsquo;, &lsquo;966.00&rsquo;);
+INSERT INTO <code>equipmentrent</code> VALUES (&lsquo;13&rsquo;, &lsquo;1&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;2013-01-04 08:00:00&rsquo;, &lsquo;2013-01-04 17:00:00&rsquo;, &lsquo;42&rsquo;, &lsquo;1&rsquo;, &lsquo;0.00&rsquo;);
+INSERT INTO <code>equipmentrent</code> VALUES (&lsquo;20&rsquo;, &lsquo;2&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;2022-06-12 16:00:00&rsquo;, &lsquo;2022-06-15 16:00:00&rsquo;, &lsquo;123&rsquo;, &lsquo;1&rsquo;, &lsquo;738.00&rsquo;);
+INSERT INTO <code>equipmentrent</code> VALUES (&lsquo;21&rsquo;, &lsquo;1&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;2022-06-07 16:00:00&rsquo;, &lsquo;2022-06-22 16:00:00&rsquo;, &lsquo;32&rsquo;, &lsquo;2&rsquo;, &lsquo;736.00&rsquo;);
+INSERT INTO <code>equipmentrent</code> VALUES (&lsquo;22&rsquo;, &lsquo;1&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;2022-06-06 16:00:00&rsquo;, &lsquo;2022-06-23 16:00:00&rsquo;, &lsquo;12&rsquo;, &lsquo;1&rsquo;, &lsquo;276.00&rsquo;);</p>
+<hr>
+<p>&ndash; Table structure for equipmenttype</p>
+<hr>
+<p>DROP TABLE IF EXISTS <code>equipmenttype</code>;
+CREATE TABLE <code>equipmenttype</code> (
+<code>eTypeId</code> int(8) NOT NULL AUTO_INCREMENT,
+<code>eTypeName</code> varchar(16) NOT NULL,
+<code>totalNum</code> int(32) NOT NULL,
+<code>borrowNum</code> int(32) NOT NULL,
+<code>eFee</code> float(8,2) NOT NULL,
+PRIMARY KEY (<code>eTypeId</code>)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;</p>
+<hr>
+<p>&ndash; Records of equipmenttype</p>
+<hr>
+<p>INSERT INTO <code>equipmenttype</code> VALUES (&lsquo;1&rsquo;, &lsquo;羽毛球拍&rsquo;, &lsquo;802&rsquo;, &lsquo;0&rsquo;, &lsquo;23.00&rsquo;);
+INSERT INTO <code>equipmenttype</code> VALUES (&lsquo;2&rsquo;, &lsquo;篮球&rsquo;, &lsquo;300&rsquo;, &lsquo;12&rsquo;, &lsquo;6.00&rsquo;);
+INSERT INTO <code>equipmenttype</code> VALUES (&lsquo;3&rsquo;, &lsquo;乒乓球拍&rsquo;, &lsquo;200&rsquo;, &lsquo;107&rsquo;, &lsquo;8.00&rsquo;);
+INSERT INTO <code>equipmenttype</code> VALUES (&lsquo;19&rsquo;, &lsquo;网球&rsquo;, &lsquo;100&rsquo;, &lsquo;0&rsquo;, &lsquo;20.00&rsquo;);
+INSERT INTO <code>equipmenttype</code> VALUES (&lsquo;20&rsquo;, &lsquo;网球&rsquo;, &lsquo;100&rsquo;, &lsquo;0&rsquo;, &lsquo;20.00&rsquo;);</p>
+<hr>
+<p>&ndash; Table structure for financial</p>
+<hr>
+<p>DROP TABLE IF EXISTS <code>financial</code>;
+CREATE TABLE <code>financial</code> (
+<code>fId</code> int(8) NOT NULL AUTO_INCREMENT,
+<code>fIn</code> float(8,2) NOT NULL COMMENT &lsquo;收支&rsquo;,
+<code>fInType</code> char(2) NOT NULL COMMENT &lsquo;1-场地租用收入    2-器材租用收入&rsquo;,
+<code>date</code> date NOT NULL,
+<code>notes</code> varchar(255) NOT NULL,
+PRIMARY KEY (<code>fId</code>)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;</p>
+<hr>
+<p>&ndash; Records of financial</p>
+<hr>
+<p>INSERT INTO <code>financial</code> VALUES (&lsquo;3&rsquo;, &lsquo;10.00&rsquo;, &lsquo;1&rsquo;, &lsquo;2013-01-04&rsquo;, &lsquo;201011701212,器材1&rsquo;);
+INSERT INTO <code>financial</code> VALUES (&lsquo;4&rsquo;, &lsquo;26664.00&rsquo;, &lsquo;0&rsquo;, &lsquo;2013-01-04&rsquo;, &lsquo;201011701207,场地28&rsquo;);
+INSERT INTO <code>financial</code> VALUES (&lsquo;10&rsquo;, &lsquo;-500.00&rsquo;, &lsquo;2&rsquo;, &lsquo;2013-01-03&rsquo;, &lsquo;');
+INSERT INTO <code>financial</code> VALUES (&lsquo;47&rsquo;, &lsquo;738.00&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-15&rsquo;, &lsquo;');
+INSERT INTO <code>financial</code> VALUES (&lsquo;48&rsquo;, &lsquo;6000.00&rsquo;, &lsquo;1&rsquo;, &lsquo;0000-00-00&rsquo;, &lsquo;');
+INSERT INTO <code>financial</code> VALUES (&lsquo;49&rsquo;, &lsquo;2400.00&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-15&rsquo;, &lsquo;');
+INSERT INTO <code>financial</code> VALUES (&lsquo;50&rsquo;, &lsquo;736.00&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-17&rsquo;, &lsquo;');
+INSERT INTO <code>financial</code> VALUES (&lsquo;51&rsquo;, &lsquo;276.00&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-17&rsquo;, &lsquo;');
+INSERT INTO <code>financial</code> VALUES (&lsquo;52&rsquo;, &lsquo;966.00&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-17&rsquo;, &lsquo;');
+INSERT INTO <code>financial</code> VALUES (&lsquo;53&rsquo;, &lsquo;6000.00&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-17&rsquo;, &lsquo;');
+INSERT INTO <code>financial</code> VALUES (&lsquo;54&rsquo;, &lsquo;6000.00&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-17&rsquo;, &lsquo;');
+INSERT INTO <code>financial</code> VALUES (&lsquo;55&rsquo;, &lsquo;2400.00&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-17&rsquo;, &lsquo;');
+INSERT INTO <code>financial</code> VALUES (&lsquo;56&rsquo;, &lsquo;2400.00&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-17&rsquo;, &lsquo;');
+INSERT INTO <code>financial</code> VALUES (&lsquo;57&rsquo;, &lsquo;2400.00&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-17&rsquo;, &lsquo;');
+INSERT INTO <code>financial</code> VALUES (&lsquo;58&rsquo;, &lsquo;6000.00&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-17&rsquo;, &lsquo;');
+INSERT INTO <code>financial</code> VALUES (&lsquo;59&rsquo;, &lsquo;6000.00&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-17&rsquo;, &lsquo;');</p>
+<hr>
+<p>&ndash; Table structure for ground</p>
+<hr>
+<p>DROP TABLE IF EXISTS <code>ground</code>;
+CREATE TABLE <code>ground</code> (
+<code>gId</code> int(8) NOT NULL AUTO_INCREMENT,
+<code>gName</code> varchar(16) NOT NULL,
+<code>gFee</code> float(8,2) NOT NULL,
+PRIMARY KEY (<code>gId</code>)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;</p>
+<hr>
+<p>&ndash; Records of ground</p>
+<hr>
+<p>INSERT INTO <code>ground</code> VALUES (&lsquo;1&rsquo;, &lsquo;羽毛球1-1&rsquo;, &lsquo;100.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;2&rsquo;, &lsquo;羽毛球1-2&rsquo;, &lsquo;100.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;3&rsquo;, &lsquo;羽毛球1-3&rsquo;, &lsquo;100.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;4&rsquo;, &lsquo;羽毛球2-1&rsquo;, &lsquo;60.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;5&rsquo;, &lsquo;羽毛球2-2&rsquo;, &lsquo;60.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;6&rsquo;, &lsquo;羽毛球2-3&rsquo;, &lsquo;60.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;7&rsquo;, &lsquo;羽毛球3-1&rsquo;, &lsquo;50.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;8&rsquo;, &lsquo;篮球1-1&rsquo;, &lsquo;50.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;9&rsquo;, &lsquo;篮球1-2&rsquo;, &lsquo;40.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;10&rsquo;, &lsquo;兵乓球1-1&rsquo;, &lsquo;20.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;11&rsquo;, &lsquo;兵乓球1-2&rsquo;, &lsquo;20.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;12&rsquo;, &lsquo;兵乓球2-1&rsquo;, &lsquo;25.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;13&rsquo;, &lsquo;兵乓球2-2&rsquo;, &lsquo;25.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;14&rsquo;, &lsquo;排球1-1&rsquo;, &lsquo;40.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;15&rsquo;, &lsquo;排球1-2&rsquo;, &lsquo;40.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;16&rsquo;, &lsquo;游泳池1-1&rsquo;, &lsquo;5.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;17&rsquo;, &lsquo;游泳池1-2&rsquo;, &lsquo;8.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;18&rsquo;, &lsquo;足球场1&rsquo;, &lsquo;500.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;19&rsquo;, &lsquo;足球场2&rsquo;, &lsquo;550.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;29&rsquo;, &lsquo;篮球1-3&rsquo;, &lsquo;600.00&rsquo;);
+INSERT INTO <code>ground</code> VALUES (&lsquo;31&rsquo;, &lsquo;w&rsquo;, &lsquo;0.00&rsquo;);</p>
+<hr>
+<p>&ndash; Table structure for groundbook</p>
+<hr>
+<p>DROP TABLE IF EXISTS <code>groundbook</code>;
+CREATE TABLE <code>groundbook</code> (
+<code>bId</code> int(8) NOT NULL AUTO_INCREMENT,
+<code>uId</code> char(16) NOT NULL,
+<code>gId</code> varchar(16) NOT NULL,
+<code>bStartTime</code> datetime NOT NULL,
+<code>bEndTime</code> datetime NOT NULL,
+<code>bFee</code> float(8,2) NOT NULL,
+<code>bStatus</code> char(1) NOT NULL COMMENT &lsquo;1=预定状态 2=使用中 3=已完成 0=审核中&rsquo;,
+PRIMARY KEY (<code>bId</code>)
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;</p>
+<hr>
+<p>&ndash; Records of groundbook</p>
+<hr>
+<p>INSERT INTO <code>groundbook</code> VALUES (&lsquo;7&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;1&rsquo;, &lsquo;2020-01-01 08:00:00&rsquo;, &lsquo;2020-01-02 08:00:00&rsquo;, &lsquo;6000.00&rsquo;, &lsquo;3&rsquo;);
+INSERT INTO <code>groundbook</code> VALUES (&lsquo;14&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;1&rsquo;, &lsquo;2020-01-01 08:00:00&rsquo;, &lsquo;2020-01-02 08:00:00&rsquo;, &lsquo;6000.00&rsquo;, &lsquo;3&rsquo;);
+INSERT INTO <code>groundbook</code> VALUES (&lsquo;20&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;1&rsquo;, &lsquo;2020-01-01 08:00:00&rsquo;, &lsquo;2020-01-02 08:00:00&rsquo;, &lsquo;6000.00&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>groundbook</code> VALUES (&lsquo;21&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;1&rsquo;, &lsquo;2020-01-01 08:00:00&rsquo;, &lsquo;2020-01-02 08:00:00&rsquo;, &lsquo;100.00&rsquo;, &lsquo;3&rsquo;);
+INSERT INTO <code>groundbook</code> VALUES (&lsquo;22&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;1&rsquo;, &lsquo;2020-01-01 08:00:00&rsquo;, &lsquo;2020-01-02 08:00:00&rsquo;, &lsquo;2400.00&rsquo;, &lsquo;3&rsquo;);
+INSERT INTO <code>groundbook</code> VALUES (&lsquo;24&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;1&rsquo;, &lsquo;2020-01-01 08:00:00&rsquo;, &lsquo;2020-01-02 08:00:00&rsquo;, &lsquo;2400.00&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>groundbook</code> VALUES (&lsquo;25&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;1&rsquo;, &lsquo;2020-01-01 08:00:00&rsquo;, &lsquo;2020-01-02 08:00:00&rsquo;, &lsquo;2400.00&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>groundbook</code> VALUES (&lsquo;26&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;1&rsquo;, &lsquo;2020-01-01 08:00:00&rsquo;, &lsquo;2020-01-02 08:00:00&rsquo;, &lsquo;2400.00&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>groundbook</code> VALUES (&lsquo;27&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-06 16:00:00&rsquo;, &lsquo;2022-06-13 16:00:00&rsquo;, &lsquo;16800.00&rsquo;, &lsquo;0&rsquo;);
+INSERT INTO <code>groundbook</code> VALUES (&lsquo;28&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-06 16:00:00&rsquo;, &lsquo;2022-06-13 16:00:00&rsquo;, &lsquo;16800.00&rsquo;, &lsquo;0&rsquo;);
+INSERT INTO <code>groundbook</code> VALUES (&lsquo;29&rsquo;, &lsquo;201911701427&rsquo;, &lsquo;1&rsquo;, &lsquo;2022-06-06 16:00:00&rsquo;, &lsquo;2022-06-07 16:00:00&rsquo;, &lsquo;2400.00&rsquo;, &lsquo;0&rsquo;);</p>
+<hr>
+<p>&ndash; Table structure for groundtype</p>
+<hr>
+<p>DROP TABLE IF EXISTS <code>groundtype</code>;
+CREATE TABLE <code>groundtype</code> (
+<code>tId</code> int(8) NOT NULL AUTO_INCREMENT,
+<code>tName</code> varchar(8) NOT NULL,
+PRIMARY KEY (<code>tId</code>)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;</p>
+<hr>
+<p>&ndash; Records of groundtype</p>
+<hr>
+<p>INSERT INTO <code>groundtype</code> VALUES (&lsquo;1&rsquo;, &lsquo;羽毛球&rsquo;);
+INSERT INTO <code>groundtype</code> VALUES (&lsquo;2&rsquo;, &lsquo;篮球&rsquo;);
+INSERT INTO <code>groundtype</code> VALUES (&lsquo;3&rsquo;, &lsquo;乒乓球&rsquo;);
+INSERT INTO <code>groundtype</code> VALUES (&lsquo;4&rsquo;, &lsquo;排球&rsquo;);
+INSERT INTO <code>groundtype</code> VALUES (&lsquo;5&rsquo;, &lsquo;标枪&rsquo;);
+INSERT INTO <code>groundtype</code> VALUES (&lsquo;6&rsquo;, &lsquo;铁饼&rsquo;);
+INSERT INTO <code>groundtype</code> VALUES (&lsquo;7&rsquo;, &lsquo;举重&rsquo;);
+INSERT INTO <code>groundtype</code> VALUES (&lsquo;8&rsquo;, &lsquo;游泳&rsquo;);
+INSERT INTO <code>groundtype</code> VALUES (&lsquo;9&rsquo;, &lsquo;足球&rsquo;);
+INSERT INTO <code>groundtype</code> VALUES (&lsquo;10&rsquo;, &lsquo;橄榄球&rsquo;);
+INSERT INTO <code>groundtype</code> VALUES (&lsquo;11&rsquo;, &lsquo;田径&rsquo;);
+INSERT INTO <code>groundtype</code> VALUES (&lsquo;12&rsquo;, &lsquo;高尔夫球场&rsquo;);</p>
+<hr>
+<p>&ndash; Table structure for match</p>
+<hr>
+<p>DROP TABLE IF EXISTS <code>match</code>;
+CREATE TABLE <code>match</code> (
+<code>mId</code> int(8) NOT NULL AUTO_INCREMENT,
+<code>mName</code> varchar(50) NOT NULL,
+<code>text</code> text NOT NULL,
+<code>mDate</code> date NOT NULL,
+<code>aId</code> int(8) NOT NULL,
+<code>status</code> char(1) NOT NULL,
+PRIMARY KEY (<code>mId</code>)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;</p>
+<hr>
+<p>&ndash; Records of match</p>
+<hr>
+<p>INSERT INTO <code>match</code> VALUES (&lsquo;1&rsquo;, &lsquo;第11届短池游泳世锦赛&rsquo;, &lsquo;<p>\r\n    &lt;span style=&quot;color:#000000;&quot;&gt;&lt;span class=&quot;Apple-converted-space&quot;&gt;&lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;    </span>&lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;    </span></span>&lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;12月作为一年中的最后一个月，是众多项目的收官之月。</span></span> \r\n</p>\r\n<p>\r\n    &lt;span style=&quot;color:#000000;&quot;&gt;&lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;    </span>&lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;    </span>&lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;本月最重要的赛事将是12月12日至16日在土耳其伊斯坦布尔举行的第11届短池游泳世锦赛，尽管是25米泳池，但争夺也十分激烈，中国泳军在经历了奥运会之后，谁会成为这里最闪耀的明星？</span></span> \r\n</p>\r\n<p>\r\n      &lt;span style=&quot;color:#000000;&quot;&gt;&lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;</span></span>   \r\n</p>\r\n&lt;p align=&quot;center&quot;&gt;\r\n    \r\n</p>\r\n&lt;p align=&quot;center&quot;&gt;\r\n    &lt;img alt=&quot;&quot; src=&quot;/GYM/upload/image/20130101/20130101215206_18.jpg&quot; /&gt; \r\n</p>\r\n<p>\r\n    \r\n</p>\r\n<p>\r\n      \r\n</p>&rsquo;, &lsquo;2013-01-01&rsquo;, &lsquo;10000&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>match</code> VALUES (&lsquo;2&rsquo;, &lsquo;全国冬运会开始新年序章&rsquo;, &lsquo;&lt;p style=&quot;text-indent:0px;color:#000000;&quot;&gt;\r\n &lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;    2012年是中国的龙年，更是体坛龙腾虎跃的一年。我们可以预言，在这样的年份里，人类的运动极限将再次遭遇挑战，</span><span>&lt;a href=&quot;http://www.china.com.cn/sport/txt/2012-01/05/content_24331416.htm#&quot; target=&quot;_blank&quot;&gt;&lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;体育</span></a></span>&lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;迷的想象力可以更加狂野。那么，这一年究竟有哪些比赛值得我们期待?</span>\r\n</p>\r\n&lt;p style=&quot;text-indent:0px;color:#000000;&quot;&gt;\r\n &lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;    与往年一样，2012年的“开年大餐”绝不会单调。作为一项传统赛事，达喀尔拉力赛已在热情的南美拉开序幕，这是属于勇敢者的游戏，但也希望车手们能一路平安。</span>\r\n</p>\r\n&lt;p style=&quot;text-indent:0px;color:#000000;&quot;&gt;\r\n    &lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;    在北半球的冰雪季节里，第12届全国冬运会揭开战幕，各路冰雪好手齐聚长春展开争夺。而全世界“好雪”的年轻人们则将在奥地利迎来首届冬季青奥会。</span>\r\n</p>\r\n&lt;p style=&quot;text-indent:0px;color:#000000;&quot;&gt;\r\n      &lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;    同样在1月份，网球也将拉开漫长的赛季，先是各站巡回赛，随后开年的第一个大满贯——澳网将于16日至29日进行。去年李娜在法网上的折桂，激起了国人对于网球的关注，也希望新的一年娜姐能一改去年下半年的颓势，在新的一年再夺佳绩。</span>\r\n</p>\r\n&lt;p style=&quot;text-indent:0px;color:#000000;&quot;&gt;\r\n   &lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;</span>   \r\n</p>\r\n&lt;p style=&quot;text-indent:0px;color:#000000;&quot; align=&quot;center&quot;&gt;\r\n    &lt;img alt=&quot;&quot; src=&quot;/GYM/upload/image/20130101/20130101215923_722.jpg&quot; /&gt;\r\n</p>\r\n&lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;</span>&rsquo;, &lsquo;2013-01-01&rsquo;, &lsquo;10000&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>match</code> VALUES (&lsquo;3&rsquo;, &lsquo;跳水世界杯在伦敦上演&rsquo;, &lsquo;&lt;p style=&quot;text-indent:0px;color:#000000;&quot;&gt;\r\n    &lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;    对于中国跳水军团来说，2月下旬在伦敦举行的跳水世界杯将是伦敦奥运会前最重要的一次练兵。不过在已经拿到满额参赛席位的情况下，这支跳水梦之队可以轻松上阵来熟悉场地及竞争对手。</span>\r\n</p>\r\n&lt;p style=&quot;text-indent:0px;color:#000000;&quot;&gt;\r\n      &lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;    149天停摆的阴霾已经成为过去，NBA在艰难中迎来了2011－2012赛季。在这样只有66场常规赛的缩水季，一切都变得与以往不同。虽然损失了几百场比赛，但幸运的是，赛季最终被保留了下来。更幸运的是，全明星赛最终被保留了下来。全世界的球迷依然能享受到NBA最顶尖的球星们带来的视觉大餐。</span>\r\n</p>\r\n&lt;p style=&quot;text-indent:0px;color:#000000;&quot;&gt;\r\n   &lt;span style=&quot;font-family:Microsoft YaHei;font-size:14px;&quot;&gt;    此外，CBA全明星周末也将如期在广州举行，在CBA 联赛竞争水平和娱乐性都有了进一步提升的一年，相信众球星将为球迷朋友们带来一届更为精彩的全明星篮球盛宴。</span>\r\n</p>\r\n&lt;p style=&quot;text-indent:0px;color:#000000;&quot;&gt;\r\n         \r\n</p>\r\n&lt;p align=&quot;center&quot;&gt;\r\n    &lt;img alt=&quot;&quot; src=&quot;/GYM/upload/image/20130101/20130101230512_262.jpg&quot; /&gt;\r\n</p>\r\n&lt;p style=&quot;text-indent:0px;color:#000000;&quot;&gt;\r\n         \r\n</p>&rsquo;, &lsquo;2013-01-01&rsquo;, &lsquo;10000&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>match</code> VALUES (&lsquo;4&rsquo;, &lsquo;冰雪盛宴观众一饱眼福&rsquo;, &lsquo;&lt;p style=&quot;text-indent:0px;color:#000000;&quot;&gt;\r\n    &lt;span style=&quot;font-family:Microsoft YaHei;&quot;&gt;    被开除出国家队的冬奥会冠军王濛已经确定无缘全国冬运会，而能否现身上海参加短道速滑世锦赛，则依然是个未知数。作为中国当前“短道速滑第一人”，如果王濛无法及时回归国家队参加国际比赛，那么想要在2014年索契冬奥会卫冕冠军，将十分艰难。</span>\r\n</p>\r\n&lt;p style=&quot;text-indent:0px;color:#000000;&quot;&gt;\r\n &lt;span style=&quot;font-family:Microsoft YaHei;&quot;&gt;    除了短道速滑之外，3月份还将有一系列单项世锦赛值得人们期待。</span>&lt;span style=&quot;font-family:Microsoft YaHei;&quot;&gt;刘翔</span>&lt;span style=&quot;font-family:Microsoft YaHei;&quot;&gt;将第5次参加室内田径世锦赛的60米栏比赛。这是奥运前最后一次高手过招的机会，刘翔需要的是在这里争取信心。</span>\r\n</p>\r\n&lt;p style=&quot;text-indent:0px;color:#000000;&quot;&gt;\r\n         \r\n</p>\r\n&lt;p align=&quot;center&quot;&gt;\r\n    &lt;img alt=&quot;&quot; src=&quot;/GYM/upload/image/20130102/20130102151850_828.jpg&quot; /&gt;\r\n</p>\r\n&lt;p style=&quot;text-indent:0px;color:#000000;&quot;&gt;\r\n         \r\n</p>&rsquo;, &lsquo;2013-01-02&rsquo;, &lsquo;10000&rsquo;, &lsquo;1&rsquo;);</p>
+<hr>
+<p>&ndash; Table structure for matchlist</p>
+<hr>
+<p>DROP TABLE IF EXISTS <code>matchlist</code>;
+CREATE TABLE <code>matchlist</code> (
+<code>mId</code> int(12) NOT NULL AUTO_INCREMENT,
+<code>mName</code> varchar(64) NOT NULL,
+<code>text</code> text NOT NULL,
+<code>date</code> date NOT NULL,
+<code>eRentId</code> int(8) NOT NULL,
+<code>bId</code> int(8) NOT NULL,
+PRIMARY KEY (<code>mId</code>)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;</p>
+<hr>
+<p>&ndash; Records of matchlist</p>
+<hr>
+<p>INSERT INTO <code>matchlist</code> VALUES (&lsquo;3&rsquo;, &lsquo;花样滑冰&rsquo;, &lsquo;ddd&rsquo;, &lsquo;2022-06-13&rsquo;, &lsquo;2&rsquo;, &lsquo;3&rsquo;);
+INSERT INTO <code>matchlist</code> VALUES (&lsquo;6&rsquo;, &lsquo;Monster Hunter Rise Battle&rsquo;, &lsquo;666&rsquo;, &lsquo;2013-06-15&rsquo;, &lsquo;2&rsquo;, &lsquo;3&rsquo;);</p>
+<hr>
+<p>&ndash; Table structure for notice</p>
+<hr>
+<p>DROP TABLE IF EXISTS <code>notice</code>;
+CREATE TABLE <code>notice</code> (
+<code>nId</code> int(11) NOT NULL AUTO_INCREMENT,
+<code>nTitle</code> varchar(1000) NOT NULL,
+<code>nText</code> text NOT NULL,
+<code>nDate</code> datetime NOT NULL,
+<code>aId</code> int(11) NOT NULL,
+PRIMARY KEY (<code>nId</code>)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;</p>
+<hr>
+<p>&ndash; Records of notice</p>
+<hr>
+<p>INSERT INTO <code>notice</code> VALUES (&lsquo;1&rsquo;, ' 广东海洋大学体育馆网上系统即将发布，敬请期待！&rsquo;, &lsquo;<p>\r\n         广东海洋大学体育馆网上系统即将发布，敬请期待！\r\n</p>\r\n<p>\r\n         \r\n</p>\r\n&lt;img alt=&quot;&quot; src=&quot;/GYM/upload/image/20130103/20130103192451_840.jpg&quot; /&gt; \r\n<p>\r\n       \r\n</p>&rsquo;, &lsquo;2013-01-03 19:24:56&rsquo;, &lsquo;1000&rsquo;);
+INSERT INTO <code>notice</code> VALUES (&lsquo;2&rsquo;, &lsquo;关于如何使用本系统&rsquo;, &lsquo;&lt;h3 id=&quot;row_1&quot;&gt;\r\n &lt;span style=&quot;color:#e53333;&quot;&gt;如何预约场地</span>\r\n</h3>\r\n<div>\r\n    &lt;span style=&quot;color:#e56600;&quot;&gt;1.点击场地预订导航栏；</span>\r\n</div>\r\n<div>\r\n   &lt;span style=&quot;color:#e56600;&quot;&gt;2.选择自己需要预定的场地，然后后点击其后面的“预定”；</span>\r\n</div>\r\n<div>\r\n   &lt;span style=&quot;color:#e56600;&quot;&gt;3.选择需要预定的起止时间，点击提交。</span>\r\n</div>\r\n<div>\r\n         \r\n</div>\r\n<h3>\r\n      &lt;span style=&quot;color:#e53333;&quot;&gt;如何租借器材</span>\r\n</h3>\r\n<div>\r\n    &lt;span style=&quot;color:#e56600;&quot;&gt;1.点击器材租借导航栏；</span>\r\n</div>\r\n<div>\r\n   &lt;span style=&quot;color:#e56600;&quot;&gt;2.选择自己需要租借的器材，然后点击其后面的“租借”；</span>\r\n</div>\r\n<div>\r\n      &lt;span style=&quot;color:#e56600;&quot;&gt;3.选择需要租借的起止时间，点击提交。</span>\r\n</div>\r\n<div>\r\n         \r\n</div>\r\n<h3>\r\n      &lt;span style=&quot;color:#e53333;&quot;&gt;惩罚措施</span>\r\n</h3>\r\n<div>\r\n      &lt;span style=&quot;color:#e56600;&quot;&gt;1.如果预约场地失约（即预约了没有在预约时间内到场使用），则需要缴清预约费用，并加收10%违约金。</span>\r\n</div>\r\n<div>\r\n    &lt;span style=&quot;color:#e56600;&quot;&gt;2.如果失约没有缴清预约费用和违约金，则账户会被冻结，无法继续使用此系统，并且毕业后由学校统一补收。</span>\r\n</div>&rsquo;, &lsquo;2013-01-03 19:35:19&rsquo;, &lsquo;1000&rsquo;);
+INSERT INTO <code>notice</code> VALUES (&lsquo;3&rsquo;, &lsquo;冬季运动会&rsquo;, &lsquo;冬季运动会&rsquo;, &lsquo;2013-01-04 11:07:13&rsquo;, &lsquo;1000&rsquo;);
+INSERT INTO <code>notice</code> VALUES (&lsquo;5&rsquo;, &lsquo;广东海洋大学第十二届田径运动会圆满落幕&rsquo;, &lsquo;&lt;div align=&quot;left&quot;&gt;\r\n                2011年12月11日上午，广东海洋大学第十二届田径运动会顺利完成了各项比赛任务，圆满地落下了帷幕。闭幕式在东区体育场隆重举行。广东海洋大学何真校长、校党委张兰英副书记，陈泽球副校长和叶春海副校长等人出席了闭幕式。\r\n</div>\r\n&lt;div align=&quot;left&quot;&gt;\r\n      11时30分，闭幕式正式开始，闭幕式由校党委张兰英副书记主持。运动员、裁判员入场仪式首先进行，各学院代表队缓缓步入会场，他们整齐有序，有的在欢呼雀跃，有的在高喊口号，意气风发。\r\n</div>\r\n&lt;div align=&quot;left&quot;&gt;\r\n              随后，由本届运动会总裁判长宣布比赛成绩，教工组中，体育与休闲学院以总分136分夺得团体总分冠军，行政机关和后勤公会分别以111分和87分获得第二名和第三名，学生组中，获得团体总分冠军的分别是职业技术学院和经管学院，获得亚军的是体育与休闲学院和航海学院，获得季军的是寸金学院。另外，外国语学院和理学院获得学生体育道德风尚奖，中歌艺术学院和职业技术学院则获得学生最佳组织奖。在之后的颁奖仪式上，学&lt;a class=&quot;keylink&quot; href=&quot;http://210.38.137.115/dbz/xxld/hd_ld.html&quot; target=&quot;_blank&quot;&gt;校领导</a>为颁奖单位颁发奖牌和锦旗并合影留念。\r\n</div>\r\n&lt;div align=&quot;left&quot;&gt;\r\n                据悉，本次校运会是历届校运会中气温最低，天气最寒冷的一次校运会，尽管如此，比赛场上的运动员们却并没被寒冷所吓倒，他们挺着昂扬的斗志，带着永不熄灭的激情，创下一个又一个佳绩。本届运动会也刷新了5项校运会记录，成绩喜人。\r\n</div>\r\n&lt;div align=&quot;left&quot;&gt;\r\n   过后，广东海洋大学学校体育运动委员会主任叶春海副校长致闭幕词，叶春海副校长首先对全体裁判员、运动员以及老师和同学表示衷心的感谢，他指出，虽然只有短短的2天半时间，但海大人&quot;坚韧不拔，自强不息&quot;的精神得到充分的彰显，他希望全体师生能够更加注重体育锻炼，以更强健的体魄、更饱满的精神状态投入到今后的学习、工作、生活当中去，创造更加辉煌的成绩。最后，何真校长宣布，广东海洋大学第十二届校运动会胜利闭幕。\r\n</div>\r\n&lt;div align=&quot;left&quot;&gt;\r\n    校运会的召开，是海大全体师生以实际行动彰显运动精神的体现，让我们共同期待校运会取得更加丰硕的成果。\r\n</div>&rsquo;, &lsquo;2013-01-04 11:26:44&rsquo;, &lsquo;1000&rsquo;);
+INSERT INTO <code>notice</code> VALUES (&lsquo;6&rsquo;, &lsquo;广东海洋大学第八届校运会开幕&rsquo;, &lsquo;&lt;p align=&quot;left&quot;&gt;\r\n   <b>        碧海银沙网讯</b>（图/<b>伍静文</b> 文/<b>何永聪</b> 编辑/<b>皓 雪</b>）广东海洋大学第八届校运会开幕式于12月13日上午八点在东区体育场简单而隆重举行。开幕式上由红旗手,鲜花队,裁判队,教职工队的带领下,各院的方队纷纷亮相,何真校长主持升旗仪式,并由运动员代表,裁判员代表宣誓。\r\n</p>\r\n&lt;p align=&quot;center&quot;&gt;\r\n   &lt;img alt=&quot;&quot; src=&quot;/GYM/upload/image/20130104/20130104112937_652.jpg&quot; /&gt; \r\n   &lt;div align=&quot;left&quot;&gt;\r\n           \r\n    </div>\r\n      <p>\r\n       <br />\r\n      </p>\r\n    &lt;p align=&quot;left&quot;&gt;\r\n          <br />\r\n      </p>&rsquo;, &lsquo;2013-01-04 11:30:04&rsquo;, &lsquo;1000&rsquo;);</p>
+<hr>
+<p>&ndash; Table structure for user</p>
+<hr>
+<p>DROP TABLE IF EXISTS <code>user</code>;
+CREATE TABLE <code>user</code> (
+<code>uId</code> varchar(16) NOT NULL,
+<code>uName</code> varchar(16) NOT NULL,
+<code>uPassword</code> varchar(64) NOT NULL,
+<code>status</code> char(1) NOT NULL,
+PRIMARY KEY (<code>uId</code>)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;</p>
+<hr>
+<p>&ndash; Records of user</p>
+<hr>
+<p>INSERT INTO <code>user</code> VALUES (&lsquo;110&rsquo;, &lsquo;兔斯基&rsquo;, &lsquo;202cb962ac59075b964b07152d234b70&rsquo;, &lsquo;0&rsquo;);
+INSERT INTO <code>user</code> VALUES (&lsquo;111111&rsquo;, &lsquo;大大&rsquo;, &lsquo;698d51a19d8a121ce581499d7b701668&rsquo;, &lsquo;0&rsquo;);
+INSERT INTO <code>user</code> VALUES (&lsquo;123&rsquo;, &lsquo;兔斯基&rsquo;, &lsquo;202cb962ac59075b964b07152d234b70&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>user</code> VALUES (&lsquo;1234&rsquo;, &lsquo;123&rsquo;, &lsquo;202cb962ac59075b964b07152d234b70&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>user</code> VALUES (&lsquo;2010117&rsquo;, &lsquo;sdadad&rsquo;, &lsquo;698d51a19d8a121ce581499d7b701668&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>user</code> VALUES (&lsquo;201011700000&rsquo;, &lsquo;剑锋&rsquo;, &lsquo;0e4ff8ad66ec4f08e101ac9b28bc805d&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>user</code> VALUES (&lsquo;201011701207&rsquo;, &lsquo;剑锋&rsquo;, &lsquo;202cb962ac59075b964b071ff8234b70&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>user</code> VALUES (&lsquo;201011701211&rsquo;, &lsquo;黄萌&rsquo;, &lsquo;96e7921ff85eb72c92a549dd5a330112&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>user</code> VALUES (&lsquo;201011701212&rsquo;, &lsquo;黄明的&rsquo;, &lsquo;698d51a19d8a121ce581ff8d7b701668&rsquo;, &lsquo;1&rsquo;);
+INSERT INTO <code>user</code> VALUES (&lsquo;20191170142&rsquo;, &lsquo;admin&rsquo;, &lsquo;$2a$10$Fz1AFco8qPuXitMppPxLOutO3&rsquo;, &lsquo;0&rsquo;);
+INSERT INTO <code>user</code> VALUES (&lsquo;201911701427&rsquo;, &lsquo;admin&rsquo;, &lsquo;$2a$10$Z1kkei1C0eAjbesSXcc5S.Yfq/enRMgAoVwjjyBQDu1CsFh7.3fmW&rsquo;, &lsquo;0&rsquo;);
+INSERT INTO <code>user</code> VALUES (&lsquo;222&rsquo;, &lsquo;fdgssrd&rsquo;, &lsquo;47bce5c74f58ff8867dbd57e9ca9f808&rsquo;, &lsquo;1&rsquo;);</p>
 
 
   </div>
@@ -240,6 +1002,23 @@
 </nav>
 
   </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo1-mu.vercel.app/",  
+            el: "#tcomment",
+            lang: 'zh-CN',
+            region: 'ap-guangzhou',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
 </article>
     </main>
     
