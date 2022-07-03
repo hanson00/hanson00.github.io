@@ -11,7 +11,7 @@
 <meta name="author" content="
 作者:&nbsp;hanson">
 <link rel="canonical" href="https://hanson00.github.io/posts/technology/python/%E8%B7%AF%E9%A3%9E%E7%88%AC%E8%99%AB%E8%BF%9B%E9%98%B6%E7%88%AC%E8%99%AB/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.90e638a5d4448bfb1fe445aebfe0f00ba8831874539fc42477608012af462729.css" integrity="sha256-kOY4pdREi/sf5EWuv&#43;DwC6iDGHRTn8Qkd2CAEq9GJyk=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
@@ -220,25 +220,6 @@
     <div class="post-description">
       爬虫实战学习
     </div>
-    <div class="post-meta">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5 min&nbsp;|&nbsp;2405 words&nbsp;|&nbsp;
-作者:&nbsp;hanson&nbsp;|&nbsp;
-
-</div>
   </header> <aside id="toc-container" class="toc-container wide">
         <div class="toc">
             <details  open>
@@ -386,192 +367,192 @@
 </ol>
 <h5 id="关于selenium的一些常见用法">关于selenium的一些常见用法<a hidden class="anchor" aria-hidden="true" href="#关于selenium的一些常见用法">#</a></h5>
 <p>最好能记住下面的案例所要导入的模块，多看</p>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> time
-<span style="color:#fff;font-weight:bold">from</span> selenium <span style="color:#fff;font-weight:bold">import</span> webdriver
-<span style="color:#fff;font-weight:bold">from</span> selenium.webdriver.common.by <span style="color:#fff;font-weight:bold">import</span> By
-<span style="color:#fff;font-weight:bold">from</span> selenium.webdriver.common.keys <span style="color:#fff;font-weight:bold">import</span> Keys
-url = <span style="color:#0ff;font-weight:bold">&#34;https://www.lagou.com/&#34;</span>
-browser = webdriver.Chrome()
-browser.get(url)
-time.sleep(<span style="color:#ff0;font-weight:bold">1</span>)
-browser.find_element(By.XPATH,<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;changeCityBox&#34;]/p[1]/a&#39;</span>).click()
-time.sleep(<span style="color:#ff0;font-weight:bold">1</span>)
-browser.page_source
-browser.find_element(By.XPATH,<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;search_input&#34;]&#39;</span>).send_keys(<span style="color:#0ff;font-weight:bold">&#34;爬虫&#34;</span>, Keys.ENTER)
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> time
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium <span style="color:#2c5dcd;font-weight:bold">import</span> webdriver
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium.webdriver.common.by <span style="color:#2c5dcd;font-weight:bold">import</span> By
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium.webdriver.common.keys <span style="color:#2c5dcd;font-weight:bold">import</span> Keys
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;https://www.lagou.com/&#34;</span>
+browser <span style="color:#2c5dcd">=</span> webdriver<span style="color:#2c5dcd">.</span>Chrome()
+browser<span style="color:#2c5dcd">.</span>get(url)
+time<span style="color:#2c5dcd">.</span>sleep(<span style="color:#5918bb;font-weight:bold">1</span>)
+browser<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH,<span style="color:#0c6">&#39;//*[@id=&#34;changeCityBox&#34;]/p[1]/a&#39;</span>)<span style="color:#2c5dcd">.</span>click()
+time<span style="color:#2c5dcd">.</span>sleep(<span style="color:#5918bb;font-weight:bold">1</span>)
+browser<span style="color:#2c5dcd">.</span>page_source
+browser<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH,<span style="color:#0c6">&#39;//*[@id=&#34;search_input&#34;]&#39;</span>)<span style="color:#2c5dcd">.</span>send_keys(<span style="color:#0c6">&#34;爬虫&#34;</span>, Keys<span style="color:#2c5dcd">.</span>ENTER)
 </code></pre></td></tr></table>
 </div>
 </div><h5 id="selenium的微信读书小案例">selenium的微信读书小案例<a hidden class="anchor" aria-hidden="true" href="#selenium的微信读书小案例">#</a></h5>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">8
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> selenium <span style="color:#fff;font-weight:bold">import</span> webdriver
-<span style="color:#007f7f">#使用selenium获取网页的基本操作</span>
-url = <span style="color:#0ff;font-weight:bold">&#34;http://finance.sina.com.cn/realstock/company/sh000001/nc.shtml&#34;</span>
-browser = webdriver.Chrome()  <span style="color:#007f7f">#声明模拟的浏览器是Chrome</span>
-browser.maximize_window()  <span style="color:#007f7f">#最大化浏览器</span>
-browser.get(url) <span style="color:#007f7f">#模拟浏览器发送请求</span>
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">from</span> selenium <span style="color:#2c5dcd;font-weight:bold">import</span> webdriver
+<span style="color:#0080ff;font-style:italic">#使用selenium获取网页的基本操作</span>
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;http://finance.sina.com.cn/realstock/company/sh000001/nc.shtml&#34;</span>
+browser <span style="color:#2c5dcd">=</span> webdriver<span style="color:#2c5dcd">.</span>Chrome()  <span style="color:#0080ff;font-style:italic">#声明模拟的浏览器是Chrome</span>
+browser<span style="color:#2c5dcd">.</span>maximize_window()  <span style="color:#0080ff;font-style:italic">#最大化浏览器</span>
+browser<span style="color:#2c5dcd">.</span>get(url) <span style="color:#0080ff;font-style:italic">#模拟浏览器发送请求</span>
 
-browser.quit() <span style="color:#007f7f">#关闭模拟浏览器</span>
+browser<span style="color:#2c5dcd">.</span>quit() <span style="color:#0080ff;font-style:italic">#关闭模拟浏览器</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+</div><div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f">#如果希望访问网页时不弹出浏览器窗口</span>
-<span style="color:#007f7f">#使用无界面浏览器是为了在某些爬取工作时不弹出浏览器窗口来影响自己的操作</span>
-<span style="color:#007f7f">#比如在获取网页源代码后仍然需要后续操作时</span>
-<span style="color:#fff;font-weight:bold">from</span> selenium <span style="color:#fff;font-weight:bold">import</span> webdriver
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic">#如果希望访问网页时不弹出浏览器窗口</span>
+<span style="color:#0080ff;font-style:italic">#使用无界面浏览器是为了在某些爬取工作时不弹出浏览器窗口来影响自己的操作</span>
+<span style="color:#0080ff;font-style:italic">#比如在获取网页源代码后仍然需要后续操作时</span>
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium <span style="color:#2c5dcd;font-weight:bold">import</span> webdriver
 
-url = <span style="color:#0ff;font-weight:bold">&#34;http://finance.sina.com.cn/realstock/company/sh000001/nc.shtml&#34;</span>
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;http://finance.sina.com.cn/realstock/company/sh000001/nc.shtml&#34;</span>
 
-chrome_opt = webdriver.ChromeOptions()
-chrome_opt.add_argument(<span style="color:#0ff;font-weight:bold">&#34;--headless&#34;</span>)
-browser = webdriver.Chrome(options=chrome_opt)  <span style="color:#007f7f">#声明模拟的浏览器是Chrome</span>
-browser.get(url)  <span style="color:#007f7f">#控制浏览器发起请求，访问网址</span>
-<span style="color:#007f7f"># data = browser.page_source  #获取网页真正的源代码(经过渲染之后的源代码)</span>
-<span style="color:#007f7f"># print(data)</span>
-<span style="color:#007f7f"># print(browser.title) #获取浏览页面的标题</span>
+chrome_opt <span style="color:#2c5dcd">=</span> webdriver<span style="color:#2c5dcd">.</span>ChromeOptions()
+chrome_opt<span style="color:#2c5dcd">.</span>add_argument(<span style="color:#0c6">&#34;--headless&#34;</span>)
+browser <span style="color:#2c5dcd">=</span> webdriver<span style="color:#2c5dcd">.</span>Chrome(options<span style="color:#2c5dcd">=</span>chrome_opt)  <span style="color:#0080ff;font-style:italic">#声明模拟的浏览器是Chrome</span>
+browser<span style="color:#2c5dcd">.</span>get(url)  <span style="color:#0080ff;font-style:italic">#控制浏览器发起请求，访问网址</span>
+<span style="color:#0080ff;font-style:italic"># data = browser.page_source  #获取网页真正的源代码(经过渲染之后的源代码)</span>
+<span style="color:#0080ff;font-style:italic"># print(data)</span>
+<span style="color:#0080ff;font-style:italic"># print(browser.title) #获取浏览页面的标题</span>
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+</div><div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">from</span> selenium <span style="color:#fff;font-weight:bold">import</span> webdriver
-<span style="color:#fff;font-weight:bold">import</span> re
-<span style="color:#007f7f">#使用无界模式访问,并获取网页源代码</span>
-sin = <span style="color:#fff;font-weight:bold">input</span>(<span style="color:#0ff;font-weight:bold">&#34;请输入你要查找的新闻:&#34;</span>)
-url = <span style="color:#0ff;font-weight:bold">f</span><span style="color:#0ff;font-weight:bold">&#34;https://search.sina.com.cn/news?q=</span><span style="color:#0ff;font-weight:bold">{</span>sin<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">&amp;c=news&amp;from=index&#34;</span>
-<span style="color:#007f7f"># #无界模式</span>
-chrome_opt = webdriver.ChromeOptions()
-chrome_opt.add_argument(<span style="color:#0ff;font-weight:bold">&#34;--headless&#34;</span>)
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">from</span> selenium <span style="color:#2c5dcd;font-weight:bold">import</span> webdriver
+<span style="color:#2c5dcd;font-weight:bold">import</span> re
+<span style="color:#0080ff;font-style:italic">#使用无界模式访问,并获取网页源代码</span>
+sin <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">input</span>(<span style="color:#0c6">&#34;请输入你要查找的新闻:&#34;</span>)
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">f</span><span style="color:#0c6">&#34;https://search.sina.com.cn/news?q=</span><span style="color:#0c6">{</span>sin<span style="color:#0c6">}</span><span style="color:#0c6">&amp;c=news&amp;from=index&#34;</span>
+<span style="color:#0080ff;font-style:italic"># #无界模式</span>
+chrome_opt <span style="color:#2c5dcd">=</span> webdriver<span style="color:#2c5dcd">.</span>ChromeOptions()
+chrome_opt<span style="color:#2c5dcd">.</span>add_argument(<span style="color:#0c6">&#34;--headless&#34;</span>)
 
-browser = webdriver.Chrome(options=chrome_opt)
+browser <span style="color:#2c5dcd">=</span> webdriver<span style="color:#2c5dcd">.</span>Chrome(options<span style="color:#2c5dcd">=</span>chrome_opt)
 
-browser.get(url)
-<span style="color:#007f7f"># data = browser.page_source</span>
-browser.find_element_by_xpath(<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;tabc02&#34;]/form/div/input[1]&#39;</span>).send_keys(<span style="color:#0ff;font-weight:bold">&#34;阿里巴巴&#34;</span>)
-browser.find_element_by_xpath(<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;tabc02&#34;]/form/div/input[4]&#39;</span>).click()
+browser<span style="color:#2c5dcd">.</span>get(url)
+<span style="color:#0080ff;font-style:italic"># data = browser.page_source</span>
+browser<span style="color:#2c5dcd">.</span>find_element_by_xpath(<span style="color:#0c6">&#39;//*[@id=&#34;tabc02&#34;]/form/div/input[1]&#39;</span>)<span style="color:#2c5dcd">.</span>send_keys(<span style="color:#0c6">&#34;阿里巴巴&#34;</span>)
+browser<span style="color:#2c5dcd">.</span>find_element_by_xpath(<span style="color:#0c6">&#39;//*[@id=&#34;tabc02&#34;]/form/div/input[4]&#39;</span>)<span style="color:#2c5dcd">.</span>click()
 
-retitle = re.compile(<span style="color:#0ff;font-weight:bold">r</span><span style="color:#0ff;font-weight:bold">&#39;&lt;div class=&#34;box-result clearfix&#34; data-sudaclick=&#34;.*?&#34;&gt;.*?&lt;a href=&#34;(?P&lt;url&gt;.*?)&#34;.*?&gt;(?P&lt;title&gt;.*?)&lt;/a&gt;&#39;</span>, re.S)
+retitle <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>compile(<span style="color:#0c6">r</span><span style="color:#0c6">&#39;&lt;div class=&#34;box-result clearfix&#34; data-sudaclick=&#34;.*?&#34;&gt;.*?&lt;a href=&#34;(?P&lt;url&gt;.*?)&#34;.*?&gt;(?P&lt;title&gt;.*?)&lt;/a&gt;&#39;</span>, re<span style="color:#2c5dcd">.</span>S)
 
-result = retitle.finditer(browser.page_source)
-<span style="color:#fff;font-weight:bold">for</span> i in result:
-    title = i.group(<span style="color:#0ff;font-weight:bold">&#34;title&#34;</span>).replace(<span style="color:#0ff;font-weight:bold">&#39;&lt;font color=&#34;red&#34;&gt;&#39;</span>,<span style="color:#0ff;font-weight:bold">&#34;&#34;</span>).replace(<span style="color:#0ff;font-weight:bold">&#39;&lt;/font&gt;&#39;</span>, <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>)
-    url = i.group(<span style="color:#0ff;font-weight:bold">&#34;url&#34;</span>)
+result <span style="color:#2c5dcd">=</span> retitle<span style="color:#2c5dcd">.</span>finditer(browser<span style="color:#2c5dcd">.</span>page_source)
+<span style="color:#2c5dcd;font-weight:bold">for</span> i <span style="color:#2c5dcd;font-weight:bold">in</span> result:
+    title <span style="color:#2c5dcd">=</span> i<span style="color:#2c5dcd">.</span>group(<span style="color:#0c6">&#34;title&#34;</span>)<span style="color:#2c5dcd">.</span>replace(<span style="color:#0c6">&#39;&lt;font color=&#34;red&#34;&gt;&#39;</span>,<span style="color:#0c6">&#34;&#34;</span>)<span style="color:#2c5dcd">.</span>replace(<span style="color:#0c6">&#39;&lt;/font&gt;&#39;</span>, <span style="color:#0c6">&#34;&#34;</span>)
+    url <span style="color:#2c5dcd">=</span> i<span style="color:#2c5dcd">.</span>group(<span style="color:#0c6">&#34;url&#34;</span>)
 </code></pre></td></tr></table>
 </div>
 </div><h5 id="拉钩">拉钩<a hidden class="anchor" aria-hidden="true" href="#拉钩">#</a></h5>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> time
-<span style="color:#fff;font-weight:bold">from</span> selenium <span style="color:#fff;font-weight:bold">import</span> webdriver
-<span style="color:#fff;font-weight:bold">from</span> selenium.webdriver.common.by <span style="color:#fff;font-weight:bold">import</span> By
-<span style="color:#fff;font-weight:bold">from</span> selenium.webdriver.common.keys <span style="color:#fff;font-weight:bold">import</span> Keys
-url = <span style="color:#0ff;font-weight:bold">&#34;https://www.lagou.com/&#34;</span>
-browser = webdriver.Chrome()
-browser.get(url)
-time.sleep(<span style="color:#ff0;font-weight:bold">1</span>)
-browser.find_element(By.XPATH,<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;changeCityBox&#34;]/p[1]/a&#39;</span>).click()
-time.sleep(<span style="color:#ff0;font-weight:bold">1</span>)
-browser.find_element(By.XPATH,<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;search_input&#34;]&#39;</span>).send_keys(<span style="color:#0ff;font-weight:bold">&#34;爬虫&#34;</span>, Keys.ENTER)
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> time
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium <span style="color:#2c5dcd;font-weight:bold">import</span> webdriver
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium.webdriver.common.by <span style="color:#2c5dcd;font-weight:bold">import</span> By
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium.webdriver.common.keys <span style="color:#2c5dcd;font-weight:bold">import</span> Keys
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;https://www.lagou.com/&#34;</span>
+browser <span style="color:#2c5dcd">=</span> webdriver<span style="color:#2c5dcd">.</span>Chrome()
+browser<span style="color:#2c5dcd">.</span>get(url)
+time<span style="color:#2c5dcd">.</span>sleep(<span style="color:#5918bb;font-weight:bold">1</span>)
+browser<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH,<span style="color:#0c6">&#39;//*[@id=&#34;changeCityBox&#34;]/p[1]/a&#39;</span>)<span style="color:#2c5dcd">.</span>click()
+time<span style="color:#2c5dcd">.</span>sleep(<span style="color:#5918bb;font-weight:bold">1</span>)
+browser<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH,<span style="color:#0c6">&#39;//*[@id=&#34;search_input&#34;]&#39;</span>)<span style="color:#2c5dcd">.</span>send_keys(<span style="color:#0c6">&#34;爬虫&#34;</span>, Keys<span style="color:#2c5dcd">.</span>ENTER)
 
 
-<span style="color:#007f7f">#接下来提取公司名称，岗位名称，工作地点</span>
-<span style="color:#007f7f"># 查找存放数据的位置，进行数据提取</span>
-<span style="color:#007f7f">#进行列表全部数据的粗提取</span>
-all_list = browser.find_elements(By.XPATH, value=<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;jobList&#34;]/div[1]/div&#39;</span>)
-<span style="color:#007f7f">#上面//*[@id=&#34;jobList&#34;]/div[1]/div[1]</span>
-<span style="color:#fff;font-weight:bold">for</span> li in all_list:    <span style="color:#007f7f">#  //*[@id=&#34;jobList&#34;]/div[1]/div[1]/div[1]/div[1]/div[1]/a</span>
-    jobname = li.find_element(By.XPATH, value=<span style="color:#0ff;font-weight:bold">&#39;./div[1]/div[1]/div[1]/a&#39;</span>).text
-    salary = li.find_element(By.XPATH, value=<span style="color:#0ff;font-weight:bold">&#39;./div[1]/div[1]/div[2]/span&#39;</span>).text
-    <span style="color:#fff;font-weight:bold">print</span>(jobname, salary)
+<span style="color:#0080ff;font-style:italic">#接下来提取公司名称，岗位名称，工作地点</span>
+<span style="color:#0080ff;font-style:italic"># 查找存放数据的位置，进行数据提取</span>
+<span style="color:#0080ff;font-style:italic">#进行列表全部数据的粗提取</span>
+all_list <span style="color:#2c5dcd">=</span> browser<span style="color:#2c5dcd">.</span>find_elements(By<span style="color:#2c5dcd">.</span>XPATH, value<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;//*[@id=&#34;jobList&#34;]/div[1]/div&#39;</span>)
+<span style="color:#0080ff;font-style:italic">#上面//*[@id=&#34;jobList&#34;]/div[1]/div[1]</span>
+<span style="color:#2c5dcd;font-weight:bold">for</span> li <span style="color:#2c5dcd;font-weight:bold">in</span> all_list:    <span style="color:#0080ff;font-style:italic">#  //*[@id=&#34;jobList&#34;]/div[1]/div[1]/div[1]/div[1]/div[1]/a</span>
+    jobname <span style="color:#2c5dcd">=</span> li<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH, value<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;./div[1]/div[1]/div[1]/a&#39;</span>)<span style="color:#2c5dcd">.</span>text
+    salary <span style="color:#2c5dcd">=</span> li<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH, value<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;./div[1]/div[1]/div[2]/span&#39;</span>)<span style="color:#2c5dcd">.</span>text
+    <span style="color:#5918bb;font-weight:bold">print</span>(jobname, salary)
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="验证码">验证码<a hidden class="anchor" aria-hidden="true" href="#验证码">#</a></h3>
@@ -580,216 +561,216 @@ all_list = browser.find_elements(By.XPATH, value=<span style="color:#0ff;font-we
 <li>选择互联网上成熟的验证码破解工具</li>
 </ol>
 <h4 id="下拉框案例">下拉框案例<a hidden class="anchor" aria-hidden="true" href="#下拉框案例">#</a></h4>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">27
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># coding:utf-8</span>
-<span style="color:#007f7f"># @Time : 2022/5/21 10:46</span>
-<span style="color:#007f7f"># @Author : 软件1194温铭军</span>
-<span style="color:#007f7f"># @file : 无头浏览器.py</span>
-<span style="color:#007f7f"># $software : PyCharm</span>
-<span style="color:#fff;font-weight:bold">import</span> time
-<span style="color:#fff;font-weight:bold">from</span> selenium <span style="color:#fff;font-weight:bold">import</span> webdriver
-<span style="color:#fff;font-weight:bold">from</span> selenium.webdriver.common.by <span style="color:#fff;font-weight:bold">import</span> By
-<span style="color:#fff;font-weight:bold">from</span> selenium.webdriver.support.select <span style="color:#fff;font-weight:bold">import</span> Select
-<span style="color:#007f7f">#无头浏览器代码</span>
-chrome_opt = webdriver.ChromeOptions()
-chrome_opt.add_argument(<span style="color:#0ff;font-weight:bold">&#39;--headless&#39;</span>)
-browser = webdriver.Chrome(options=chrome_opt)
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># coding:utf-8</span>
+<span style="color:#0080ff;font-style:italic"># @Time : 2022/5/21 10:46</span>
+<span style="color:#0080ff;font-style:italic"># @Author : 软件1194温铭军</span>
+<span style="color:#0080ff;font-style:italic"># @file : 无头浏览器.py</span>
+<span style="color:#0080ff;font-style:italic"># $software : PyCharm</span>
+<span style="color:#2c5dcd;font-weight:bold">import</span> time
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium <span style="color:#2c5dcd;font-weight:bold">import</span> webdriver
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium.webdriver.common.by <span style="color:#2c5dcd;font-weight:bold">import</span> By
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium.webdriver.support.select <span style="color:#2c5dcd;font-weight:bold">import</span> Select
+<span style="color:#0080ff;font-style:italic">#无头浏览器代码</span>
+chrome_opt <span style="color:#2c5dcd">=</span> webdriver<span style="color:#2c5dcd">.</span>ChromeOptions()
+chrome_opt<span style="color:#2c5dcd">.</span>add_argument(<span style="color:#0c6">&#39;--headless&#39;</span>)
+browser <span style="color:#2c5dcd">=</span> webdriver<span style="color:#2c5dcd">.</span>Chrome(options<span style="color:#2c5dcd">=</span>chrome_opt)
 
-url = <span style="color:#0ff;font-weight:bold">&#39;https://www.endata.com.cn/BoxOffice/BO/Year/index.html&#39;</span>
-browser.get(url)
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;https://www.endata.com.cn/BoxOffice/BO/Year/index.html&#39;</span>
+browser<span style="color:#2c5dcd">.</span>get(url)
 
-sel_el = browser.find_element(By.XPATH, value=<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;OptionDate&#34;]&#39;</span>)  <span style="color:#007f7f">#选择下拉框的提取</span>
-sel = Select(sel_el)    <span style="color:#007f7f">#将下拉框包装成select对象</span>
+sel_el <span style="color:#2c5dcd">=</span> browser<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH, value<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;//*[@id=&#34;OptionDate&#34;]&#39;</span>)  <span style="color:#0080ff;font-style:italic">#选择下拉框的提取</span>
+sel <span style="color:#2c5dcd">=</span> Select(sel_el)    <span style="color:#0080ff;font-style:italic">#将下拉框包装成select对象</span>
 
-<span style="color:#007f7f">#让浏览器调整选项</span>
-<span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#fff;font-weight:bold">len</span>(sel.options)):
-    sel.select_by_index(i)  <span style="color:#007f7f">#拿到每一个下拉框的选项</span>
-    time.sleep(<span style="color:#ff0;font-weight:bold">1</span>)
-    table = browser.find_element(By.XPATH, value=<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;TableList&#34;]&#39;</span>)
-    <span style="color:#fff;font-weight:bold">print</span>(table.text)
-    time.sleep(<span style="color:#ff0;font-weight:bold">1</span>)
+<span style="color:#0080ff;font-style:italic">#让浏览器调整选项</span>
+<span style="color:#2c5dcd;font-weight:bold">for</span> i <span style="color:#2c5dcd;font-weight:bold">in</span> <span style="color:#5918bb;font-weight:bold">range</span>(<span style="color:#5918bb;font-weight:bold">len</span>(sel<span style="color:#2c5dcd">.</span>options)):
+    sel<span style="color:#2c5dcd">.</span>select_by_index(i)  <span style="color:#0080ff;font-style:italic">#拿到每一个下拉框的选项</span>
+    time<span style="color:#2c5dcd">.</span>sleep(<span style="color:#5918bb;font-weight:bold">1</span>)
+    table <span style="color:#2c5dcd">=</span> browser<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH, value<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;//*[@id=&#34;TableList&#34;]&#39;</span>)
+    <span style="color:#5918bb;font-weight:bold">print</span>(table<span style="color:#2c5dcd">.</span>text)
+    time<span style="color:#2c5dcd">.</span>sleep(<span style="color:#5918bb;font-weight:bold">1</span>)
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="窗口切换">窗口切换<a hidden class="anchor" aria-hidden="true" href="#窗口切换">#</a></h4>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">34
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># coding:utf-8</span>
-<span style="color:#007f7f"># @Time : 2022/5/20 9:32</span>
-<span style="color:#007f7f"># @Author : 软件1194温铭军</span>
-<span style="color:#007f7f"># @file : lagou.py</span>
-<span style="color:#007f7f"># $software : PyCharm</span>
-<span style="color:#fff;font-weight:bold">import</span> time
-<span style="color:#fff;font-weight:bold">from</span> selenium <span style="color:#fff;font-weight:bold">import</span> webdriver
-<span style="color:#fff;font-weight:bold">from</span> selenium.webdriver.common.by <span style="color:#fff;font-weight:bold">import</span> By
-<span style="color:#fff;font-weight:bold">from</span> selenium.webdriver.common.keys <span style="color:#fff;font-weight:bold">import</span> Keys
-url = <span style="color:#0ff;font-weight:bold">&#34;https://www.lagou.com/&#34;</span>
-browser = webdriver.Chrome()
-browser.get(url)
-time.sleep(<span style="color:#ff0;font-weight:bold">1</span>)
-browser.find_element(By.XPATH,<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;changeCityBox&#34;]/p[1]/a&#39;</span>).click()
-time.sleep(<span style="color:#ff0;font-weight:bold">1</span>)
-browser.find_element(By.XPATH,<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;search_input&#34;]&#39;</span>).send_keys(<span style="color:#0ff;font-weight:bold">&#34;爬虫&#34;</span>, Keys.ENTER)
-time.sleep(<span style="color:#ff0;font-weight:bold">1</span>)
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># coding:utf-8</span>
+<span style="color:#0080ff;font-style:italic"># @Time : 2022/5/20 9:32</span>
+<span style="color:#0080ff;font-style:italic"># @Author : 软件1194温铭军</span>
+<span style="color:#0080ff;font-style:italic"># @file : lagou.py</span>
+<span style="color:#0080ff;font-style:italic"># $software : PyCharm</span>
+<span style="color:#2c5dcd;font-weight:bold">import</span> time
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium <span style="color:#2c5dcd;font-weight:bold">import</span> webdriver
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium.webdriver.common.by <span style="color:#2c5dcd;font-weight:bold">import</span> By
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium.webdriver.common.keys <span style="color:#2c5dcd;font-weight:bold">import</span> Keys
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;https://www.lagou.com/&#34;</span>
+browser <span style="color:#2c5dcd">=</span> webdriver<span style="color:#2c5dcd">.</span>Chrome()
+browser<span style="color:#2c5dcd">.</span>get(url)
+time<span style="color:#2c5dcd">.</span>sleep(<span style="color:#5918bb;font-weight:bold">1</span>)
+browser<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH,<span style="color:#0c6">&#39;//*[@id=&#34;changeCityBox&#34;]/p[1]/a&#39;</span>)<span style="color:#2c5dcd">.</span>click()
+time<span style="color:#2c5dcd">.</span>sleep(<span style="color:#5918bb;font-weight:bold">1</span>)
+browser<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH,<span style="color:#0c6">&#39;//*[@id=&#34;search_input&#34;]&#39;</span>)<span style="color:#2c5dcd">.</span>send_keys(<span style="color:#0c6">&#34;爬虫&#34;</span>, Keys<span style="color:#2c5dcd">.</span>ENTER)
+time<span style="color:#2c5dcd">.</span>sleep(<span style="color:#5918bb;font-weight:bold">1</span>)
 
-<span style="color:#007f7f">#接下来提取公司名称，岗位名称，工作地点</span>
-<span style="color:#007f7f"># 查找存放数据的位置，进行数据提取</span>
-<span style="color:#007f7f">#进行列表全部数据的粗提取</span>
-all_list = browser.find_elements(By.XPATH, value=<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;jobList&#34;]/div[1]/div&#39;</span>)
+<span style="color:#0080ff;font-style:italic">#接下来提取公司名称，岗位名称，工作地点</span>
+<span style="color:#0080ff;font-style:italic"># 查找存放数据的位置，进行数据提取</span>
+<span style="color:#0080ff;font-style:italic">#进行列表全部数据的粗提取</span>
+all_list <span style="color:#2c5dcd">=</span> browser<span style="color:#2c5dcd">.</span>find_elements(By<span style="color:#2c5dcd">.</span>XPATH, value<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;//*[@id=&#34;jobList&#34;]/div[1]/div&#39;</span>)
 
-<span style="color:#fff;font-weight:bold">for</span> li in all_list:
-    li.find_element(By.XPATH, value=<span style="color:#0ff;font-weight:bold">&#39;./div[1]/div[1]/div[1]/a&#39;</span>).click()
-<span style="color:#007f7f">#                                             //*[@id=&#34;jobList&#34;]/div[1]/div[1]/div[1]/div[1]/div[1]/a</span>
-    time.sleep(<span style="color:#ff0;font-weight:bold">1</span>)
-    browser.switch_to.window(browser.window_handles[-<span style="color:#ff0;font-weight:bold">1</span>])    <span style="color:#007f7f">#切换窗口，将它置为最后一个窗口</span>
-    time.sleep(<span style="color:#ff0;font-weight:bold">1</span>)
-    datajob = browser.find_element(By.XPATH, value=<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;job_detail&#34;]/dd[2]&#39;</span>).text
-    <span style="color:#fff;font-weight:bold">print</span>(datajob)
-    browser.close()
-    browser.switch_to.window(browser.window_handles[<span style="color:#ff0;font-weight:bold">0</span>])
-    time.sleep(<span style="color:#ff0;font-weight:bold">1</span>)
+<span style="color:#2c5dcd;font-weight:bold">for</span> li <span style="color:#2c5dcd;font-weight:bold">in</span> all_list:
+    li<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH, value<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;./div[1]/div[1]/div[1]/a&#39;</span>)<span style="color:#2c5dcd">.</span>click()
+<span style="color:#0080ff;font-style:italic">#                                             //*[@id=&#34;jobList&#34;]/div[1]/div[1]/div[1]/div[1]/div[1]/a</span>
+    time<span style="color:#2c5dcd">.</span>sleep(<span style="color:#5918bb;font-weight:bold">1</span>)
+    browser<span style="color:#2c5dcd">.</span>switch_to<span style="color:#2c5dcd">.</span>window(browser<span style="color:#2c5dcd">.</span>window_handles[<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">1</span>])    <span style="color:#0080ff;font-style:italic">#切换窗口，将它置为最后一个窗口</span>
+    time<span style="color:#2c5dcd">.</span>sleep(<span style="color:#5918bb;font-weight:bold">1</span>)
+    datajob <span style="color:#2c5dcd">=</span> browser<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH, value<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;//*[@id=&#34;job_detail&#34;]/dd[2]&#39;</span>)<span style="color:#2c5dcd">.</span>text
+    <span style="color:#5918bb;font-weight:bold">print</span>(datajob)
+    browser<span style="color:#2c5dcd">.</span>close()
+    browser<span style="color:#2c5dcd">.</span>switch_to<span style="color:#2c5dcd">.</span>window(browser<span style="color:#2c5dcd">.</span>window_handles[<span style="color:#5918bb;font-weight:bold">0</span>])
+    time<span style="color:#2c5dcd">.</span>sleep(<span style="color:#5918bb;font-weight:bold">1</span>)
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="12306">12306<a hidden class="anchor" aria-hidden="true" href="#12306">#</a></h4>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">35
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># coding:utf-8</span>
-<span style="color:#007f7f"># @Time : 2022/5/21 11:41</span>
-<span style="color:#007f7f"># @Author : 软件1194温铭军</span>
-<span style="color:#007f7f"># @file : 12306.py</span>
-<span style="color:#007f7f"># $software : PyCharm</span>
-<span style="color:#007f7f">#12306账号：a954952920</span>
-<span style="color:#007f7f">#密码：hansonwmj2000</span>
-<span style="color:#fff;font-weight:bold">from</span> selenium <span style="color:#fff;font-weight:bold">import</span> webdriver
-<span style="color:#fff;font-weight:bold">from</span> selenium.webdriver.common.by <span style="color:#fff;font-weight:bold">import</span> By
-<span style="color:#fff;font-weight:bold">from</span> selenium.webdriver.common.keys <span style="color:#fff;font-weight:bold">import</span> Keys
-<span style="color:#fff;font-weight:bold">import</span> time
-<span style="color:#fff;font-weight:bold">from</span> selenium.webdriver.common.action_chains <span style="color:#fff;font-weight:bold">import</span>  ActionChains <span style="color:#007f7f">#鼠标操作导包,事件链</span>
-<span style="color:#007f7f">#防止被认出是爬虫程序，chrome版本88以上适用</span>
-chrome_opt = webdriver.ChromeOptions()
-chrome_opt.add_argument(<span style="color:#0ff;font-weight:bold">&#39;--disable-blink-features=AutomationControlled&#39;</span>)
-browser = webdriver.Chrome(options=chrome_opt)
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># coding:utf-8</span>
+<span style="color:#0080ff;font-style:italic"># @Time : 2022/5/21 11:41</span>
+<span style="color:#0080ff;font-style:italic"># @Author : 软件1194温铭军</span>
+<span style="color:#0080ff;font-style:italic"># @file : 12306.py</span>
+<span style="color:#0080ff;font-style:italic"># $software : PyCharm</span>
+<span style="color:#0080ff;font-style:italic">#12306账号：a954952920</span>
+<span style="color:#0080ff;font-style:italic">#密码：hansonwmj2000</span>
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium <span style="color:#2c5dcd;font-weight:bold">import</span> webdriver
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium.webdriver.common.by <span style="color:#2c5dcd;font-weight:bold">import</span> By
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium.webdriver.common.keys <span style="color:#2c5dcd;font-weight:bold">import</span> Keys
+<span style="color:#2c5dcd;font-weight:bold">import</span> time
+<span style="color:#2c5dcd;font-weight:bold">from</span> selenium.webdriver.common.action_chains <span style="color:#2c5dcd;font-weight:bold">import</span>  ActionChains <span style="color:#0080ff;font-style:italic">#鼠标操作导包,事件链</span>
+<span style="color:#0080ff;font-style:italic">#防止被认出是爬虫程序，chrome版本88以上适用</span>
+chrome_opt <span style="color:#2c5dcd">=</span> webdriver<span style="color:#2c5dcd">.</span>ChromeOptions()
+chrome_opt<span style="color:#2c5dcd">.</span>add_argument(<span style="color:#0c6">&#39;--disable-blink-features=AutomationControlled&#39;</span>)
+browser <span style="color:#2c5dcd">=</span> webdriver<span style="color:#2c5dcd">.</span>Chrome(options<span style="color:#2c5dcd">=</span>chrome_opt)
 
-url = <span style="color:#0ff;font-weight:bold">&#39;https://kyfw.12306.cn/otn/resources/login.html&#39;</span>
-browser.get(url)
-time.sleep(<span style="color:#ff0;font-weight:bold">1</span>)
-<span style="color:#007f7f">#输入账号密码</span>
-browser.find_element(By.XPATH, value=<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;J-userName&#34;]&#39;</span>).send_keys(<span style="color:#0ff;font-weight:bold">&#39;你的账号&#39;</span>)
-browser.find_element(By.XPATH, value=<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;J-password&#34;]&#39;</span>).send_keys(<span style="color:#0ff;font-weight:bold">&#39;密码&#39;</span>)
-browser.find_element(By.XPATH, value=<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;J-login&#34;]&#39;</span>).click()
-time.sleep(<span style="color:#ff0;font-weight:bold">2</span>)
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;https://kyfw.12306.cn/otn/resources/login.html&#39;</span>
+browser<span style="color:#2c5dcd">.</span>get(url)
+time<span style="color:#2c5dcd">.</span>sleep(<span style="color:#5918bb;font-weight:bold">1</span>)
+<span style="color:#0080ff;font-style:italic">#输入账号密码</span>
+browser<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH, value<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;//*[@id=&#34;J-userName&#34;]&#39;</span>)<span style="color:#2c5dcd">.</span>send_keys(<span style="color:#0c6">&#39;你的账号&#39;</span>)
+browser<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH, value<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;//*[@id=&#34;J-password&#34;]&#39;</span>)<span style="color:#2c5dcd">.</span>send_keys(<span style="color:#0c6">&#39;密码&#39;</span>)
+browser<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH, value<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;//*[@id=&#34;J-login&#34;]&#39;</span>)<span style="color:#2c5dcd">.</span>click()
+time<span style="color:#2c5dcd">.</span>sleep(<span style="color:#5918bb;font-weight:bold">2</span>)
 
-<span style="color:#007f7f">#拖拽目标按钮</span>
-btn = browser.find_element(By.XPATH, value=<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;nc_1_n1z&#34;]&#39;</span>)
+<span style="color:#0080ff;font-style:italic">#拖拽目标按钮</span>
+btn <span style="color:#2c5dcd">=</span> browser<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH, value<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;//*[@id=&#34;nc_1_n1z&#34;]&#39;</span>)
 
-<span style="color:#007f7f">#找到目标拖拽验证码</span>
-browser.find_element(By.XPATH, value=<span style="color:#0ff;font-weight:bold">&#39;//*[@id=&#34;nc_1__scale_text&#34;]/span&#39;</span>)
+<span style="color:#0080ff;font-style:italic">#找到目标拖拽验证码</span>
+browser<span style="color:#2c5dcd">.</span>find_element(By<span style="color:#2c5dcd">.</span>XPATH, value<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;//*[@id=&#34;nc_1__scale_text&#34;]/span&#39;</span>)
 
 
-<span style="color:#007f7f">#拖拽移动</span>
-ActionChains(browser).drag_and_drop_by_offset(btn, <span style="color:#ff0;font-weight:bold">300</span>, <span style="color:#ff0;font-weight:bold">0</span>).perform()  <span style="color:#007f7f">#横推拽</span>
+<span style="color:#0080ff;font-style:italic">#拖拽移动</span>
+ActionChains(browser)<span style="color:#2c5dcd">.</span>drag_and_drop_by_offset(btn, <span style="color:#5918bb;font-weight:bold">300</span>, <span style="color:#5918bb;font-weight:bold">0</span>)<span style="color:#2c5dcd">.</span>perform()  <span style="color:#0080ff;font-style:italic">#横推拽</span>
 </code></pre></td></tr></table>
 </div>
 </div>

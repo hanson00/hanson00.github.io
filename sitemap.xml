@@ -3,10 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://hanson00.github.io/</loc>
-    <lastmod>2022-07-02T16:24:23+08:00</lastmod>
+    <lastmod>2022-07-03T07:01:37+08:00</lastmod>
   </url><url>
     <loc>https://hanson00.github.io/posts/</loc>
-    <lastmod>2022-07-02T16:24:23+08:00</lastmod>
+    <lastmod>2022-07-03T07:01:37+08:00</lastmod>
+  </url><url>
+    <loc>https://hanson00.github.io/tags/</loc>
+    <lastmod>2022-07-03T07:01:37+08:00</lastmod>
+  </url><url>
+    <loc>https://hanson00.github.io/posts/thinking/</loc>
+    <lastmod>2022-07-03T07:01:37+08:00</lastmod>
+  </url><url>
+    <loc>https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/</loc>
+    <lastmod>2022-07-03T07:01:37+08:00</lastmod>
+  </url><url>
+    <loc>https://hanson00.github.io/posts/thinking/%E7%88%AC%E8%99%AB%E8%A7%81%E9%97%BB%E5%BD%95/</loc>
+    <lastmod>2022-07-03T07:01:37+08:00</lastmod>
+  </url><url>
+    <loc>https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB%E9%97%AE%E9%A2%98%E9%9B%86/</loc>
+    <lastmod>2022-07-03T07:01:37+08:00</lastmod>
   </url><url>
     <loc>https://hanson00.github.io/posts/technology/python/python-%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/</loc>
     <lastmod>2022-07-02T16:24:23+08:00</lastmod>
@@ -15,9 +30,6 @@
     <lastmod>2022-07-02T16:24:23+08:00</lastmod>
   </url><url>
     <loc>https://hanson00.github.io/tags/python%E7%9B%B8%E5%85%B3%E5%BA%93%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2022-07-02T16:24:23+08:00</lastmod>
-  </url><url>
-    <loc>https://hanson00.github.io/tags/</loc>
     <lastmod>2022-07-02T16:24:23+08:00</lastmod>
   </url><url>
     <loc>https://hanson00.github.io/posts/technology/</loc>
@@ -74,9 +86,6 @@
     <loc>https://hanson00.github.io/posts/technology/python/python-selenium/</loc>
     <lastmod>2022-06-26T17:20:44+08:00</lastmod>
   </url><url>
-    <loc>https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/</loc>
-    <lastmod>2022-06-26T17:20:44+08:00</lastmod>
-  </url><url>
     <loc>https://hanson00.github.io/posts/technology/python/python%E5%B9%B6%E5%8F%91%E4%B8%8E%E7%88%AC%E8%99%AB/</loc>
     <lastmod>2022-06-26T17:19:22+08:00</lastmod>
   </url><url>
@@ -120,7 +129,5 @@
     <loc>https://hanson00.github.io/search/</loc>
   </url><url>
     <loc>https://hanson00.github.io/series/</loc>
-  </url><url>
-    <loc>https://hanson00.github.io/posts/thinking/</loc>
   </url>
 </urlset>

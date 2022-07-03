@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>✍思考与问题 on Hanson&#39;s Blog</title>
-    <link>https://hanson00.github.io/posts/thinking/</link>
-    <description>Recent content in ✍思考与问题 on Hanson&#39;s Blog</description>
+    <title>爬虫问题集 on Hanson&#39;s Blog</title>
+    <link>https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB%E9%97%AE%E9%A2%98%E9%9B%86/</link>
+    <description>Recent content in 爬虫问题集 on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 03 Jul 2022 07:01:37 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/posts/thinking/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Jul 2022 07:01:37 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB%E9%97%AE%E9%A2%98%E9%9B%86/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>爬虫见闻录</title>
       <link>https://hanson00.github.io/posts/thinking/%E7%88%AC%E8%99%AB%E8%A7%81%E9%97%BB%E5%BD%95/</link>

@@ -11,7 +11,7 @@
 <meta name="author" content="
 作者:&nbsp;hanson">
 <link rel="canonical" href="https://hanson00.github.io/posts/technology/java/02jdbc/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.90e638a5d4448bfb1fe445aebfe0f00ba8831874539fc42477608012af462729.css" integrity="sha256-kOY4pdREi/sf5EWuv&#43;DwC6iDGHRTn8Qkd2CAEq9GJyk=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
@@ -220,25 +220,6 @@
     <div class="post-description">
       JavaWeb相关学习
     </div>
-    <div class="post-meta">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2 min&nbsp;|&nbsp;970 words&nbsp;|&nbsp;
-作者:&nbsp;hanson&nbsp;|&nbsp;
-
-</div>
   </header> <aside id="toc-container" class="toc-container wide">
         <div class="toc">
             <details  open>
@@ -334,40 +315,40 @@
 </li>
 <li>
 <p>获取连接DriverManager.getConnecti</p>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String url=<span style="color:#0ff;font-weight:bold">&#34;jdbc:mysql://127.0.0.1:3306/DB1&#34;</span>;
-String username=<span style="color:#0ff;font-weight:bold">&#34;root&#34;</span>;
-String password=<span style="color:#0ff;font-weight:bold">&#34;1234&#34;</span>;
-Connection conn=DriverManager.<span style="color:#007f7f">getConnection</span>(url,username,password);
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String url<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;jdbc:mysql://127.0.0.1:3306/DB1&#34;</span><span style="color:#2c5dcd">;</span>
+String username<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;root&#34;</span><span style="color:#2c5dcd">;</span>
+String password<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;1234&#34;</span><span style="color:#2c5dcd">;</span>
+Connection conn<span style="color:#2c5dcd">=</span>DriverManager<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">getConnection</span><span style="color:#2c5dcd">(</span>url<span style="color:#2c5dcd">,</span>username<span style="color:#2c5dcd">,</span>password<span style="color:#2c5dcd">);</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
 <p>定义sql操作语句</p>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String sql=<span style="color:#0ff;font-weight:bold">&#34;update stu set math=10 where id=8&#34;</span>;
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String sql<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;update stu set math=10 where id=8&#34;</span><span style="color:#2c5dcd">;</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
 <p>获取执行sql的对象Statement XXX = conn.createStatement();</p>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Statement stmt=conn.<span style="color:#007f7f">createStatement</span>();
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Statement stmt<span style="color:#2c5dcd">=</span>conn<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">createStatement</span><span style="color:#2c5dcd">();</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -393,20 +374,20 @@ Connection conn=DriverManager.<span style="color:#007f7f">getConnection</span>(u
 getCconnection()获取连接,语法jdbc:mysql://ip地址:端口号/数据库名称【jdbc:mysql://127.0.0.1:3306/DB1】</p>
 </li>
 </ol>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#007f7f">//获取连接
-</span><span style="color:#007f7f"></span>String url=<span style="color:#0ff;font-weight:bold">&#34;jdbc:mysql://127.0.0.1:3306/DB1&#34;</span>;
-String username=<span style="color:#0ff;font-weight:bold">&#34;root&#34;</span>;
-String password=<span style="color:#0ff;font-weight:bold">&#34;1234&#34;</span>;
-Connection conn=DriverManager.<span style="color:#007f7f">getConnection</span>(url,username,password);
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#0080ff;font-style:italic">//获取连接
+</span><span style="color:#0080ff;font-style:italic"></span>String url<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;jdbc:mysql://127.0.0.1:3306/DB1&#34;</span><span style="color:#2c5dcd">;</span>
+String username<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;root&#34;</span><span style="color:#2c5dcd">;</span>
+String password<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;1234&#34;</span><span style="color:#2c5dcd">;</span>
+Connection conn<span style="color:#2c5dcd">=</span>DriverManager<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">getConnection</span><span style="color:#2c5dcd">(</span>url<span style="color:#2c5dcd">,</span>username<span style="color:#2c5dcd">,</span>password<span style="color:#2c5dcd">);</span>
 </code></pre></td></tr></table>
 </div>
 </div><hr>
@@ -436,52 +417,52 @@ Connection conn=DriverManager.<span style="color:#007f7f">getConnection</span>(u
 </ul>
 </li>
 </ul>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#fff;font-weight:bold">try</span> {
-    <span style="color:#007f7f">//开启事务
-</span><span style="color:#007f7f"></span>    conn.<span style="color:#007f7f">setAutoCommit</span>(<span style="color:#fff;font-weight:bold">false</span>);
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#2c5dcd;font-weight:bold">try</span> <span style="color:#2c5dcd">{</span>
+    <span style="color:#0080ff;font-style:italic">//开启事务
+</span><span style="color:#0080ff;font-style:italic"></span>    conn<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">setAutoCommit</span><span style="color:#2c5dcd">(</span><span style="color:#2c5dcd;font-weight:bold">false</span><span style="color:#2c5dcd">);</span>
 
-    <span style="color:#fff;font-weight:bold">int</span> count1=stmt.<span style="color:#007f7f">executeUpdate</span>(sql1);<span style="color:#007f7f">//受影响的行数
-</span><span style="color:#007f7f"></span>
-    <span style="color:#007f7f">//处理受影响的结果
-</span><span style="color:#007f7f"></span>    System.<span style="color:#007f7f">out</span>.<span style="color:#007f7f">println</span>(count1);
+    <span style="color:#5918bb;font-weight:bold">int</span> count1<span style="color:#2c5dcd">=</span>stmt<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">executeUpdate</span><span style="color:#2c5dcd">(</span>sql1<span style="color:#2c5dcd">);</span><span style="color:#0080ff;font-style:italic">//受影响的行数
+</span><span style="color:#0080ff;font-style:italic"></span>
+    <span style="color:#0080ff;font-style:italic">//处理受影响的结果
+</span><span style="color:#0080ff;font-style:italic"></span>    System<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">out</span><span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">println</span><span style="color:#2c5dcd">(</span>count1<span style="color:#2c5dcd">);</span>
 
-    <span style="color:#fff;font-weight:bold">int</span> count2=stmt.<span style="color:#007f7f">executeUpdate</span>(sql2);<span style="color:#007f7f">//受影响的行数
-</span><span style="color:#007f7f"></span>
-    <span style="color:#007f7f">//处理受影响的结果
-</span><span style="color:#007f7f"></span>    System.<span style="color:#007f7f">out</span>.<span style="color:#007f7f">println</span>(count2);
+    <span style="color:#5918bb;font-weight:bold">int</span> count2<span style="color:#2c5dcd">=</span>stmt<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">executeUpdate</span><span style="color:#2c5dcd">(</span>sql2<span style="color:#2c5dcd">);</span><span style="color:#0080ff;font-style:italic">//受影响的行数
+</span><span style="color:#0080ff;font-style:italic"></span>
+    <span style="color:#0080ff;font-style:italic">//处理受影响的结果
+</span><span style="color:#0080ff;font-style:italic"></span>    System<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">out</span><span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">println</span><span style="color:#2c5dcd">(</span>count2<span style="color:#2c5dcd">);</span>
 
-    <span style="color:#007f7f">//提交事务
-</span><span style="color:#007f7f"></span>    conn.<span style="color:#007f7f">commit</span>();
-} <span style="color:#fff;font-weight:bold">catch</span> (Exception throwables) {
-    <span style="color:#007f7f">//回滚事务
-</span><span style="color:#007f7f"></span>    conn.<span style="color:#007f7f">rollback</span>();
-    throwables.<span style="color:#007f7f">printStackTrace</span>();
-}
+    <span style="color:#0080ff;font-style:italic">//提交事务
+</span><span style="color:#0080ff;font-style:italic"></span>    conn<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">commit</span><span style="color:#2c5dcd">();</span>
+<span style="color:#2c5dcd">}</span> <span style="color:#2c5dcd;font-weight:bold">catch</span> <span style="color:#2c5dcd">(</span>Exception throwables<span style="color:#2c5dcd">)</span> <span style="color:#2c5dcd">{</span>
+    <span style="color:#0080ff;font-style:italic">//回滚事务
+</span><span style="color:#0080ff;font-style:italic"></span>    conn<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">rollback</span><span style="color:#2c5dcd">();</span>
+    throwables<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">printStackTrace</span><span style="color:#2c5dcd">();</span>
+<span style="color:#2c5dcd">}</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -501,64 +482,64 @@ Connection conn=DriverManager.<span style="color:#007f7f">getConnection</span>(u
 </li>
 <li>
 <p>ResultSet executeQuery(sql)DQL语句</p>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">27
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#007f7f">//定义sql
-</span><span style="color:#007f7f"></span>    String sql = <span style="color:#0ff;font-weight:bold">&#34;select * from stu&#34;</span>;
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#0080ff;font-style:italic">//定义sql
+</span><span style="color:#0080ff;font-style:italic"></span>    String sql <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;select * from stu&#34;</span><span style="color:#2c5dcd">;</span>
 
-    <span style="color:#007f7f">//获取执行sql对象,获取Statement对象
-</span><span style="color:#007f7f"></span>    Statement stmt = conn.<span style="color:#007f7f">createStatement</span>();
+    <span style="color:#0080ff;font-style:italic">//获取执行sql对象,获取Statement对象
+</span><span style="color:#0080ff;font-style:italic"></span>    Statement stmt <span style="color:#2c5dcd">=</span> conn<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">createStatement</span><span style="color:#2c5dcd">();</span>
 
-    <span style="color:#007f7f">//5.执行sql
-</span><span style="color:#007f7f"></span>    ResultSet rs = stmt.<span style="color:#007f7f">executeQuery</span>(sql);
+    <span style="color:#0080ff;font-style:italic">//5.执行sql
+</span><span style="color:#0080ff;font-style:italic"></span>    ResultSet rs <span style="color:#2c5dcd">=</span> stmt<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">executeQuery</span><span style="color:#2c5dcd">(</span>sql<span style="color:#2c5dcd">);</span>
 
-    <span style="color:#007f7f">//6.处理结果，遍历所有数据
-</span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">while</span> (rs.<span style="color:#007f7f">next</span>()){
-        <span style="color:#007f7f">//获取数据
-</span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">int</span> id = rs.<span style="color:#007f7f">getInt</span>(1);
-        String name = rs.<span style="color:#007f7f">getString</span>(2);
-        <span style="color:#fff;font-weight:bold">double</span> money = rs.<span style="color:#007f7f">getDouble</span>(3);
+    <span style="color:#0080ff;font-style:italic">//6.处理结果，遍历所有数据
+</span><span style="color:#0080ff;font-style:italic"></span>    <span style="color:#2c5dcd;font-weight:bold">while</span> <span style="color:#2c5dcd">(</span>rs<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">next</span><span style="color:#2c5dcd">()){</span>
+        <span style="color:#0080ff;font-style:italic">//获取数据
+</span><span style="color:#0080ff;font-style:italic"></span>        <span style="color:#5918bb;font-weight:bold">int</span> id <span style="color:#2c5dcd">=</span> rs<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">getInt</span><span style="color:#2c5dcd">(</span>1<span style="color:#2c5dcd">);</span>
+        String name <span style="color:#2c5dcd">=</span> rs<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">getString</span><span style="color:#2c5dcd">(</span>2<span style="color:#2c5dcd">);</span>
+        <span style="color:#5918bb;font-weight:bold">double</span> money <span style="color:#2c5dcd">=</span> rs<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">getDouble</span><span style="color:#2c5dcd">(</span>3<span style="color:#2c5dcd">);</span>
 
-        <span style="color:#007f7f">//输出
-</span><span style="color:#007f7f"></span>        System.<span style="color:#007f7f">out</span>.<span style="color:#007f7f">println</span>(id);
-        System.<span style="color:#007f7f">out</span>.<span style="color:#007f7f">println</span>(name);
-        System.<span style="color:#007f7f">out</span>.<span style="color:#007f7f">println</span>(money);
-    }
-    <span style="color:#007f7f">//7.释放资源
-</span><span style="color:#007f7f"></span>    rs.<span style="color:#007f7f">close</span>();
-    stmt.<span style="color:#007f7f">close</span>();
-    conn.<span style="color:#007f7f">close</span>();
+        <span style="color:#0080ff;font-style:italic">//输出
+</span><span style="color:#0080ff;font-style:italic"></span>        System<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">out</span><span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">println</span><span style="color:#2c5dcd">(</span>id<span style="color:#2c5dcd">);</span>
+        System<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">out</span><span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">println</span><span style="color:#2c5dcd">(</span>name<span style="color:#2c5dcd">);</span>
+        System<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">out</span><span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">println</span><span style="color:#2c5dcd">(</span>money<span style="color:#2c5dcd">);</span>
+    <span style="color:#2c5dcd">}</span>
+    <span style="color:#0080ff;font-style:italic">//7.释放资源
+</span><span style="color:#0080ff;font-style:italic"></span>    rs<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">close</span><span style="color:#2c5dcd">();</span>
+    stmt<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">close</span><span style="color:#2c5dcd">();</span>
+    conn<span style="color:#2c5dcd">.</span><span style="color:#2c5dcd;font-style:italic">close</span><span style="color:#2c5dcd">();</span>
 
-}
+<span style="color:#2c5dcd">}</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>

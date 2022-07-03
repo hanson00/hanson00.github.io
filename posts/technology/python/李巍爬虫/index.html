@@ -11,7 +11,7 @@
 <meta name="author" content="
 作者:&nbsp;hanson">
 <link rel="canonical" href="https://hanson00.github.io/posts/technology/python/%E6%9D%8E%E5%B7%8D%E7%88%AC%E8%99%AB/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.90e638a5d4448bfb1fe445aebfe0f00ba8831874539fc42477608012af462729.css" integrity="sha256-kOY4pdREi/sf5EWuv&#43;DwC6iDGHRTn8Qkd2CAEq9GJyk=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
@@ -220,25 +220,6 @@
     <div class="post-description">
       B站李巍爬虫学习总结
     </div>
-    <div class="post-meta">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-8 min&nbsp;|&nbsp;3637 words&nbsp;|&nbsp;
-作者:&nbsp;hanson&nbsp;|&nbsp;
-
-</div>
   </header> <aside id="toc-container" class="toc-container wide">
         <div class="toc">
             <details  open>
@@ -449,189 +430,189 @@
 <blockquote>
 <p>一个简单的get请求爬取</p>
 </blockquote>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> urllib.request
-<span style="color:#fff;font-weight:bold">import</span> urllib.parse     <span style="color:#007f7f">#解析器</span>
-<span style="color:#fff;font-weight:bold">import</span> urllib.error
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> urllib.request
+<span style="color:#2c5dcd;font-weight:bold">import</span> urllib.parse     <span style="color:#0080ff;font-style:italic">#解析器</span>
+<span style="color:#2c5dcd;font-weight:bold">import</span> urllib.error
 
-<span style="color:#007f7f">#Get请求</span>
-response = urllib.request.urlopen(<span style="color:#0ff;font-weight:bold">&#34;http://www.baidu.com&#34;</span>)
-<span style="color:#fff;font-weight:bold">print</span>(response.read().decode(<span style="color:#0ff;font-weight:bold">&#34;UTF-8&#34;</span>))		<span style="color:#007f7f"># response是&lt;http.client.HTTPResponse object at 0x000002DC28A404C0&gt;</span>
+<span style="color:#0080ff;font-style:italic">#Get请求</span>
+response <span style="color:#2c5dcd">=</span> urllib<span style="color:#2c5dcd">.</span>request<span style="color:#2c5dcd">.</span>urlopen(<span style="color:#0c6">&#34;http://www.baidu.com&#34;</span>)
+<span style="color:#5918bb;font-weight:bold">print</span>(response<span style="color:#2c5dcd">.</span>read()<span style="color:#2c5dcd">.</span>decode(<span style="color:#0c6">&#34;UTF-8&#34;</span>))		<span style="color:#0080ff;font-style:italic"># response是&lt;http.client.HTTPResponse object at 0x000002DC28A404C0&gt;</span>
 
-url = <span style="color:#0ff;font-weight:bold">&#34;http://httpbin.org/get&#34;</span>
-response2 = urllib.request.urlopen(url=url)
-<span style="color:#fff;font-weight:bold">print</span>(response2.read().decode(<span style="color:#0ff;font-weight:bold">&#34;UTF-8&#34;</span>))
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;http://httpbin.org/get&#34;</span>
+response2 <span style="color:#2c5dcd">=</span> urllib<span style="color:#2c5dcd">.</span>request<span style="color:#2c5dcd">.</span>urlopen(url<span style="color:#2c5dcd">=</span>url)
+<span style="color:#5918bb;font-weight:bold">print</span>(response2<span style="color:#2c5dcd">.</span>read()<span style="color:#2c5dcd">.</span>decode(<span style="color:#0c6">&#34;UTF-8&#34;</span>))
 </code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>一个简单的post请求(post请求需要提交个表单信息)，需要提供一个封装的数据</p>
 </blockquote>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f">#post请求  需要封装数据  http://httpbin.org/post</span>
-url = <span style="color:#0ff;font-weight:bold">&#34;http://httpbin.org/post&#34;</span>
-data = <span style="color:#fff;font-weight:bold">bytes</span>(urllib.parse.urlencode({<span style="color:#0ff;font-weight:bold">&#34;hello&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;world&#34;</span>}), encoding = <span style="color:#0ff;font-weight:bold">&#34;utf-8&#34;</span>)		<span style="color:#007f7f">#把数据变成二进制格式</span>
-response = urllib.request.urlopen(url=url, data=data)
-<span style="color:#fff;font-weight:bold">print</span>(response.read().decode(<span style="color:#0ff;font-weight:bold">&#34;utf-8&#34;</span>))
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic">#post请求  需要封装数据  http://httpbin.org/post</span>
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;http://httpbin.org/post&#34;</span>
+data <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">bytes</span>(urllib<span style="color:#2c5dcd">.</span>parse<span style="color:#2c5dcd">.</span>urlencode({<span style="color:#0c6">&#34;hello&#34;</span>:<span style="color:#0c6">&#34;world&#34;</span>}), encoding <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;utf-8&#34;</span>)		<span style="color:#0080ff;font-style:italic">#把数据变成二进制格式</span>
+response <span style="color:#2c5dcd">=</span> urllib<span style="color:#2c5dcd">.</span>request<span style="color:#2c5dcd">.</span>urlopen(url<span style="color:#2c5dcd">=</span>url, data<span style="color:#2c5dcd">=</span>data)
+<span style="color:#5918bb;font-weight:bold">print</span>(response<span style="color:#2c5dcd">.</span>read()<span style="color:#2c5dcd">.</span>decode(<span style="color:#0c6">&#34;utf-8&#34;</span>))
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="urllibrequestrequest">urllib.request.Request()<a hidden class="anchor" aria-hidden="true" href="#urllibrequestrequest">#</a></h3>
 <p><code>urllib.request.Request(url, data=None, headers={}, origin_req_host=None, unverifiable=False, method=None)</code>
 上面的urlopen过于简单直接把赋值的url直接打开，包含不了太多伪装信息，所以使用==urllib.request.Request()==</p>
 <p>headers：告诉要访问的服务器，我们是什么类型的机器（浏览器），本质上是告诉浏览器我们可以接受什么水平的文件内容</p>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> urllib.request
-<span style="color:#fff;font-weight:bold">import</span> urllib.parse     <span style="color:#007f7f">#解析器</span>
-<span style="color:#fff;font-weight:bold">import</span> urllib.error
-<span style="color:#007f7f"># http://httpbin.org/post    https://www.douban.com</span>
-url = <span style="color:#0ff;font-weight:bold">&#34;http://httpbin.org/post&#34;</span>
-headers = {<span style="color:#0ff;font-weight:bold">&#34;User-Agent&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36&#34;</span>
-                         <span style="color:#0ff;font-weight:bold">&#34; (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36&#34;</span>}
-data = <span style="color:#fff;font-weight:bold">bytes</span>(urllib.parse.urlencode({<span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;hanson&#34;</span>}),encoding = <span style="color:#0ff;font-weight:bold">&#34;UTF-8&#34;</span>)
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> urllib.request
+<span style="color:#2c5dcd;font-weight:bold">import</span> urllib.parse     <span style="color:#0080ff;font-style:italic">#解析器</span>
+<span style="color:#2c5dcd;font-weight:bold">import</span> urllib.error
+<span style="color:#0080ff;font-style:italic"># http://httpbin.org/post    https://www.douban.com</span>
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;http://httpbin.org/post&#34;</span>
+headers <span style="color:#2c5dcd">=</span> {<span style="color:#0c6">&#34;User-Agent&#34;</span>: <span style="color:#0c6">&#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36&#34;</span>
+                         <span style="color:#0c6">&#34; (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36&#34;</span>}
+data <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">bytes</span>(urllib<span style="color:#2c5dcd">.</span>parse<span style="color:#2c5dcd">.</span>urlencode({<span style="color:#0c6">&#34;name&#34;</span>:<span style="color:#0c6">&#34;hanson&#34;</span>}),encoding <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;UTF-8&#34;</span>)
 
-<span style="color:#007f7f">#封装了一个请求对象</span>
-req = urllib.request.Request(url=url, data=data, headers=headers)   
+<span style="color:#0080ff;font-style:italic">#封装了一个请求对象</span>
+req <span style="color:#2c5dcd">=</span> urllib<span style="color:#2c5dcd">.</span>request<span style="color:#2c5dcd">.</span>Request(url<span style="color:#2c5dcd">=</span>url, data<span style="color:#2c5dcd">=</span>data, headers<span style="color:#2c5dcd">=</span>headers)   
 
-response = urllib.request.urlopen(req)	<span style="color:#007f7f">#响应对象</span>
-<span style="color:#fff;font-weight:bold">print</span>(response.read().decode(<span style="color:#0ff;font-weight:bold">&#34;UTF-8&#34;</span>))
+response <span style="color:#2c5dcd">=</span> urllib<span style="color:#2c5dcd">.</span>request<span style="color:#2c5dcd">.</span>urlopen(req)	<span style="color:#0080ff;font-style:italic">#响应对象</span>
+<span style="color:#5918bb;font-weight:bold">print</span>(response<span style="color:#2c5dcd">.</span>read()<span style="color:#2c5dcd">.</span>decode(<span style="color:#0c6">&#34;UTF-8&#34;</span>))
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="简单的爬取网页">简单的爬取网页<a hidden class="anchor" aria-hidden="true" href="#简单的爬取网页">#</a></h3>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">41
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">42
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">43
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">44
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">45
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">46
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">47
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> urllib.request
-<span style="color:#fff;font-weight:bold">import</span> urllib.error
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> urllib.request
+<span style="color:#2c5dcd;font-weight:bold">import</span> urllib.error
 
-<span style="color:#fff;font-weight:bold">def</span> main():
-    <span style="color:#007f7f">#基础的URL</span>
-    <span style="color:#007f7f"># 1.爬取网页</span>
-    baseurl = <span style="color:#0ff;font-weight:bold">&#34;https://movie.douban.com/top250?start=&#34;</span>
-    savepath = <span style="color:#0ff;font-weight:bold">r</span><span style="color:#0ff;font-weight:bold">&#34;D:\project\python pycharm\datasave\douban_data.xlsx&#34;</span>
-    <span style="color:#007f7f"># datalist = getData(baseurl)</span>
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">main</span>():
+    <span style="color:#0080ff;font-style:italic">#基础的URL</span>
+    <span style="color:#0080ff;font-style:italic"># 1.爬取网页</span>
+    baseurl <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;https://movie.douban.com/top250?start=&#34;</span>
+    savepath <span style="color:#2c5dcd">=</span> <span style="color:#0c6">r</span><span style="color:#0c6">&#34;D:\project\python pycharm\datasave\douban_data.xlsx&#34;</span>
+    <span style="color:#0080ff;font-style:italic"># datalist = getData(baseurl)</span>
     getData(baseurl)
-    <span style="color:#007f7f">#2.解析数据</span>
+    <span style="color:#0080ff;font-style:italic">#2.解析数据</span>
 
 
-    <span style="color:#007f7f">#3.保存数据</span>
-    <span style="color:#007f7f"># saveData(savepath)</span>
+    <span style="color:#0080ff;font-style:italic">#3.保存数据</span>
+    <span style="color:#0080ff;font-style:italic"># saveData(savepath)</span>
 
-<span style="color:#fff;font-weight:bold">def</span> getData(baseurl):
-    datalist = []
-    <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">10</span>):
-        url = baseurl + <span style="color:#fff;font-weight:bold">str</span>(i*<span style="color:#ff0;font-weight:bold">25</span>)
-        html = askurl(url)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">getData</span>(baseurl):
+    datalist <span style="color:#2c5dcd">=</span> []
+    <span style="color:#2c5dcd;font-weight:bold">for</span> i <span style="color:#2c5dcd;font-weight:bold">in</span> <span style="color:#5918bb;font-weight:bold">range</span>(<span style="color:#5918bb;font-weight:bold">0</span>, <span style="color:#5918bb;font-weight:bold">10</span>):
+        url <span style="color:#2c5dcd">=</span> baseurl <span style="color:#2c5dcd">+</span> <span style="color:#5918bb;font-weight:bold">str</span>(i<span style="color:#2c5dcd">*</span><span style="color:#5918bb;font-weight:bold">25</span>)
+        html <span style="color:#2c5dcd">=</span> askurl(url)
 
-    <span style="color:#fff;font-weight:bold">return</span> datalist
+    <span style="color:#2c5dcd;font-weight:bold">return</span> datalist
 
-    <span style="color:#007f7f"># 3.保存数据,在本列子中暂时不用</span>
-<span style="color:#fff;font-weight:bold">def</span> saveData(savepath):
-    <span style="color:#fff;font-weight:bold">pass</span>
+    <span style="color:#0080ff;font-style:italic"># 3.保存数据,在本列子中暂时不用</span>
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">saveData</span>(savepath):
+    <span style="color:#2c5dcd;font-weight:bold">pass</span>
 
-<span style="color:#007f7f"># 得到一个指定的URL的网页内容</span>
-<span style="color:#fff;font-weight:bold">def</span> askurl(url):
-    head = {
-        <span style="color:#0ff;font-weight:bold">&#34;User-Agent&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36&#34;</span>
-                      <span style="color:#0ff;font-weight:bold">&#34; (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36&#34;</span>
+<span style="color:#0080ff;font-style:italic"># 得到一个指定的URL的网页内容</span>
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">askurl</span>(url):
+    head <span style="color:#2c5dcd">=</span> {
+        <span style="color:#0c6">&#34;User-Agent&#34;</span>: <span style="color:#0c6">&#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36&#34;</span>
+                      <span style="color:#0c6">&#34; (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36&#34;</span>
     }
-    html = <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>
-    <span style="color:#fff;font-weight:bold">try</span>:
-        req = urllib.request.Request(url=url, headers=head)
-        response = urllib.request.urlopen(req)
-        html= response.read().decode(<span style="color:#0ff;font-weight:bold">&#34;UTF-8&#34;</span>)
-        <span style="color:#fff;font-weight:bold">print</span>(html)
-    <span style="color:#fff;font-weight:bold">except</span> Exception <span style="color:#fff;font-weight:bold">as</span> e:
-        <span style="color:#fff;font-weight:bold">print</span>(e)
-    <span style="color:#fff;font-weight:bold">return</span> html
+    html <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;&#34;</span>
+    <span style="color:#2c5dcd;font-weight:bold">try</span>:
+        req <span style="color:#2c5dcd">=</span> urllib<span style="color:#2c5dcd">.</span>request<span style="color:#2c5dcd">.</span>Request(url<span style="color:#2c5dcd">=</span>url, headers<span style="color:#2c5dcd">=</span>head)
+        response <span style="color:#2c5dcd">=</span> urllib<span style="color:#2c5dcd">.</span>request<span style="color:#2c5dcd">.</span>urlopen(req)
+        html<span style="color:#2c5dcd">=</span> response<span style="color:#2c5dcd">.</span>read()<span style="color:#2c5dcd">.</span>decode(<span style="color:#0c6">&#34;UTF-8&#34;</span>)
+        <span style="color:#5918bb;font-weight:bold">print</span>(html)
+    <span style="color:#2c5dcd;font-weight:bold">except</span> <span style="color:#5918bb;font-weight:bold">Exception</span> <span style="color:#2c5dcd;font-weight:bold">as</span> e:
+        <span style="color:#5918bb;font-weight:bold">print</span>(e)
+    <span style="color:#2c5dcd;font-weight:bold">return</span> html
 
 
-<span style="color:#fff;font-weight:bold">if</span> __name__ == <span style="color:#0ff;font-weight:bold">&#34;__main__&#34;</span>:
+<span style="color:#2c5dcd;font-weight:bold">if</span> __name__ <span style="color:#2c5dcd">==</span> <span style="color:#0c6">&#34;__main__&#34;</span>:
     main()
 </code></pre></td></tr></table>
 </div>
@@ -643,370 +624,370 @@ response = urllib.request.urlopen(req)	<span style="color:#007f7f">#响应对象
 <li>BeautifulSoup</li>
 <li>comment</li>
 </ol>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> bs4
-<span style="color:#fff;font-weight:bold">with</span> <span style="color:#fff;font-weight:bold">open</span>(<span style="color:#0ff;font-weight:bold">&#34;../baidu.html&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;rb&#34;</span>) <span style="color:#fff;font-weight:bold">as</span> file:
-    htmlread = file.read()
-    bs = bs4.BeautifulSoup(htmlread, <span style="color:#0ff;font-weight:bold">&#34;html.parser&#34;</span>)
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> bs4
+<span style="color:#2c5dcd;font-weight:bold">with</span> <span style="color:#5918bb;font-weight:bold">open</span>(<span style="color:#0c6">&#34;../baidu.html&#34;</span>, <span style="color:#0c6">&#34;rb&#34;</span>) <span style="color:#2c5dcd;font-weight:bold">as</span> file:
+    htmlread <span style="color:#2c5dcd">=</span> file<span style="color:#2c5dcd">.</span>read()
+    bs <span style="color:#2c5dcd">=</span> bs4<span style="color:#2c5dcd">.</span>BeautifulSoup(htmlread, <span style="color:#0c6">&#34;html.parser&#34;</span>)
 
-    <span style="color:#007f7f"># Tag 获取标签及内容</span>
-    <span style="color:#fff;font-weight:bold">print</span>(bs.title)     <span style="color:#007f7f">#output: &lt;title&gt;百度一下，你就知道 &lt;/title&gt;</span>
-    <span style="color:#fff;font-weight:bold">print</span>(bs.a)         <span style="color:#007f7f">#output: &lt;a class=&#34;mnav&#34; href=&#34;http://news.baidu.com&#34; name=&#34;tj_trnews&#34;&gt;&lt;!--新闻--&gt;&lt;/a&gt;</span>
-    <span style="color:#007f7f"># 获取标签里面的内容</span>
-    <span style="color:#fff;font-weight:bold">print</span>(bs.title.string)      <span style="color:#007f7f">#output: 百度一下，你就知道</span>
-    <span style="color:#fff;font-weight:bold">print</span>(bs.a.string)          <span style="color:#007f7f">#output: 新闻</span>
+    <span style="color:#0080ff;font-style:italic"># Tag 获取标签及内容</span>
+    <span style="color:#5918bb;font-weight:bold">print</span>(bs<span style="color:#2c5dcd">.</span>title)     <span style="color:#0080ff;font-style:italic">#output: &lt;title&gt;百度一下，你就知道 &lt;/title&gt;</span>
+    <span style="color:#5918bb;font-weight:bold">print</span>(bs<span style="color:#2c5dcd">.</span>a)         <span style="color:#0080ff;font-style:italic">#output: &lt;a class=&#34;mnav&#34; href=&#34;http://news.baidu.com&#34; name=&#34;tj_trnews&#34;&gt;&lt;!--新闻--&gt;&lt;/a&gt;</span>
+    <span style="color:#0080ff;font-style:italic"># 获取标签里面的内容</span>
+    <span style="color:#5918bb;font-weight:bold">print</span>(bs<span style="color:#2c5dcd">.</span>title<span style="color:#2c5dcd">.</span>string)      <span style="color:#0080ff;font-style:italic">#output: 百度一下，你就知道</span>
+    <span style="color:#5918bb;font-weight:bold">print</span>(bs<span style="color:#2c5dcd">.</span>a<span style="color:#2c5dcd">.</span>string)          <span style="color:#0080ff;font-style:italic">#output: 新闻</span>
 
-    <span style="color:#007f7f"># NavigableString 获取标签里的所有属性，并返回一个字典</span>
-    <span style="color:#fff;font-weight:bold">print</span>(bs.a.attrs)   <span style="color:#007f7f">#attrs是attribute属性的缩写</span>
+    <span style="color:#0080ff;font-style:italic"># NavigableString 获取标签里的所有属性，并返回一个字典</span>
+    <span style="color:#5918bb;font-weight:bold">print</span>(bs<span style="color:#2c5dcd">.</span>a<span style="color:#2c5dcd">.</span>attrs)   <span style="color:#0080ff;font-style:italic">#attrs是attribute属性的缩写</span>
 
-    <span style="color:#007f7f"># print(bs)    打印整个html文件</span>
+    <span style="color:#0080ff;font-style:italic"># print(bs)    打印整个html文件</span>
 
-    <span style="color:#007f7f"># 文件的遍历 contents</span>
-    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;-----文档的遍历-----&#34;</span>)
-    <span style="color:#fff;font-weight:bold">print</span>(bs.head.contents)     <span style="color:#007f7f">#返回一个列表</span>
+    <span style="color:#0080ff;font-style:italic"># 文件的遍历 contents</span>
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;-----文档的遍历-----&#34;</span>)
+    <span style="color:#5918bb;font-weight:bold">print</span>(bs<span style="color:#2c5dcd">.</span>head<span style="color:#2c5dcd">.</span>contents)     <span style="color:#0080ff;font-style:italic">#返回一个列表</span>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="beautifulsoup20文档搜索">BeautifulSoup2.0文档搜索<a hidden class="anchor" aria-hidden="true" href="#beautifulsoup20文档搜索">#</a></h4>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">41
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">42
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">43
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">44
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">45
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fff;font-weight:bold">import</span> re
-<span style="color:#fff;font-weight:bold">import</span> bs4
-<span style="color:#fff;font-weight:bold">with</span> <span style="color:#fff;font-weight:bold">open</span>(<span style="color:#0ff;font-weight:bold">&#34;../baidu.html&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;rb&#34;</span>) <span style="color:#fff;font-weight:bold">as</span> file:
-    htmlread = file.read()
-    bs = bs4.BeautifulSoup(htmlread, <span style="color:#0ff;font-weight:bold">&#34;html.parser&#34;</span>)
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> re
+<span style="color:#2c5dcd;font-weight:bold">import</span> bs4
+<span style="color:#2c5dcd;font-weight:bold">with</span> <span style="color:#5918bb;font-weight:bold">open</span>(<span style="color:#0c6">&#34;../baidu.html&#34;</span>, <span style="color:#0c6">&#34;rb&#34;</span>) <span style="color:#2c5dcd;font-weight:bold">as</span> file:
+    htmlread <span style="color:#2c5dcd">=</span> file<span style="color:#2c5dcd">.</span>read()
+    bs <span style="color:#2c5dcd">=</span> bs4<span style="color:#2c5dcd">.</span>BeautifulSoup(htmlread, <span style="color:#0c6">&#34;html.parser&#34;</span>)
 
-    <span style="color:#007f7f">#文档搜索</span>
-    <span style="color:#007f7f"># 1. find_all()方法:字符串过滤会查找与字符串完全匹配的内容</span>
-    <span style="color:#fff;font-weight:bold">list</span> = bs.find_all(<span style="color:#0ff;font-weight:bold">&#34;a&#34;</span>)
-    <span style="color:#007f7f"># list = bs.find_all(&#34;a&#34;, limit = 3)   limit限制多少</span>
-    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#fff;font-weight:bold">list</span>)
+    <span style="color:#0080ff;font-style:italic">#文档搜索</span>
+    <span style="color:#0080ff;font-style:italic"># 1. find_all()方法:字符串过滤会查找与字符串完全匹配的内容</span>
+    <span style="color:#5918bb;font-weight:bold">list</span> <span style="color:#2c5dcd">=</span> bs<span style="color:#2c5dcd">.</span>find_all(<span style="color:#0c6">&#34;a&#34;</span>)
+    <span style="color:#0080ff;font-style:italic"># list = bs.find_all(&#34;a&#34;, limit = 3)   limit限制多少</span>
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#5918bb;font-weight:bold">list</span>)
 
-    <span style="color:#007f7f">#正则表达式搜索</span>
-    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;---正则表达式搜索---&#34;</span>)
-    re_list = bs.find_all(re.compile(<span style="color:#0ff;font-weight:bold">&#34;a&#34;</span>))
-    <span style="color:#fff;font-weight:bold">print</span>(re_list)
-    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#fff;font-weight:bold">len</span>(re_list))
+    <span style="color:#0080ff;font-style:italic">#正则表达式搜索</span>
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;---正则表达式搜索---&#34;</span>)
+    re_list <span style="color:#2c5dcd">=</span> bs<span style="color:#2c5dcd">.</span>find_all(re<span style="color:#2c5dcd">.</span>compile(<span style="color:#0c6">&#34;a&#34;</span>))
+    <span style="color:#5918bb;font-weight:bold">print</span>(re_list)
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#5918bb;font-weight:bold">len</span>(re_list))
 
-    <span style="color:#007f7f">#传入一个函数作为参数进行搜索,按照函数进行搜索</span>
-    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;---函数搜索---&#34;</span>)
-    <span style="color:#fff;font-weight:bold">def</span> name_is_exists(tag):
-        <span style="color:#fff;font-weight:bold">return</span> tag.has_attr(<span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>)
-    funcres = bs.find_all(name_is_exists)
-    <span style="color:#fff;font-weight:bold">print</span>(funcres)
+    <span style="color:#0080ff;font-style:italic">#传入一个函数作为参数进行搜索,按照函数进行搜索</span>
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;---函数搜索---&#34;</span>)
+    <span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">name_is_exists</span>(tag):
+        <span style="color:#2c5dcd;font-weight:bold">return</span> tag<span style="color:#2c5dcd">.</span>has_attr(<span style="color:#0c6">&#34;name&#34;</span>)
+    funcres <span style="color:#2c5dcd">=</span> bs<span style="color:#2c5dcd">.</span>find_all(name_is_exists)
+    <span style="color:#5918bb;font-weight:bold">print</span>(funcres)
 
-    <span style="color:#007f7f">#kwargs关键字搜索</span>
-    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;----kwargs关键字搜索----&#34;</span>)
-    kwlist = bs.find_all(<span style="color:#fff;font-weight:bold">id</span> = <span style="color:#0ff;font-weight:bold">&#34;head&#34;</span>)
-    kwlist2 = bs.find_all(href = <span style="color:#0ff;font-weight:bold">&#34;https://www.hao123.com&#34;</span>)
-    kwlist3 = bs.find_all(class_ = <span style="color:#fff;font-weight:bold">True</span>)    <span style="color:#007f7f">#这里class加下划线是因为class是Python的关键字</span>
-    <span style="color:#fff;font-weight:bold">print</span>(kwlist3)
+    <span style="color:#0080ff;font-style:italic">#kwargs关键字搜索</span>
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;----kwargs关键字搜索----&#34;</span>)
+    kwlist <span style="color:#2c5dcd">=</span> bs<span style="color:#2c5dcd">.</span>find_all(<span style="color:#5918bb;font-weight:bold">id</span> <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;head&#34;</span>)
+    kwlist2 <span style="color:#2c5dcd">=</span> bs<span style="color:#2c5dcd">.</span>find_all(href <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;https://www.hao123.com&#34;</span>)
+    kwlist3 <span style="color:#2c5dcd">=</span> bs<span style="color:#2c5dcd">.</span>find_all(class_ <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">True</span>)    <span style="color:#0080ff;font-style:italic">#这里class加下划线是因为class是Python的关键字</span>
+    <span style="color:#5918bb;font-weight:bold">print</span>(kwlist3)
 
-    <span style="color:#007f7f">#text文本参数,查找标签里的字符串</span>
-    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;----text文本参数-----&#34;</span>)
-    ts_list = bs.find_all(text=<span style="color:#0ff;font-weight:bold">&#34;hao123&#34;</span>)
-    ts_list2 = bs.find_all(text=[<span style="color:#0ff;font-weight:bold">&#34;hao123&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;地图&#34;</span>])
-    <span style="color:#fff;font-weight:bold">print</span>(ts_list2)
+    <span style="color:#0080ff;font-style:italic">#text文本参数,查找标签里的字符串</span>
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;----text文本参数-----&#34;</span>)
+    ts_list <span style="color:#2c5dcd">=</span> bs<span style="color:#2c5dcd">.</span>find_all(text<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;hao123&#34;</span>)
+    ts_list2 <span style="color:#2c5dcd">=</span> bs<span style="color:#2c5dcd">.</span>find_all(text<span style="color:#2c5dcd">=</span>[<span style="color:#0c6">&#34;hao123&#34;</span>, <span style="color:#0c6">&#34;地图&#34;</span>])
+    <span style="color:#5918bb;font-weight:bold">print</span>(ts_list2)
 
-    <span style="color:#007f7f">#css选择器,和css选择器的语法一样</span>
-    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;------css选择器-------&#34;</span>)
-    css_list = bs.select(<span style="color:#0ff;font-weight:bold">&#34;title&#34;</span>)
-    css_list2 = bs.select(<span style="color:#0ff;font-weight:bold">&#34;.mnav&#34;</span>)
-    css_list3 = bs.select(<span style="color:#0ff;font-weight:bold">&#34;#u1&#34;</span>)
-    css_list4 = bs.select(<span style="color:#0ff;font-weight:bold">&#34;a[class = &#39;bri&#39;]&#34;</span>)
-    <span style="color:#fff;font-weight:bold">print</span>(css_list3)
+    <span style="color:#0080ff;font-style:italic">#css选择器,和css选择器的语法一样</span>
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;------css选择器-------&#34;</span>)
+    css_list <span style="color:#2c5dcd">=</span> bs<span style="color:#2c5dcd">.</span>select(<span style="color:#0c6">&#34;title&#34;</span>)
+    css_list2 <span style="color:#2c5dcd">=</span> bs<span style="color:#2c5dcd">.</span>select(<span style="color:#0c6">&#34;.mnav&#34;</span>)
+    css_list3 <span style="color:#2c5dcd">=</span> bs<span style="color:#2c5dcd">.</span>select(<span style="color:#0c6">&#34;#u1&#34;</span>)
+    css_list4 <span style="color:#2c5dcd">=</span> bs<span style="color:#2c5dcd">.</span>select(<span style="color:#0c6">&#34;a[class = &#39;bri&#39;]&#34;</span>)
+    <span style="color:#5918bb;font-weight:bold">print</span>(css_list3)
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="liwei爬虫学习的最终">liwei爬虫学习的最终<a hidden class="anchor" aria-hidden="true" href="#liwei爬虫学习的最终">#</a></h2>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 41
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 42
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 43
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 44
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 45
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 46
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 47
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 48
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 49
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 50
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 51
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 52
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 53
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 54
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 55
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 56
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 57
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 58
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 59
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 60
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 61
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 62
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 63
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 64
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 65
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 66
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 67
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 68
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 69
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 70
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 71
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 72
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 73
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 74
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 75
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 76
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 77
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 78
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 79
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 80
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 81
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 82
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 83
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 84
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 85
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 86
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 87
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 88
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 89
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 90
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 91
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 92
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 93
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 94
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 95
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 96
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 97
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 98
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 99
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">100
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">101
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">102
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">103
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">104
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">105
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">106
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">107
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">108
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#007f7f"># coding:utf-8</span>
-<span style="color:#007f7f"># @Time : 2022/5/7 9:57</span>
-<span style="color:#007f7f"># @Author : 软件1194温铭军</span>
-<span style="color:#007f7f"># @file : ts.py</span>
-<span style="color:#007f7f"># $software : PyCharm</span>
-<span style="color:#fff;font-weight:bold">import</span> bs4
-<span style="color:#fff;font-weight:bold">import</span> re
-<span style="color:#fff;font-weight:bold">import</span> xlwt
-<span style="color:#fff;font-weight:bold">import</span> urllib.request
-<span style="color:#fff;font-weight:bold">import</span> urllib.error
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># coding:utf-8</span>
+<span style="color:#0080ff;font-style:italic"># @Time : 2022/5/7 9:57</span>
+<span style="color:#0080ff;font-style:italic"># @Author : 软件1194温铭军</span>
+<span style="color:#0080ff;font-style:italic"># @file : ts.py</span>
+<span style="color:#0080ff;font-style:italic"># $software : PyCharm</span>
+<span style="color:#2c5dcd;font-weight:bold">import</span> bs4
+<span style="color:#2c5dcd;font-weight:bold">import</span> re
+<span style="color:#2c5dcd;font-weight:bold">import</span> xlwt
+<span style="color:#2c5dcd;font-weight:bold">import</span> urllib.request
+<span style="color:#2c5dcd;font-weight:bold">import</span> urllib.error
 
-<span style="color:#fff;font-weight:bold">def</span> main():
-    baseurl = <span style="color:#0ff;font-weight:bold">&#34;https://movie.douban.com/top250?start=&#34;</span>  <span style="color:#007f7f">#待爬取的URL</span>
-    savepath = <span style="color:#0ff;font-weight:bold">r</span><span style="color:#0ff;font-weight:bold">&#34;D:\project\python pycharm\datasave\douban_data.xls&#34;</span>    <span style="color:#007f7f">#保存位置</span>
-    datalist = getData(baseurl)     <span style="color:#007f7f">#爬取到的数据列表</span>
-    <span style="color:#007f7f"># getData(baseurl)</span>
-    <span style="color:#007f7f"># print(datalist)</span>
-    <span style="color:#007f7f">#3.保存数据</span>
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">main</span>():
+    baseurl <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;https://movie.douban.com/top250?start=&#34;</span>  <span style="color:#0080ff;font-style:italic">#待爬取的URL</span>
+    savepath <span style="color:#2c5dcd">=</span> <span style="color:#0c6">r</span><span style="color:#0c6">&#34;D:\project\python pycharm\datasave\douban_data.xls&#34;</span>    <span style="color:#0080ff;font-style:italic">#保存位置</span>
+    datalist <span style="color:#2c5dcd">=</span> getData(baseurl)     <span style="color:#0080ff;font-style:italic">#爬取到的数据列表</span>
+    <span style="color:#0080ff;font-style:italic"># getData(baseurl)</span>
+    <span style="color:#0080ff;font-style:italic"># print(datalist)</span>
+    <span style="color:#0080ff;font-style:italic">#3.保存数据</span>
     saveData(datalist,savepath)
 
-<span style="color:#007f7f"># 提取影片的提取规则</span>
-recom_link = re.compile(<span style="color:#0ff;font-weight:bold">r</span><span style="color:#0ff;font-weight:bold">&#39;&lt;a href=&#34;(.*?)&#34;&gt;&#39;</span>)
-recom_img = re.compile(<span style="color:#0ff;font-weight:bold">r</span><span style="color:#0ff;font-weight:bold">&#39;&lt;img alt=&#34;.*? src=&#34;(.*?)&#34;.*?/&gt;&#39;</span>, re.S)     <span style="color:#007f7f">#re.S让换行符也包含在内</span>
-recom_title = re.compile(<span style="color:#0ff;font-weight:bold">r</span><span style="color:#0ff;font-weight:bold">&#39;&lt;span class=&#34;title&#34;&gt;(.*?)&lt;/span&gt;&#39;</span>)
-recom_rating = re.compile(<span style="color:#0ff;font-weight:bold">r</span><span style="color:#0ff;font-weight:bold">&#39;&lt;span class=&#34;rating_num&#34; property=&#34;v:average&#34;&gt;(.*?)&lt;/span&gt;&#39;</span>)
-recom_judge = re.compile(<span style="color:#0ff;font-weight:bold">r</span><span style="color:#0ff;font-weight:bold">&#39;&lt;span&gt;(\d*)人评价&lt;/span&gt;&#39;</span>)
-recom_inq = re.compile(<span style="color:#0ff;font-weight:bold">r</span><span style="color:#0ff;font-weight:bold">&#39;&lt;span class=&#34;inq&#34;&gt;(.*?)&lt;/span&gt;&#39;</span>)
-recom_db = re.compile(<span style="color:#0ff;font-weight:bold">r</span><span style="color:#0ff;font-weight:bold">&#39;&lt;p class=&#34;&#34;&gt;(.*?)&lt;/p&gt;&#39;</span>,re.S)
+<span style="color:#0080ff;font-style:italic"># 提取影片的提取规则</span>
+recom_link <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>compile(<span style="color:#0c6">r</span><span style="color:#0c6">&#39;&lt;a href=&#34;(.*?)&#34;&gt;&#39;</span>)
+recom_img <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>compile(<span style="color:#0c6">r</span><span style="color:#0c6">&#39;&lt;img alt=&#34;.*? src=&#34;(.*?)&#34;.*?/&gt;&#39;</span>, re<span style="color:#2c5dcd">.</span>S)     <span style="color:#0080ff;font-style:italic">#re.S让换行符也包含在内</span>
+recom_title <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>compile(<span style="color:#0c6">r</span><span style="color:#0c6">&#39;&lt;span class=&#34;title&#34;&gt;(.*?)&lt;/span&gt;&#39;</span>)
+recom_rating <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>compile(<span style="color:#0c6">r</span><span style="color:#0c6">&#39;&lt;span class=&#34;rating_num&#34; property=&#34;v:average&#34;&gt;(.*?)&lt;/span&gt;&#39;</span>)
+recom_judge <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>compile(<span style="color:#0c6">r</span><span style="color:#0c6">&#39;&lt;span&gt;(\d*)人评价&lt;/span&gt;&#39;</span>)
+recom_inq <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>compile(<span style="color:#0c6">r</span><span style="color:#0c6">&#39;&lt;span class=&#34;inq&#34;&gt;(.*?)&lt;/span&gt;&#39;</span>)
+recom_db <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>compile(<span style="color:#0c6">r</span><span style="color:#0c6">&#39;&lt;p class=&#34;&#34;&gt;(.*?)&lt;/p&gt;&#39;</span>,re<span style="color:#2c5dcd">.</span>S)
 
-<span style="color:#fff;font-weight:bold">def</span> getData(baseurl):
-    datalist = []
-    <span style="color:#007f7f">#生成要爬取的网址</span>
-    <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">10</span>):
-        url = baseurl + <span style="color:#fff;font-weight:bold">str</span>(i*<span style="color:#ff0;font-weight:bold">25</span>)
-        html = askurl(url)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">getData</span>(baseurl):
+    datalist <span style="color:#2c5dcd">=</span> []
+    <span style="color:#0080ff;font-style:italic">#生成要爬取的网址</span>
+    <span style="color:#2c5dcd;font-weight:bold">for</span> i <span style="color:#2c5dcd;font-weight:bold">in</span> <span style="color:#5918bb;font-weight:bold">range</span>(<span style="color:#5918bb;font-weight:bold">0</span>, <span style="color:#5918bb;font-weight:bold">10</span>):
+        url <span style="color:#2c5dcd">=</span> baseurl <span style="color:#2c5dcd">+</span> <span style="color:#5918bb;font-weight:bold">str</span>(i<span style="color:#2c5dcd">*</span><span style="color:#5918bb;font-weight:bold">25</span>)
+        html <span style="color:#2c5dcd">=</span> askurl(url)
 
-        <span style="color:#007f7f">#进行数据解析</span>
-        soup = bs4.BeautifulSoup(html, <span style="color:#0ff;font-weight:bold">&#34;html.parser&#34;</span>)
-        <span style="color:#fff;font-weight:bold">for</span> item in soup.find_all(<span style="color:#0ff;font-weight:bold">&#34;div&#34;</span>, class_ = <span style="color:#0ff;font-weight:bold">&#34;item&#34;</span>):	<span style="color:#007f7f">#在&lt;class &#39;bs4.BeautifulSoup&#39;&gt;中查找是div并且class=&#34;item&#34;的内容</span>
-            <span style="color:#007f7f"># print(item)</span>
-            data = []   <span style="color:#007f7f">#保存每一部电影的信息</span>
-            item = <span style="color:#fff;font-weight:bold">str</span>(item)
-            link = re.findall(recom_link, item)[<span style="color:#ff0;font-weight:bold">0</span>]
-            data.append(link)   <span style="color:#007f7f">#添加链接</span>
-            img = re.findall(recom_img, item)[<span style="color:#ff0;font-weight:bold">0</span>]
-            data.append(img)
-            title = re.findall(recom_title, item)
-            <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">len</span>(title) ==<span style="color:#ff0;font-weight:bold">2</span>):
-                ctitle = title[<span style="color:#ff0;font-weight:bold">0</span>]
-                data.append(ctitle)
-                otitle = title[<span style="color:#ff0;font-weight:bold">1</span>].replace(<span style="color:#0ff;font-weight:bold">&#34;/&#34;</span>,<span style="color:#0ff;font-weight:bold">&#34;&#34;</span>)   <span style="color:#007f7f">#去掉无关符号</span>
-                data.append(otitle)
-            <span style="color:#fff;font-weight:bold">else</span>:
-                data.append(title[<span style="color:#ff0;font-weight:bold">0</span>])
-                data.append(<span style="color:#0ff;font-weight:bold">&#34; &#34;</span>)    <span style="color:#007f7f">#留空</span>
-            rating = re.findall(recom_rating, item)[<span style="color:#ff0;font-weight:bold">0</span>]
-            data.append(rating)
-            judge = re.findall(recom_judge, item)[<span style="color:#ff0;font-weight:bold">0</span>]
-            data.append(judge)
-            inq = re.findall(recom_inq, item)
-            <span style="color:#fff;font-weight:bold">if</span> <span style="color:#fff;font-weight:bold">len</span>(inq) !=<span style="color:#ff0;font-weight:bold">0</span>:
-                inq = inq[<span style="color:#ff0;font-weight:bold">0</span>].replace(<span style="color:#0ff;font-weight:bold">&#34;。&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34; &#34;</span>)
-                data.append(inq)
-            <span style="color:#fff;font-weight:bold">else</span>:
-                data.append(<span style="color:#0ff;font-weight:bold">&#34; &#34;</span>)
-            db = re.findall(recom_db, item)[<span style="color:#ff0;font-weight:bold">0</span>]
-            db = re.sub(<span style="color:#0ff;font-weight:bold">&#39;&lt;br(\s+)?/&gt;(\s+)?&#39;</span>, <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>, db)
-            db = re.sub(<span style="color:#0ff;font-weight:bold">&#39;/&#39;</span>, <span style="color:#0ff;font-weight:bold">&#34; &#34;</span>, db)
-            data.append(db.strip())
-            datalist.append(data)
-    <span style="color:#007f7f"># print(datalist)</span>
-    <span style="color:#fff;font-weight:bold">return</span> datalist
+        <span style="color:#0080ff;font-style:italic">#进行数据解析</span>
+        soup <span style="color:#2c5dcd">=</span> bs4<span style="color:#2c5dcd">.</span>BeautifulSoup(html, <span style="color:#0c6">&#34;html.parser&#34;</span>)
+        <span style="color:#2c5dcd;font-weight:bold">for</span> item <span style="color:#2c5dcd;font-weight:bold">in</span> soup<span style="color:#2c5dcd">.</span>find_all(<span style="color:#0c6">&#34;div&#34;</span>, class_ <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;item&#34;</span>):	<span style="color:#0080ff;font-style:italic">#在&lt;class &#39;bs4.BeautifulSoup&#39;&gt;中查找是div并且class=&#34;item&#34;的内容</span>
+            <span style="color:#0080ff;font-style:italic"># print(item)</span>
+            data <span style="color:#2c5dcd">=</span> []   <span style="color:#0080ff;font-style:italic">#保存每一部电影的信息</span>
+            item <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">str</span>(item)
+            link <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>findall(recom_link, item)[<span style="color:#5918bb;font-weight:bold">0</span>]
+            data<span style="color:#2c5dcd">.</span>append(link)   <span style="color:#0080ff;font-style:italic">#添加链接</span>
+            img <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>findall(recom_img, item)[<span style="color:#5918bb;font-weight:bold">0</span>]
+            data<span style="color:#2c5dcd">.</span>append(img)
+            title <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>findall(recom_title, item)
+            <span style="color:#2c5dcd;font-weight:bold">if</span> (<span style="color:#5918bb;font-weight:bold">len</span>(title) <span style="color:#2c5dcd">==</span><span style="color:#5918bb;font-weight:bold">2</span>):
+                ctitle <span style="color:#2c5dcd">=</span> title[<span style="color:#5918bb;font-weight:bold">0</span>]
+                data<span style="color:#2c5dcd">.</span>append(ctitle)
+                otitle <span style="color:#2c5dcd">=</span> title[<span style="color:#5918bb;font-weight:bold">1</span>]<span style="color:#2c5dcd">.</span>replace(<span style="color:#0c6">&#34;/&#34;</span>,<span style="color:#0c6">&#34;&#34;</span>)   <span style="color:#0080ff;font-style:italic">#去掉无关符号</span>
+                data<span style="color:#2c5dcd">.</span>append(otitle)
+            <span style="color:#2c5dcd;font-weight:bold">else</span>:
+                data<span style="color:#2c5dcd">.</span>append(title[<span style="color:#5918bb;font-weight:bold">0</span>])
+                data<span style="color:#2c5dcd">.</span>append(<span style="color:#0c6">&#34; &#34;</span>)    <span style="color:#0080ff;font-style:italic">#留空</span>
+            rating <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>findall(recom_rating, item)[<span style="color:#5918bb;font-weight:bold">0</span>]
+            data<span style="color:#2c5dcd">.</span>append(rating)
+            judge <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>findall(recom_judge, item)[<span style="color:#5918bb;font-weight:bold">0</span>]
+            data<span style="color:#2c5dcd">.</span>append(judge)
+            inq <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>findall(recom_inq, item)
+            <span style="color:#2c5dcd;font-weight:bold">if</span> <span style="color:#5918bb;font-weight:bold">len</span>(inq) <span style="color:#2c5dcd">!=</span><span style="color:#5918bb;font-weight:bold">0</span>:
+                inq <span style="color:#2c5dcd">=</span> inq[<span style="color:#5918bb;font-weight:bold">0</span>]<span style="color:#2c5dcd">.</span>replace(<span style="color:#0c6">&#34;。&#34;</span>, <span style="color:#0c6">&#34; &#34;</span>)
+                data<span style="color:#2c5dcd">.</span>append(inq)
+            <span style="color:#2c5dcd;font-weight:bold">else</span>:
+                data<span style="color:#2c5dcd">.</span>append(<span style="color:#0c6">&#34; &#34;</span>)
+            db <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>findall(recom_db, item)[<span style="color:#5918bb;font-weight:bold">0</span>]
+            db <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>sub(<span style="color:#0c6">&#39;&lt;br(\s+)?/&gt;(\s+)?&#39;</span>, <span style="color:#0c6">&#34;&#34;</span>, db)
+            db <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>sub(<span style="color:#0c6">&#39;/&#39;</span>, <span style="color:#0c6">&#34; &#34;</span>, db)
+            data<span style="color:#2c5dcd">.</span>append(db<span style="color:#2c5dcd">.</span>strip())
+            datalist<span style="color:#2c5dcd">.</span>append(data)
+    <span style="color:#0080ff;font-style:italic"># print(datalist)</span>
+    <span style="color:#2c5dcd;font-weight:bold">return</span> datalist
 
-    <span style="color:#007f7f"># 3.保存数据</span>
-<span style="color:#fff;font-weight:bold">def</span> saveData(datalist,savepath):
-    wb = xlwt.Workbook(encoding=<span style="color:#0ff;font-weight:bold">&#34;UTF-8&#34;</span>)
-    ws = wb.add_sheet(<span style="color:#0ff;font-weight:bold">&#34;douban_dataTOP250&#34;</span>)
-    col = (<span style="color:#0ff;font-weight:bold">&#34;电影详情链接&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;图片链接&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;影片中文名&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;影片外国名&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;评分&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;评价数&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;概况&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;相关信息&#34;</span>)
-    <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">0</span>,<span style="color:#ff0;font-weight:bold">8</span>):
-        ws.write(<span style="color:#ff0;font-weight:bold">0</span>,i,col[i]) <span style="color:#007f7f">#列名</span>
-    <span style="color:#fff;font-weight:bold">for</span> i in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">0</span>,<span style="color:#ff0;font-weight:bold">250</span>):
-        <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;第</span><span style="color:#0ff;font-weight:bold">%d</span><span style="color:#0ff;font-weight:bold">条&#34;</span> %(i+<span style="color:#ff0;font-weight:bold">1</span>))
-        data = datalist[i]
-        <span style="color:#fff;font-weight:bold">for</span> j in <span style="color:#fff;font-weight:bold">range</span>(<span style="color:#ff0;font-weight:bold">0</span>,<span style="color:#ff0;font-weight:bold">8</span>):
-            ws.write(i+<span style="color:#ff0;font-weight:bold">1</span>,j,data[j])      <span style="color:#007f7f">#写入数据</span>
+    <span style="color:#0080ff;font-style:italic"># 3.保存数据</span>
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">saveData</span>(datalist,savepath):
+    wb <span style="color:#2c5dcd">=</span> xlwt<span style="color:#2c5dcd">.</span>Workbook(encoding<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;UTF-8&#34;</span>)
+    ws <span style="color:#2c5dcd">=</span> wb<span style="color:#2c5dcd">.</span>add_sheet(<span style="color:#0c6">&#34;douban_dataTOP250&#34;</span>)
+    col <span style="color:#2c5dcd">=</span> (<span style="color:#0c6">&#34;电影详情链接&#34;</span>, <span style="color:#0c6">&#34;图片链接&#34;</span>, <span style="color:#0c6">&#34;影片中文名&#34;</span>, <span style="color:#0c6">&#34;影片外国名&#34;</span>, <span style="color:#0c6">&#34;评分&#34;</span>, <span style="color:#0c6">&#34;评价数&#34;</span>, <span style="color:#0c6">&#34;概况&#34;</span>, <span style="color:#0c6">&#34;相关信息&#34;</span>)
+    <span style="color:#2c5dcd;font-weight:bold">for</span> i <span style="color:#2c5dcd;font-weight:bold">in</span> <span style="color:#5918bb;font-weight:bold">range</span>(<span style="color:#5918bb;font-weight:bold">0</span>,<span style="color:#5918bb;font-weight:bold">8</span>):
+        ws<span style="color:#2c5dcd">.</span>write(<span style="color:#5918bb;font-weight:bold">0</span>,i,col[i]) <span style="color:#0080ff;font-style:italic">#列名</span>
+    <span style="color:#2c5dcd;font-weight:bold">for</span> i <span style="color:#2c5dcd;font-weight:bold">in</span> <span style="color:#5918bb;font-weight:bold">range</span>(<span style="color:#5918bb;font-weight:bold">0</span>,<span style="color:#5918bb;font-weight:bold">250</span>):
+        <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;第</span><span style="color:#0c6">%d</span><span style="color:#0c6">条&#34;</span> <span style="color:#2c5dcd">%</span>(i<span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">1</span>))
+        data <span style="color:#2c5dcd">=</span> datalist[i]
+        <span style="color:#2c5dcd;font-weight:bold">for</span> j <span style="color:#2c5dcd;font-weight:bold">in</span> <span style="color:#5918bb;font-weight:bold">range</span>(<span style="color:#5918bb;font-weight:bold">0</span>,<span style="color:#5918bb;font-weight:bold">8</span>):
+            ws<span style="color:#2c5dcd">.</span>write(i<span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">1</span>,j,data[j])      <span style="color:#0080ff;font-style:italic">#写入数据</span>
 
-    wb.save(savepath)       <span style="color:#007f7f">#保存</span>
+    wb<span style="color:#2c5dcd">.</span>save(savepath)       <span style="color:#0080ff;font-style:italic">#保存</span>
 
-<span style="color:#007f7f"># 得到一个指定的URL的网页内容</span>
-<span style="color:#fff;font-weight:bold">def</span> askurl(url):
-    head = {
-        <span style="color:#0ff;font-weight:bold">&#34;User-Agent&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36&#34;</span>
-                      <span style="color:#0ff;font-weight:bold">&#34; (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36&#34;</span>
+<span style="color:#0080ff;font-style:italic"># 得到一个指定的URL的网页内容</span>
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">askurl</span>(url):
+    head <span style="color:#2c5dcd">=</span> {
+        <span style="color:#0c6">&#34;User-Agent&#34;</span>: <span style="color:#0c6">&#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36&#34;</span>
+                      <span style="color:#0c6">&#34; (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36&#34;</span>
     }
-    html = <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>
-    <span style="color:#fff;font-weight:bold">try</span>:
-        req = urllib.request.Request(url=url, headers=head)
-        response = urllib.request.urlopen(req)
-        html= response.read().decode(<span style="color:#0ff;font-weight:bold">&#34;UTF-8&#34;</span>)
-        <span style="color:#007f7f"># print(html)</span>
-    <span style="color:#fff;font-weight:bold">except</span> Exception <span style="color:#fff;font-weight:bold">as</span> e:
-        <span style="color:#fff;font-weight:bold">print</span>(e)
-    <span style="color:#fff;font-weight:bold">return</span> html
+    html <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;&#34;</span>
+    <span style="color:#2c5dcd;font-weight:bold">try</span>:
+        req <span style="color:#2c5dcd">=</span> urllib<span style="color:#2c5dcd">.</span>request<span style="color:#2c5dcd">.</span>Request(url<span style="color:#2c5dcd">=</span>url, headers<span style="color:#2c5dcd">=</span>head)
+        response <span style="color:#2c5dcd">=</span> urllib<span style="color:#2c5dcd">.</span>request<span style="color:#2c5dcd">.</span>urlopen(req)
+        html<span style="color:#2c5dcd">=</span> response<span style="color:#2c5dcd">.</span>read()<span style="color:#2c5dcd">.</span>decode(<span style="color:#0c6">&#34;UTF-8&#34;</span>)
+        <span style="color:#0080ff;font-style:italic"># print(html)</span>
+    <span style="color:#2c5dcd;font-weight:bold">except</span> <span style="color:#5918bb;font-weight:bold">Exception</span> <span style="color:#2c5dcd;font-weight:bold">as</span> e:
+        <span style="color:#5918bb;font-weight:bold">print</span>(e)
+    <span style="color:#2c5dcd;font-weight:bold">return</span> html
 
 
-<span style="color:#fff;font-weight:bold">if</span> __name__ == <span style="color:#0ff;font-weight:bold">&#34;__main__&#34;</span>:
+<span style="color:#2c5dcd;font-weight:bold">if</span> __name__ <span style="color:#2c5dcd">==</span> <span style="color:#0c6">&#34;__main__&#34;</span>:
     main()
-    <span style="color:#fff;font-weight:bold">print</span>(<span style="color:#0ff;font-weight:bold">&#34;爬取完毕&#34;</span>)
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;爬取完毕&#34;</span>)
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="爬虫所用到的库">爬虫所用到的库<a hidden class="anchor" aria-hidden="true" href="#爬虫所用到的库">#</a></h2>
@@ -1029,16 +1010,16 @@ recom_db = re.compile(<span style="color:#0ff;font-weight:bold">r</span><span st
 <li>在已经爬取得到网页后进行数据解析时，如果测试正则表达式没有问题但仍无数据时，可以加上re.S之类的<code>re.compile(pattern[, flags])</code>的flag参数</li>
 <li>当使用BeautifulSoup的find(参数)参数中出现Python关键字时可以在关键字后面加__(PS: <code>class_ = &quot;值&quot;</code>)</li>
 </ol>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#007f7f">#如下面两种写法一样</span>
-find(classs_=<span style="color:#0ff;font-weight:bold">&#34;table&#34;</span>)
-find(attrs={<span style="color:#0ff;font-weight:bold">&#34;class&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;table&#34;</span>})
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py"><span style="color:#0080ff;font-style:italic">#如下面两种写法一样</span>
+find(classs_<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;table&#34;</span>)
+find(attrs<span style="color:#2c5dcd">=</span>{<span style="color:#0c6">&#34;class&#34;</span>:<span style="color:#0c6">&#34;table&#34;</span>})
 </code></pre></td></tr></table>
 </div>
 </div><ol start="6">

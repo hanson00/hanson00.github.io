@@ -5,12 +5,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>03MyBatis | Hanson&#39;s Blog</title>
-<meta name="keywords" content="JavaWeb相关学习">
-<meta name="description" content="JavaWeb相关学习">
+<title>爬虫见闻录 | Hanson&#39;s Blog</title>
+<meta name="keywords" content="爬虫问题记录">
+<meta name="description" content="在使用Python爬虫中所遇到的一些问题或疑惑的地方进行记录">
 <meta name="author" content="
 作者:&nbsp;hanson">
-<link rel="canonical" href="https://hanson00.github.io/posts/technology/java/03mybatis/">
+<link rel="canonical" href="https://hanson00.github.io/posts/thinking/%E7%88%AC%E8%99%AB%E8%A7%81%E9%97%BB%E5%BD%95/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -57,16 +57,16 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="03MyBatis" />
-<meta property="og:description" content="JavaWeb相关学习" />
+</noscript><meta property="og:title" content="爬虫见闻录" />
+<meta property="og:description" content="在使用Python爬虫中所遇到的一些问题或疑惑的地方进行记录" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://hanson00.github.io/posts/technology/java/03mybatis/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-07-02T14:18:00&#43;08:00" />
-<meta property="article:modified_time" content="2022-07-02T14:18:00&#43;08:00" />
+<meta property="og:url" content="https://hanson00.github.io/posts/thinking/%E7%88%AC%E8%99%AB%E8%A7%81%E9%97%BB%E5%BD%95/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-03T07:01:37&#43;08:00" />
+<meta property="article:modified_time" content="2022-07-03T07:01:37&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="03MyBatis"/>
-<meta name="twitter:description" content="JavaWeb相关学习"/>
+<meta name="twitter:title" content="爬虫见闻录"/>
+<meta name="twitter:description" content="在使用Python爬虫中所遇到的一些问题或疑惑的地方进行记录"/>
 
 
 <script type="application/ld+json">
@@ -83,20 +83,14 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "💻技术类文章",
-      "item": "https://hanson00.github.io/posts/technology/"
+      "name": "✍思考与问题",
+      "item": "https://hanson00.github.io/posts/thinking/"
     }, 
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "Java文章",
-      "item": "https://hanson00.github.io/posts/technology/java/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  4 ,
-      "name": "03MyBatis",
-      "item": "https://hanson00.github.io/posts/technology/java/03mybatis/"
+      "name": "爬虫见闻录",
+      "item": "https://hanson00.github.io/posts/thinking/%E7%88%AC%E8%99%AB%E8%A7%81%E9%97%BB%E5%BD%95/"
     }
   ]
 }
@@ -105,24 +99,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "03MyBatis",
-  "name": "03MyBatis",
-  "description": "JavaWeb相关学习",
+  "headline": "爬虫见闻录",
+  "name": "爬虫见闻录",
+  "description": "在使用Python爬虫中所遇到的一些问题或疑惑的地方进行记录",
   "keywords": [
-    "JavaWeb相关学习"
+    "爬虫问题记录"
   ],
-  "articleBody": "MyBatis(持久层/数据访问层)持久层的优秀框架  Mybatis2.0 1.创建模块导入坐标（官网）,除了mybatis的必要包外，还要导入其他所要的依赖包\n1 2 3 4 5   org.mybatis mybatis x.x.x    2.编写Mybatis核心配置文件（mybatis-config.xml文件的命名）–==替换连接信息，解决硬编码问题==（官网）\n上面的是需要修改的 上面的mappers是指定sql的映射文件的\n 3.编写SQL映射文件–》统一管理sql语句(官网也有)，，命名规则是要操作的表名Mapper.xml\n    编码\n 定义pojo类 加载核心配置文件，获取SQL session factory对象（官网）   获取sqlsession对象，执行sql语句（下面的Mapper代理开发可以替换）   释放资源    Mapper代理开发 1.定义与SQL映射文件同名的Mapper接口，并放在同一目录下2.设置namespace为全限名3.接口的方法名是要与id的名称相同，并且返回值要与编码相同\nMabatis的具体使用(三步走:编写接口方法，编写sql，执行方法)  编写接口方法Mapper接口 生成相应的sql映射文件  2.步骤的图    执行方法\n 数据库的列名和实体类的名称对应不上的时候使用 除了主键外的起别名用 主键起别名用 上面图片的resultMap替换了原先的resultType\n void selectById(int id);\n占位符使用 #{}\n不同的接收参数的方式\n多条件查询(使用if实现)，\n单条件查询(类似于switch语句)\n增删改操作后需要提交事务\n添加-主键返回需要使用useGeneratedKeys和keyProperty\n批量删除接受的数组是要使用注解名的，否则传递不进去 separator分隔符\n",
-  "wordCount" : "964",
+  "articleBody": "解决爬虫报错：UnicodeEncodeError: ‘gbk’ codec can’t encode character ‘\\xa0’ in position 7067: illegal multibyte sequence 报错如下\n UnicodeEncodeError: ‘gbk’ codec can’t encode character ‘\\xa0’ in position 7067: illegal multibyte sequence\n 尝试1：在不断尝试了很多种网页编码问题后仍然没有解决\n之后让别的小伙伴尝试了同样的代码，别人可以运行但自己无法运行，问题关键在于解决编码和解码问题。通常这种问题是由于编译器编码出现问题\n解决方法： 针对编码问题，主要从两个方面进行出发，其一是网页编码，其二是Pycharm编码，顺利解决这个小bug。\n解决步骤如下图：\n",
+  "wordCount" : "210",
   "inLanguage": "en",
-  "datePublished": "2022-07-02T14:18:00+08:00",
-  "dateModified": "2022-07-02T14:18:00+08:00",
+  "datePublished": "2022-07-03T07:01:37+08:00",
+  "dateModified": "2022-07-03T07:01:37+08:00",
   "author":[{
     "@type": "Person",
     "name": "hanson"
   }],
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://hanson00.github.io/posts/technology/java/03mybatis/"
+    "@id": "https://hanson00.github.io/posts/thinking/%E7%88%AC%E8%99%AB%E8%A7%81%E9%97%BB%E5%BD%95/"
   },
   "publisher": {
     "@type": "Organization",
@@ -213,12 +207,12 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/java/">Java文章</a></div>
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/thinking/">✍思考与问题</a></div>
     <h1 class="post-title">
-      03MyBatis
+      爬虫见闻录
     </h1>
     <div class="post-description">
-      JavaWeb相关学习
+      在使用Python爬虫中所遇到的一些问题或疑惑的地方进行记录
     </div>
   </header> <aside id="toc-container" class="toc-container wide">
         <div class="toc">
@@ -229,19 +223,8 @@
 
                 <div class="inner"><ul>
                         <li>
-                            <a href="#mybatis%e6%8c%81%e4%b9%85%e5%b1%82%e6%95%b0%e6%8d%ae%e8%ae%bf%e9%97%ae%e5%b1%82%e6%8c%81%e4%b9%85%e5%b1%82%e7%9a%84%e4%bc%98%e7%a7%80%e6%a1%86%e6%9e%b6" aria-label="MyBatis(持久层/数据访问层)持久层的优秀框架">MyBatis(持久层/数据访问层)持久层的优秀框架</a></li>
-                        <li>
-                            <a href="#mybatis20" aria-label="Mybatis2.0">Mybatis2.0</a><ul>
-                                    
-                        <li>
-                            <a href="#mapper%e4%bb%a3%e7%90%86%e5%bc%80%e5%8f%91" aria-label="Mapper代理开发">Mapper代理开发</a></li>
-                        <li>
-                            <a href="#mabatis%e7%9a%84%e5%85%b7%e4%bd%93%e4%bd%bf%e7%94%a8%e4%b8%89%e6%ad%a5%e8%b5%b0%e7%bc%96%e5%86%99%e6%8e%a5%e5%8f%a3%e6%96%b9%e6%b3%95%e7%bc%96%e5%86%99sql%e6%89%a7%e8%a1%8c%e6%96%b9%e6%b3%95" aria-label="Mabatis的具体使用(三步走:编写接口方法，编写sql，执行方法)">Mabatis的具体使用(三步走:编写接口方法，编写sql，执行方法)</a></li>
-                        <li>
-                            <a href="#%e6%95%b0%e6%8d%ae%e5%ba%93%e7%9a%84%e5%88%97%e5%90%8d%e5%92%8c%e5%ae%9e%e4%bd%93%e7%b1%bb%e7%9a%84%e5%90%8d%e7%a7%b0%e5%af%b9%e5%ba%94%e4%b8%8d%e4%b8%8a%e7%9a%84%e6%97%b6%e5%80%99%e4%bd%bf%e7%94%a8" aria-label="数据库的列名和实体类的名称对应不上的时候使用">数据库的列名和实体类的名称对应不上的时候使用</a>
+                            <a href="#%e8%a7%a3%e5%86%b3%e7%88%ac%e8%99%ab%e6%8a%a5%e9%94%99unicodeencodeerror-gbk-codec-cant-encode-character-xa0-in-position-7067-illegal-multibyte-sequence" aria-label="解决爬虫报错：UnicodeEncodeError: &amp;lsquo;gbk&amp;rsquo; codec can&amp;rsquo;t encode character &amp;lsquo;\xa0&amp;rsquo; in position 7067: illegal multibyte sequence">解决爬虫报错：UnicodeEncodeError: &lsquo;gbk&rsquo; codec can&rsquo;t encode character &lsquo;\xa0&rsquo; in position 7067: illegal multibyte sequence</a>
                         </li>
-                    </ul>
-                    </li>
                     </ul>
                 </div>
             </details>
@@ -306,124 +289,17 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h1 id="mybatis持久层数据访问层持久层的优秀框架">MyBatis(持久层/数据访问层)持久层的优秀框架<a hidden class="anchor" aria-hidden="true" href="#mybatis持久层数据访问层持久层的优秀框架">#</a></h1>
-<hr>
-<h1 id="mybatis20">Mybatis2.0<a hidden class="anchor" aria-hidden="true" href="#mybatis20">#</a></h1>
-<p>1.创建模块导入坐标（官网）,除了mybatis的必要包外，还要导入其他所要的依赖包</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/01MyBatis.png" alt="image-20220104103307276"  />
-</p>
-<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#2c5dcd;font-weight:bold">&lt;dependency&gt;</span>
-  <span style="color:#2c5dcd;font-weight:bold">&lt;groupId&gt;</span>org.mybatis<span style="color:#2c5dcd;font-weight:bold">&lt;/groupId&gt;</span>
-  <span style="color:#2c5dcd;font-weight:bold">&lt;artifactId&gt;</span>mybatis<span style="color:#2c5dcd;font-weight:bold">&lt;/artifactId&gt;</span>
-  <span style="color:#2c5dcd;font-weight:bold">&lt;version&gt;</span>x.x.x<span style="color:#2c5dcd;font-weight:bold">&lt;/version&gt;</span>
-<span style="color:#2c5dcd;font-weight:bold">&lt;/dependency&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>2.编写Mybatis核心配置文件（mybatis-config.xml文件的命名）&ndash;&gt;==替换连接信息，解决硬编码问题==（官网）</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/02MyBatis.png" alt="image-20220104103613696"  />
-</p>
-<p>上面的是需要修改的  上面的mappers是指定<strong>sql的映射文件</strong>的</p>
-<p>&lt;mapper resource=&ldquo;这一段字符串是要替换的sql映射文件(sql语句的文件)的地址&rdquo;</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/03MyBatis.png" alt="image-20220104104359545"  />
-</p>
-<hr>
-<p>3.<strong>编写SQL映射文件&ndash;》统一管理sql语句</strong>(官网也有)，，命名规则是要<strong>操作的表名Mapper.xml</strong></p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/04MyBatis.png" alt="image-20220104104107493"  />
-</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/05Mybatis.png" alt="image-20220104104826892"  />
-</p>
-<ol start="4">
-<li></li>
-</ol>
-<ul>
-<li>
-<p>编码</p>
-<ul>
-<li>定义pojo类</li>
-<li>加载核心配置文件，获取SQL session factory对象（官网）</li>
-</ul>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021415575.png" alt="image-20220104104613490"  />
-</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021415083.png" alt="image-20220104104658141"  />
-</p>
-<ul>
-<li>获取sqlsession对象，执行sql语句（下面的Mapper代理开发可以替换）</li>
-</ul>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021415191.png" alt="image-20220104104903528"  />
-</p>
-<ul>
-<li>释放资源</li>
-</ul>
-</li>
-</ul>
-<h2 id="mapper代理开发">Mapper代理开发<a hidden class="anchor" aria-hidden="true" href="#mapper代理开发">#</a></h2>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021415921.png" alt="image-20220104105008271"  />
-</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416348.png" alt="image-20220104105244004"  />
-</p>
-<p>1.定义与SQL映射文件同名的Mapper接口，并放在同一目录下<img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416604.png" alt="image-20220104105425412"  />
-</p>
-<p>2.设置namespace为全限名<img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416802.png" alt="image-20220104105507186"  />
-</p>
-<p>3.接口的方法名是要与id的名称相同，并且返回值要与编码相同</p>
-<h2 id="mabatis的具体使用三步走编写接口方法编写sql执行方法">Mabatis的具体使用(三步走:编写接口方法，编写sql，执行方法)<a hidden class="anchor" aria-hidden="true" href="#mabatis的具体使用三步走编写接口方法编写sql执行方法">#</a></h2>
-<ol>
-<li>编写接口方法Mapper接口</li>
-<li>生成相应的sql映射文件
-<ol>
-<li>2.步骤的图<img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416271.png" alt="image-20220104110021897"  />
-</li>
-</ol>
-</li>
-</ol>
-<p>执行方法</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416645.png" alt="image-20220104110409738"  />
-</p>
-<hr>
-<h2 id="数据库的列名和实体类的名称对应不上的时候使用">数据库的列名和实体类的名称对应不上的时候使用<a hidden class="anchor" aria-hidden="true" href="#数据库的列名和实体类的名称对应不上的时候使用">#</a></h2>
-<p>除了主键外的起别名用&lt;==result==  &gt;</p>
-<resultMap id="" type="">
-<p>&lt;==result== column=&ldquo;数据库的列名&rdquo; property=&ldquo;实体类对应映射的名&rdquo;&gt;</p>
-<p>&lt;==id== column=&ldquo;数据库的列名&rdquo; property=&ldquo;实体类对应映射的名&rdquo;&gt;</p>
-</resultMap>
-<p>主键起别名用&lt;==id== &gt;</p>
-<resultMap id="" type="">
-<p>&lt;==id== column=&ldquo;数据库的列名&rdquo; property=&ldquo;实体类对应映射的名&rdquo;&gt;</p>
-</resultMap>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416744.jpg" alt="image-20220104111147626"  />
-</p>
-<p>上面图片的resultMap替换了原先的resultType</p>
-<hr>
-<p>void selectById(int id);</p>
-<p>占位符使用  #{}</p>
-<p>不同的接收参数的方式</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416719.png" alt="image-20220104124436241"  />
-</p>
-<p>多条件查询(使用if实现)，</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416324.png" alt="image-20220104130157335"  />
-</p>
-<p>单条件查询(类似于switch语句)</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021417635.png" alt="image-20220104130426668"  />
-</p>
-<p>增删改操作后需要提交事务</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021417463.png" alt="image-20220104131540970"  />
-</p>
-<p>添加-主键返回<insert useGeneratedKeys="true" keyProperty="id"></p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021417926.png" alt="image-20220104131824381"  />
-</p>
-<p>需要使用<strong>useGeneratedKeys</strong>和<strong>keyProperty</strong></p>
-<p>批量删除接受的数组是要使用注解名的，否则传递不进去
-separator分隔符</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021417006.png" alt="image-20220104133055734"  />
+  <div class="post-content"><h1 id="解决爬虫报错unicodeencodeerror-gbk-codec-cant-encode-character-xa0-in-position-7067-illegal-multibyte-sequence">解决爬虫报错：UnicodeEncodeError: &lsquo;gbk&rsquo; codec can&rsquo;t encode character &lsquo;\xa0&rsquo; in position 7067: illegal multibyte sequence<a hidden class="anchor" aria-hidden="true" href="#解决爬虫报错unicodeencodeerror-gbk-codec-cant-encode-character-xa0-in-position-7067-illegal-multibyte-sequence">#</a></h1>
+<p>报错如下</p>
+<blockquote>
+<p>UnicodeEncodeError: &lsquo;gbk&rsquo; codec can&rsquo;t encode character &lsquo;\xa0&rsquo; in position 7067: illegal multibyte sequence</p>
+</blockquote>
+<p><strong>尝试1</strong>：在不断尝试了很多种网页编码问题后仍然没有解决</p>
+<p>之后让别的小伙伴尝试了同样的代码，别人可以运行但自己无法运行，问题关键在于解决编码和解码问题。通常这种问题是由于编译器编码出现问题</p>
+<p><strong>解决方法</strong>：
+针对编码问题，主要从两个方面进行出发，其一是网页编码，其二是Pycharm编码，顺利解决这个小bug。</p>
+<p><strong>解决步骤如下图</strong>：</p>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/%E7%88%AC%E8%99%AB%E8%A7%81%E9%97%BB%E5%BD%951.png" alt="image-20220703103751631"  />
 </p>
 
 
@@ -431,18 +307,14 @@ separator分隔符</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://hanson00.github.io/tags/javaweb%E7%9B%B8%E5%85%B3%E5%AD%A6%E4%B9%A0/">JavaWeb相关学习</a></li>
+      <li><a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a></li>
+      <li><a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB%E9%97%AE%E9%A2%98%E9%9B%86/">爬虫问题集</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://hanson00.github.io/posts/technology/java/04servlet/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>04Servlet</span>
-  </a>
-  <a class="next" href="https://hanson00.github.io/posts/technology/java/03maven/">
+  <a class="next" href="https://hanson00.github.io/posts/technology/python/python-%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/">
     <span class="title">Next »</span>
     <br>
-    <span>03maven</span>
+    <span>Python 自动化办公</span>
   </a>
 </nav>
 

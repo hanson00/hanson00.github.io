@@ -6,7 +6,16 @@
     <description>Recent content on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 02 Jul 2022 16:24:23 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 Jul 2022 07:01:37 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>爬虫见闻录</title>
+      <link>https://hanson00.github.io/posts/thinking/%E7%88%AC%E8%99%AB%E8%A7%81%E9%97%BB%E5%BD%95/</link>
+      <pubDate>Sun, 03 Jul 2022 07:01:37 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/thinking/%E7%88%AC%E8%99%AB%E8%A7%81%E9%97%BB%E5%BD%95/</guid>
+      <description>在使用Python爬虫中所遇到的一些问题或疑惑的地方进行记录</description>
+    </item>
+    
     <item>
       <title>Python 自动化办公</title>
       <link>https://hanson00.github.io/posts/technology/python/python-%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/</link>
