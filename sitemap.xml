@@ -83,15 +83,6 @@
     <loc>https://hanson00.github.io/tags/mysql/</loc>
     <lastmod>2022-07-02T13:58:37+08:00</lastmod>
   </url><url>
-    <loc>https://hanson00.github.io/posts/linux/ts/</loc>
-    <lastmod>2022-06-26T19:59:08+08:00</lastmod>
-  </url><url>
-    <loc>https://hanson00.github.io/tags/%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2022-06-26T19:59:08+08:00</lastmod>
-  </url><url>
-    <loc>https://hanson00.github.io/posts/linux/</loc>
-    <lastmod>2022-06-26T19:59:08+08:00</lastmod>
-  </url><url>
     <loc>https://hanson00.github.io/posts/technology/python/python-selenium/</loc>
     <lastmod>2022-06-26T17:20:44+08:00</lastmod>
   </url><url>
@@ -138,5 +129,7 @@
     <loc>https://hanson00.github.io/search/</loc>
   </url><url>
     <loc>https://hanson00.github.io/series/</loc>
+  </url><url>
+    <loc>https://hanson00.github.io/posts/linux/</loc>
   </url>
 </urlset>
