@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Python_PEP8 | Hanson&#39;s Blog</title>
+<meta name="keywords" content="Python代码风格指南">
+<meta name="description" content="Python-PEP8代码风格指南摘要">
+<meta name="author" content="
+作者:&nbsp;hanson">
+<link rel="canonical" href="https://hanson00.github.io/posts/technology/python/python_pep8/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hanson00.github.io/posts/imgs/favicon16x16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hanson00.github.io/posts/imgs/favicon32x32.ico">
+<link rel="apple-touch-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="mask-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Python_PEP8" />
+<meta property="og:description" content="Python-PEP8代码风格指南摘要" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanson00.github.io/posts/technology/python/python_pep8/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-13T23:17:22&#43;08:00" />
+<meta property="article:modified_time" content="2022-07-13T23:17:22&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python_PEP8"/>
+<meta name="twitter:description" content="Python-PEP8代码风格指南摘要"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hanson00.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "💻技术类文章",
+      "item": "https://hanson00.github.io/posts/technology/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Python文章",
+      "item": "https://hanson00.github.io/posts/technology/python/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Python_PEP8",
+      "item": "https://hanson00.github.io/posts/technology/python/python_pep8/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Python_PEP8",
+  "name": "Python_PEP8",
+  "description": "Python-PEP8代码风格指南摘要",
+  "keywords": [
+    "Python代码风格指南"
+  ],
+  "articleBody": "Python-PEP8代码风格指南摘要  PEP8代码风格指南仅仅只是提供建议，最重要是保持与项目内部保持一致性，有时在遇到与代码风格不适用的地方要根据自己的最佳判断进行决定。\n下面给出一些可以忽略代码风格的一些理由：\n 应用代码风格指南时会使代码可读性降低时，不应使用 与历史代码(周围代码)的代码风格不一致时   代码布局 缩进 续行应该使用 Python 的隐式行在括号、方括号和大括号内连接，或者使用悬挂缩进 垂直对齐包裹的元素。使用悬挂缩进时，应考虑以下事项；第一行不应该有任何参数，并且应该使用进一步的缩进来清楚地将自己区分为续行：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  # 正确的用法: # 与开始分隔符对齐。 foo = long_function_name(var_one, var_two, var_three, var_four) # 添加 4 个空格（额外的缩进级别）以将参数与函数体区分开来。 def long_function_name( var_one, var_two, var_three, var_four): print(var_one) # 悬挂缩进应该增加一个层次。 foo = long_function_name( var_one, var_two, var_three, var_four) # 悬挂缩进*可能*缩进到 4 个空格以外。 foo = long_function_name( var_one, var_two, var_three, var_four)   空格是首选的缩进方法 最大行长  将所有行限制为最多 79 个字符。\n对于结构限制较少的长文本块（文档字符串或注释），行长应限制为 72 个字符。\n包装长行的首选方法是在括号、方括号和大括号内使用 Python 的隐含行继续。通过将表达式括在括号中，可以将长行分成多行。这些应该优先使用反斜杠来继续行。\n 在二元运算符之前换行 1 2 3 4 5 6  #正确的： income = (gross_wages + taxable_interest + (dividends - qualified_dividends) - ira_deduction - student_loan_interest)   import语句 1 2 3 4  #正确的： import os import sys from flask import Flask,jsonity,request    导入总是放在文件的顶部，就在任何模块注释和文档字符串之后，模块全局变量和常量之前。\n进口应按以下顺序分组：\n 标准库导入。 相关第三方进口。 本地应用程序/库特定的导入。   表达式和语句中的空格 在下面的情况应该避免多余的空格：\n 紧接在圆括号，方括号或大括号内：   1 2 3 4 5  # 正确的: spam(ham[1], {eggs: 2}) # 错误的: spam( ham[ 1 ], { eggs: 2 } )    在结尾的逗号和后面的右括号之间 紧接在逗号、分号或冒号之前 在切片中   1 2 3 4 5 6  # 正确的: ham[1:9], ham[1:9:3], ham[:9:3], ham[1::3], ham[1:9:] ham[lower:upper], ham[lower:upper:], ham[lower::step] ham[lower+offset : upper+offset] ham[: upper_fn(x) : step_fn(x)], ham[:: step_fn(x)] ham[lower + offset : upper + offset]     始终在这些二元运算符的两边加上一个空格：赋值 ( =)、扩充赋值 (+=等-= )、比较 ( ==, , , !=, , , =, in, , , ) 布尔值 ( , , )。\n  如果使用具有不同优先级的运算符，请考虑在具有最低优先级的运算符周围添加空格。使用您自己的判断；但是，永远不要使用多个空格，并且在二元运算符的两侧总是有相同数量的空格：\n 1 2 3 4 5 6  # 正确的: i = i + 1 submitted += 1 x = x*2 - 1 hypot2 = x*x + y*y c = (a+b) * (a-b)      函数注释应该使用冒号的常规规则，并且-如果存在，箭头周围总是有空格。\n 1 2  # 正确的: def munge() - PosInt: ...      =当用于指示关键字参数或用于指示未 注释函数参数的默认值时，请勿在符号周围使用空格：\n 1 2 3  # 正确的: def complex(real, imag=0.0): return magic(r=real, i=imag)      注释 与代码相矛盾的注释比没有注释更糟糕。当代码更改时，请始终优先更新评论！\n块注释通常由一个或多个由完整句子组成的段落组成，每个句子都以句点结尾。\n 块注释通常适用于跟随它们的代码，并且缩进到与该代码相同的级别。块注释的每一行都以一个#和一个空格开头。\n谨慎使用内联注释。内联注释是与语句在同一行上的注释。内联注释应与语句至少间隔两个空格。它们应该以 # 和一个空格开头。内联注释是不必要的，如果它们陈述明显的话，实际上会分散注意力。\n 命名约定  Python 库的命名约定有点混乱，所以我们永远不会完全一致——尽管如此，这里是目前推荐的命名标准。应该按照这些标准编写新的模块和包（包括第三方框架），但如果现有库具有不同的风格，则首选内部一致性。\n 至高原则  作为 API 的公共部分对用户可见的名称应遵循反映使用而非实现的约定。\n 描述性:命名样式 通常区分以下命名样式：\n  b（单个小写字母）\n  B（单个大写字母）\n  lowercase\n  lower_case_with_underscores\n  UPPERCASE\n  UPPER_CASE_WITH_UNDERSCORES\n  CapitalizedWords（或 CapWords 或 CamelCase——因其字母的凹凸外观而得名）。这有时也称为StudlyCaps。\n注意：在 CapWords 中使用首字母缩写词时，首字母缩写词的所有字母大写。因此 HTTPServerError 比 HttpServerError 好。\n  mixedCase（与 CapitalizedWords 的不同之处在于初始小写字符！）\n  Capitalized_Words_With_Underscores（丑陋的！）\n  还有一种使用简短的唯一前缀将相关名称组合在一起的风格。这在 Python 中使用不多，但为了完整性而提及。其项传统上具有st_mode、 st_size等名称st_mtime。（这样做是助于程序员熟悉它。）\n规定性:命名约定  注意避免的命名   切勿使用字符“l”（小写字母 el）、“O”（大写字母 oh）或“I”（大写字母 eye）作为单字符变量名。\n在某些字体中，这些字符与数字 1 和 0 无法区分。当想使用“l”时，请改用“L”。\n 包和模块   模块应该有简短的全小写名称。如果提高可读性，可以在模块名称中使用下划线。Python 包也应该有简短的全小写名称，尽管不鼓励使用下划线。\n当用 C 或 C++ 编写的扩展模块附带提供更高级别（例如更面向对象）接口的 Python 模块时，C/C++ 模块具有前导下划线（例如_socket）。\n 类名   类名一般首字母大写\n 函数名和变量名   函数名称应为小写，必要时用下划线分隔单词以提高可读性。\n变量名遵循与函数名相同的约定。\n 函数和方法参数   始终self用于实例方法的第一个参数。\n始终cls用于类方法的第一个参数。\n 方法名称和实例变量   使用函数命名规则：小写单词，必要时用下划线分隔以提高可读性。\n 常数   常量通常在模块级别定义，并以全大写字母书写，并用下划线分隔单词。\n 编程建议 None的建议 1 2  # 正确的: if foo is not None:   1 2  # 错误的: if not foo is None:   函数返回 在返回语句中保持一致。函数中的所有 return 语句都应该返回一个表达式，或者它们都不应该返回。如果任何 return 语句返回一个表达式，则任何没有返回值的 return 语句都应该明确地将 this 声明为，并且明确的 return 语句应该出现在函数的末尾（如果可访问）：return None\n1 2 3 4 5 6 7 8 9 10 11 12  # Correct: def foo(x): if x = 0: return math.sqrt(x) else: return None def bar(x): if x  0: return None return math.sqrt(x)     对象类型比较应始终使用 isinstance() 而不是直接比较类型：\n1 2  # 正确的: if isinstance(obj, int):   1 2  # 错误的: if type(obj) is type(1):     对于序列（字符串、列表、元组），使用空序列为假的事实：\n1 2 3  # 正确的: if not seq: if seq:   1 2 3  # 错误的: if len(seq): if not len(seq):     编程注释建议待续…. 注意：Python 中没有属性是真正私有的。 ",
+  "wordCount" : "2451",
+  "inLanguage": "en",
+  "datePublished": "2022-07-13T23:17:22+08:00",
+  "dateModified": "2022-07-13T23:17:22+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "hanson"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hanson00.github.io/posts/technology/python/python_pep8/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hanson's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hanson00.github.io/posts/imgs/66.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hanson00.github.io/" accesskey="h" title="Hanson&#39;s Blog (Alt + H)">Hanson&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hanson00.github.io/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/python/">Python文章</a></div>
+    <h1 class="post-title">
+      Python_PEP8
+    </h1>
+    <div class="post-description">
+      Python-PEP8代码风格指南摘要
+    </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;2022-07-13&nbsp;|&nbsp;字数:&nbsp;2451字&nbsp;|&nbsp;时长: 5分钟&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
+      <ul class="post-tags-meta">
+      </ul>
+
+      <span id="busuanzi_container_page_pv">
+        &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+      </span>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#python-pep8%e4%bb%a3%e7%a0%81%e9%a3%8e%e6%a0%bc%e6%8c%87%e5%8d%97%e6%91%98%e8%a6%81" aria-label="Python-PEP8代码风格指南摘要">Python-PEP8代码风格指南摘要</a><ul>
+                                    
+                        <li>
+                            <a href="#%e4%bb%a3%e7%a0%81%e5%b8%83%e5%b1%80" aria-label="代码布局">代码布局</a><ul>
+                                    
+                        <li>
+                            <a href="#%e7%bc%a9%e8%bf%9b" aria-label="缩进">缩进</a></li>
+                        <li>
+                            <a href="#%e7%a9%ba%e6%a0%bc%e6%98%af%e9%a6%96%e9%80%89%e7%9a%84%e7%bc%a9%e8%bf%9b%e6%96%b9%e6%b3%95" aria-label="空格是首选的缩进方法">空格是首选的缩进方法</a></li>
+                        <li>
+                            <a href="#%e6%9c%80%e5%a4%a7%e8%a1%8c%e9%95%bf" aria-label="最大行长">最大行长</a></li>
+                        <li>
+                            <a href="#%e5%9c%a8%e4%ba%8c%e5%85%83%e8%bf%90%e7%ae%97%e7%ac%a6%e4%b9%8b%e5%89%8d%e6%8d%a2%e8%a1%8c" aria-label="在二元运算符之前换行">在二元运算符之前换行</a></li>
+                        <li>
+                            <a href="#import%e8%af%ad%e5%8f%a5" aria-label="import语句">import语句</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#%e8%a1%a8%e8%be%be%e5%bc%8f%e5%92%8c%e8%af%ad%e5%8f%a5%e4%b8%ad%e7%9a%84%e7%a9%ba%e6%a0%bc" aria-label="表达式和语句中的空格">表达式和语句中的空格</a></li>
+                        <li>
+                            <a href="#%e6%b3%a8%e9%87%8a" aria-label="注释">注释</a></li>
+                        <li>
+                            <a href="#%e5%91%bd%e5%90%8d%e7%ba%a6%e5%ae%9a" aria-label="命名约定">命名约定</a><ul>
+                                    
+                        <li>
+                            <a href="#%e8%87%b3%e9%ab%98%e5%8e%9f%e5%88%99" aria-label="至高原则">至高原则</a></li>
+                        <li>
+                            <a href="#%e6%8f%8f%e8%bf%b0%e6%80%a7%e5%91%bd%e5%90%8d%e6%a0%b7%e5%bc%8f" aria-label="描述性:命名样式">描述性:命名样式</a></li>
+                        <li>
+                            <a href="#%e8%a7%84%e5%ae%9a%e6%80%a7%e5%91%bd%e5%90%8d%e7%ba%a6%e5%ae%9a" aria-label="规定性:命名约定">规定性:命名约定</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#%e7%bc%96%e7%a8%8b%e5%bb%ba%e8%ae%ae" aria-label="编程建议">编程建议</a><ul>
+                                    <ul>
+                                    
+                        <li>
+                            <a href="#none%e7%9a%84%e5%bb%ba%e8%ae%ae" aria-label="None的建议">None的建议</a></li>
+                        <li>
+                            <a href="#%e5%87%bd%e6%95%b0%e8%bf%94%e5%9b%9e" aria-label="函数返回">函数返回</a></li>
+                        <li>
+                            <a href="#%e7%bc%96%e7%a8%8b%e6%b3%a8%e9%87%8a%e5%bb%ba%e8%ae%ae%e5%be%85%e7%bb%ad" aria-label="编程注释建议待续&amp;hellip;.">编程注释建议待续&hellip;.</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h1 id="python-pep8代码风格指南摘要">Python-PEP8代码风格指南摘要<a hidden class="anchor" aria-hidden="true" href="#python-pep8代码风格指南摘要">#</a></h1>
+<blockquote>
+<p>PEP8代码风格指南仅仅只是提供建议，最重要是保持与项目内部保持一致性，有时在遇到与代码风格不适用的地方要根据自己的最佳判断进行决定。</p>
+<p>下面给出一些可以忽略代码风格的一些理由：</p>
+<ol>
+<li>应用代码风格指南时会<strong>使代码可读性降低</strong>时，不应使用</li>
+<li>与历史代码(周围代码)的代码风格不一致时</li>
+</ol>
+</blockquote>
+<h2 id="代码布局">代码布局<a hidden class="anchor" aria-hidden="true" href="#代码布局">#</a></h2>
+<h3 id="缩进">缩进<a hidden class="anchor" aria-hidden="true" href="#缩进">#</a></h3>
+<p>续行应该使用 Python 的隐式行在<strong>括号、方括号和大括号内连接</strong>，或者使用<em>悬挂缩进</em> 垂直对齐包裹的元素。使用悬挂缩进时，应考虑以下事项；第一行不应该有任何参数，并且应该使用进一步的缩进来清楚地将自己区分为续行：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># 正确的用法:</span>
+
+<span style="color:#0080ff;font-style:italic"># 与开始分隔符对齐。</span>
+foo <span style="color:#2c5dcd">=</span> long_function_name(var_one, var_two,
+                         var_three, var_four)
+
+<span style="color:#0080ff;font-style:italic"># 添加 4 个空格（额外的缩进级别）以将参数与函数体区分开来。</span>
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">long_function_name</span>(
+        var_one, var_two, var_three,
+        var_four):
+    <span style="color:#5918bb;font-weight:bold">print</span>(var_one)
+
+<span style="color:#0080ff;font-style:italic"># 悬挂缩进应该增加一个层次。</span>
+foo <span style="color:#2c5dcd">=</span> long_function_name(
+    var_one, var_two,
+    var_three, var_four)
+
+<span style="color:#0080ff;font-style:italic"># 悬挂缩进*可能*缩进到 4 个空格以外。</span>
+foo <span style="color:#2c5dcd">=</span> long_function_name(
+  var_one, var_two,
+  var_three, var_four)
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="空格是首选的缩进方法">空格是首选的缩进方法<a hidden class="anchor" aria-hidden="true" href="#空格是首选的缩进方法">#</a></h3>
+<h3 id="最大行长">最大行长<a hidden class="anchor" aria-hidden="true" href="#最大行长">#</a></h3>
+<blockquote>
+<p>将所有行限制为最多 79 个字符。</p>
+<p>对于结构限制较少的长文本块（文档字符串或注释），行长应限制为 72 个字符。</p>
+<p>包装长行的首选方法是在括号、方括号和大括号内使用 Python 的隐含行继续。通过将表达式括在括号中，可以将长行分成多行。这些应该优先使用反斜杠来继续行。</p>
+</blockquote>
+<h3 id="在二元运算符之前换行">在二元运算符之前换行<a hidden class="anchor" aria-hidden="true" href="#在二元运算符之前换行">#</a></h3>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic">#正确的：</span>
+income <span style="color:#2c5dcd">=</span> (gross_wages
+          <span style="color:#2c5dcd">+</span> taxable_interest
+          <span style="color:#2c5dcd">+</span> (dividends <span style="color:#2c5dcd">-</span> qualified_dividends)
+          <span style="color:#2c5dcd">-</span> ira_deduction
+          <span style="color:#2c5dcd">-</span> student_loan_interest)
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="import语句">import语句<a hidden class="anchor" aria-hidden="true" href="#import语句">#</a></h3>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic">#正确的：</span>
+<span style="color:#2c5dcd;font-weight:bold">import</span> os
+<span style="color:#2c5dcd;font-weight:bold">import</span> sys
+<span style="color:#2c5dcd;font-weight:bold">from</span> flask <span style="color:#2c5dcd;font-weight:bold">import</span> Flask,jsonity,request
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>导入总是放在文件的顶部，就在任何模块注释和文档字符串之后，模块全局变量和常量之前。</p>
+<p>进口应按以下顺序分组：</p>
+<ol>
+<li>标准库导入。</li>
+<li>相关第三方进口。</li>
+<li>本地应用程序/库特定的导入。</li>
+</ol>
+</blockquote>
+<h2 id="表达式和语句中的空格">表达式和语句中的空格<a hidden class="anchor" aria-hidden="true" href="#表达式和语句中的空格">#</a></h2>
+<p>在下面的情况应该避免<strong>多余</strong>的空格：</p>
+<ol>
+<li>紧接在圆括号，方括号或大括号内：</li>
+</ol>
+<blockquote>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># 正确的:</span>
+spam(ham[<span style="color:#5918bb;font-weight:bold">1</span>], {eggs: <span style="color:#5918bb;font-weight:bold">2</span>})
+
+<span style="color:#0080ff;font-style:italic"># 错误的:</span>
+spam( ham[ <span style="color:#5918bb;font-weight:bold">1</span> ], { eggs: <span style="color:#5918bb;font-weight:bold">2</span> } )
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<ol start="2">
+<li>在结尾的逗号和后面的右括号之间</li>
+<li>紧接在逗号、分号或冒号之前</li>
+<li>在切片中</li>
+</ol>
+<blockquote>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># 正确的:</span>
+ham[<span style="color:#5918bb;font-weight:bold">1</span>:<span style="color:#5918bb;font-weight:bold">9</span>], ham[<span style="color:#5918bb;font-weight:bold">1</span>:<span style="color:#5918bb;font-weight:bold">9</span>:<span style="color:#5918bb;font-weight:bold">3</span>], ham[:<span style="color:#5918bb;font-weight:bold">9</span>:<span style="color:#5918bb;font-weight:bold">3</span>], ham[<span style="color:#5918bb;font-weight:bold">1</span>::<span style="color:#5918bb;font-weight:bold">3</span>], ham[<span style="color:#5918bb;font-weight:bold">1</span>:<span style="color:#5918bb;font-weight:bold">9</span>:]
+ham[lower:upper], ham[lower:upper:], ham[lower::step]
+ham[lower<span style="color:#2c5dcd">+</span>offset : upper<span style="color:#2c5dcd">+</span>offset]
+ham[: upper_fn(x) : step_fn(x)], ham[:: step_fn(x)]
+ham[lower <span style="color:#2c5dcd">+</span> offset : upper <span style="color:#2c5dcd">+</span> offset]
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<ol start="5">
+<li>
+<p>始终在这些二元运算符的两边加上一个空格：赋值 ( <code>=</code>)、扩充赋值 (<code>+=</code>等<code>-=</code> )、比较 ( <code>==</code>, <code>&lt;</code>, <code>&gt;</code>, <code>!=</code>, <code>&lt;&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>in</code>, , , ) 布尔值 ( , , )。</p>
+</li>
+<li>
+<p>如果使用具有不同优先级的运算符，请考虑在具有最低优先级的运算符周围添加空格。使用您自己的判断；但是，永远不要使用多个空格，并且在二元运算符的两侧总是有相同数量的空格：</p>
+<blockquote>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># 正确的:</span>
+i <span style="color:#2c5dcd">=</span> i <span style="color:#2c5dcd">+</span> <span style="color:#5918bb;font-weight:bold">1</span>
+submitted <span style="color:#2c5dcd">+=</span> <span style="color:#5918bb;font-weight:bold">1</span>
+x <span style="color:#2c5dcd">=</span> x<span style="color:#2c5dcd">*</span><span style="color:#5918bb;font-weight:bold">2</span> <span style="color:#2c5dcd">-</span> <span style="color:#5918bb;font-weight:bold">1</span>
+hypot2 <span style="color:#2c5dcd">=</span> x<span style="color:#2c5dcd">*</span>x <span style="color:#2c5dcd">+</span> y<span style="color:#2c5dcd">*</span>y
+c <span style="color:#2c5dcd">=</span> (a<span style="color:#2c5dcd">+</span>b) <span style="color:#2c5dcd">*</span> (a<span style="color:#2c5dcd">-</span>b)
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+</li>
+<li>
+<p>函数注释应该使用冒号的常规规则，并且<code>-&gt;</code>如果存在，箭头周围总是有空格。</p>
+<blockquote>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># 正确的:</span>
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">munge</span>() <span style="color:#2c5dcd">-&gt;</span> PosInt: <span style="color:#2c5dcd">...</span>
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+</li>
+<li>
+<p><code>=</code>当用于指示关键字参数或用于指示未 <em>注释</em>函数参数的默认值时，请勿在符号周围使用空格：</p>
+<blockquote>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># 正确的:</span>
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">complex</span>(real, imag<span style="color:#2c5dcd">=</span><span style="color:#5918bb;font-weight:bold">0.0</span>):
+ <span style="color:#2c5dcd;font-weight:bold">return</span> magic(r<span style="color:#2c5dcd">=</span>real, i<span style="color:#2c5dcd">=</span>imag)
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<h2 id="注释">注释<a hidden class="anchor" aria-hidden="true" href="#注释">#</a></h2>
+<p>与代码相矛盾的注释比没有注释更糟糕。当代码更改时，请始终优先更新评论！</p>
+<p>块注释通常由一个或多个由完整句子组成的段落组成，每个句子都以句点结尾。</p>
+<blockquote>
+<p><strong>块注释</strong>通常适用于跟随它们的代码，并且缩进到与该代码相同的级别。块注释的每一行都以一个<code>#</code>和一个空格开头。</p>
+<p>谨慎使用内联注释。内联注释是与语句在同一行上的注释。内联注释应与语句至少间隔两个空格。它们应该以 # 和一个空格开头。内联注释是不必要的，如果它们陈述明显的话，实际上会分散注意力。</p>
+</blockquote>
+<h2 id="命名约定">命名约定<a hidden class="anchor" aria-hidden="true" href="#命名约定">#</a></h2>
+<blockquote>
+<p>Python 库的命名约定有点混乱，所以我们永远不会完全一致——尽管如此，这里是目前推荐的命名标准。应该按照这些标准编写新的模块和包（包括第三方框架），但如果现有库具有不同的风格，则首选内部一致性。</p>
+</blockquote>
+<h3 id="至高原则">至高原则<a hidden class="anchor" aria-hidden="true" href="#至高原则">#</a></h3>
+<blockquote>
+<p>作为 API 的公共部分对用户可见的名称应遵循反映使用而非实现的约定。</p>
+</blockquote>
+<h3 id="描述性命名样式">描述性:命名样式<a hidden class="anchor" aria-hidden="true" href="#描述性命名样式">#</a></h3>
+<p>通常区分以下命名样式：</p>
+<ul>
+<li>
+<p><code>b</code>（单个小写字母）</p>
+</li>
+<li>
+<p><code>B</code>（单个大写字母）</p>
+</li>
+<li>
+<p><code>lowercase</code></p>
+</li>
+<li>
+<p><code>lower_case_with_underscores</code></p>
+</li>
+<li>
+<p><code>UPPERCASE</code></p>
+</li>
+<li>
+<p><code>UPPER_CASE_WITH_UNDERSCORES</code></p>
+</li>
+<li>
+<p><code>CapitalizedWords</code>（或 CapWords 或 CamelCase——因其字母的凹凸外观而得名）。这有时也称为StudlyCaps。</p>
+<p>注意：在 CapWords 中使用首字母缩写词时，首字母缩写词的所有字母大写。因此 HTTPServerError 比 HttpServerError 好。</p>
+</li>
+<li>
+<p><code>mixedCase</code>（与 CapitalizedWords 的不同之处在于初始小写字符！）</p>
+</li>
+<li>
+<p><code>Capitalized_Words_With_Underscores</code>（丑陋的！）</p>
+</li>
+</ul>
+<p>还有一种使用简短的唯一前缀将相关名称组合在一起的风格。这在 Python 中使用不多，但为了完整性而提及。其项传统上具有<code>st_mode</code>、 <code>st_size</code>等名称<code>st_mtime</code>。（这样做是助于程序员熟悉它。）</p>
+<h3 id="规定性命名约定">规定性:命名约定<a hidden class="anchor" aria-hidden="true" href="#规定性命名约定">#</a></h3>
+<ol>
+<li>注意避免的命名</li>
+</ol>
+<blockquote>
+<p>切勿使用字符“l”（小写字母 el）、“O”（大写字母 oh）或“I”（大写字母 eye）作为单字符变量名。</p>
+<p>在某些字体中，这些字符与数字 1 和 0 无法区分。当想使用“l”时，请改用“L”。</p>
+</blockquote>
+<ol start="2">
+<li>包和模块</li>
+</ol>
+<blockquote>
+<p>模块应该有简短的全小写名称。如果提高可读性，可以在模块名称中使用下划线。Python 包也应该有简短的全小写名称，尽管不鼓励使用下划线。</p>
+<p>当用 C 或 C++ 编写的扩展模块附带提供更高级别（例如更面向对象）接口的 Python 模块时，C/C++ 模块具有前导下划线（例如<code>_socket</code>）。</p>
+</blockquote>
+<ol start="3">
+<li>类名</li>
+</ol>
+<blockquote>
+<p>类名一般首字母大写</p>
+</blockquote>
+<ol start="4">
+<li>函数名和变量名</li>
+</ol>
+<blockquote>
+<p>函数名称应为小写，必要时用下划线分隔单词以提高可读性。</p>
+<p>变量名遵循与函数名相同的约定。</p>
+</blockquote>
+<ol start="5">
+<li>函数和方法参数</li>
+</ol>
+<blockquote>
+<p>始终<code>self</code>用于实例方法的第一个参数。</p>
+<p>始终<code>cls</code>用于类方法的第一个参数。</p>
+</blockquote>
+<ol start="6">
+<li>方法名称和实例变量</li>
+</ol>
+<blockquote>
+<p>使用函数命名规则：小写单词，必要时用下划线分隔以提高可读性。</p>
+</blockquote>
+<ol start="7">
+<li>常数</li>
+</ol>
+<blockquote>
+<p>常量通常在模块级别定义，并以全大写字母书写，并用下划线分隔单词。</p>
+</blockquote>
+<h2 id="编程建议">编程建议<a hidden class="anchor" aria-hidden="true" href="#编程建议">#</a></h2>
+<h4 id="none的建议">None的建议<a hidden class="anchor" aria-hidden="true" href="#none的建议">#</a></h4>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># 正确的:</span>
+<span style="color:#2c5dcd;font-weight:bold">if</span> foo <span style="color:#2c5dcd;font-weight:bold">is</span> <span style="color:#2c5dcd;font-weight:bold">not</span> <span style="color:#2c5dcd;font-weight:bold">None</span>:
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># 错误的:</span>
+<span style="color:#2c5dcd;font-weight:bold">if</span> <span style="color:#2c5dcd;font-weight:bold">not</span> foo <span style="color:#2c5dcd;font-weight:bold">is</span> <span style="color:#2c5dcd;font-weight:bold">None</span>:
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="函数返回">函数返回<a hidden class="anchor" aria-hidden="true" href="#函数返回">#</a></h4>
+<p>在返回语句中保持一致。函数中的所有 return 语句都应该返回一个表达式，或者它们都不应该返回。如果任何 return 语句返回一个表达式，则任何没有返回值的 return 语句都应该明确地将 this 声明为，并且明确的 return 语句应该出现在函数的末尾（如果可访问）：<code>return None</code></p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># Correct:</span>
+
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">foo</span>(x):
+    <span style="color:#2c5dcd;font-weight:bold">if</span> x <span style="color:#2c5dcd">&gt;=</span> <span style="color:#5918bb;font-weight:bold">0</span>:
+        <span style="color:#2c5dcd;font-weight:bold">return</span> math<span style="color:#2c5dcd">.</span>sqrt(x)
+    <span style="color:#2c5dcd;font-weight:bold">else</span>:
+        <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#2c5dcd;font-weight:bold">None</span>
+
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">bar</span>(x):
+    <span style="color:#2c5dcd;font-weight:bold">if</span> x <span style="color:#2c5dcd">&lt;</span> <span style="color:#5918bb;font-weight:bold">0</span>:
+        <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#2c5dcd;font-weight:bold">None</span>
+    <span style="color:#2c5dcd;font-weight:bold">return</span> math<span style="color:#2c5dcd">.</span>sqrt(x)
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>对象类型比较应始终使用 isinstance() 而不是直接比较类型：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># 正确的:</span>
+<span style="color:#2c5dcd;font-weight:bold">if</span> <span style="color:#5918bb;font-weight:bold">isinstance</span>(obj, <span style="color:#5918bb;font-weight:bold">int</span>):
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># 错误的:</span>
+<span style="color:#2c5dcd;font-weight:bold">if</span> <span style="color:#5918bb;font-weight:bold">type</span>(obj) <span style="color:#2c5dcd;font-weight:bold">is</span> <span style="color:#5918bb;font-weight:bold">type</span>(<span style="color:#5918bb;font-weight:bold">1</span>):
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>对于序列（字符串、列表、元组），使用空序列为假的事实：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># 正确的:</span>
+<span style="color:#2c5dcd;font-weight:bold">if</span> <span style="color:#2c5dcd;font-weight:bold">not</span> seq:
+<span style="color:#2c5dcd;font-weight:bold">if</span> seq:
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># 错误的:</span>
+<span style="color:#2c5dcd;font-weight:bold">if</span> <span style="color:#5918bb;font-weight:bold">len</span>(seq):
+<span style="color:#2c5dcd;font-weight:bold">if</span> <span style="color:#2c5dcd;font-weight:bold">not</span> <span style="color:#5918bb;font-weight:bold">len</span>(seq):
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="编程注释建议待续">编程注释建议待续&hellip;.<a hidden class="anchor" aria-hidden="true" href="#编程注释建议待续">#</a></h4>
+<center>注意：Python 中没有属性是真正私有的。
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://hanson00.github.io/posts/technology/python/python%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B901/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Python小知识点01</span>
+  </a>
+</nav>
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>✨昵称输入QQ号可以自动关联✨
+        <hr />
+
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo1-mu.vercel.app/",  
+            el: "#tcomment",
+            lang: 'zh-CN',
+            region: 'ap-guangzhou',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
