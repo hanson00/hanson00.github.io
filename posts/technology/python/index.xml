@@ -6,7 +6,16 @@
     <description>Recent content in Python文章 on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 02 Jul 2022 16:24:23 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/posts/technology/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Jul 2022 10:38:01 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/posts/technology/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python小知识点01</title>
+      <link>https://hanson00.github.io/posts/technology/python/python%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B901/</link>
+      <pubDate>Mon, 04 Jul 2022 10:38:01 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/python%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B901/</guid>
+      <description>关于Python的数组的一些小知识</description>
+    </item>
+    
     <item>
       <title>Python 自动化办公</title>
       <link>https://hanson00.github.io/posts/technology/python/python-%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/</link>

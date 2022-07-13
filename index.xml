@@ -6,7 +6,16 @@
     <description>Recent content on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 03 Jul 2022 07:01:37 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Jul 2022 10:38:01 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python小知识点01</title>
+      <link>https://hanson00.github.io/posts/technology/python/python%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B901/</link>
+      <pubDate>Mon, 04 Jul 2022 10:38:01 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/python%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B901/</guid>
+      <description>关于Python的数组的一些小知识</description>
+    </item>
+    
     <item>
       <title>爬虫见闻录</title>
       <link>https://hanson00.github.io/posts/thinking/%E7%88%AC%E8%99%AB%E8%A7%81%E9%97%BB%E5%BD%95/</link>
