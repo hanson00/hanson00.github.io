@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Python-Flask | Hanson&#39;s Blog</title>
+<meta name="keywords" content="Python-Flask学习">
+<meta name="description" content="Python-Flask学习">
+<meta name="author" content="
+作者:&nbsp;hanson">
+<link rel="canonical" href="https://hanson00.github.io/posts/technology/python/flask/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hanson00.github.io/posts/imgs/favicon16x16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hanson00.github.io/posts/imgs/favicon32x32.ico">
+<link rel="apple-touch-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="mask-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Python-Flask" />
+<meta property="og:description" content="Python-Flask学习" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanson00.github.io/posts/technology/python/flask/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-16T08:23:06&#43;08:00" />
+<meta property="article:modified_time" content="2022-07-16T08:23:06&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python-Flask"/>
+<meta name="twitter:description" content="Python-Flask学习"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hanson00.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "💻技术类文章",
+      "item": "https://hanson00.github.io/posts/technology/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Python文章",
+      "item": "https://hanson00.github.io/posts/technology/python/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Python-Flask",
+      "item": "https://hanson00.github.io/posts/technology/python/flask/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Python-Flask",
+  "name": "Python-Flask",
+  "description": "Python-Flask学习",
+  "keywords": [
+    "Python-Flask学习"
+  ],
+  "articleBody": "Python-Flask学习  微框架、简洁、只做它需要做的，给开发者提供了很大的扩展性。 Flask和相应的插件写得很好，如果实在找不到相应插件，就动手造轮子。 开发效率非常高，比如使用SQLAlchemy的ORM操作数据库可以节省开发者大量书写sql的时间。 默认的Jinija2模板引擎替换成其他模板引擎都是非常方便的。 开发项目时的命名尽量避开Python自带的命名   一般普通开发者的项目结构如下： 外置数据库配置文件是为了防止导包循环\n配置文件 官方配置文档：https://dormousehole.readthedocs.io/en/latest/config.html\n配置项文件里面都是变量名大写\n视图函数(路由函数)转URL 知道视图函数(路由函数)从而寻找对应的URL\n使用url_for(函数名,对应的URL实现规则)实现\n页面跳转和重定向 1 2 3 4 5 6 7 8 9  from flask import redirect @app.route(\"/profile\") def tttsss(): uid = request.args.get(\"id\") if uid: return \"用户验证成功\" else: return redirect(url_for(\"index\"))   模板的使用 使用render_template\n知识点：\n  模板过滤器\n  if语句\n  1 2 3 4 5  {% if age = 18 %} div成年div {% if age  18 %} div没成年div {% endif %}       for语句\n  1 2 3 4  @app.route(\"/about\") def about(): context = {\"username\":\"温铭军\"} return render_template(\"about.html\", **context)    静态文件的使用\n  1  link rel=\"stylesheet\" href=\"{{ url_for(\"static\", filename=\"css/about.css\") }}\"       模板的继承 base.html\n1 2 3 4 5 6 7 8 9 10 11   html lang=\"en\" head meta charset=\"UTF-8\" title{%block title %}{% endblock %}title {% block head %}{% endblock %} head body {% block body %}{% endblock %} body html   about.html\n1 2 3 4 5 6 7 8 9 10 11 12 13 14  {% extends \"base.html\" %} {% block title %} 我是关于页面，要善用block+tab生成句子 {% endblock %} {% block head %} link rel=\"stylesheet\" href=\"{{ url_for(\"static\", filename=\"css/about.css\") }}\" {% endblock %} {% block body %} 这里是{{ username|length }} h1温铭军爱学习h1 {% endblock %}   蓝图 app.py\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  from flask import Flask from apps.book import bp as bookbp from apps.course import bp as coursebp from apps.user import bp as userbp app = Flask(__name__) # 注册蓝图 app.register_blueprint(bookbp) app.register_blueprint(coursebp) app.register_blueprint(userbp) @app.route(\"/\") def index(): return \"hello\" if __name__ == '__main__': app.run()   1 2 3 4 5 6 7 8 9 10 11 12 13  # coding:utf-8 # @Time : 2022/7/13 20:22 # @Author : 软件1194温铭军 # @file : course.py # $software : PyCharm from flask import Blueprint # 类似于创建app bp = Blueprint(\"course\", __name__, url_prefix=\"/course\") @bp.route(\"/list\") def courselist(): return \"课程列表\"   Flask连接数据库 1.0\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29  from flask import Flask from flask_sqlalchemy import SQLAlchemy app = Flask(__name__) # 数据库的配置变量 HOSTNAME = '127.0.0.1' PORT = '3306' DATABASE = 'stuflask' USERNAME = 'root' PASSWORD = '1234' DB_URI = f'mysql+pymysql://{USERNAME}:{PASSWORD}@{HOSTNAME}:{PORT}/{DATABASE}' app.config[\"SQLALCHEMY_DATABASE_URI\"] = DB_URI db = SQLAlchemy(app) @app.route(\"/\") def index(): #写一个测试代码验证是否成功 engine = db.get_engine() with engine.connect() as conn: result = conn.execute(\"select 1\") print(result.fetchone()) return \"hello\" if __name__ == '__main__': app.run()   数据库ORM映射  一对多\n 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90  from flask import Flask from flask_sqlalchemy import SQLAlchemy app = Flask(__name__) app.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = True # 数据库的配置变量 HOSTNAME = '127.0.0.1' PORT = '3306' DATABASE = 'stuflask' USERNAME = 'root' PASSWORD = '1234' DB_URI = f'mysql+pymysql://{USERNAME}:{PASSWORD}@{HOSTNAME}:{PORT}/{DATABASE}' app.config[\"SQLALCHEMY_DATABASE_URI\"] = DB_URI db = SQLAlchemy(app) class User(db.Model): __tablename__ = \"user\" id = db.Column(db.Integer, primary_key=True, autoincrement=True) username = db.Column(db.String(20), nullable=False) # 定义ORM模型 class Aticle(db.Model): __tablename__ = \"article\" id = db.Column(db.Integer, primary_key=True, autoincrement=True) title = db.Column(db.String(60), nullable=False) content = db.Column(db.Text, nullable=False) # 一对多 # 外键的数据类型要看所引用的字段类型，db.ForeignKey(\"表名.字段名\") # 外键是属于数据库层面，不推荐在ORM中直接使用 author_id = db.Column(db.Integer, db.ForeignKey(\"user.id\")) # ORM绑定关系db.relationship(\"所创建的数据库类模型字段class 名\") # 第一个参数是模型的名字，backref代表反向引用代表对方访问我的时候的名称字段 author = db.relationship(\"User\", backref=\"aticles\") # 将模型映射到数据库 db.drop_all() db.create_all() @app.route(\"/onetomany\") def otm(): article = Aticle(title=\"555\", content=\"文章\") user = User(username=\"温铭军\") article.author = user db.session.add(article) db.session.commit() print(user.aticles)\t#上面的反向引用名backref return \"数据保存成功otm\" @app.route(\"/\") def index(): #写一个测试代码验证是否成功 engine = db.get_engine() with engine.connect() as conn: result = conn.execute(\"select 1\") print(result.fetchone()) return \"hello\" @app.route(\"/article\") def addarticle(): # # 添加数据 # # 创建数据对象 # article = Aticle(title=\"温铭军爱学习\", content=\"6666\") # db.session.add(article) # db.session.commit() # return \"数据添加成功\" # # 查询数据 # article = Aticle.query.filter_by(id=1)[0] # print(article.title) # return \"数据查询完成\" # # 修改数据 # article = Aticle.query.filter_by(id=1)[0] # article.content = \"修改后真的强\" # db.session.commit() # return \"数据修改成功\" # 删除数据 Aticle.query.filter_by(id=1).delete() db.session.commit() return \"数据删除成功\" if __name__ == '__main__': app.run()    一对一表的实现\n 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112  from flask import Flask from flask_sqlalchemy import SQLAlchemy app = Flask(__name__) app.config[\"SQLALCHEMY_TRACK_MODIFICATIONS\"] = True # 数据库的配置变量 HOSTNAME = '127.0.0.1' PORT = '3306' DATABASE = 'stuflask' USERNAME = 'root' PASSWORD = '1234' DB_URI = f'mysql+pymysql://{USERNAME}:{PASSWORD}@{HOSTNAME}:{PORT}/{DATABASE}' app.config[\"SQLALCHEMY_DATABASE_URI\"] = DB_URI db = SQLAlchemy(app) class UserExtension(db.Model): __tablename__ = \"user_extension\" id = db.Column(db.Integer, primary_key=True, autoincrement=True) school = db.Column(db.String(20)) user_id = db.Column(db.Integer, db.ForeignKey(\"user.id\")) # 一对一引用 db.backref在反向引用时需要传递一些其他参数否则不需要使用 # uselist=False 表示在代表反向引用时使用的是一个对象不是一个列表 user = db.relationship(\"User\", backref=db.backref(\"extension\", uselist=False)) class User(db.Model): __tablename__ = \"user\" id = db.Column(db.Integer, primary_key=True, autoincrement=True) username = db.Column(db.String(20), nullable=False) # 定义ORM模型 class Aticle(db.Model): __tablename__ = \"article\" id = db.Column(db.Integer, primary_key=True, autoincrement=True) title = db.Column(db.String(60), nullable=False) content = db.Column(db.Text, nullable=False) # 一对多 # 外键的数据类型要看所引用的字段类型，db.ForeignKey(\"表名.字段名\") # 外键是属于数据库层面，不推荐在ORM中直接使用 author_id = db.Column(db.Integer, db.ForeignKey(\"user.id\")) # ORM绑定关系db.relationship(\"所创建的数据库类模型字段class 名\") # 第一个参数是模型的名字，backref代表反向引用代表对方访问我的时候的名称字段 author = db.relationship(\"User\", backref=\"aticles\") # 将模型映射到数据库 db.drop_all() db.create_all() @app.route(\"/onetomany\") def otm(): article1 = Aticle(title=\"555\", content=\"文章\") article2 = Aticle(title=\"2222\", content=\"文章222\") user = User(username=\"温铭军\") article1.author = user article2.author = user db.session.add(article1) db.session.add(article2) db.session.commit() # 反向引用 print(user.aticles) return \"数据保存成功otm\" @app.route(\"/onetoone\") def oto(): user = User(username=\"wmj\") extension = UserExtension(school=\"北京大学\") user.extension = extension db.session.add(user) db.session.commit() return \"一对一\" @app.route(\"/\") def index(): #写一个测试代码验证是否成功 engine = db.get_engine() with engine.connect() as conn: result = conn.execute(\"select 1\") print(result.fetchone()) return \"hello\" @app.route(\"/article\") def addarticle(): # # 添加数据 # # 创建数据对象 # article = Aticle(title=\"温铭军爱学习\", content=\"6666\") # db.session.add(article) #添加数据到数据库 # db.session.commit() # return \"数据添加成功\" # # 查询数据 # article = Aticle.query.filter_by(id=1)[0] # print(article.title) # return \"数据查询完成\" # # 修改数据 # article = Aticle.query.filter_by(id=1)[0] # article.content = \"修改后真的强\" # db.session.commit() # return \"数据修改成功\" # 删除数据 Aticle.query.filter_by(id=1).delete() db.session.commit() return \"数据删除成功\" if __name__ == '__main__': app.run()   灵活管理ORM与数据库表 不用使用db.create_all()、db.drop_all(),使用前面语句的弊端模型新增或删除字段，只会在第一次生成表的时候处理\n1  from flask_migrate import Migrate   1  migrate = Migrate(app, db)    flask db init flask db migrate -m “first commit” flask db upgrade  初始化后，后面更新数据库后只需要执行后面两句\nflask中使用cookie和session  cookies：在Flask中操作cookie是通过response对象来操作，可以在response回之前，通过response.set_cookie来设置，这个方法有以下几个参数需要注意：  key：设置的cookie的key。 value：key对应的value。 max_age：改cookie的过期时间，如果不设置，则浏览器关闭后就会自动过期。 expires：过期时间，应该是一个datetime类型。 domain：该cookie在哪个域名中有效。一般设置子域名，比如cms.example.com。 path：该cookie在哪个路径下有效。   session：Flask中的session是通过from flask import session。然后添加值key和value进去即可。并且，Flask中的session机制是将session信息加密，然后存储在cookie中。专业术语叫做client side session。  Flask-WTF表单验证 flask表单验证 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  from flask import Flask,request,render_template from exts import db from flask_migrate import Migrate import config1 from models import Aticle, User, UserExtension from froms import LoginForm #导入表单 app = Flask(__name__) app.config.from_object(config1) # 绑定app db.init_app(app) migrate = Migrate(app, db) @app.route(\"/login\", methods=[\"POST\", \"GET\"]) def login(): if request.method == \"GET\": return render_template(\"login.html\") else: form = LoginForm(request.form) if form.validate(): return \"登录成功\" else: return \"邮箱或密码失败\" if __name__ == '__main__': app.run()    validators:验证器\n 1 2 3 4 5 6 7 8 9 10 11  # coding:utf-8 # @Time : 2022/7/14 12:04 # @Author : 软件1194温铭军 # @file : froms.py # $software : PyCharm import wtforms from wtforms.validators import length, email class LoginForm(wtforms.Form): email = wtforms.StringField(validators=[length(min=5, max=20), email()]) password = wtforms.StringField(validators=[length(min=6, max=15)])   1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30   html lang=\"en\" head meta charset=\"UTF-8\" title登录title head form action=\"/login\" method=\"post\" table tbody tr td邮箱：td td input type=\"email\" name=\"email\" td tr tr td密码：td td input type=\"text\" name=\"password\" td tr tbody input type=\"submit\" value=\"提交\" table form body html   项目重构例子 app.py\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25  from flask import Flask, url_for import config # 导入配置文件 from exts import db,mail from blueprints.qa import bp as qa_bp from blueprints.user import bp as user_bp from flask_migrate import Migrate # from models import EmailModel app = Flask(__name__) # 绑定config配置 app.config.from_object(config) # 初始化，绑定数据库 db.init_app(app) mail.init_app(app) migrate = Migrate(app, db) app.register_blueprint(qa_bp) app.register_blueprint(user_bp) if __name__ == '__main__': app.run()   models.py\n1 2 3 4 5 6 7 8 9 10 11 12 13 14  # coding:utf-8 # @Time : 2022/7/14 22:46 # @Author : 软件1194温铭军 # @file : models.py # $software : PyCharm from exts import db from datetime import datetime class EmailModel(db.Model): __tablename__ = \"emailmodel\" id = db.Column(db.Integer, primary_key=True, autoincrement=True) email = db.Column(db.String(20), nullable=False, unique=True) captcha = db.Column(db.String(10), nullable=False) nowtimes = db.Column(db.DateTime, default=datetime.now)   1 2 3 4 5 6 7 8 9  # coding:utf-8 # @Time : 2022/7/14 13:33 # @Author : 软件1194温铭军 # @file : exts.py # $software : PyCharm from flask_sqlalchemy import SQLAlchemy from flask_mail import Mail db = SQLAlchemy() mail = Mail()   config1.py\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26  # coding:utf-8 # @Time : 2022/7/12 10:38 # @Author : 软件1194温铭军 # @file : config.py # $software : PyCharm JSON_AS_ASCII = True # 数据库的配置变量 HOSTNAME = '127.0.0.1' PORT = '3306' DATABASE = 'flaskpj' USERNAME = 'root' PASSWORD = '1234' DB_URI = f'mysql+pymysql://{USERNAME}:{PASSWORD}@{HOSTNAME}:{PORT}/{DATABASE}' SQLALCHEMY_DATABASE_URI = DB_URI SQLALCHEMY_TRACK_MODIFICATIONS = True SECRET_KEY = \"hanson2000\" # 邮箱配置 QQ MAIL_SERVER = \"smtp.qq.com\" MAIL_PORT = 465 MAIL_USE_TLS = False MAIL_USE_SSL = True MAIL_DEBUG = True # 正式上线用False MAIL_USERNAME = \"954952920@qq.com\" MAIL_PASSWORD = \"bmyrgvagcitvbfdf\" MAIL_DEFAULT_SENDER = \"954952920@qq.com\"   Flask的小点 1  from flask import jsonify\t# 将列表数据转换成json数据返回   1 2 3 4 5 6 7 8 9  #如果不想定制子路径来传递参数，也可以通过传统的?=的形式来传递参数，例如：/article?id=xxx，这种情况下，可以通过request.args.get('id')来获取id的值。如果是post方法，则可以通过request.form.get('id')来进行获取。 @app.route(\"/book/\", methods=[\"POST\",\"GET\"]) def onebook(bookid): for boo in books1: if bookid == boo[\"id\"]: return boo return f\"{bookid}is not found\"   1 2 3 4 5 6 7  @app.route(\"/profile\") def tttsss(): uid = request.args.get(\"id\") if uid: return \"用户验证成功\" else: return redirect(url_for(\"index\"))   ",
+  "wordCount" : "4101",
+  "inLanguage": "en",
+  "datePublished": "2022-07-16T08:23:06+08:00",
+  "dateModified": "2022-07-16T08:23:06+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "hanson"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hanson00.github.io/posts/technology/python/flask/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hanson's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hanson00.github.io/posts/imgs/66.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hanson00.github.io/" accesskey="h" title="Hanson&#39;s Blog (Alt + H)">Hanson&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hanson00.github.io/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/python/">Python文章</a></div>
+    <h1 class="post-title">
+      Python-Flask
+    </h1>
+    <div class="post-description">
+      Python-Flask学习
+    </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;2022-07-16&nbsp;|&nbsp;字数:&nbsp;4101字&nbsp;|&nbsp;时长: 9分钟&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
+      <ul class="post-tags-meta">
+        <a href="https://hanson00.github.io/tags/flask/">Flask</a>
+      </ul>
+
+      <span id="busuanzi_container_page_pv">
+        &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+      </span>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#python-flask%e5%ad%a6%e4%b9%a0" aria-label="Python-Flask学习">Python-Flask学习</a><ul>
+                                    <ul>
+                                    <ul>
+                                    
+                        <li>
+                            <a href="#%e4%b8%80%e8%88%ac%e6%99%ae%e9%80%9a%e5%bc%80%e5%8f%91%e8%80%85%e7%9a%84%e9%a1%b9%e7%9b%ae%e7%bb%93%e6%9e%84%e5%a6%82%e4%b8%8b" aria-label="一般普通开发者的项目结构如下：">一般普通开发者的项目结构如下：</a></li></ul>
+                                </ul>
+                                
+                        <li>
+                            <a href="#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" aria-label="配置文件">配置文件</a></li>
+                        <li>
+                            <a href="#%e8%a7%86%e5%9b%be%e5%87%bd%e6%95%b0%e8%b7%af%e7%94%b1%e5%87%bd%e6%95%b0%e8%bd%acurl" aria-label="视图函数(路由函数)转URL">视图函数(路由函数)转URL</a></li>
+                        <li>
+                            <a href="#%e9%a1%b5%e9%9d%a2%e8%b7%b3%e8%bd%ac%e5%92%8c%e9%87%8d%e5%ae%9a%e5%90%91" aria-label="页面跳转和重定向">页面跳转和重定向</a></li>
+                        <li>
+                            <a href="#%e6%a8%a1%e6%9d%bf%e7%9a%84%e4%bd%bf%e7%94%a8" aria-label="模板的使用">模板的使用</a><ul>
+                                    
+                        <li>
+                            <a href="#%e6%a8%a1%e6%9d%bf%e7%9a%84%e7%bb%a7%e6%89%bf" aria-label="模板的继承">模板的继承</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#%e8%93%9d%e5%9b%be" aria-label="蓝图">蓝图</a><ul>
+                                    
+                        <li>
+                            <a href="#flask%e8%bf%9e%e6%8e%a5%e6%95%b0%e6%8d%ae%e5%ba%93" aria-label="Flask连接数据库">Flask连接数据库</a></li>
+                        <li>
+                            <a href="#%e6%95%b0%e6%8d%ae%e5%ba%93orm%e6%98%a0%e5%b0%84" aria-label="数据库ORM映射">数据库ORM映射</a></li>
+                        <li>
+                            <a href="#%e7%81%b5%e6%b4%bb%e7%ae%a1%e7%90%86orm%e4%b8%8e%e6%95%b0%e6%8d%ae%e5%ba%93%e8%a1%a8" aria-label="灵活管理ORM与数据库表">灵活管理ORM与数据库表</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#flask%e4%b8%ad%e4%bd%bf%e7%94%a8cookie%e5%92%8csession" aria-label="flask中使用cookie和session">flask中使用cookie和session</a></li>
+                        <li>
+                            <a href="#flask-wtf%e8%a1%a8%e5%8d%95%e9%aa%8c%e8%af%81" aria-label="Flask-WTF表单验证">Flask-WTF表单验证</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#flask%e8%a1%a8%e5%8d%95%e9%aa%8c%e8%af%81" aria-label="flask表单验证">flask表单验证</a><ul>
+                                    
+                        <li>
+                            <a href="#%e9%a1%b9%e7%9b%ae%e9%87%8d%e6%9e%84%e4%be%8b%e5%ad%90" aria-label="项目重构例子">项目重构例子</a><ul>
+                                    <ul>
+                                    
+                        <li>
+                            <a href="#flask%e7%9a%84%e5%b0%8f%e7%82%b9" aria-label="Flask的小点">Flask的小点</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h1 id="python-flask学习">Python-Flask学习<a hidden class="anchor" aria-hidden="true" href="#python-flask学习">#</a></h1>
+<ul>
+<li>微框架、简洁、只做它需要做的，给开发者提供了很大的扩展性。</li>
+<li>Flask和相应的插件写得很好，如果实在找不到相应插件，就动手造轮子。</li>
+<li>开发效率非常高，比如使用<code>SQLAlchemy</code>的<code>ORM</code>操作数据库可以节省开发者大量书写<code>sql</code>的时间。</li>
+<li>默认的<code>Jinija2</code>模板引擎替换成其他模板引擎都是非常方便的。</li>
+<li>开发项目时的命名尽量避开Python<strong>自带的命名</strong></li>
+</ul>
+<hr>
+<h4 id="一般普通开发者的项目结构如下">一般普通开发者的项目结构如下：<a hidden class="anchor" aria-hidden="true" href="#一般普通开发者的项目结构如下">#</a></h4>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/flask.png" alt="image-20220715100707200"  />
+
+外置数据库配置文件是为了防止导包循环</p>
+<h2 id="配置文件">配置文件<a hidden class="anchor" aria-hidden="true" href="#配置文件">#</a></h2>
+<p>官方配置文档：<code>https://dormousehole.readthedocs.io/en/latest/config.html</code></p>
+<p>配置项文件里面都是变量名大写</p>
+<h2 id="视图函数路由函数转url">视图函数(路由函数)转URL<a hidden class="anchor" aria-hidden="true" href="#视图函数路由函数转url">#</a></h2>
+<p>知道视图函数(路由函数)从而寻找对应的URL</p>
+<p>使用<code>url_for(函数名,对应的URL实现规则)</code>实现</p>
+<h2 id="页面跳转和重定向">页面跳转和重定向<a hidden class="anchor" aria-hidden="true" href="#页面跳转和重定向">#</a></h2>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python"><span style="color:#2c5dcd;font-weight:bold">from</span> flask <span style="color:#2c5dcd;font-weight:bold">import</span> redirect
+
+<span style="color:#ff8000;font-weight:bold">@app</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/profile&#34;</span>)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">tttsss</span>():
+    uid <span style="color:#2c5dcd">=</span> request<span style="color:#2c5dcd">.</span>args<span style="color:#2c5dcd">.</span>get(<span style="color:#0c6">&#34;id&#34;</span>)
+    <span style="color:#2c5dcd;font-weight:bold">if</span> uid:
+        <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">&#34;用户验证成功&#34;</span>
+    <span style="color:#2c5dcd;font-weight:bold">else</span>:
+        <span style="color:#2c5dcd;font-weight:bold">return</span> redirect(url_for(<span style="color:#0c6">&#34;index&#34;</span>))
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="模板的使用">模板的使用<a hidden class="anchor" aria-hidden="true" href="#模板的使用">#</a></h2>
+<p>使用<code>render_template</code></p>
+<p>知识点：</p>
+<ol>
+<li>
+<p>模板过滤器</p>
+</li>
+<li>
+<p>if语句</p>
+<ol>
+<li>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">{<span style="color:#2c5dcd">%</span> <span style="color:#2c5dcd;font-weight:bold">if</span> age <span style="color:#2c5dcd">&gt;=</span> <span style="color:#5918bb;font-weight:bold">18</span> <span style="color:#2c5dcd">%</span>}
+<span style="color:#2c5dcd">&lt;</span>div<span style="color:#2c5dcd">&gt;</span>成年<span style="color:#2c5dcd">&lt;/</span>div<span style="color:#2c5dcd">&gt;</span>
+{<span style="color:#2c5dcd">%</span> <span style="color:#2c5dcd;font-weight:bold">if</span> age <span style="color:#2c5dcd">&lt;</span> <span style="color:#5918bb;font-weight:bold">18</span> <span style="color:#2c5dcd">%</span>}
+<span style="color:#2c5dcd">&lt;</span>div<span style="color:#2c5dcd">&gt;</span>没成年<span style="color:#2c5dcd">&lt;/</span>div<span style="color:#2c5dcd">&gt;</span>
+{<span style="color:#2c5dcd">%</span> endif <span style="color:#2c5dcd">%</span>}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+</li>
+<li>
+<p>for语句</p>
+</li>
+</ol>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff8000;font-weight:bold">@app</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/about&#34;</span>)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">about</span>():
+    context <span style="color:#2c5dcd">=</span> {<span style="color:#0c6">&#34;username&#34;</span>:<span style="color:#0c6">&#34;温铭军&#34;</span>}
+    <span style="color:#2c5dcd;font-weight:bold">return</span> render_template(<span style="color:#0c6">&#34;about.html&#34;</span>, <span style="color:#2c5dcd">**</span>context)
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>
+<p>静态文件的使用</p>
+<ol>
+<li>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd">&lt;</span>link rel<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;stylesheet&#34;</span> href<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;{{ url_for(&#34;</span>static<span style="color:#0c6">&#34;, filename=&#34;</span>css<span style="color:#2c5dcd">/</span>about<span style="color:#2c5dcd">.</span>css<span style="color:#0c6">&#34;) }}&#34;</span><span style="color:#2c5dcd">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+</li>
+</ol>
+<h3 id="模板的继承">模板的继承<a hidden class="anchor" aria-hidden="true" href="#模板的继承">#</a></h3>
+<p>base.html</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#0080ff">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#2c5dcd;font-weight:bold">html</span> <span style="color:#2c5dcd;font-style:italic">lang</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;en&#34;</span>&gt;
+&lt;<span style="color:#2c5dcd;font-weight:bold">head</span>&gt;
+    &lt;<span style="color:#2c5dcd;font-weight:bold">meta</span> <span style="color:#2c5dcd;font-style:italic">charset</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;UTF-8&#34;</span>&gt;
+    &lt;<span style="color:#2c5dcd;font-weight:bold">title</span>&gt;{%block title %}{% endblock %}&lt;/<span style="color:#2c5dcd;font-weight:bold">title</span>&gt;
+    {% block head %}{% endblock %}
+&lt;/<span style="color:#2c5dcd;font-weight:bold">head</span>&gt;
+&lt;<span style="color:#2c5dcd;font-weight:bold">body</span>&gt;
+{% block body %}{% endblock %}
+&lt;/<span style="color:#2c5dcd;font-weight:bold">body</span>&gt;
+&lt;/<span style="color:#2c5dcd;font-weight:bold">html</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>about.html</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{% extends &#34;base.html&#34; %}
+
+{% block title %}
+我是关于页面，要善用block+tab生成句子
+{% endblock %}
+
+{% block head %}
+    &lt;<span style="color:#2c5dcd;font-weight:bold">link</span> <span style="color:#2c5dcd;font-style:italic">rel</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;stylesheet&#34;</span> <span style="color:#2c5dcd;font-style:italic">href</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;{{ url_for(&#34;</span><span style="color:#2c5dcd;font-style:italic">static</span><span style="color:#fff;background-color:#c00">&#34;,</span> <span style="color:#2c5dcd;font-style:italic">filename</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;css/about.css&#34;</span><span style="color:#fff;background-color:#c00">)</span> <span style="color:#fff;background-color:#c00">}}&#34;</span>&gt;
+{% endblock %}
+
+{% block body %}
+这里是{{ username|length }}
+&lt;<span style="color:#2c5dcd;font-weight:bold">h1</span>&gt;温铭军爱学习&lt;/<span style="color:#2c5dcd;font-weight:bold">h1</span>&gt;
+{% endblock %}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="蓝图">蓝图<a hidden class="anchor" aria-hidden="true" href="#蓝图">#</a></h2>
+<p>app.py</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">from</span> flask <span style="color:#2c5dcd;font-weight:bold">import</span> Flask
+<span style="color:#2c5dcd;font-weight:bold">from</span> apps.book <span style="color:#2c5dcd;font-weight:bold">import</span> bp <span style="color:#2c5dcd;font-weight:bold">as</span> bookbp
+<span style="color:#2c5dcd;font-weight:bold">from</span> apps.course <span style="color:#2c5dcd;font-weight:bold">import</span> bp <span style="color:#2c5dcd;font-weight:bold">as</span> coursebp
+<span style="color:#2c5dcd;font-weight:bold">from</span> apps.user <span style="color:#2c5dcd;font-weight:bold">import</span> bp <span style="color:#2c5dcd;font-weight:bold">as</span> userbp
+
+app <span style="color:#2c5dcd">=</span> Flask(__name__)
+<span style="color:#0080ff;font-style:italic"># 注册蓝图</span>
+app<span style="color:#2c5dcd">.</span>register_blueprint(bookbp)
+app<span style="color:#2c5dcd">.</span>register_blueprint(coursebp)
+app<span style="color:#2c5dcd">.</span>register_blueprint(userbp)
+
+<span style="color:#ff8000;font-weight:bold">@app</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/&#34;</span>)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">index</span>():
+    <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">&#34;hello&#34;</span>
+
+<span style="color:#2c5dcd;font-weight:bold">if</span> __name__ <span style="color:#2c5dcd">==</span> <span style="color:#0c6">&#39;__main__&#39;</span>:
+    app<span style="color:#2c5dcd">.</span>run()
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># coding:utf-8</span>
+<span style="color:#0080ff;font-style:italic"># @Time : 2022/7/13 20:22</span>
+<span style="color:#0080ff;font-style:italic"># @Author : 软件1194温铭军</span>
+<span style="color:#0080ff;font-style:italic"># @file : course.py</span>
+<span style="color:#0080ff;font-style:italic"># $software : PyCharm</span>
+<span style="color:#2c5dcd;font-weight:bold">from</span> flask <span style="color:#2c5dcd;font-weight:bold">import</span> Blueprint
+
+<span style="color:#0080ff;font-style:italic"># 类似于创建app</span>
+bp <span style="color:#2c5dcd">=</span> Blueprint(<span style="color:#0c6">&#34;course&#34;</span>, __name__, url_prefix<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;/course&#34;</span>)
+
+<span style="color:#ff8000;font-weight:bold">@bp</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/list&#34;</span>)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">courselist</span>():
+    <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">&#34;课程列表&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="flask连接数据库">Flask连接数据库<a hidden class="anchor" aria-hidden="true" href="#flask连接数据库">#</a></h3>
+<p>1.0</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">from</span> flask <span style="color:#2c5dcd;font-weight:bold">import</span> Flask
+<span style="color:#2c5dcd;font-weight:bold">from</span> flask_sqlalchemy <span style="color:#2c5dcd;font-weight:bold">import</span> SQLAlchemy
+
+app <span style="color:#2c5dcd">=</span> Flask(__name__)
+
+<span style="color:#0080ff;font-style:italic"># 数据库的配置变量</span>
+HOSTNAME <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;127.0.0.1&#39;</span>
+PORT     <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;3306&#39;</span>
+DATABASE <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;stuflask&#39;</span>
+USERNAME <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;root&#39;</span>
+PASSWORD <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;1234&#39;</span>
+DB_URI <span style="color:#2c5dcd">=</span> <span style="color:#0c6">f</span><span style="color:#0c6">&#39;mysql+pymysql://</span><span style="color:#0c6">{</span>USERNAME<span style="color:#0c6">}</span><span style="color:#0c6">:</span><span style="color:#0c6">{</span>PASSWORD<span style="color:#0c6">}</span><span style="color:#0c6">@</span><span style="color:#0c6">{</span>HOSTNAME<span style="color:#0c6">}</span><span style="color:#0c6">:</span><span style="color:#0c6">{</span>PORT<span style="color:#0c6">}</span><span style="color:#0c6">/</span><span style="color:#0c6">{</span>DATABASE<span style="color:#0c6">}</span><span style="color:#0c6">&#39;</span>
+app<span style="color:#2c5dcd">.</span>config[<span style="color:#0c6">&#34;SQLALCHEMY_DATABASE_URI&#34;</span>] <span style="color:#2c5dcd">=</span> DB_URI
+db <span style="color:#2c5dcd">=</span> SQLAlchemy(app)
+
+
+<span style="color:#ff8000;font-weight:bold">@app</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/&#34;</span>)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">index</span>():
+
+    <span style="color:#0080ff;font-style:italic">#写一个测试代码验证是否成功</span>
+
+    engine <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>get_engine()
+    <span style="color:#2c5dcd;font-weight:bold">with</span> engine<span style="color:#2c5dcd">.</span>connect() <span style="color:#2c5dcd;font-weight:bold">as</span> conn:
+        result <span style="color:#2c5dcd">=</span> conn<span style="color:#2c5dcd">.</span>execute(<span style="color:#0c6">&#34;select 1&#34;</span>)
+        <span style="color:#5918bb;font-weight:bold">print</span>(result<span style="color:#2c5dcd">.</span>fetchone())
+    <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">&#34;hello&#34;</span>
+
+<span style="color:#2c5dcd;font-weight:bold">if</span> __name__ <span style="color:#2c5dcd">==</span> <span style="color:#0c6">&#39;__main__&#39;</span>:
+    app<span style="color:#2c5dcd">.</span>run()
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="数据库orm映射">数据库ORM映射<a hidden class="anchor" aria-hidden="true" href="#数据库orm映射">#</a></h3>
+<blockquote>
+<p>一对多</p>
+</blockquote>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">90
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">from</span> flask <span style="color:#2c5dcd;font-weight:bold">import</span> Flask
+<span style="color:#2c5dcd;font-weight:bold">from</span> flask_sqlalchemy <span style="color:#2c5dcd;font-weight:bold">import</span> SQLAlchemy
+
+app <span style="color:#2c5dcd">=</span> Flask(__name__)
+app<span style="color:#2c5dcd">.</span>config[<span style="color:#0c6">&#34;SQLALCHEMY_TRACK_MODIFICATIONS&#34;</span>] <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">True</span>
+
+<span style="color:#0080ff;font-style:italic"># 数据库的配置变量</span>
+HOSTNAME <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;127.0.0.1&#39;</span>
+PORT     <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;3306&#39;</span>
+DATABASE <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;stuflask&#39;</span>
+USERNAME <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;root&#39;</span>
+PASSWORD <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;1234&#39;</span>
+DB_URI <span style="color:#2c5dcd">=</span> <span style="color:#0c6">f</span><span style="color:#0c6">&#39;mysql+pymysql://</span><span style="color:#0c6">{</span>USERNAME<span style="color:#0c6">}</span><span style="color:#0c6">:</span><span style="color:#0c6">{</span>PASSWORD<span style="color:#0c6">}</span><span style="color:#0c6">@</span><span style="color:#0c6">{</span>HOSTNAME<span style="color:#0c6">}</span><span style="color:#0c6">:</span><span style="color:#0c6">{</span>PORT<span style="color:#0c6">}</span><span style="color:#0c6">/</span><span style="color:#0c6">{</span>DATABASE<span style="color:#0c6">}</span><span style="color:#0c6">&#39;</span>
+app<span style="color:#2c5dcd">.</span>config[<span style="color:#0c6">&#34;SQLALCHEMY_DATABASE_URI&#34;</span>] <span style="color:#2c5dcd">=</span> DB_URI
+db <span style="color:#2c5dcd">=</span> SQLAlchemy(app)
+
+<span style="color:#2c5dcd;font-weight:bold">class</span> <span style="text-decoration:underline">User</span>(db<span style="color:#2c5dcd">.</span>Model):
+    __tablename__ <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;user&#34;</span>
+    <span style="color:#5918bb;font-weight:bold">id</span> <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>Integer, primary_key<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">True</span>, autoincrement<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">True</span>)
+    username <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>String(<span style="color:#5918bb;font-weight:bold">20</span>), nullable<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">False</span>)
+
+<span style="color:#0080ff;font-style:italic"># 定义ORM模型</span>
+<span style="color:#2c5dcd;font-weight:bold">class</span> <span style="text-decoration:underline">Aticle</span>(db<span style="color:#2c5dcd">.</span>Model):
+    __tablename__ <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;article&#34;</span>
+    <span style="color:#5918bb;font-weight:bold">id</span> <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>Integer, primary_key<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">True</span>, autoincrement<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">True</span>)
+    title <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>String(<span style="color:#5918bb;font-weight:bold">60</span>), nullable<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">False</span>)
+    content <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>Text, nullable<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">False</span>)
+    <span style="color:#0080ff;font-style:italic"># 一对多</span>
+    <span style="color:#0080ff;font-style:italic"># 外键的数据类型要看所引用的字段类型，db.ForeignKey(&#34;表名.字段名&#34;)</span>
+    <span style="color:#0080ff;font-style:italic"># 外键是属于数据库层面，不推荐在ORM中直接使用</span>
+    author_id <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>Integer, db<span style="color:#2c5dcd">.</span>ForeignKey(<span style="color:#0c6">&#34;user.id&#34;</span>))
+
+    <span style="color:#0080ff;font-style:italic"># ORM绑定关系db.relationship(&#34;所创建的数据库类模型字段class 名&#34;)</span>
+    <span style="color:#0080ff;font-style:italic"># 第一个参数是模型的名字，backref代表反向引用代表对方访问我的时候的名称字段</span>
+    author <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>relationship(<span style="color:#0c6">&#34;User&#34;</span>, backref<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;aticles&#34;</span>)
+
+
+<span style="color:#0080ff;font-style:italic"># 将模型映射到数据库</span>
+db<span style="color:#2c5dcd">.</span>drop_all()
+db<span style="color:#2c5dcd">.</span>create_all()
+
+
+<span style="color:#ff8000;font-weight:bold">@app</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/onetomany&#34;</span>)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">otm</span>():
+    article <span style="color:#2c5dcd">=</span> Aticle(title<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;555&#34;</span>, content<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;文章&#34;</span>)
+    user <span style="color:#2c5dcd">=</span> User(username<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;温铭军&#34;</span>)
+    article<span style="color:#2c5dcd">.</span>author <span style="color:#2c5dcd">=</span> user
+    db<span style="color:#2c5dcd">.</span>session<span style="color:#2c5dcd">.</span>add(article)
+    db<span style="color:#2c5dcd">.</span>session<span style="color:#2c5dcd">.</span>commit()
+    <span style="color:#5918bb;font-weight:bold">print</span>(user<span style="color:#2c5dcd">.</span>aticles)	<span style="color:#0080ff;font-style:italic">#上面的反向引用名backref</span>
+    <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">&#34;数据保存成功otm&#34;</span>
+
+
+<span style="color:#ff8000;font-weight:bold">@app</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/&#34;</span>)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">index</span>():
+    <span style="color:#0080ff;font-style:italic">#写一个测试代码验证是否成功</span>
+
+    engine <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>get_engine()
+    <span style="color:#2c5dcd;font-weight:bold">with</span> engine<span style="color:#2c5dcd">.</span>connect() <span style="color:#2c5dcd;font-weight:bold">as</span> conn:
+        result <span style="color:#2c5dcd">=</span> conn<span style="color:#2c5dcd">.</span>execute(<span style="color:#0c6">&#34;select 1&#34;</span>)
+        <span style="color:#5918bb;font-weight:bold">print</span>(result<span style="color:#2c5dcd">.</span>fetchone())
+    <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">&#34;hello&#34;</span>
+
+<span style="color:#ff8000;font-weight:bold">@app</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/article&#34;</span>)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">addarticle</span>():
+    <span style="color:#0080ff;font-style:italic"># # 添加数据</span>
+    <span style="color:#0080ff;font-style:italic"># # 创建数据对象</span>
+    <span style="color:#0080ff;font-style:italic"># article = Aticle(title=&#34;温铭军爱学习&#34;, content=&#34;6666&#34;)</span>
+    <span style="color:#0080ff;font-style:italic"># db.session.add(article)</span>
+    <span style="color:#0080ff;font-style:italic"># db.session.commit()</span>
+    <span style="color:#0080ff;font-style:italic"># return &#34;数据添加成功&#34;</span>
+
+    <span style="color:#0080ff;font-style:italic"># # 查询数据</span>
+    <span style="color:#0080ff;font-style:italic"># article = Aticle.query.filter_by(id=1)[0]</span>
+    <span style="color:#0080ff;font-style:italic"># print(article.title)</span>
+    <span style="color:#0080ff;font-style:italic"># return &#34;数据查询完成&#34;</span>
+
+    <span style="color:#0080ff;font-style:italic"># # 修改数据</span>
+    <span style="color:#0080ff;font-style:italic"># article = Aticle.query.filter_by(id=1)[0]</span>
+    <span style="color:#0080ff;font-style:italic"># article.content = &#34;修改后真的强&#34;</span>
+    <span style="color:#0080ff;font-style:italic"># db.session.commit()</span>
+    <span style="color:#0080ff;font-style:italic"># return &#34;数据修改成功&#34;</span>
+
+    <span style="color:#0080ff;font-style:italic"># 删除数据</span>
+    Aticle<span style="color:#2c5dcd">.</span>query<span style="color:#2c5dcd">.</span>filter_by(<span style="color:#5918bb;font-weight:bold">id</span><span style="color:#2c5dcd">=</span><span style="color:#5918bb;font-weight:bold">1</span>)<span style="color:#2c5dcd">.</span>delete()
+    db<span style="color:#2c5dcd">.</span>session<span style="color:#2c5dcd">.</span>commit()
+    <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">&#34;数据删除成功&#34;</span>
+
+<span style="color:#2c5dcd;font-weight:bold">if</span> __name__ <span style="color:#2c5dcd">==</span> <span style="color:#0c6">&#39;__main__&#39;</span>:
+    app<span style="color:#2c5dcd">.</span>run()
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>一对一表的实现</p>
+</blockquote>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">  9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 64
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 65
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 66
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 67
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 68
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 69
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 70
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 71
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 72
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 73
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 74
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 75
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 76
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 77
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 78
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 79
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 80
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 81
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 82
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 83
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 84
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 85
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 86
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 87
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 88
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">109
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">110
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">111
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">112
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">from</span> flask <span style="color:#2c5dcd;font-weight:bold">import</span> Flask
+<span style="color:#2c5dcd;font-weight:bold">from</span> flask_sqlalchemy <span style="color:#2c5dcd;font-weight:bold">import</span> SQLAlchemy
+
+app <span style="color:#2c5dcd">=</span> Flask(__name__)
+app<span style="color:#2c5dcd">.</span>config[<span style="color:#0c6">&#34;SQLALCHEMY_TRACK_MODIFICATIONS&#34;</span>] <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">True</span>
+
+<span style="color:#0080ff;font-style:italic"># 数据库的配置变量</span>
+HOSTNAME <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;127.0.0.1&#39;</span>
+PORT     <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;3306&#39;</span>
+DATABASE <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;stuflask&#39;</span>
+USERNAME <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;root&#39;</span>
+PASSWORD <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;1234&#39;</span>
+DB_URI <span style="color:#2c5dcd">=</span> <span style="color:#0c6">f</span><span style="color:#0c6">&#39;mysql+pymysql://</span><span style="color:#0c6">{</span>USERNAME<span style="color:#0c6">}</span><span style="color:#0c6">:</span><span style="color:#0c6">{</span>PASSWORD<span style="color:#0c6">}</span><span style="color:#0c6">@</span><span style="color:#0c6">{</span>HOSTNAME<span style="color:#0c6">}</span><span style="color:#0c6">:</span><span style="color:#0c6">{</span>PORT<span style="color:#0c6">}</span><span style="color:#0c6">/</span><span style="color:#0c6">{</span>DATABASE<span style="color:#0c6">}</span><span style="color:#0c6">&#39;</span>
+app<span style="color:#2c5dcd">.</span>config[<span style="color:#0c6">&#34;SQLALCHEMY_DATABASE_URI&#34;</span>] <span style="color:#2c5dcd">=</span> DB_URI
+db <span style="color:#2c5dcd">=</span> SQLAlchemy(app)
+
+<span style="color:#2c5dcd;font-weight:bold">class</span> <span style="text-decoration:underline">UserExtension</span>(db<span style="color:#2c5dcd">.</span>Model):
+    __tablename__ <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;user_extension&#34;</span>
+    <span style="color:#5918bb;font-weight:bold">id</span> <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>Integer, primary_key<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">True</span>, autoincrement<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">True</span>)
+    school <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>String(<span style="color:#5918bb;font-weight:bold">20</span>))
+    user_id <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>Integer, db<span style="color:#2c5dcd">.</span>ForeignKey(<span style="color:#0c6">&#34;user.id&#34;</span>))
+    <span style="color:#0080ff;font-style:italic"># 一对一引用 db.backref在反向引用时需要传递一些其他参数否则不需要使用</span>
+    <span style="color:#0080ff;font-style:italic"># uselist=False 表示在代表反向引用时使用的是一个对象不是一个列表</span>
+    user <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>relationship(<span style="color:#0c6">&#34;User&#34;</span>, backref<span style="color:#2c5dcd">=</span>db<span style="color:#2c5dcd">.</span>backref(<span style="color:#0c6">&#34;extension&#34;</span>, uselist<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">False</span>))
+
+<span style="color:#2c5dcd;font-weight:bold">class</span> <span style="text-decoration:underline">User</span>(db<span style="color:#2c5dcd">.</span>Model):
+    __tablename__ <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;user&#34;</span>
+    <span style="color:#5918bb;font-weight:bold">id</span> <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>Integer, primary_key<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">True</span>, autoincrement<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">True</span>)
+    username <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>String(<span style="color:#5918bb;font-weight:bold">20</span>), nullable<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">False</span>)
+
+<span style="color:#0080ff;font-style:italic"># 定义ORM模型</span>
+<span style="color:#2c5dcd;font-weight:bold">class</span> <span style="text-decoration:underline">Aticle</span>(db<span style="color:#2c5dcd">.</span>Model):
+    __tablename__ <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;article&#34;</span>
+    <span style="color:#5918bb;font-weight:bold">id</span> <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>Integer, primary_key<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">True</span>, autoincrement<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">True</span>)
+    title <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>String(<span style="color:#5918bb;font-weight:bold">60</span>), nullable<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">False</span>)
+    content <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>Text, nullable<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">False</span>)
+    <span style="color:#0080ff;font-style:italic"># 一对多</span>
+    <span style="color:#0080ff;font-style:italic"># 外键的数据类型要看所引用的字段类型，db.ForeignKey(&#34;表名.字段名&#34;)</span>
+    <span style="color:#0080ff;font-style:italic"># 外键是属于数据库层面，不推荐在ORM中直接使用</span>
+    author_id <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>Integer, db<span style="color:#2c5dcd">.</span>ForeignKey(<span style="color:#0c6">&#34;user.id&#34;</span>))
+
+    <span style="color:#0080ff;font-style:italic"># ORM绑定关系db.relationship(&#34;所创建的数据库类模型字段class 名&#34;)</span>
+    <span style="color:#0080ff;font-style:italic"># 第一个参数是模型的名字，backref代表反向引用代表对方访问我的时候的名称字段</span>
+    author <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>relationship(<span style="color:#0c6">&#34;User&#34;</span>, backref<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;aticles&#34;</span>)
+
+
+<span style="color:#0080ff;font-style:italic"># 将模型映射到数据库</span>
+db<span style="color:#2c5dcd">.</span>drop_all()
+db<span style="color:#2c5dcd">.</span>create_all()
+
+
+<span style="color:#ff8000;font-weight:bold">@app</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/onetomany&#34;</span>)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">otm</span>():
+    article1 <span style="color:#2c5dcd">=</span> Aticle(title<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;555&#34;</span>, content<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;文章&#34;</span>)
+    article2 <span style="color:#2c5dcd">=</span> Aticle(title<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;2222&#34;</span>, content<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;文章222&#34;</span>)
+    user <span style="color:#2c5dcd">=</span> User(username<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;温铭军&#34;</span>)
+    article1<span style="color:#2c5dcd">.</span>author <span style="color:#2c5dcd">=</span> user
+    article2<span style="color:#2c5dcd">.</span>author <span style="color:#2c5dcd">=</span> user
+    db<span style="color:#2c5dcd">.</span>session<span style="color:#2c5dcd">.</span>add(article1)
+    db<span style="color:#2c5dcd">.</span>session<span style="color:#2c5dcd">.</span>add(article2)
+    db<span style="color:#2c5dcd">.</span>session<span style="color:#2c5dcd">.</span>commit()
+    <span style="color:#0080ff;font-style:italic"># 反向引用</span>
+    <span style="color:#5918bb;font-weight:bold">print</span>(user<span style="color:#2c5dcd">.</span>aticles)
+    <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">&#34;数据保存成功otm&#34;</span>
+
+<span style="color:#ff8000;font-weight:bold">@app</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/onetoone&#34;</span>)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">oto</span>():
+    user <span style="color:#2c5dcd">=</span> User(username<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;wmj&#34;</span>)
+    extension <span style="color:#2c5dcd">=</span> UserExtension(school<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;北京大学&#34;</span>)
+    user<span style="color:#2c5dcd">.</span>extension <span style="color:#2c5dcd">=</span> extension
+    db<span style="color:#2c5dcd">.</span>session<span style="color:#2c5dcd">.</span>add(user)
+    db<span style="color:#2c5dcd">.</span>session<span style="color:#2c5dcd">.</span>commit()
+    <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">&#34;一对一&#34;</span>
+
+
+<span style="color:#ff8000;font-weight:bold">@app</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/&#34;</span>)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">index</span>():
+    <span style="color:#0080ff;font-style:italic">#写一个测试代码验证是否成功</span>
+
+    engine <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>get_engine()
+    <span style="color:#2c5dcd;font-weight:bold">with</span> engine<span style="color:#2c5dcd">.</span>connect() <span style="color:#2c5dcd;font-weight:bold">as</span> conn:
+        result <span style="color:#2c5dcd">=</span> conn<span style="color:#2c5dcd">.</span>execute(<span style="color:#0c6">&#34;select 1&#34;</span>)
+        <span style="color:#5918bb;font-weight:bold">print</span>(result<span style="color:#2c5dcd">.</span>fetchone())
+    <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">&#34;hello&#34;</span>
+
+<span style="color:#ff8000;font-weight:bold">@app</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/article&#34;</span>)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">addarticle</span>():
+    <span style="color:#0080ff;font-style:italic"># # 添加数据</span>
+    <span style="color:#0080ff;font-style:italic"># # 创建数据对象</span>
+    <span style="color:#0080ff;font-style:italic"># article = Aticle(title=&#34;温铭军爱学习&#34;, content=&#34;6666&#34;)</span>
+    <span style="color:#0080ff;font-style:italic"># db.session.add(article) #添加数据到数据库</span>
+    <span style="color:#0080ff;font-style:italic"># db.session.commit()</span>
+    <span style="color:#0080ff;font-style:italic"># return &#34;数据添加成功&#34;</span>
+
+    <span style="color:#0080ff;font-style:italic"># # 查询数据</span>
+    <span style="color:#0080ff;font-style:italic"># article = Aticle.query.filter_by(id=1)[0]</span>
+    <span style="color:#0080ff;font-style:italic"># print(article.title)</span>
+    <span style="color:#0080ff;font-style:italic"># return &#34;数据查询完成&#34;</span>
+
+    <span style="color:#0080ff;font-style:italic"># # 修改数据</span>
+    <span style="color:#0080ff;font-style:italic"># article = Aticle.query.filter_by(id=1)[0]</span>
+    <span style="color:#0080ff;font-style:italic"># article.content = &#34;修改后真的强&#34;</span>
+    <span style="color:#0080ff;font-style:italic"># db.session.commit()</span>
+    <span style="color:#0080ff;font-style:italic"># return &#34;数据修改成功&#34;</span>
+
+    <span style="color:#0080ff;font-style:italic"># 删除数据</span>
+    Aticle<span style="color:#2c5dcd">.</span>query<span style="color:#2c5dcd">.</span>filter_by(<span style="color:#5918bb;font-weight:bold">id</span><span style="color:#2c5dcd">=</span><span style="color:#5918bb;font-weight:bold">1</span>)<span style="color:#2c5dcd">.</span>delete()
+    db<span style="color:#2c5dcd">.</span>session<span style="color:#2c5dcd">.</span>commit()
+    <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">&#34;数据删除成功&#34;</span>
+
+<span style="color:#2c5dcd;font-weight:bold">if</span> __name__ <span style="color:#2c5dcd">==</span> <span style="color:#0c6">&#39;__main__&#39;</span>:
+    app<span style="color:#2c5dcd">.</span>run()
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="灵活管理orm与数据库表">灵活管理ORM与数据库表<a hidden class="anchor" aria-hidden="true" href="#灵活管理orm与数据库表">#</a></h3>
+<p>不用使用db.create_all()、db.drop_all(),使用前面语句的弊端模型新增或删除字段，只会在第一次生成表的时候处理</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">from flask_migrate import Migrate
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">migrate = Migrate(app, db)
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>flask db init</li>
+<li>flask db migrate -m &ldquo;first commit&rdquo;</li>
+<li>flask db upgrade</li>
+</ul>
+<p>初始化后，后面更新数据库后只需要执行后面两句</p>
+<h2 id="flask中使用cookie和session">flask中使用cookie和session<a hidden class="anchor" aria-hidden="true" href="#flask中使用cookie和session">#</a></h2>
+<ol>
+<li>cookies：在<code>Flask</code>中操作<code>cookie</code>是通过<code>response</code>对象来操作，可以在<code>response</code>回之前，通过<code>response.set_cookie</code>来设置，这个方法有以下几个参数需要注意：
+<ul>
+<li>key：设置的cookie的key。</li>
+<li>value：key对应的value。</li>
+<li>max_age：改cookie的过期时间，如果不设置，则浏览器关闭后就会自动过期。</li>
+<li>expires：过期时间，应该是一个<code>datetime</code>类型。</li>
+<li>domain：该cookie在哪个域名中有效。一般设置子域名，比如<code>cms.example.com</code>。</li>
+<li>path：该cookie在哪个路径下有效。</li>
+</ul>
+</li>
+<li>session：<code>Flask</code>中的<code>session</code>是通过<code>from flask import session</code>。然后添加值key和value进去即可。并且，<code>Flask</code>中的<code>session</code>机制是将<code>session</code>信息加密，然后存储在<code>cookie</code>中。专业术语叫做<code>client side session</code>。</li>
+</ol>
+<h2 id="flask-wtf表单验证">Flask-WTF表单验证<a hidden class="anchor" aria-hidden="true" href="#flask-wtf表单验证">#</a></h2>
+<h1 id="flask表单验证">flask表单验证<a hidden class="anchor" aria-hidden="true" href="#flask表单验证">#</a></h1>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">from</span> flask <span style="color:#2c5dcd;font-weight:bold">import</span> Flask,request,render_template
+<span style="color:#2c5dcd;font-weight:bold">from</span> exts <span style="color:#2c5dcd;font-weight:bold">import</span> db
+<span style="color:#2c5dcd;font-weight:bold">from</span> flask_migrate <span style="color:#2c5dcd;font-weight:bold">import</span> Migrate
+<span style="color:#2c5dcd;font-weight:bold">import</span> config1
+<span style="color:#2c5dcd;font-weight:bold">from</span> models <span style="color:#2c5dcd;font-weight:bold">import</span> Aticle, User, UserExtension
+<span style="color:#2c5dcd;font-weight:bold">from</span> froms <span style="color:#2c5dcd;font-weight:bold">import</span> LoginForm <span style="color:#0080ff;font-style:italic">#导入表单</span>
+
+app <span style="color:#2c5dcd">=</span> Flask(__name__)
+app<span style="color:#2c5dcd">.</span>config<span style="color:#2c5dcd">.</span>from_object(config1)
+<span style="color:#0080ff;font-style:italic"># 绑定app</span>
+db<span style="color:#2c5dcd">.</span>init_app(app)
+
+migrate <span style="color:#2c5dcd">=</span> Migrate(app, db)
+
+
+<span style="color:#ff8000;font-weight:bold">@app</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/login&#34;</span>, methods<span style="color:#2c5dcd">=</span>[<span style="color:#0c6">&#34;POST&#34;</span>, <span style="color:#0c6">&#34;GET&#34;</span>])
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">login</span>():
+    <span style="color:#2c5dcd;font-weight:bold">if</span> request<span style="color:#2c5dcd">.</span>method <span style="color:#2c5dcd">==</span> <span style="color:#0c6">&#34;GET&#34;</span>:
+        <span style="color:#2c5dcd;font-weight:bold">return</span> render_template(<span style="color:#0c6">&#34;login.html&#34;</span>)
+    <span style="color:#2c5dcd;font-weight:bold">else</span>:
+        form <span style="color:#2c5dcd">=</span> LoginForm(request<span style="color:#2c5dcd">.</span>form)
+        <span style="color:#2c5dcd;font-weight:bold">if</span> form<span style="color:#2c5dcd">.</span>validate():
+            <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">&#34;登录成功&#34;</span>
+        <span style="color:#2c5dcd;font-weight:bold">else</span>:
+            <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">&#34;邮箱或密码失败&#34;</span>
+
+<span style="color:#2c5dcd;font-weight:bold">if</span> __name__ <span style="color:#2c5dcd">==</span> <span style="color:#0c6">&#39;__main__&#39;</span>:
+    app<span style="color:#2c5dcd">.</span>run()
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>validators:验证器</p>
+</blockquote>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># coding:utf-8</span>
+<span style="color:#0080ff;font-style:italic"># @Time : 2022/7/14 12:04</span>
+<span style="color:#0080ff;font-style:italic"># @Author : 软件1194温铭军</span>
+<span style="color:#0080ff;font-style:italic"># @file : froms.py</span>
+<span style="color:#0080ff;font-style:italic"># $software : PyCharm</span>
+<span style="color:#2c5dcd;font-weight:bold">import</span> wtforms
+<span style="color:#2c5dcd;font-weight:bold">from</span> wtforms.validators <span style="color:#2c5dcd;font-weight:bold">import</span> length, email
+
+<span style="color:#2c5dcd;font-weight:bold">class</span> <span style="text-decoration:underline">LoginForm</span>(wtforms<span style="color:#2c5dcd">.</span>Form):
+    email <span style="color:#2c5dcd">=</span> wtforms<span style="color:#2c5dcd">.</span>StringField(validators<span style="color:#2c5dcd">=</span>[length(<span style="color:#5918bb;font-weight:bold">min</span><span style="color:#2c5dcd">=</span><span style="color:#5918bb;font-weight:bold">5</span>, <span style="color:#5918bb;font-weight:bold">max</span><span style="color:#2c5dcd">=</span><span style="color:#5918bb;font-weight:bold">20</span>), email()])
+    password <span style="color:#2c5dcd">=</span> wtforms<span style="color:#2c5dcd">.</span>StringField(validators<span style="color:#2c5dcd">=</span>[length(<span style="color:#5918bb;font-weight:bold">min</span><span style="color:#2c5dcd">=</span><span style="color:#5918bb;font-weight:bold">6</span>, <span style="color:#5918bb;font-weight:bold">max</span><span style="color:#2c5dcd">=</span><span style="color:#5918bb;font-weight:bold">15</span>)])
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#0080ff">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#2c5dcd;font-weight:bold">html</span> <span style="color:#2c5dcd;font-style:italic">lang</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;en&#34;</span>&gt;
+&lt;<span style="color:#2c5dcd;font-weight:bold">head</span>&gt;
+    &lt;<span style="color:#2c5dcd;font-weight:bold">meta</span> <span style="color:#2c5dcd;font-style:italic">charset</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;UTF-8&#34;</span>&gt;
+    &lt;<span style="color:#2c5dcd;font-weight:bold">title</span>&gt;登录&lt;/<span style="color:#2c5dcd;font-weight:bold">title</span>&gt;
+&lt;/<span style="color:#2c5dcd;font-weight:bold">head</span>&gt;
+
+&lt;<span style="color:#2c5dcd;font-weight:bold">form</span> <span style="color:#2c5dcd;font-style:italic">action</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;/login&#34;</span> <span style="color:#2c5dcd;font-style:italic">method</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;post&#34;</span>&gt;
+&lt;<span style="color:#2c5dcd;font-weight:bold">table</span>&gt;
+    &lt;<span style="color:#2c5dcd;font-weight:bold">tbody</span>&gt;
+    &lt;<span style="color:#2c5dcd;font-weight:bold">tr</span>&gt;
+        &lt;<span style="color:#2c5dcd;font-weight:bold">td</span>&gt;邮箱：&lt;/<span style="color:#2c5dcd;font-weight:bold">td</span>&gt;
+        &lt;<span style="color:#2c5dcd;font-weight:bold">td</span>&gt;
+            &lt;<span style="color:#2c5dcd;font-weight:bold">input</span> <span style="color:#2c5dcd;font-style:italic">type</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;email&#34;</span> <span style="color:#2c5dcd;font-style:italic">name</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;email&#34;</span>&gt;
+        &lt;/<span style="color:#2c5dcd;font-weight:bold">td</span>&gt;
+    &lt;/<span style="color:#2c5dcd;font-weight:bold">tr</span>&gt;
+
+    &lt;<span style="color:#2c5dcd;font-weight:bold">tr</span>&gt;
+        &lt;<span style="color:#2c5dcd;font-weight:bold">td</span>&gt;密码：&lt;/<span style="color:#2c5dcd;font-weight:bold">td</span>&gt;
+        &lt;<span style="color:#2c5dcd;font-weight:bold">td</span>&gt;
+            &lt;<span style="color:#2c5dcd;font-weight:bold">input</span> <span style="color:#2c5dcd;font-style:italic">type</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;text&#34;</span> <span style="color:#2c5dcd;font-style:italic">name</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;password&#34;</span>&gt;
+        &lt;/<span style="color:#2c5dcd;font-weight:bold">td</span>&gt;
+    &lt;/<span style="color:#2c5dcd;font-weight:bold">tr</span>&gt;
+
+    &lt;/<span style="color:#2c5dcd;font-weight:bold">tbody</span>&gt;
+    &lt;<span style="color:#2c5dcd;font-weight:bold">input</span> <span style="color:#2c5dcd;font-style:italic">type</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;submit&#34;</span> <span style="color:#2c5dcd;font-style:italic">value</span><span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;提交&#34;</span>&gt;
+&lt;/<span style="color:#2c5dcd;font-weight:bold">table</span>&gt;
+&lt;/<span style="color:#2c5dcd;font-weight:bold">form</span>&gt;
+&lt;/<span style="color:#2c5dcd;font-weight:bold">body</span>&gt;
+&lt;/<span style="color:#2c5dcd;font-weight:bold">html</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="项目重构例子">项目重构例子<a hidden class="anchor" aria-hidden="true" href="#项目重构例子">#</a></h2>
+<p>app.py</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">from</span> flask <span style="color:#2c5dcd;font-weight:bold">import</span> Flask, url_for
+<span style="color:#2c5dcd;font-weight:bold">import</span> config   <span style="color:#0080ff;font-style:italic"># 导入配置文件</span>
+<span style="color:#2c5dcd;font-weight:bold">from</span> exts <span style="color:#2c5dcd;font-weight:bold">import</span> db,mail
+<span style="color:#2c5dcd;font-weight:bold">from</span> blueprints.qa <span style="color:#2c5dcd;font-weight:bold">import</span> bp <span style="color:#2c5dcd;font-weight:bold">as</span> qa_bp
+<span style="color:#2c5dcd;font-weight:bold">from</span> blueprints.user <span style="color:#2c5dcd;font-weight:bold">import</span> bp <span style="color:#2c5dcd;font-weight:bold">as</span> user_bp
+<span style="color:#2c5dcd;font-weight:bold">from</span> flask_migrate <span style="color:#2c5dcd;font-weight:bold">import</span> Migrate
+<span style="color:#0080ff;font-style:italic"># from models import EmailModel</span>
+
+app <span style="color:#2c5dcd">=</span> Flask(__name__)
+<span style="color:#0080ff;font-style:italic"># 绑定config配置</span>
+app<span style="color:#2c5dcd">.</span>config<span style="color:#2c5dcd">.</span>from_object(config)
+<span style="color:#0080ff;font-style:italic"># 初始化，绑定数据库</span>
+db<span style="color:#2c5dcd">.</span>init_app(app)
+mail<span style="color:#2c5dcd">.</span>init_app(app)
+migrate <span style="color:#2c5dcd">=</span> Migrate(app, db)
+
+app<span style="color:#2c5dcd">.</span>register_blueprint(qa_bp)
+app<span style="color:#2c5dcd">.</span>register_blueprint(user_bp)
+
+
+
+
+<span style="color:#2c5dcd;font-weight:bold">if</span> __name__ <span style="color:#2c5dcd">==</span> <span style="color:#0c6">&#39;__main__&#39;</span>:
+    app<span style="color:#2c5dcd">.</span>run()
+
+</code></pre></td></tr></table>
+</div>
+</div><p>models.py</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># coding:utf-8</span>
+<span style="color:#0080ff;font-style:italic"># @Time : 2022/7/14 22:46</span>
+<span style="color:#0080ff;font-style:italic"># @Author : 软件1194温铭军</span>
+<span style="color:#0080ff;font-style:italic"># @file : models.py</span>
+<span style="color:#0080ff;font-style:italic"># $software : PyCharm</span>
+<span style="color:#2c5dcd;font-weight:bold">from</span> exts <span style="color:#2c5dcd;font-weight:bold">import</span> db
+<span style="color:#2c5dcd;font-weight:bold">from</span> datetime <span style="color:#2c5dcd;font-weight:bold">import</span> datetime
+
+<span style="color:#2c5dcd;font-weight:bold">class</span> <span style="text-decoration:underline">EmailModel</span>(db<span style="color:#2c5dcd">.</span>Model):
+    __tablename__ <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;emailmodel&#34;</span>
+    <span style="color:#5918bb;font-weight:bold">id</span> <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>Integer, primary_key<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">True</span>, autoincrement<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">True</span>)
+    email <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>String(<span style="color:#5918bb;font-weight:bold">20</span>), nullable<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">False</span>, unique<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">True</span>)
+    captcha <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>String(<span style="color:#5918bb;font-weight:bold">10</span>), nullable<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">False</span>)
+    nowtimes <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>Column(db<span style="color:#2c5dcd">.</span>DateTime, default<span style="color:#2c5dcd">=</span>datetime<span style="color:#2c5dcd">.</span>now)
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># coding:utf-8</span>
+<span style="color:#0080ff;font-style:italic"># @Time : 2022/7/14 13:33</span>
+<span style="color:#0080ff;font-style:italic"># @Author : 软件1194温铭军</span>
+<span style="color:#0080ff;font-style:italic"># @file : exts.py</span>
+<span style="color:#0080ff;font-style:italic"># $software : PyCharm</span>
+<span style="color:#2c5dcd;font-weight:bold">from</span> flask_sqlalchemy <span style="color:#2c5dcd;font-weight:bold">import</span> SQLAlchemy
+<span style="color:#2c5dcd;font-weight:bold">from</span> flask_mail <span style="color:#2c5dcd;font-weight:bold">import</span> Mail
+db <span style="color:#2c5dcd">=</span> SQLAlchemy()
+mail <span style="color:#2c5dcd">=</span> Mail()
+</code></pre></td></tr></table>
+</div>
+</div><p>config1.py</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># coding:utf-8</span>
+<span style="color:#0080ff;font-style:italic"># @Time : 2022/7/12 10:38</span>
+<span style="color:#0080ff;font-style:italic"># @Author : 软件1194温铭军</span>
+<span style="color:#0080ff;font-style:italic"># @file : config.py</span>
+<span style="color:#0080ff;font-style:italic"># $software : PyCharm</span>
+JSON_AS_ASCII <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">True</span>
+<span style="color:#0080ff;font-style:italic"># 数据库的配置变量</span>
+HOSTNAME <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;127.0.0.1&#39;</span>
+PORT     <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;3306&#39;</span>
+DATABASE <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;flaskpj&#39;</span>
+USERNAME <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;root&#39;</span>
+PASSWORD <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;1234&#39;</span>
+DB_URI <span style="color:#2c5dcd">=</span> <span style="color:#0c6">f</span><span style="color:#0c6">&#39;mysql+pymysql://</span><span style="color:#0c6">{</span>USERNAME<span style="color:#0c6">}</span><span style="color:#0c6">:</span><span style="color:#0c6">{</span>PASSWORD<span style="color:#0c6">}</span><span style="color:#0c6">@</span><span style="color:#0c6">{</span>HOSTNAME<span style="color:#0c6">}</span><span style="color:#0c6">:</span><span style="color:#0c6">{</span>PORT<span style="color:#0c6">}</span><span style="color:#0c6">/</span><span style="color:#0c6">{</span>DATABASE<span style="color:#0c6">}</span><span style="color:#0c6">&#39;</span>
+SQLALCHEMY_DATABASE_URI <span style="color:#2c5dcd">=</span> DB_URI
+SQLALCHEMY_TRACK_MODIFICATIONS <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">True</span>
+SECRET_KEY <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;hanson2000&#34;</span>
+
+<span style="color:#0080ff;font-style:italic"># 邮箱配置 QQ</span>
+MAIL_SERVER <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;smtp.qq.com&#34;</span>
+MAIL_PORT <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">465</span>
+MAIL_USE_TLS <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">False</span>
+MAIL_USE_SSL <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">True</span>
+MAIL_DEBUG <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">True</span>   <span style="color:#0080ff;font-style:italic"># 正式上线用False</span>
+MAIL_USERNAME <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;954952920@qq.com&#34;</span>
+MAIL_PASSWORD <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;bmyrgvagcitvbfdf&#34;</span>
+MAIL_DEFAULT_SENDER <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;954952920@qq.com&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="flask的小点">Flask的小点<a hidden class="anchor" aria-hidden="true" href="#flask的小点">#</a></h4>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">from</span> flask <span style="color:#2c5dcd;font-weight:bold">import</span> jsonify	<span style="color:#0080ff;font-style:italic"># 将列表数据转换成json数据返回</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic">#如果不想定制子路径来传递参数，也可以通过传统的?=的形式来传递参数，例如：/article?id=xxx，这种情况下，可以通过request.args.get(&#39;id&#39;)来获取id的值。如果是post方法，则可以通过request.form.get(&#39;id&#39;)来进行获取。</span>
+
+
+<span style="color:#ff8000;font-weight:bold">@app</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/book/&lt;int:bookid&gt;&#34;</span>, methods<span style="color:#2c5dcd">=</span>[<span style="color:#0c6">&#34;POST&#34;</span>,<span style="color:#0c6">&#34;GET&#34;</span>])
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">onebook</span>(bookid):
+    <span style="color:#2c5dcd;font-weight:bold">for</span> boo <span style="color:#2c5dcd;font-weight:bold">in</span> books1:
+        <span style="color:#2c5dcd;font-weight:bold">if</span> bookid <span style="color:#2c5dcd">==</span> boo[<span style="color:#0c6">&#34;id&#34;</span>]:
+            <span style="color:#2c5dcd;font-weight:bold">return</span> boo
+    <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">f</span><span style="color:#0c6">&#34;</span><span style="color:#0c6">{</span>bookid<span style="color:#0c6">}</span><span style="color:#0c6"> is not found&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ff8000;font-weight:bold">@app</span><span style="color:#2c5dcd">.</span>route(<span style="color:#0c6">&#34;/profile&#34;</span>)
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">tttsss</span>():
+    uid <span style="color:#2c5dcd">=</span> request<span style="color:#2c5dcd">.</span>args<span style="color:#2c5dcd">.</span>get(<span style="color:#0c6">&#34;id&#34;</span>)
+    <span style="color:#2c5dcd;font-weight:bold">if</span> uid:
+        <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#0c6">&#34;用户验证成功&#34;</span>
+    <span style="color:#2c5dcd;font-weight:bold">else</span>:
+        <span style="color:#2c5dcd;font-weight:bold">return</span> redirect(url_for(<span style="color:#0c6">&#34;index&#34;</span>))
+</code></pre></td></tr></table>
+</div>
+</div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hanson00.github.io/tags/flask/">Flask</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://hanson00.github.io/posts/technology/python/python_pep8/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Python_PEP8</span>
+  </a>
+</nav>
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>✨昵称输入QQ号可以自动关联✨
+        <hr />
+
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo1-mu.vercel.app/",  
+            el: "#tcomment",
+            lang: 'zh-CN',
+            region: 'ap-guangzhou',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
