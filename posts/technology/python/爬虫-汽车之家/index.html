@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>爬虫 汽车之家 | Hanson&#39;s Blog</title>
+<meta name="keywords" content="爬虫项目实战">
+<meta name="description" content="对汽车之家的自驾游图片进行爬取">
+<meta name="author" content="
+作者:&nbsp;hanson">
+<link rel="canonical" href="https://hanson00.github.io/posts/technology/python/%E7%88%AC%E8%99%AB-%E6%B1%BD%E8%BD%A6%E4%B9%8B%E5%AE%B6/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hanson00.github.io/posts/imgs/favicon16x16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hanson00.github.io/posts/imgs/favicon32x32.ico">
+<link rel="apple-touch-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="mask-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="爬虫 汽车之家" />
+<meta property="og:description" content="对汽车之家的自驾游图片进行爬取" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanson00.github.io/posts/technology/python/%E7%88%AC%E8%99%AB-%E6%B1%BD%E8%BD%A6%E4%B9%8B%E5%AE%B6/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-31T08:16:05&#43;08:00" />
+<meta property="article:modified_time" content="2022-07-31T08:16:05&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="爬虫 汽车之家"/>
+<meta name="twitter:description" content="对汽车之家的自驾游图片进行爬取"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hanson00.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "💻技术类文章",
+      "item": "https://hanson00.github.io/posts/technology/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Python文章",
+      "item": "https://hanson00.github.io/posts/technology/python/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "爬虫 汽车之家",
+      "item": "https://hanson00.github.io/posts/technology/python/%E7%88%AC%E8%99%AB-%E6%B1%BD%E8%BD%A6%E4%B9%8B%E5%AE%B6/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "爬虫 汽车之家",
+  "name": "爬虫 汽车之家",
+  "description": "对汽车之家的自驾游图片进行爬取",
+  "keywords": [
+    "爬虫项目实战"
+  ],
+  "articleBody": "汽车之家项目概述 首先对要爬取的网页代码进行分析https://you.autohome.com.cn/index/searchkeyword?keyword=%E9%A9%AC%E5%B0%94%E4%BB%A3%E5%A4%AB 在查看网页源代码后发现没有要的数据就对该页面进行抓包如下：\n代码如下：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52  import requests import re from concurrent.futures import ThreadPoolExecutor url0 = 'https://you.autohome.com.cn' # 保存下载图片 def download_pic(urlpic): response3 = requests.get(urlpic) file_path = urlpic.split(\"/\")[-1] with open(f\"pic/{file_path}\", \"wb\") as f: f.write(response3.content) def main(): # 1.在原始的列表帖子页面获取 url = \"https://you.autohome.com.cn/summary/getsearchresultlist\" params1 = { 'ps': 20, 'pg': 0, 'type': 4, 'q': '马尔代夫', 'dataType': '4,9', '_': 1659220150512, } response = requests.get(url=url,params=params1) dic1 = response.json() list_blog_place = response.json()['result']['hitlist'] # 获得每个文章的部分url列表 # print(dic1) pic_re = re.compile('{\"imgurl\":\"(?P.*?)\"') for i in list_blog_place: url4 = i['url'] # print(url4) realurl = url0 + url4 response2 = requests.get(url=realurl) pichtml = response2.text # print(response2.text) allpic = pic_re.finditer(pichtml) piclist = [] for i in allpic: # print(i.group('pic')) piclist.append(i.group('pic')) # 下载图片 with ThreadPoolExecutor(10) as t: for pic in piclist: t.submit(download_pic, pic) response.close() if __name__ == '__main__': main()   使用from urllib.parse import urljoin 对URL进行方便的拼接，大大方便拼接完整url，在m3u8中非常适用。替换小部分即可\n1 2 3 4 5 6 7 8 9 10 11 12  for i in list_blog_place: url4 = i['url'] # print(url4) realurl = urljoin(url, url4) response2 = requests.get(url=realurl) pichtml = response2.text # print(response2.text) allpic = pic_re.finditer(pichtml) piclist = [] for i in allpic: # print(i.group('pic')) piclist.append(i.group('pic'))   ",
+  "wordCount" : "465",
+  "inLanguage": "en",
+  "datePublished": "2022-07-31T08:16:05+08:00",
+  "dateModified": "2022-07-31T08:16:05+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "hanson"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hanson00.github.io/posts/technology/python/%E7%88%AC%E8%99%AB-%E6%B1%BD%E8%BD%A6%E4%B9%8B%E5%AE%B6/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hanson's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hanson00.github.io/posts/imgs/66.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hanson00.github.io/" accesskey="h" title="Hanson&#39;s Blog (Alt + H)">Hanson&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hanson00.github.io/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/python/">Python文章</a></div>
+    <h1 class="post-title">
+      爬虫 汽车之家
+    </h1>
+    <div class="post-description">
+      对汽车之家的自驾游图片进行爬取
+    </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;2022-07-31&nbsp;|&nbsp;字数:&nbsp;465字&nbsp;|&nbsp;时长: 1分钟&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
+      <ul class="post-tags-meta">
+        <a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
+      </ul>
+
+      <span id="busuanzi_container_page_pv">
+        &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+      </span>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#%e6%b1%bd%e8%bd%a6%e4%b9%8b%e5%ae%b6%e9%a1%b9%e7%9b%ae%e6%a6%82%e8%bf%b0" aria-label="汽车之家项目概述">汽车之家项目概述</a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h1 id="汽车之家项目概述">汽车之家项目概述<a hidden class="anchor" aria-hidden="true" href="#汽车之家项目概述">#</a></h1>
+<p>首先对要爬取的网页代码进行分析<code>https://you.autohome.com.cn/index/searchkeyword?keyword=%E9%A9%AC%E5%B0%94%E4%BB%A3%E5%A4%AB</code>
+在查看网页源代码后发现没有要的数据就对该页面进行抓包如下：</p>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/%E6%B1%BD%E8%BD%A6%E4%B9%8B%E5%AE%B61.png" alt="image-20220731082213836"  />
+</p>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/%E6%B1%BD%E8%BD%A6%E4%B9%8B%E5%AE%B62.png" alt="image-20220731082251450"  />
+</p>
+<p>代码如下：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> requests
+<span style="color:#2c5dcd;font-weight:bold">import</span> re
+<span style="color:#2c5dcd;font-weight:bold">from</span> concurrent.futures <span style="color:#2c5dcd;font-weight:bold">import</span> ThreadPoolExecutor
+url0 <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;https://you.autohome.com.cn&#39;</span>
+
+<span style="color:#0080ff;font-style:italic"># 保存下载图片</span>
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">download_pic</span>(urlpic):
+    response3 <span style="color:#2c5dcd">=</span> requests<span style="color:#2c5dcd">.</span>get(urlpic)
+    file_path <span style="color:#2c5dcd">=</span> urlpic<span style="color:#2c5dcd">.</span>split(<span style="color:#0c6">&#34;/&#34;</span>)[<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">1</span>]
+    <span style="color:#2c5dcd;font-weight:bold">with</span> <span style="color:#5918bb;font-weight:bold">open</span>(<span style="color:#0c6">f</span><span style="color:#0c6">&#34;pic/</span><span style="color:#0c6">{</span>file_path<span style="color:#0c6">}</span><span style="color:#0c6">&#34;</span>, <span style="color:#0c6">&#34;wb&#34;</span>) <span style="color:#2c5dcd;font-weight:bold">as</span> f:
+        f<span style="color:#2c5dcd">.</span>write(response3<span style="color:#2c5dcd">.</span>content)
+
+
+
+<span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">main</span>():
+    <span style="color:#0080ff;font-style:italic"># 1.在原始的列表帖子页面获取</span>
+    url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;https://you.autohome.com.cn/summary/getsearchresultlist&#34;</span>
+    params1 <span style="color:#2c5dcd">=</span> {
+    <span style="color:#0c6">&#39;ps&#39;</span>: <span style="color:#5918bb;font-weight:bold">20</span>,
+    <span style="color:#0c6">&#39;pg&#39;</span>: <span style="color:#5918bb;font-weight:bold">0</span>,
+    <span style="color:#0c6">&#39;type&#39;</span>: <span style="color:#5918bb;font-weight:bold">4</span>,
+    <span style="color:#0c6">&#39;q&#39;</span>: <span style="color:#0c6">&#39;马尔代夫&#39;</span>,
+    <span style="color:#0c6">&#39;dataType&#39;</span>: <span style="color:#0c6">&#39;4,9&#39;</span>,
+    <span style="color:#0c6">&#39;_&#39;</span>: <span style="color:#5918bb;font-weight:bold">1659220150512</span>,
+    }
+    response <span style="color:#2c5dcd">=</span> requests<span style="color:#2c5dcd">.</span>get(url<span style="color:#2c5dcd">=</span>url,params<span style="color:#2c5dcd">=</span>params1)
+    dic1 <span style="color:#2c5dcd">=</span> response<span style="color:#2c5dcd">.</span>json()
+    list_blog_place <span style="color:#2c5dcd">=</span> response<span style="color:#2c5dcd">.</span>json()[<span style="color:#0c6">&#39;result&#39;</span>][<span style="color:#0c6">&#39;hitlist&#39;</span>]  <span style="color:#0080ff;font-style:italic"># 获得每个文章的部分url列表</span>
+    <span style="color:#0080ff;font-style:italic"># print(dic1)</span>
+    pic_re <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</span>compile(<span style="color:#0c6">&#39;{&#34;imgurl&#34;:&#34;(?P&lt;pic&gt;.*?)&#34;&#39;</span>)
+    <span style="color:#2c5dcd;font-weight:bold">for</span> i <span style="color:#2c5dcd;font-weight:bold">in</span> list_blog_place:
+        url4 <span style="color:#2c5dcd">=</span> i[<span style="color:#0c6">&#39;url&#39;</span>]
+        <span style="color:#0080ff;font-style:italic"># print(url4)</span>
+        realurl <span style="color:#2c5dcd">=</span> url0 <span style="color:#2c5dcd">+</span> url4
+        response2 <span style="color:#2c5dcd">=</span> requests<span style="color:#2c5dcd">.</span>get(url<span style="color:#2c5dcd">=</span>realurl)
+        pichtml <span style="color:#2c5dcd">=</span> response2<span style="color:#2c5dcd">.</span>text
+        <span style="color:#0080ff;font-style:italic"># print(response2.text)</span>
+        allpic <span style="color:#2c5dcd">=</span> pic_re<span style="color:#2c5dcd">.</span>finditer(pichtml)
+        piclist <span style="color:#2c5dcd">=</span> []
+        <span style="color:#2c5dcd;font-weight:bold">for</span> i <span style="color:#2c5dcd;font-weight:bold">in</span> allpic:
+            <span style="color:#0080ff;font-style:italic"># print(i.group(&#39;pic&#39;))</span>
+            piclist<span style="color:#2c5dcd">.</span>append(i<span style="color:#2c5dcd">.</span>group(<span style="color:#0c6">&#39;pic&#39;</span>))
+
+        <span style="color:#0080ff;font-style:italic"># 下载图片</span>
+        <span style="color:#2c5dcd;font-weight:bold">with</span> ThreadPoolExecutor(<span style="color:#5918bb;font-weight:bold">10</span>) <span style="color:#2c5dcd;font-weight:bold">as</span> t:
+            <span style="color:#2c5dcd;font-weight:bold">for</span> pic <span style="color:#2c5dcd;font-weight:bold">in</span> piclist:
+                t<span style="color:#2c5dcd">.</span>submit(download_pic, pic)
+
+    response<span style="color:#2c5dcd">.</span>close()
+
+<span style="color:#2c5dcd;font-weight:bold">if</span> __name__ <span style="color:#2c5dcd">==</span> <span style="color:#0c6">&#39;__main__&#39;</span>:
+    main()
+</code></pre></td></tr></table>
+</div>
+</div><p>使用<code>from urllib.parse import urljoin</code> 对URL进行方便的拼接，大大方便拼接完整url，在m3u8中非常适用。替换小部分即可</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">for</span> i <span style="color:#2c5dcd;font-weight:bold">in</span> list_blog_place:
+    url4 <span style="color:#2c5dcd">=</span> i[<span style="color:#0c6">&#39;url&#39;</span>]
+    <span style="color:#0080ff;font-style:italic"># print(url4)</span>
+    realurl <span style="color:#2c5dcd">=</span> urljoin(url, url4)
+    response2 <span style="color:#2c5dcd">=</span> requests<span style="color:#2c5dcd">.</span>get(url<span style="color:#2c5dcd">=</span>realurl)
+    pichtml <span style="color:#2c5dcd">=</span> response2<span style="color:#2c5dcd">.</span>text
+    <span style="color:#0080ff;font-style:italic"># print(response2.text)</span>
+    allpic <span style="color:#2c5dcd">=</span> pic_re<span style="color:#2c5dcd">.</span>finditer(pichtml)
+    piclist <span style="color:#2c5dcd">=</span> []
+    <span style="color:#2c5dcd;font-weight:bold">for</span> i <span style="color:#2c5dcd;font-weight:bold">in</span> allpic:
+        <span style="color:#0080ff;font-style:italic"># print(i.group(&#39;pic&#39;))</span>
+        piclist<span style="color:#2c5dcd">.</span>append(i<span style="color:#2c5dcd">.</span>group(<span style="color:#0c6">&#39;pic&#39;</span>))
+</code></pre></td></tr></table>
+</div>
+</div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://hanson00.github.io/posts/technology/python/python-json/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Python Json</span>
+  </a>
+</nav>
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>✨昵称输入QQ号可以自动关联✨
+        <hr />
+
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo1-mu.vercel.app/",  
+            el: "#tcomment",
+            lang: 'zh-CN',
+            region: 'ap-guangzhou',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

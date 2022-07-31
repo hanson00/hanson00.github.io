@@ -6,7 +6,25 @@
     <description>Recent content on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 26 Jul 2022 07:54:20 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Jul 2022 08:16:05 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>爬虫 汽车之家</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E7%88%AC%E8%99%AB-%E6%B1%BD%E8%BD%A6%E4%B9%8B%E5%AE%B6/</link>
+      <pubDate>Sun, 31 Jul 2022 08:16:05 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E7%88%AC%E8%99%AB-%E6%B1%BD%E8%BD%A6%E4%B9%8B%E5%AE%B6/</guid>
+      <description>对汽车之家的自驾游图片进行爬取</description>
+    </item>
+    
+    <item>
+      <title>Python Json</title>
+      <link>https://hanson00.github.io/posts/technology/python/python-json/</link>
+      <pubDate>Thu, 28 Jul 2022 15:25:25 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/python-json/</guid>
+      <description>json模块 JSON（JavaScript Object Notation）是一种轻量级的数据交换格式。下面给出json模块的常用方法 json.dump(</description>
+    </item>
+    
     <item>
       <title>Flask疫情实战</title>
       <link>https://hanson00.github.io/posts/technology/python/flask%E7%96%AB%E6%83%85%E5%AE%9E%E6%88%98/</link>
