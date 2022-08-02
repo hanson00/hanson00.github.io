@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Scrapy on Hanson&#39;s Blog</title>
+    <link>https://hanson00.github.io/tags/scrapy/</link>
+    <description>Recent content in Scrapy on Hanson&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 01 Aug 2022 10:31:40 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/scrapy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Scrapy学习1.0</title>
+      <link>https://hanson00.github.io/posts/technology/python/scrapy%E5%AD%A6%E4%B9%A01.0/</link>
+      <pubDate>Mon, 01 Aug 2022 10:31:40 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/scrapy%E5%AD%A6%E4%B9%A01.0/</guid>
+      <description>Scrapy的初探</description>
+    </item>
+    
+  </channel>
+</rss>

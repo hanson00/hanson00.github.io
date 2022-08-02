@@ -6,11 +6,20 @@
     <description>Recent content in Tags on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 31 Jul 2022 08:16:05 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Aug 2022 10:31:40 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Scrapy</title>
+      <link>https://hanson00.github.io/tags/scrapy/</link>
+      <pubDate>Mon, 01 Aug 2022 10:31:40 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/tags/scrapy/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>爬虫</title>
       <link>https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/</link>
-      <pubDate>Sun, 31 Jul 2022 08:16:05 +0800</pubDate>
+      <pubDate>Mon, 01 Aug 2022 10:31:40 +0800</pubDate>
       
       <guid>https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/</guid>
       <description></description>
