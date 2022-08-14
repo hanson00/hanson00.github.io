@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>数据库 on Hanson&#39;s Blog</title>
+    <link>https://hanson00.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content in 数据库 on Hanson&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 12 Aug 2022 06:59:00 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>崔庆才爬虫书阅读摘要03</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8103/</link>
+      <pubDate>Fri, 12 Aug 2022 06:59:00 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8103/</guid>
+      <description>对爬虫保存成数据库的一些语法学习</description>
+    </item>
+    
+    <item>
+      <title>01mysql</title>
+      <link>https://hanson00.github.io/posts/technology/java/01mysql/</link>
+      <pubDate>Sat, 02 Jul 2022 13:58:37 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/java/01mysql/</guid>
+      <description>JavaWeb的MySQL学习</description>
+    </item>
+    
+  </channel>
+</rss>

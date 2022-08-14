@@ -111,8 +111,8 @@
   "keywords": [
     "MySQL学习数据"
   ],
-  "articleBody": "MySQL的学习 1.命令行的基本命令 数据库操作：通过命令行登录MySQL使用命令:mysql -uroot -p1234 ( -uMySQL用户名,-pMySQL密码 )\n show databases; 查询本地数据库\n  create database 数据库名称; 创建数据库\n  一般采用该语句用于创建数据库\ncreate database if not exists 数据库名称; \n  drop database 数据库名称; 删除数据库\n  一般采用该语句用于删除数据库\ndrop database if exists 数据库名称;\n  use 数据库名称; 使用数据库\n  select database(); 查看当前使用的数据库\n  表操作：\n show tables; 查看当前数据库的表名称\n  desc 表名称; 查询表结构\n  1 2 3 4 5 6 7 8 9 10  --创建表createtable表名(列名1,数据类型，列名2,数据类型，列名3,数据类型，列名n,数据类型)；    drop table 表名; 删除表\n  drop table if exists 表名; 删除表并判断是否存在\n  alter table 表名 rename 新表名 修改表名\n  alter table 表名 add 新列名 数据类型; 添加一列\n  alter table 表名 modify 列名 新的数据类型; 修改数据类型\n  alter table 表名 change 列名 新的数据类型; 修改列名和数据类型\n  alter table 表名 drop 列名; 删除列\n  insert into 表名(列名1,列名2,...) values(值1,值2,值3); 给指定的列添加数据\n  insert into 表名 values(值1,值2,值3,...); 给全部列添加数据\n  insert into 表名 values(值1,值2,值3,...),(值1,值2,值3,...),(值1,值2,值3,...); 批量添加数据\n  ==查询语法DQL详细学习见后面自学==\n 条件查询 排序查询 聚合函数 分组查询 分页查询 约束实现 多表查询中的内连接，外连接 多表查询的子查询 事务   ",
-  "wordCount" : "583",
+  "articleBody": "MySQL的学习 1.命令行的基本命令 数据库操作：通过命令行登录MySQL使用命令:mysql -uroot -p1234 ( -uMySQL用户名,-pMySQL密码 )\n show databases; 查询本地数据库\n  create database 数据库名称; 创建数据库\n  一般采用该语句用于创建数据库\ncreate database if not exists 数据库名称; \n  drop database 数据库名称; 删除数据库\n  一般采用该语句用于删除数据库\ndrop database if exists 数据库名称;\n  use 数据库名称; 使用数据库\n  select database(); 查看当前使用的数据库\n  表操作：\n show tables; 查看当前数据库的表名称\n  desc 表名称; 查询表结构\n  1 2 3 4 5 6 7 8 9 10  --创建表 create table 表名( 列名1,数据类型， 列名2,数据类型， 列名3,数据类型， 列名n,数据类型)；     drop table 表名; 删除表\n  drop table if exists 表名; 删除表并判断是否存在\n  alter table 表名 rename 新表名 修改表名\n  alter table 表名 add 新列名 数据类型; 添加一列\n  alter table 表名 modify 列名 新的数据类型; 修改数据类型\n  alter table 表名 change 列名 新的数据类型; 修改列名和数据类型\n  alter table 表名 drop 列名; 删除列\n  insert into 表名(列名1,列名2,...) values(值1,值2,值3); 给指定的列添加数据\n  insert into 表名 values(值1,值2,值3,...); 给全部列添加数据\n  insert into 表名 values(值1,值2,值3,...),(值1,值2,值3,...),(值1,值2,值3,...); 批量添加数据\n  ==查询语法DQL详细学习见后面自学==\n 条件查询 排序查询 聚合函数 分组查询 分页查询 约束实现 多表查询中的内连接，外连接 多表查询的子查询 事务   ",
+  "wordCount" : "574",
   "inLanguage": "en",
   "datePublished": "2022-07-02T13:58:37+08:00",
   "dateModified": "2022-07-02T13:58:37+08:00",
@@ -232,11 +232,11 @@
 
 
 
-更新:&nbsp;2022-07-02&nbsp;|&nbsp;字数:&nbsp;583字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
+更新:&nbsp;2022-07-02&nbsp;|&nbsp;字数:&nbsp;574字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
 作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
       <ul class="post-tags-meta">
         <a href="https://hanson00.github.io/tags/javaweb%E7%9B%B8%E5%85%B3%E5%AD%A6%E4%B9%A0/">JavaWeb相关学习</a>
-        <a href="https://hanson00.github.io/tags/mysql/">、MySQL</a>
+        <a href="https://hanson00.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">、数据库</a>
       </ul>
 
       <span id="busuanzi_container_page_pv">
@@ -373,17 +373,17 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#2c5dcd">--</span><span style="color:#fff;background-color:#c00">创建表</span><span style="color:#cbcbcb">
-</span><span style="color:#cbcbcb"></span><span style="color:#2c5dcd;font-weight:bold">create</span><span style="color:#cbcbcb"> </span><span style="color:#2c5dcd;font-weight:bold">table</span><span style="color:#cbcbcb"> </span><span style="color:#fff;background-color:#c00">表名</span>(<span style="color:#cbcbcb">
-</span><span style="color:#cbcbcb">
-</span><span style="color:#cbcbcb"></span><span style="color:#fff;background-color:#c00">列名</span><span style="color:#5918bb;font-weight:bold">1</span>,<span style="color:#fff;background-color:#c00">数据类型，</span><span style="color:#cbcbcb">
-</span><span style="color:#cbcbcb">
-</span><span style="color:#cbcbcb"></span><span style="color:#fff;background-color:#c00">列名</span><span style="color:#5918bb;font-weight:bold">2</span>,<span style="color:#fff;background-color:#c00">数据类型，</span><span style="color:#cbcbcb">
-</span><span style="color:#cbcbcb">
-</span><span style="color:#cbcbcb"></span><span style="color:#fff;background-color:#c00">列名</span><span style="color:#5918bb;font-weight:bold">3</span>,<span style="color:#fff;background-color:#c00">数据类型，</span><span style="color:#cbcbcb">
-</span><span style="color:#cbcbcb">
-</span><span style="color:#cbcbcb"></span><span style="color:#fff;background-color:#c00">列名</span>n,<span style="color:#fff;background-color:#c00">数据类型</span>)<span style="color:#fff;background-color:#c00">；</span><span style="color:#cbcbcb">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">--创建表
+create table 表名(
+
+列名1,数据类型，
+
+列名2,数据类型，
+
+列名3,数据类型，
+
+列名n,数据类型)；
+</code></pre></td></tr></table>
 </div>
 </div></blockquote>
 <blockquote>
@@ -438,7 +438,7 @@
   <footer class="post-footer">
     <ul class="post-tags">
       <li><a href="https://hanson00.github.io/tags/javaweb%E7%9B%B8%E5%85%B3%E5%AD%A6%E4%B9%A0/">JavaWeb相关学习</a></li>
-      <li><a href="https://hanson00.github.io/tags/mysql/">MySQL</a></li>
+      <li><a href="https://hanson00.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://hanson00.github.io/posts/technology/java/02jdbc/">

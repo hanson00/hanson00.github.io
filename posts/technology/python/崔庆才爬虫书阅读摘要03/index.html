@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>崔庆才爬虫书阅读摘要03 | Hanson&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="对爬虫保存成数据库的一些语法学习">
+<meta name="author" content="
+作者:&nbsp;hanson">
+<link rel="canonical" href="https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8103/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hanson00.github.io/posts/imgs/favicon16x16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hanson00.github.io/posts/imgs/favicon32x32.ico">
+<link rel="apple-touch-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="mask-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="崔庆才爬虫书阅读摘要03" />
+<meta property="og:description" content="对爬虫保存成数据库的一些语法学习" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8103/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-12T06:59:00&#43;08:00" />
+<meta property="article:modified_time" content="2022-08-12T06:59:00&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="崔庆才爬虫书阅读摘要03"/>
+<meta name="twitter:description" content="对爬虫保存成数据库的一些语法学习"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hanson00.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "💻技术类文章",
+      "item": "https://hanson00.github.io/posts/technology/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Python文章",
+      "item": "https://hanson00.github.io/posts/technology/python/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "崔庆才爬虫书阅读摘要03",
+      "item": "https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8103/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "崔庆才爬虫书阅读摘要03",
+  "name": "崔庆才爬虫书阅读摘要03",
+  "description": "对爬虫保存成数据库的一些语法学习",
+  "keywords": [
+    ""
+  ],
+  "articleBody": "MySQL(关系型数据库) MySQL的学习将以代码的形式来展开，并辅以少量文字解释。\nsql语句使用格式化符%s来构造，避免使用+的拼接字符串、对于数据的插入、更新、删除操作都需要db的commit方法才行，如果执行失败则使用rollback执行回调。标准写法如下：\n1 2 3 4 5  try: cursor.execute(sql, (带传入的值)) db.commit() except: db.rollback()   下面给出所使用的数据表的生成代码：\n1 2 3 4 5 6  CREATETABLE`students`(`id`varchar(255)NOTNULL,`name`varchar(255)NOTNULL,`age`int(11)NOTNULL,PRIMARYKEY(`id`))ENGINE=InnoDBDEFAULTCHARSET=utf8mb4;  插入语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  import pymysql person1 = {\"id\":\"2022812\", \"name\":\"Jhon\", \"age\":18} # 声明了一个MySQL连接对象 db db = pymysql.connect(host=\"localhost\", # MySQL运行的host（即IP） user=\"root\", # 用户名 password=\"1234\", # 密码 database=\"spiders\") # 所连接的数据库 # 获得MySQL的操作游标，可以利用游标执行sql语句 cursor = db.cursor() sql = \"insert into students(id, name, age) values(%s, %s, %s)\" try: cursor.execute(sql, (person1[\"id\"], person1[\"name\"], person1[\"age\"])) db.commit() except: db.rollback() db.close()   对上述代码进行优化如下：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24  import pymysql data = {\"id\":\"202281203\", \"name\":\"Saliy\", \"age\":18} table = \"students\" keys = \", \".join(data.keys())\t# output：\"id\", \"name\", \"age\" values = \", \".join(['%s'] * len(data)) # 声明了一个MySQL连接对象 db db = pymysql.connect(host=\"localhost\", # MySQL运行的host（即IP） user=\"root\", # 用户名 password=\"1234\", # 密码 database=\"spiders\") # 所连接的数据库 # 获得MySQL的操作游标，可以利用游标执行sql语句 cursor = db.cursor() sql = f\"insert into {table}({keys}) values({values})\" try: cursor.execute(sql, tuple(data.values())) print(\"Successful\") db.commit() except: print(\"Failed\") db.rollback() db.close()   实现了动态SQL语句的实现，sql中的列名就是通过传入数据字典的键名来表示，excute方法的第一个参数是sql变量，第二个参数是传入data的值所构造的元组实现。\n更新语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29  import pymysql data = {\"id\":\"202281204\", \"name\":\"tom\", \"age\":118} table = \"students\" keys = \", \".join(data.keys()) values = \", \".join(['%s'] * len(data)) # print(values) # 声明了一个MySQL连接对象 db db = pymysql.connect(host=\"localhost\", # MySQL运行的host（即IP） user=\"root\", # 用户名 password=\"1234\", # 密码 database=\"spiders\") # 所连接的数据库 # 获得MySQL的操作游标，可以利用游标执行sql语句 cursor = db.cursor() # ON DUPLICATE KEY UPDATE是如果主键已经存在就会执行更新，否则就是插入 sql = f\"insert into {table}({keys}) values ({values}) ON DUPLICATE KEY UPDATE \" update = \",\".join([\"{key}= %s\".format(key=key) for key in data]) sql += update try: if cursor.execute(sql, tuple(data.values())*2): print(\"Successful\") db.commit() except: print(\"Failed\") db.rollback() db.close()   删除语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26  import pymysql condition = \"age  100\" table = \"students\" # print(values) # 声明了一个MySQL连接对象 db db = pymysql.connect(host=\"localhost\", # MySQL运行的host（即IP） user=\"root\", # 用户名 password=\"1234\", # 密码 database=\"spiders\") # 所连接的数据库 # 获得MySQL的操作游标，可以利用游标执行sql语句 cursor = db.cursor() sql = f\"delete from {table}where {condition}\" try: if cursor.execute(sql): print(\"Successful\") db.commit() except: print(\"Failed\") db.rollback() db.close()   查询语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26  import pymysql table = \"students\" condition = \"age # 声明了一个MySQL连接对象 db db = pymysql.connect(host=\"localhost\", # MySQL运行的host（即IP） user=\"root\", # 用户名 password=\"1234\", # 密码 database=\"spiders\") # 所连接的数据库 # 获得MySQL的操作游标，可以利用游标执行sql语句 cursor = db.cursor() sql = f\"select * from {table}where {condition}\" try: cursor.execute(sql) print(\"查询的数据条数为：\", cursor.rowcount) one = cursor.fetchone() print(\"第一条：\", one) alldata = cursor.fetchall() print(alldata) print(\"--------\") for i in alldata: print(i) except: print(\"ERROR\") db.close()    查询语句比较推荐下面的写法可以减小开销（当数据体量很大时）\n 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23  import pymysql table = \"students\" condition = \"age # 声明了一个MySQL连接对象 db db = pymysql.connect(host=\"localhost\", # MySQL运行的host（即IP） user=\"root\", # 用户名 password=\"1234\", # 密码 database=\"spiders\") # 所连接的数据库 # 获得MySQL的操作游标，可以利用游标执行sql语句 cursor = db.cursor() sql = f\"select * from {table}where {condition}\" try: cursor.execute(sql) print(\"查询的数据条数为：\", cursor.rowcount) one = cursor.fetchone() while one: print(\"Row\", one) one = cursor.fetchone() except: print(\"ERROR\") db.close()   MongoDB MongoDB中的集合类似于关系数据库中的表。 可能由于更新后某些语法失效，具体可以查看官方文档\n插入语句 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24  import pymongo # 创建mongodb连接对象 client = pymongo.MongoClient(host=\"localhost\") # client = pymongo.MongoClient('mongodb://localhost:27017/') 该语句相当于上面的语句作用相同 # 连接数据库 db = client[\"test\"] # db = client.test 作用与上面的语句相同 # 指定集合（相当于关系数据库里面的表） collection = db[\"students\"] # collection = db.students student1 = { \"id\":202281301, \"name\":\"tom\", \"age\":18, \"gender\":\"man\" } result = collection.insert_one(student1) print(result) print(result.inserted_id)   在MongoDB中每条数据都有一个_id属性作为唯一标识，如果没有显式指明该属性，那么MongoDB会自动产生一个object类型的_id属性。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30  import pymongo # 创建mongodb连接对象 client = pymongo.MongoClient(host=\"localhost\") # client = pymongo.MongoClient('mongodb://localhost:27017/') 该语句相当于上面的语句作用相同 # 连接数据库 db = client[\"test\"] # db = client.test 作用与上面的语句相同 # 指定集合（相当于关系数据库里面的表） collection = db[\"students\"] # collection = db.students student1 = { \"id\":202281302, \"name\":\"jocker\", \"age\":22, \"gender\":\"man\" } student2 = { \"id\":202281303, \"name\":\"sarah\", \"age\":23, \"gender\":\"woman\" } result = collection.insert_many([student1, student2]) print(result)   查询语句 1 2 3 4 5 6 7 8 9 10  import pymongo client = pymongo.MongoClient(host=\"localhost\") db = client[\"test\"] collection = db[\"students\"] result = collection.find_one({\"name\":\"tom\"}) print(result) # {'_id': ObjectId('62f700cc3f5cb4db631a52fa'), 'id': 202281301, 'name': 'tom', 'age': 18, 'gender': 'man'} print(result[\"id\"])   还可以使用_id属性来查询不过需要使用bson库里面的Objectid：\n1 2 3 4 5 6 7 8 9 10  import pymongo from bson.objectid import ObjectId client = pymongo.MongoClient(host=\"localhost\") db = client[\"test\"] collection = db[\"students\"] result = collection.find_one({'_id': ObjectId('62f700cc3f5cb4db631a52fa')}) print(result) # {'_id': ObjectId('62f700cc3f5cb4db631a52fa'), 'id': 202281301, 'name': 'tom', 'age': 18, 'gender': 'man'} print(result[\"id\"])      符号 含义 例子     $lt 小于（less than） result = collection.find({“age”:{\"$lt\":50}})   $gt 大于（greater than） result = collection.find({“age”:{\"$gt\":50}})   $lte 小于等于 同上   $gte 大于等于 同上   $ne 不等于（not equal to） 同上   $in 在范围内 result = collection.find({“age”:{\"$in\":[18, 23]}})   $nin 不在范围内 同上   $regex 匹配正则表达式 语法同上   $exists 属性是否存在 同上   $text 文本查询 {\"$text\":{\"$search\":“hanson”}}    等等还有需要功能符号方法\n1 2 3 4 5 6 7 8 9 10 11 12  import pymongo from bson.objectid import ObjectId client = pymongo.MongoClient(host=\"localhost\") db = client[\"test\"] collection = db[\"students\"] # 查询多个语句相当于一个生成器 result = collection.find({\"age\":{\"$in\":[18, 23]}}) for i in result: print(i[\"name\"])   计数 统计查询结果包含多少条数据使用count方法\n1 2 3 4 5 6 7 8 9 10 11 12  import pymongo from bson.objectid import ObjectId client = pymongo.MongoClient(host=\"localhost\") db = client[\"test\"] collection = db[\"students\"] # 查询多个语句相当于一个生成器 result = collection.estimated_document_count() result1 = collection.count_documents({\"age\":{\"$lt\":22}}) print(result1) print(result)   偏移 可能只想获取某几个元素就是用skip方法，还可以使用limit指定想要的结果个数\n1 2 3 4 5 6 7 8 9 10 11 12  import pymongo from bson.objectid import ObjectId client = pymongo.MongoClient(host=\"localhost\") db = client[\"test\"] collection = db[\"students\"] # 表示忽略前两个元素获得第三个及之后 result = collection.find().sort(\"name\",pymongo.ASCENDING).skip(2) # print(result) for i in result: print(i[\"name\"])   更新 1 2 3 4 5 6 7 8 9 10 11 12 13 14  import pymongo from bson.objectid import ObjectId client = pymongo.MongoClient(host=\"localhost\") db = client[\"test\"] collection = db[\"students\"] condition = {\"name\":\"tom\"} # 查询要更新的数据 student = collection.find_one(condition) # 修改数据 student[\"age\"] = 100 # 调用update_one方法将 原条件 和 修改后的数据传入 result = collection.update_one(condition, {\"$set\":student}) print(result)   更新后的结果可以调用matched_count和modified_count属性获得匹配的数据条数和影响的数据条数、\n删除 1 2 3 4 5 6 7 8 9 10  import pymongo from bson.objectid import ObjectId client = pymongo.MongoClient(host=\"localhost\") db = client[\"test\"] collection = db[\"students\"] condition = {\"name\":\"tom\"} result = collection.delete_one(condition) print(result) print(result.deleted_count)   MongoDB除了提供上面的方法还提供有一些组合方法例如find_one_and_delete和find_one_and_update\n",
+  "wordCount" : "2411",
+  "inLanguage": "en",
+  "datePublished": "2022-08-12T06:59:00+08:00",
+  "dateModified": "2022-08-12T06:59:00+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "hanson"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8103/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hanson's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hanson00.github.io/posts/imgs/66.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hanson00.github.io/" accesskey="h" title="Hanson&#39;s Blog (Alt + H)">Hanson&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hanson00.github.io/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/python/">Python文章</a></div>
+    <h1 class="post-title">
+      崔庆才爬虫书阅读摘要03
+    </h1>
+    <div class="post-description">
+      对爬虫保存成数据库的一些语法学习
+    </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;2022-08-12&nbsp;|&nbsp;字数:&nbsp;2411字&nbsp;|&nbsp;时长: 5分钟&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
+      <ul class="post-tags-meta">
+        <a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
+        <a href="https://hanson00.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">、数据库</a>
+      </ul>
+
+      <span id="busuanzi_container_page_pv">
+        &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+      </span>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#mysql%e5%85%b3%e7%b3%bb%e5%9e%8b%e6%95%b0%e6%8d%ae%e5%ba%93" aria-label="MySQL(关系型数据库)">MySQL(关系型数据库)</a><ul>
+                                    <ul>
+                                    
+                        <li>
+                            <a href="#%e6%8f%92%e5%85%a5%e8%af%ad%e5%8f%a5" aria-label="插入语句">插入语句</a></li>
+                        <li>
+                            <a href="#%e6%9b%b4%e6%96%b0%e8%af%ad%e5%8f%a5" aria-label="更新语句">更新语句</a></li>
+                        <li>
+                            <a href="#%e5%88%a0%e9%99%a4%e8%af%ad%e5%8f%a5" aria-label="删除语句">删除语句</a></li>
+                        <li>
+                            <a href="#%e6%9f%a5%e8%af%a2%e8%af%ad%e5%8f%a5" aria-label="查询语句">查询语句</a></li></ul>
+                                </ul>
+                        </li>
+                        <li>
+                            <a href="#mongodb" aria-label="MongoDB">MongoDB</a><ul>
+                                    <ul>
+                                    
+                        <li>
+                            <a href="#%e6%8f%92%e5%85%a5%e8%af%ad%e5%8f%a5-1" aria-label="插入语句">插入语句</a></li>
+                        <li>
+                            <a href="#%e6%9f%a5%e8%af%a2%e8%af%ad%e5%8f%a5-1" aria-label="查询语句">查询语句</a></li>
+                        <li>
+                            <a href="#%e8%ae%a1%e6%95%b0" aria-label="计数">计数</a></li>
+                        <li>
+                            <a href="#%e5%81%8f%e7%a7%bb" aria-label="偏移">偏移</a></li>
+                        <li>
+                            <a href="#%e6%9b%b4%e6%96%b0" aria-label="更新">更新</a></li>
+                        <li>
+                            <a href="#%e5%88%a0%e9%99%a4" aria-label="删除">删除</a>
+                        </li>
+                    </ul>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h2 id="mysql关系型数据库">MySQL(关系型数据库)<a hidden class="anchor" aria-hidden="true" href="#mysql关系型数据库">#</a></h2>
+<p>MySQL的学习将以代码的形式来展开，并辅以少量文字解释。</p>
+<p>sql语句使用格式化符<code>%s</code>来构造，避免使用<code>+</code>的拼接字符串、对于数据的插入、更新、删除操作都需要<code>db</code>的<code>commit</code>方法才行，如果执行失败则使用<code>rollback</code>执行回调。标准写法如下：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">try</span>:
+    cursor<span style="color:#2c5dcd">.</span>execute(sql, (带传入的值))
+    db<span style="color:#2c5dcd">.</span>commit()
+<span style="color:#2c5dcd;font-weight:bold">except</span>:
+    db<span style="color:#2c5dcd">.</span>rollback()
+</code></pre></td></tr></table>
+</div>
+</div><p>下面给出所使用的数据表的生成代码：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#2c5dcd;font-weight:bold">CREATE</span><span style="color:#cbcbcb"> </span><span style="color:#2c5dcd;font-weight:bold">TABLE</span><span style="color:#cbcbcb"> </span><span style="color:#2c5dcd">`</span>students<span style="color:#2c5dcd">`</span><span style="color:#cbcbcb"> </span>(<span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb">  </span><span style="color:#2c5dcd">`</span>id<span style="color:#2c5dcd">`</span><span style="color:#cbcbcb"> </span><span style="color:#5918bb;font-weight:bold">varchar</span>(<span style="color:#5918bb;font-weight:bold">255</span>)<span style="color:#cbcbcb"> </span><span style="color:#2c5dcd;font-weight:bold">NOT</span><span style="color:#cbcbcb"> </span><span style="color:#318495">NULL</span>,<span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb">  </span><span style="color:#2c5dcd">`</span>name<span style="color:#2c5dcd">`</span><span style="color:#cbcbcb"> </span><span style="color:#5918bb;font-weight:bold">varchar</span>(<span style="color:#5918bb;font-weight:bold">255</span>)<span style="color:#cbcbcb"> </span><span style="color:#2c5dcd;font-weight:bold">NOT</span><span style="color:#cbcbcb"> </span><span style="color:#318495">NULL</span>,<span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb">  </span><span style="color:#2c5dcd">`</span>age<span style="color:#2c5dcd">`</span><span style="color:#cbcbcb"> </span><span style="color:#5918bb;font-weight:bold">int</span>(<span style="color:#5918bb;font-weight:bold">11</span>)<span style="color:#cbcbcb"> </span><span style="color:#2c5dcd;font-weight:bold">NOT</span><span style="color:#cbcbcb"> </span><span style="color:#318495">NULL</span>,<span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb">  </span><span style="color:#2c5dcd;font-weight:bold">PRIMARY</span><span style="color:#cbcbcb"> </span><span style="color:#2c5dcd;font-weight:bold">KEY</span><span style="color:#cbcbcb"> </span>(<span style="color:#2c5dcd">`</span>id<span style="color:#2c5dcd">`</span>)<span style="color:#cbcbcb">
+</span><span style="color:#cbcbcb"></span>)<span style="color:#cbcbcb"> </span><span style="color:#2c5dcd">ENGINE</span><span style="color:#2c5dcd">=</span>InnoDB<span style="color:#cbcbcb"> </span><span style="color:#2c5dcd;font-weight:bold">DEFAULT</span><span style="color:#cbcbcb"> </span><span style="color:#2c5dcd">CHARSET</span><span style="color:#2c5dcd">=</span>utf8mb4;<span style="color:#cbcbcb">
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="插入语句">插入语句<a hidden class="anchor" aria-hidden="true" href="#插入语句">#</a></h4>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymysql
+
+person1 <span style="color:#2c5dcd">=</span> {<span style="color:#0c6">&#34;id&#34;</span>:<span style="color:#0c6">&#34;2022812&#34;</span>, <span style="color:#0c6">&#34;name&#34;</span>:<span style="color:#0c6">&#34;Jhon&#34;</span>, <span style="color:#0c6">&#34;age&#34;</span>:<span style="color:#5918bb;font-weight:bold">18</span>}
+
+<span style="color:#0080ff;font-style:italic"># 声明了一个MySQL连接对象 db</span>
+db <span style="color:#2c5dcd">=</span> pymysql<span style="color:#2c5dcd">.</span>connect(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>,  <span style="color:#0080ff;font-style:italic"># MySQL运行的host（即IP）</span>
+                     user<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;root&#34;</span>,   <span style="color:#0080ff;font-style:italic"># 用户名</span>
+                     password<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;1234&#34;</span>,   <span style="color:#0080ff;font-style:italic"># 密码</span>
+                     database<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;spiders&#34;</span>)    <span style="color:#0080ff;font-style:italic"># 所连接的数据库</span>
+
+<span style="color:#0080ff;font-style:italic"># 获得MySQL的操作游标，可以利用游标执行sql语句</span>
+cursor <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>cursor()
+sql <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;insert into students(id, name, age) values(</span><span style="color:#0c6">%s</span><span style="color:#0c6">, </span><span style="color:#0c6">%s</span><span style="color:#0c6">, </span><span style="color:#0c6">%s</span><span style="color:#0c6">)&#34;</span>
+<span style="color:#2c5dcd;font-weight:bold">try</span>:
+    cursor<span style="color:#2c5dcd">.</span>execute(sql, (person1[<span style="color:#0c6">&#34;id&#34;</span>], person1[<span style="color:#0c6">&#34;name&#34;</span>], person1[<span style="color:#0c6">&#34;age&#34;</span>]))
+    db<span style="color:#2c5dcd">.</span>commit()
+<span style="color:#2c5dcd;font-weight:bold">except</span>:
+    db<span style="color:#2c5dcd">.</span>rollback()
+
+db<span style="color:#2c5dcd">.</span>close()
+</code></pre></td></tr></table>
+</div>
+</div><p>对上述代码进行优化如下：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymysql
+
+data <span style="color:#2c5dcd">=</span> {<span style="color:#0c6">&#34;id&#34;</span>:<span style="color:#0c6">&#34;202281203&#34;</span>, <span style="color:#0c6">&#34;name&#34;</span>:<span style="color:#0c6">&#34;Saliy&#34;</span>, <span style="color:#0c6">&#34;age&#34;</span>:<span style="color:#5918bb;font-weight:bold">18</span>}
+table <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;students&#34;</span>
+keys <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;, &#34;</span><span style="color:#2c5dcd">.</span>join(data<span style="color:#2c5dcd">.</span>keys())	<span style="color:#0080ff;font-style:italic"># output：&#34;id&#34;, &#34;name&#34;, &#34;age&#34;</span>
+values <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;, &#34;</span><span style="color:#2c5dcd">.</span>join([<span style="color:#0c6">&#39;</span><span style="color:#0c6">%s</span><span style="color:#0c6">&#39;</span>] <span style="color:#2c5dcd">*</span> <span style="color:#5918bb;font-weight:bold">len</span>(data))
+<span style="color:#0080ff;font-style:italic"># 声明了一个MySQL连接对象 db</span>
+db <span style="color:#2c5dcd">=</span> pymysql<span style="color:#2c5dcd">.</span>connect(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>,  <span style="color:#0080ff;font-style:italic"># MySQL运行的host（即IP）</span>
+                     user<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;root&#34;</span>,   <span style="color:#0080ff;font-style:italic"># 用户名</span>
+                     password<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;1234&#34;</span>,   <span style="color:#0080ff;font-style:italic"># 密码</span>
+                     database<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;spiders&#34;</span>)    <span style="color:#0080ff;font-style:italic"># 所连接的数据库</span>
+
+<span style="color:#0080ff;font-style:italic"># 获得MySQL的操作游标，可以利用游标执行sql语句</span>
+cursor <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>cursor()
+sql <span style="color:#2c5dcd">=</span> <span style="color:#0c6">f</span><span style="color:#0c6">&#34;insert into </span><span style="color:#0c6">{</span>table<span style="color:#0c6">}</span><span style="color:#0c6">(</span><span style="color:#0c6">{</span>keys<span style="color:#0c6">}</span><span style="color:#0c6">) values(</span><span style="color:#0c6">{</span>values<span style="color:#0c6">}</span><span style="color:#0c6">)&#34;</span>
+<span style="color:#2c5dcd;font-weight:bold">try</span>:
+    cursor<span style="color:#2c5dcd">.</span>execute(sql, <span style="color:#5918bb;font-weight:bold">tuple</span>(data<span style="color:#2c5dcd">.</span>values()))
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;Successful&#34;</span>)
+    db<span style="color:#2c5dcd">.</span>commit()
+<span style="color:#2c5dcd;font-weight:bold">except</span>:
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;Failed&#34;</span>)
+    db<span style="color:#2c5dcd">.</span>rollback()
+
+db<span style="color:#2c5dcd">.</span>close()
+</code></pre></td></tr></table>
+</div>
+</div><p>实现了动态SQL语句的实现，sql中的列名就是通过传入数据字典的键名来表示，excute方法的第一个参数是sql变量，第二个参数是传入data的值所构造的元组实现。</p>
+<h4 id="更新语句">更新语句<a hidden class="anchor" aria-hidden="true" href="#更新语句">#</a></h4>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymysql
+
+data <span style="color:#2c5dcd">=</span> {<span style="color:#0c6">&#34;id&#34;</span>:<span style="color:#0c6">&#34;202281204&#34;</span>, <span style="color:#0c6">&#34;name&#34;</span>:<span style="color:#0c6">&#34;tom&#34;</span>, <span style="color:#0c6">&#34;age&#34;</span>:<span style="color:#5918bb;font-weight:bold">118</span>}
+table <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;students&#34;</span>
+keys <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;, &#34;</span><span style="color:#2c5dcd">.</span>join(data<span style="color:#2c5dcd">.</span>keys())
+values <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;, &#34;</span><span style="color:#2c5dcd">.</span>join([<span style="color:#0c6">&#39;</span><span style="color:#0c6">%s</span><span style="color:#0c6">&#39;</span>] <span style="color:#2c5dcd">*</span> <span style="color:#5918bb;font-weight:bold">len</span>(data))
+<span style="color:#0080ff;font-style:italic"># print(values)</span>
+<span style="color:#0080ff;font-style:italic"># 声明了一个MySQL连接对象 db</span>
+db <span style="color:#2c5dcd">=</span> pymysql<span style="color:#2c5dcd">.</span>connect(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>,  <span style="color:#0080ff;font-style:italic"># MySQL运行的host（即IP）</span>
+                     user<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;root&#34;</span>,   <span style="color:#0080ff;font-style:italic"># 用户名</span>
+                     password<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;1234&#34;</span>,   <span style="color:#0080ff;font-style:italic"># 密码</span>
+                     database<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;spiders&#34;</span>)    <span style="color:#0080ff;font-style:italic"># 所连接的数据库</span>
+
+<span style="color:#0080ff;font-style:italic"># 获得MySQL的操作游标，可以利用游标执行sql语句</span>
+cursor <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>cursor()
+<span style="color:#0080ff;font-style:italic"># ON DUPLICATE KEY UPDATE是如果主键已经存在就会执行更新，否则就是插入</span>
+sql <span style="color:#2c5dcd">=</span> <span style="color:#0c6">f</span><span style="color:#0c6">&#34;insert into </span><span style="color:#0c6">{</span>table<span style="color:#0c6">}</span><span style="color:#0c6">(</span><span style="color:#0c6">{</span>keys<span style="color:#0c6">}</span><span style="color:#0c6">) values (</span><span style="color:#0c6">{</span>values<span style="color:#0c6">}</span><span style="color:#0c6">) ON DUPLICATE KEY UPDATE &#34;</span>
+update <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;,&#34;</span><span style="color:#2c5dcd">.</span>join([<span style="color:#0c6">&#34;</span><span style="color:#0c6">{key}</span><span style="color:#0c6"> = </span><span style="color:#0c6">%s</span><span style="color:#0c6">&#34;</span><span style="color:#2c5dcd">.</span>format(key<span style="color:#2c5dcd">=</span>key) <span style="color:#2c5dcd;font-weight:bold">for</span> key <span style="color:#2c5dcd;font-weight:bold">in</span> data])
+
+sql <span style="color:#2c5dcd">+=</span> update
+<span style="color:#2c5dcd;font-weight:bold">try</span>:
+    <span style="color:#2c5dcd;font-weight:bold">if</span> cursor<span style="color:#2c5dcd">.</span>execute(sql, <span style="color:#5918bb;font-weight:bold">tuple</span>(data<span style="color:#2c5dcd">.</span>values())<span style="color:#2c5dcd">*</span><span style="color:#5918bb;font-weight:bold">2</span>):
+        <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;Successful&#34;</span>)
+        db<span style="color:#2c5dcd">.</span>commit()
+<span style="color:#2c5dcd;font-weight:bold">except</span>:
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;Failed&#34;</span>)
+    db<span style="color:#2c5dcd">.</span>rollback()
+
+db<span style="color:#2c5dcd">.</span>close()
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="删除语句">删除语句<a hidden class="anchor" aria-hidden="true" href="#删除语句">#</a></h4>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymysql
+
+condition <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;age &gt; 100&#34;</span>
+table <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;students&#34;</span>
+
+<span style="color:#0080ff;font-style:italic"># print(values)</span>
+<span style="color:#0080ff;font-style:italic"># 声明了一个MySQL连接对象 db</span>
+db <span style="color:#2c5dcd">=</span> pymysql<span style="color:#2c5dcd">.</span>connect(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>,  <span style="color:#0080ff;font-style:italic"># MySQL运行的host（即IP）</span>
+                     user<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;root&#34;</span>,   <span style="color:#0080ff;font-style:italic"># 用户名</span>
+                     password<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;1234&#34;</span>,   <span style="color:#0080ff;font-style:italic"># 密码</span>
+                     database<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;spiders&#34;</span>)    <span style="color:#0080ff;font-style:italic"># 所连接的数据库</span>
+
+<span style="color:#0080ff;font-style:italic"># 获得MySQL的操作游标，可以利用游标执行sql语句</span>
+cursor <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>cursor()
+
+sql <span style="color:#2c5dcd">=</span> <span style="color:#0c6">f</span><span style="color:#0c6">&#34;delete from </span><span style="color:#0c6">{</span>table<span style="color:#0c6">}</span><span style="color:#0c6"> where </span><span style="color:#0c6">{</span>condition<span style="color:#0c6">}</span><span style="color:#0c6">&#34;</span>
+
+<span style="color:#2c5dcd;font-weight:bold">try</span>:
+    <span style="color:#2c5dcd;font-weight:bold">if</span> cursor<span style="color:#2c5dcd">.</span>execute(sql):
+        <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;Successful&#34;</span>)
+        db<span style="color:#2c5dcd">.</span>commit()
+<span style="color:#2c5dcd;font-weight:bold">except</span>:
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;Failed&#34;</span>)
+    db<span style="color:#2c5dcd">.</span>rollback()
+
+db<span style="color:#2c5dcd">.</span>close()
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="查询语句">查询语句<a hidden class="anchor" aria-hidden="true" href="#查询语句">#</a></h4>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymysql
+
+table <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;students&#34;</span>
+condition <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;age &lt; 100&#34;</span>
+<span style="color:#0080ff;font-style:italic"># 声明了一个MySQL连接对象 db</span>
+db <span style="color:#2c5dcd">=</span> pymysql<span style="color:#2c5dcd">.</span>connect(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>,  <span style="color:#0080ff;font-style:italic"># MySQL运行的host（即IP）</span>
+                     user<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;root&#34;</span>,   <span style="color:#0080ff;font-style:italic"># 用户名</span>
+                     password<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;1234&#34;</span>,   <span style="color:#0080ff;font-style:italic"># 密码</span>
+                     database<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;spiders&#34;</span>)    <span style="color:#0080ff;font-style:italic"># 所连接的数据库</span>
+
+<span style="color:#0080ff;font-style:italic"># 获得MySQL的操作游标，可以利用游标执行sql语句</span>
+cursor <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>cursor()
+sql <span style="color:#2c5dcd">=</span> <span style="color:#0c6">f</span><span style="color:#0c6">&#34;select * from </span><span style="color:#0c6">{</span>table<span style="color:#0c6">}</span><span style="color:#0c6"> where </span><span style="color:#0c6">{</span>condition<span style="color:#0c6">}</span><span style="color:#0c6">&#34;</span>
+<span style="color:#2c5dcd;font-weight:bold">try</span>:
+    cursor<span style="color:#2c5dcd">.</span>execute(sql)
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;查询的数据条数为：&#34;</span>, cursor<span style="color:#2c5dcd">.</span>rowcount)
+    one <span style="color:#2c5dcd">=</span> cursor<span style="color:#2c5dcd">.</span>fetchone()
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;第一条：&#34;</span>, one)
+    alldata <span style="color:#2c5dcd">=</span> cursor<span style="color:#2c5dcd">.</span>fetchall()
+    <span style="color:#5918bb;font-weight:bold">print</span>(alldata)
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;--------&#34;</span>)
+    <span style="color:#2c5dcd;font-weight:bold">for</span> i <span style="color:#2c5dcd;font-weight:bold">in</span> alldata:
+        <span style="color:#5918bb;font-weight:bold">print</span>(i)
+<span style="color:#2c5dcd;font-weight:bold">except</span>:
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;ERROR&#34;</span>)
+db<span style="color:#2c5dcd">.</span>close()
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>查询语句比较推荐下面的写法可以减小开销（当数据体量很大时）</p>
+</blockquote>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymysql
+
+table <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;students&#34;</span>
+condition <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;age &lt; 100&#34;</span>
+<span style="color:#0080ff;font-style:italic"># 声明了一个MySQL连接对象 db</span>
+db <span style="color:#2c5dcd">=</span> pymysql<span style="color:#2c5dcd">.</span>connect(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>,  <span style="color:#0080ff;font-style:italic"># MySQL运行的host（即IP）</span>
+                     user<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;root&#34;</span>,   <span style="color:#0080ff;font-style:italic"># 用户名</span>
+                     password<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;1234&#34;</span>,   <span style="color:#0080ff;font-style:italic"># 密码</span>
+                     database<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;spiders&#34;</span>)    <span style="color:#0080ff;font-style:italic"># 所连接的数据库</span>
+
+<span style="color:#0080ff;font-style:italic"># 获得MySQL的操作游标，可以利用游标执行sql语句</span>
+cursor <span style="color:#2c5dcd">=</span> db<span style="color:#2c5dcd">.</span>cursor()
+sql <span style="color:#2c5dcd">=</span> <span style="color:#0c6">f</span><span style="color:#0c6">&#34;select * from </span><span style="color:#0c6">{</span>table<span style="color:#0c6">}</span><span style="color:#0c6"> where </span><span style="color:#0c6">{</span>condition<span style="color:#0c6">}</span><span style="color:#0c6">&#34;</span>
+<span style="color:#2c5dcd;font-weight:bold">try</span>:
+    cursor<span style="color:#2c5dcd">.</span>execute(sql)
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;查询的数据条数为：&#34;</span>, cursor<span style="color:#2c5dcd">.</span>rowcount)
+    one <span style="color:#2c5dcd">=</span> cursor<span style="color:#2c5dcd">.</span>fetchone()
+    <span style="color:#2c5dcd;font-weight:bold">while</span> one:
+        <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;Row&#34;</span>, one)
+        one <span style="color:#2c5dcd">=</span> cursor<span style="color:#2c5dcd">.</span>fetchone()
+<span style="color:#2c5dcd;font-weight:bold">except</span>:
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;ERROR&#34;</span>)
+db<span style="color:#2c5dcd">.</span>close()
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="mongodb">MongoDB<a hidden class="anchor" aria-hidden="true" href="#mongodb">#</a></h2>
+<p>MongoDB中的集合类似于关系数据库中的表。
+可能由于更新后某些语法失效，具体可以查看官方文档</p>
+<h4 id="插入语句-1">插入语句<a hidden class="anchor" aria-hidden="true" href="#插入语句-1">#</a></h4>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymongo
+
+<span style="color:#0080ff;font-style:italic"># 创建mongodb连接对象</span>
+client <span style="color:#2c5dcd">=</span> pymongo<span style="color:#2c5dcd">.</span>MongoClient(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>)
+<span style="color:#0080ff;font-style:italic"># client = pymongo.MongoClient(&#39;mongodb://localhost:27017/&#39;) 该语句相当于上面的语句作用相同</span>
+
+<span style="color:#0080ff;font-style:italic"># 连接数据库</span>
+db <span style="color:#2c5dcd">=</span> client[<span style="color:#0c6">&#34;test&#34;</span>]
+<span style="color:#0080ff;font-style:italic"># db = client.test 作用与上面的语句相同</span>
+
+<span style="color:#0080ff;font-style:italic"># 指定集合（相当于关系数据库里面的表）</span>
+collection <span style="color:#2c5dcd">=</span> db[<span style="color:#0c6">&#34;students&#34;</span>]
+<span style="color:#0080ff;font-style:italic"># collection = db.students</span>
+
+student1 <span style="color:#2c5dcd">=</span> {
+    <span style="color:#0c6">&#34;id&#34;</span>:<span style="color:#5918bb;font-weight:bold">202281301</span>,
+    <span style="color:#0c6">&#34;name&#34;</span>:<span style="color:#0c6">&#34;tom&#34;</span>,
+    <span style="color:#0c6">&#34;age&#34;</span>:<span style="color:#5918bb;font-weight:bold">18</span>,
+    <span style="color:#0c6">&#34;gender&#34;</span>:<span style="color:#0c6">&#34;man&#34;</span>
+}
+
+result <span style="color:#2c5dcd">=</span> collection<span style="color:#2c5dcd">.</span>insert_one(student1)
+<span style="color:#5918bb;font-weight:bold">print</span>(result)
+<span style="color:#5918bb;font-weight:bold">print</span>(result<span style="color:#2c5dcd">.</span>inserted_id)
+</code></pre></td></tr></table>
+</div>
+</div><p>在MongoDB中每条数据都有一个<code>_id</code>属性作为唯一标识，如果没有显式指明该属性，那么MongoDB会自动产生一个object类型的<code>_id</code>属性。</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymongo
+
+<span style="color:#0080ff;font-style:italic"># 创建mongodb连接对象</span>
+client <span style="color:#2c5dcd">=</span> pymongo<span style="color:#2c5dcd">.</span>MongoClient(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>)
+<span style="color:#0080ff;font-style:italic"># client = pymongo.MongoClient(&#39;mongodb://localhost:27017/&#39;) 该语句相当于上面的语句作用相同</span>
+
+<span style="color:#0080ff;font-style:italic"># 连接数据库</span>
+db <span style="color:#2c5dcd">=</span> client[<span style="color:#0c6">&#34;test&#34;</span>]
+<span style="color:#0080ff;font-style:italic"># db = client.test 作用与上面的语句相同</span>
+
+<span style="color:#0080ff;font-style:italic"># 指定集合（相当于关系数据库里面的表）</span>
+collection <span style="color:#2c5dcd">=</span> db[<span style="color:#0c6">&#34;students&#34;</span>]
+<span style="color:#0080ff;font-style:italic"># collection = db.students</span>
+
+student1 <span style="color:#2c5dcd">=</span> {
+    <span style="color:#0c6">&#34;id&#34;</span>:<span style="color:#5918bb;font-weight:bold">202281302</span>,
+    <span style="color:#0c6">&#34;name&#34;</span>:<span style="color:#0c6">&#34;jocker&#34;</span>,
+    <span style="color:#0c6">&#34;age&#34;</span>:<span style="color:#5918bb;font-weight:bold">22</span>,
+    <span style="color:#0c6">&#34;gender&#34;</span>:<span style="color:#0c6">&#34;man&#34;</span>
+}
+
+student2 <span style="color:#2c5dcd">=</span> {
+    <span style="color:#0c6">&#34;id&#34;</span>:<span style="color:#5918bb;font-weight:bold">202281303</span>,
+    <span style="color:#0c6">&#34;name&#34;</span>:<span style="color:#0c6">&#34;sarah&#34;</span>,
+    <span style="color:#0c6">&#34;age&#34;</span>:<span style="color:#5918bb;font-weight:bold">23</span>,
+    <span style="color:#0c6">&#34;gender&#34;</span>:<span style="color:#0c6">&#34;woman&#34;</span>
+}
+
+result <span style="color:#2c5dcd">=</span> collection<span style="color:#2c5dcd">.</span>insert_many([student1, student2])
+<span style="color:#5918bb;font-weight:bold">print</span>(result)
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="查询语句-1">查询语句<a hidden class="anchor" aria-hidden="true" href="#查询语句-1">#</a></h4>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymongo
+
+client <span style="color:#2c5dcd">=</span> pymongo<span style="color:#2c5dcd">.</span>MongoClient(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>)
+
+db <span style="color:#2c5dcd">=</span> client[<span style="color:#0c6">&#34;test&#34;</span>]
+collection <span style="color:#2c5dcd">=</span> db[<span style="color:#0c6">&#34;students&#34;</span>]
+
+result <span style="color:#2c5dcd">=</span> collection<span style="color:#2c5dcd">.</span>find_one({<span style="color:#0c6">&#34;name&#34;</span>:<span style="color:#0c6">&#34;tom&#34;</span>})
+<span style="color:#5918bb;font-weight:bold">print</span>(result)   <span style="color:#0080ff;font-style:italic"># {&#39;_id&#39;: ObjectId(&#39;62f700cc3f5cb4db631a52fa&#39;), &#39;id&#39;: 202281301, &#39;name&#39;: &#39;tom&#39;, &#39;age&#39;: 18, &#39;gender&#39;: &#39;man&#39;}</span>
+<span style="color:#5918bb;font-weight:bold">print</span>(result[<span style="color:#0c6">&#34;id&#34;</span>])
+</code></pre></td></tr></table>
+</div>
+</div><p>还可以使用<code>_id</code>属性来查询不过需要使用bson库里面的Objectid：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymongo
+<span style="color:#2c5dcd;font-weight:bold">from</span> bson.objectid <span style="color:#2c5dcd;font-weight:bold">import</span> ObjectId
+client <span style="color:#2c5dcd">=</span> pymongo<span style="color:#2c5dcd">.</span>MongoClient(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>)
+
+db <span style="color:#2c5dcd">=</span> client[<span style="color:#0c6">&#34;test&#34;</span>]
+collection <span style="color:#2c5dcd">=</span> db[<span style="color:#0c6">&#34;students&#34;</span>]
+
+result <span style="color:#2c5dcd">=</span> collection<span style="color:#2c5dcd">.</span>find_one({<span style="color:#0c6">&#39;_id&#39;</span>: ObjectId(<span style="color:#0c6">&#39;62f700cc3f5cb4db631a52fa&#39;</span>)})
+<span style="color:#5918bb;font-weight:bold">print</span>(result)   <span style="color:#0080ff;font-style:italic"># {&#39;_id&#39;: ObjectId(&#39;62f700cc3f5cb4db631a52fa&#39;), &#39;id&#39;: 202281301, &#39;name&#39;: &#39;tom&#39;, &#39;age&#39;: 18, &#39;gender&#39;: &#39;man&#39;}</span>
+<span style="color:#5918bb;font-weight:bold">print</span>(result[<span style="color:#0c6">&#34;id&#34;</span>])
+</code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">含义</th>
+<th style="text-align:center">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$lt</td>
+<td style="text-align:center">小于（less than）</td>
+<td style="text-align:center">result = collection.find({&ldquo;age&rdquo;:{&quot;$lt&quot;:50}})</td>
+</tr>
+<tr>
+<td style="text-align:center">$gt</td>
+<td style="text-align:center">大于（greater than）</td>
+<td style="text-align:center">result = collection.find({&ldquo;age&rdquo;:{&quot;$gt&quot;:50}})</td>
+</tr>
+<tr>
+<td style="text-align:center">$lte</td>
+<td style="text-align:center">小于等于</td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">$gte</td>
+<td style="text-align:center">大于等于</td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">$ne</td>
+<td style="text-align:center">不等于（not equal to）</td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">$in</td>
+<td style="text-align:center">在范围内</td>
+<td style="text-align:center">result = collection.find({&ldquo;age&rdquo;:{&quot;$in&quot;:[18, 23]}})</td>
+</tr>
+<tr>
+<td style="text-align:center">$nin</td>
+<td style="text-align:center">不在范围内</td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">$regex</td>
+<td style="text-align:center">匹配正则表达式</td>
+<td style="text-align:center">语法同上</td>
+</tr>
+<tr>
+<td style="text-align:center">$exists</td>
+<td style="text-align:center">属性是否存在</td>
+<td style="text-align:center">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">$text</td>
+<td style="text-align:center">文本查询</td>
+<td style="text-align:center">{&quot;$text&quot;:{&quot;$search&quot;:&ldquo;hanson&rdquo;}}</td>
+</tr>
+</tbody>
+</table>
+<p>等等还有需要功能符号方法</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymongo
+<span style="color:#2c5dcd;font-weight:bold">from</span> bson.objectid <span style="color:#2c5dcd;font-weight:bold">import</span> ObjectId
+client <span style="color:#2c5dcd">=</span> pymongo<span style="color:#2c5dcd">.</span>MongoClient(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>)
+
+db <span style="color:#2c5dcd">=</span> client[<span style="color:#0c6">&#34;test&#34;</span>]
+collection <span style="color:#2c5dcd">=</span> db[<span style="color:#0c6">&#34;students&#34;</span>]
+
+<span style="color:#0080ff;font-style:italic"># 查询多个语句相当于一个生成器</span>
+result <span style="color:#2c5dcd">=</span> collection<span style="color:#2c5dcd">.</span>find({<span style="color:#0c6">&#34;age&#34;</span>:{<span style="color:#0c6">&#34;$in&#34;</span>:[<span style="color:#5918bb;font-weight:bold">18</span>, <span style="color:#5918bb;font-weight:bold">23</span>]}})
+
+<span style="color:#2c5dcd;font-weight:bold">for</span> i <span style="color:#2c5dcd;font-weight:bold">in</span> result:
+    <span style="color:#5918bb;font-weight:bold">print</span>(i[<span style="color:#0c6">&#34;name&#34;</span>])
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="计数">计数<a hidden class="anchor" aria-hidden="true" href="#计数">#</a></h4>
+<p>统计查询结果包含多少条数据使用<code>count</code>方法</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymongo
+<span style="color:#2c5dcd;font-weight:bold">from</span> bson.objectid <span style="color:#2c5dcd;font-weight:bold">import</span> ObjectId
+client <span style="color:#2c5dcd">=</span> pymongo<span style="color:#2c5dcd">.</span>MongoClient(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>)
+
+db <span style="color:#2c5dcd">=</span> client[<span style="color:#0c6">&#34;test&#34;</span>]
+collection <span style="color:#2c5dcd">=</span> db[<span style="color:#0c6">&#34;students&#34;</span>]
+
+<span style="color:#0080ff;font-style:italic"># 查询多个语句相当于一个生成器</span>
+result <span style="color:#2c5dcd">=</span> collection<span style="color:#2c5dcd">.</span>estimated_document_count()
+result1 <span style="color:#2c5dcd">=</span> collection<span style="color:#2c5dcd">.</span>count_documents({<span style="color:#0c6">&#34;age&#34;</span>:{<span style="color:#0c6">&#34;$lt&#34;</span>:<span style="color:#5918bb;font-weight:bold">22</span>}})
+<span style="color:#5918bb;font-weight:bold">print</span>(result1)
+<span style="color:#5918bb;font-weight:bold">print</span>(result)
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="偏移">偏移<a hidden class="anchor" aria-hidden="true" href="#偏移">#</a></h4>
+<p>可能只想获取某几个元素就是用skip方法，还可以使用limit指定想要的结果个数</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymongo
+<span style="color:#2c5dcd;font-weight:bold">from</span> bson.objectid <span style="color:#2c5dcd;font-weight:bold">import</span> ObjectId
+client <span style="color:#2c5dcd">=</span> pymongo<span style="color:#2c5dcd">.</span>MongoClient(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>)
+
+db <span style="color:#2c5dcd">=</span> client[<span style="color:#0c6">&#34;test&#34;</span>]
+collection <span style="color:#2c5dcd">=</span> db[<span style="color:#0c6">&#34;students&#34;</span>]
+
+<span style="color:#0080ff;font-style:italic"># 表示忽略前两个元素获得第三个及之后</span>
+result <span style="color:#2c5dcd">=</span> collection<span style="color:#2c5dcd">.</span>find()<span style="color:#2c5dcd">.</span>sort(<span style="color:#0c6">&#34;name&#34;</span>,pymongo<span style="color:#2c5dcd">.</span>ASCENDING)<span style="color:#2c5dcd">.</span>skip(<span style="color:#5918bb;font-weight:bold">2</span>)
+<span style="color:#0080ff;font-style:italic"># print(result)</span>
+<span style="color:#2c5dcd;font-weight:bold">for</span> i <span style="color:#2c5dcd;font-weight:bold">in</span> result:
+    <span style="color:#5918bb;font-weight:bold">print</span>(i[<span style="color:#0c6">&#34;name&#34;</span>])
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="更新">更新<a hidden class="anchor" aria-hidden="true" href="#更新">#</a></h4>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymongo
+<span style="color:#2c5dcd;font-weight:bold">from</span> bson.objectid <span style="color:#2c5dcd;font-weight:bold">import</span> ObjectId
+client <span style="color:#2c5dcd">=</span> pymongo<span style="color:#2c5dcd">.</span>MongoClient(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>)
+
+db <span style="color:#2c5dcd">=</span> client[<span style="color:#0c6">&#34;test&#34;</span>]
+collection <span style="color:#2c5dcd">=</span> db[<span style="color:#0c6">&#34;students&#34;</span>]
+condition <span style="color:#2c5dcd">=</span> {<span style="color:#0c6">&#34;name&#34;</span>:<span style="color:#0c6">&#34;tom&#34;</span>}
+<span style="color:#0080ff;font-style:italic"># 查询要更新的数据</span>
+student <span style="color:#2c5dcd">=</span> collection<span style="color:#2c5dcd">.</span>find_one(condition)
+<span style="color:#0080ff;font-style:italic"># 修改数据</span>
+student[<span style="color:#0c6">&#34;age&#34;</span>] <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">100</span>
+<span style="color:#0080ff;font-style:italic"># 调用update_one方法将 原条件 和 修改后的数据传入</span>
+result <span style="color:#2c5dcd">=</span> collection<span style="color:#2c5dcd">.</span>update_one(condition, {<span style="color:#0c6">&#34;$set&#34;</span>:student})
+<span style="color:#5918bb;font-weight:bold">print</span>(result)
+</code></pre></td></tr></table>
+</div>
+</div><p>更新后的结果可以调用<code>matched_count</code>和<code>modified_count</code>属性获得匹配的数据条数和影响的数据条数、</p>
+<h4 id="删除">删除<a hidden class="anchor" aria-hidden="true" href="#删除">#</a></h4>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> pymongo
+<span style="color:#2c5dcd;font-weight:bold">from</span> bson.objectid <span style="color:#2c5dcd;font-weight:bold">import</span> ObjectId
+client <span style="color:#2c5dcd">=</span> pymongo<span style="color:#2c5dcd">.</span>MongoClient(host<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#34;localhost&#34;</span>)
+
+db <span style="color:#2c5dcd">=</span> client[<span style="color:#0c6">&#34;test&#34;</span>]
+collection <span style="color:#2c5dcd">=</span> db[<span style="color:#0c6">&#34;students&#34;</span>]
+condition <span style="color:#2c5dcd">=</span> {<span style="color:#0c6">&#34;name&#34;</span>:<span style="color:#0c6">&#34;tom&#34;</span>}
+result <span style="color:#2c5dcd">=</span> collection<span style="color:#2c5dcd">.</span>delete_one(condition)
+<span style="color:#5918bb;font-weight:bold">print</span>(result)
+<span style="color:#5918bb;font-weight:bold">print</span>(result<span style="color:#2c5dcd">.</span>deleted_count)
+</code></pre></td></tr></table>
+</div>
+</div><p>MongoDB除了提供上面的方法还提供有一些组合方法例如<code>find_one_and_delete</code>和<code>find_one_and_update</code></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a></li>
+      <li><a href="https://hanson00.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8102/">
+    <span class="title">Next »</span>
+    <br>
+    <span>崔庆才爬虫书阅读摘要02</span>
+  </a>
+</nav>
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>✨昵称输入QQ号可以自动关联✨
+        <hr />
+
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo1-mu.vercel.app/",  
+            el: "#tcomment",
+            lang: 'zh-CN',
+            region: 'ap-guangzhou',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
