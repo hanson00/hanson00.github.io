@@ -6,7 +6,25 @@
     <description>Recent content in 数据库 on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 12 Aug 2022 06:59:00 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Aug 2022 10:28:53 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>崔庆才爬虫书阅读摘要03 3</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8103-3/</link>
+      <pubDate>Wed, 17 Aug 2022 10:28:53 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8103-3/</guid>
+      <description>消息队列RabbitMQ的学习</description>
+    </item>
+    
+    <item>
+      <title>崔庆才爬虫书阅读摘要03 2</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8103-2/</link>
+      <pubDate>Tue, 16 Aug 2022 08:59:52 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8103-2/</guid>
+      <description>对爬虫保存成数据库的一些语法学习</description>
+    </item>
+    
     <item>
       <title>崔庆才爬虫书阅读摘要03</title>
       <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8103/</link>
