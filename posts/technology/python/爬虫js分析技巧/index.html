@@ -111,8 +111,8 @@
   "keywords": [
     ""
   ],
-  "articleBody": "浏览器在分析JS中的作用 xhr属于AJAX请求\n想找到对应加密解密函数的实现可以在找到后,把鼠标放上去然后定位(找来源)\nJS中方法是在前面定义,函数是在后面\n不能够回溯的js方法，一般是js的内置方法\n方法:\n函数:\nfilter过滤 可以在filter中输入部分url地址，对所有的url地址起到一定的过滤效果\n对人人网分析  模拟登录前的抓包情况如下\n  模拟登录后的抓包\n  想要搜索某文件里面的关键字可以在search中搜索\n JS解析  通过initiator定位js文件  从上面标记的initator中点击就进入到下图（initiator就是触发前面的文件的来源）\n也可以在点击该文件后的initiator中进入\n通过search关键字搜索定位js文件  在使用search搜索时会遇到以下弊端：\n  如果网页的数据是加密数据是无法搜索的\n  页面的数据是js生成的，异步加载的数据等\n  通过元素绑定的事件监听函数（比如浏览器的登录click等）可以通过EventListeners再次查到js文件来源\n  JS调试  关键字 XHR断点 路径 启动器引导  示例：\n 找到要分析的路径Request URL: https://music.163.com/weapi/comment/resource/comments/get?csrf_token=\n然后复制后面的路径weapi/comment/resource/comments/get?csrf_token=\n  接着点击Sources(源代码)在左侧的XHR/fetch Breakpoints中粘贴刚刚的路径\n  接着刷新网页进行JS调试\n ",
-  "wordCount" : "580",
+  "articleBody": "浏览器在分析JS中的作用 xhr属于AJAX请求\n想找到对应加密解密函数的实现可以在找到后,把鼠标放上去然后定位(找来源)\nJS中方法是在前面定义,函数是在后面\n不能够回溯的js方法，一般是js的内置方法\n方法:\n函数:\nfilter过滤 可以在filter中输入部分url地址，对所有的url地址起到一定的过滤效果\n对人人网分析  模拟登录前的抓包情况如下\n  模拟登录后的抓包\n  想要搜索某文件里面的关键字可以在search中搜索\n JS解析  通过initiator定位js文件  从上面标记的initator中点击就进入到下图（initiator就是触发前面的文件的来源）\n也可以在点击该文件后的initiator中进入\n通过search关键字搜索定位js文件  在使用search搜索时会遇到以下弊端：\n  如果网页的数据是加密数据是无法搜索的\n  页面的数据是js生成的，异步加载的数据等\n  通过元素绑定的事件监听函数（比如浏览器的登录click等）可以通过EventListeners再次查到js文件来源\n  JS调试  关键字 XHR断点 路径 启动器引导  示例：\n 找到要分析的路径Request URL: https://music.163.com/weapi/comment/resource/comments/get?csrf_token=\n然后复制后面的路径weapi/comment/resource/comments/get?csrf_token=\n  接着点击Sources(源代码)在左侧的XHR/fetch Breakpoints中粘贴刚刚的路径\n  接着刷新网页进行JS调试\n  对书上总结的浏览器爬虫调试  Console：控制面板，用于查看调试日志或者异常，又或者可以用来输入JavaScript代码方便调试和观察 Sources：源代码面板，用于查看网页的HTML文件源代码、JavaScript源代码、CSS源代码。还可以在此面板对JavaScript代码进行调试，比如添加和修改JavaScript断点，观察JavaScript变量等 Performance：性能面板，用于记录和分析页面占用内存的情况 Application：应用面板，用于记录网站加载的所有资源，如缓存、存储、图片、字体等，同时也可以对一些资源进行修改和删除  查看节点事件  通过在Elements面板中查看页面节点信息，可以查看当前页面的HTML源代码及其在网页中的位置 点击右侧的Style选项卡，可以看到对应节点的CSS样式，可以自行删减样式进行观察 接下来点击更右侧的EventListeners选项卡，这里可以显示各个节点当前已经绑定的事件，都是JavaScript原生支持的  change：HTML元素改变时会触发的事件 click：用户点击HTML元素时会触发的事件 mouseover：用户在一个HTML元素上移动鼠标时会触发的事件 mouseout：用户在一个HTML元素上移开鼠标时会触发的事件 Keydown：用户按下键盘时会触发的事件 load：浏览器完成页面加载时会触发的事件    如在下图中，浏览器中选中下面的翻页后查看对应的EventListeners我们可以点击后面的JavaScript代码后跟踪到Sources面板打开对应的JavaScript代码逻辑\n利用好EventListeners，可以轻松找到各个节点绑定事件的处理方法，帮助我们在JavaScript逆向中找到一些突破口\n代码美化 断点调试 在调试JavaScript代码的时候，我们可以在需要的位置上打上断点，当对应事件触发时，浏览器会自动停在断点的位置等待调试，此时我们可以选择单步调试，在面板中观察调用栈、变量值，以更好地跟踪对应位置的执行逻辑\n在点击页面下的换页按钮时并选中断点调试后，点击第二页的按钮，接着可以在右侧的Scope面板处观察到各个变量的值，比如Local域下的当前方法的局部变量，还可以看到对象的各个属性\nWatch面板可以自定添加想要查看的变量和方法，只要点击上面的+号即可\n Step Over Next Function Call：逐语句执行 Step Into Function Call：进入方法内部执行 Step Out of Current Function：跳出当前方法  恢复JavaScript执行 如果在调试过程中，想快速跳到下一个断点或者让JavaScript代码运行下去可以点击Resume script execution按钮，这时如果有断点浏览器则会自动跳转到下一个断点处，否则没有断点时会自动恢复页面的正常执行\n取消断点\n则是切换到Sources面板下然后展开XHR/fetch Breakpoint面板取消即可\nAjax断点 首先点击第二页后观察Ajax请求\n接着来到Sources面板下面的XHR/fetch Breakpoint下面按+意识是当Ajax请求的URL包含填写的内容时，会进入断点停止\n添加Ajax断点后，接着点击第三页\n一路翻找下来最终可以找到JavaScript的突破口\n",
+  "wordCount" : "1902",
   "inLanguage": "en",
   "datePublished": "2022-08-04T10:04:43+08:00",
   "dateModified": "2022-08-04T10:04:43+08:00",
@@ -232,7 +232,7 @@
 
 
 
-更新:&nbsp;2022-08-04&nbsp;|&nbsp;字数:&nbsp;580字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
+更新:&nbsp;2022-08-04&nbsp;|&nbsp;字数:&nbsp;1902字&nbsp;|&nbsp;时长: 4分钟&nbsp;|&nbsp;
 作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
       <ul class="post-tags-meta">
         <a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
@@ -262,9 +262,24 @@
                         <li>
                             <a href="#js%e8%a7%a3%e6%9e%90" aria-label="JS解析">JS解析</a></li>
                         <li>
-                            <a href="#js%e8%b0%83%e8%af%95" aria-label="JS调试">JS调试</a>
+                            <a href="#js%e8%b0%83%e8%af%95" aria-label="JS调试">JS调试</a></li></ul>
+                                
+                        <li>
+                            <a href="#%e5%af%b9%e4%b9%a6%e4%b8%8a%e6%80%bb%e7%bb%93%e7%9a%84%e6%b5%8f%e8%a7%88%e5%99%a8%e7%88%ac%e8%99%ab%e8%b0%83%e8%af%95" aria-label="对书上总结的浏览器爬虫调试">对书上总结的浏览器爬虫调试</a><ul>
+                                    
+                        <li>
+                            <a href="#%e6%9f%a5%e7%9c%8b%e8%8a%82%e7%82%b9%e4%ba%8b%e4%bb%b6" aria-label="查看节点事件">查看节点事件</a></li>
+                        <li>
+                            <a href="#%e4%bb%a3%e7%a0%81%e7%be%8e%e5%8c%96" aria-label="代码美化">代码美化</a></li>
+                        <li>
+                            <a href="#%e6%96%ad%e7%82%b9%e8%b0%83%e8%af%95" aria-label="断点调试">断点调试</a></li>
+                        <li>
+                            <a href="#%e6%81%a2%e5%a4%8djavascript%e6%89%a7%e8%a1%8c" aria-label="恢复JavaScript执行">恢复JavaScript执行</a></li>
+                        <li>
+                            <a href="#ajax%e6%96%ad%e7%82%b9" aria-label="Ajax断点">Ajax断点</a>
                         </li>
                     </ul>
+                    </li>
                     </ul>
                     </li>
                     </ul>
@@ -419,6 +434,62 @@
 <blockquote>
 <p>接着刷新网页进行JS调试</p>
 </blockquote>
+<hr>
+<h2 id="对书上总结的浏览器爬虫调试">对书上总结的浏览器爬虫调试<a hidden class="anchor" aria-hidden="true" href="#对书上总结的浏览器爬虫调试">#</a></h2>
+<ul>
+<li>Console：控制面板，用于查看调试日志或者异常，又或者可以用来输入JavaScript代码方便调试和观察</li>
+<li>Sources：源代码面板，用于查看网页的HTML文件源代码、JavaScript源代码、CSS源代码。还可以在此面板对JavaScript代码进行调试，比如添加和修改JavaScript断点，观察JavaScript变量等</li>
+<li>Performance：性能面板，用于记录和分析页面占用内存的情况</li>
+<li>Application：应用面板，用于记录网站加载的所有资源，如缓存、存储、图片、字体等，同时也可以对一些资源进行修改和删除</li>
+</ul>
+<h3 id="查看节点事件">查看节点事件<a hidden class="anchor" aria-hidden="true" href="#查看节点事件">#</a></h3>
+<ol>
+<li>通过在Elements面板中查看页面节点信息，可以查看当前页面的HTML源代码及其在网页中的位置</li>
+<li>点击右侧的Style选项卡，可以看到对应节点的CSS样式，可以自行删减样式进行观察</li>
+<li>接下来点击更右侧的EventListeners选项卡，这里可以显示各个节点当前已经绑定的事件，都是JavaScript原生支持的
+<ol>
+<li>change：HTML元素改变时会触发的事件</li>
+<li>click：用户点击HTML元素时会触发的事件</li>
+<li>mouseover：用户在一个HTML元素上移动鼠标时会触发的事件</li>
+<li>mouseout：用户在一个HTML元素上移开鼠标时会触发的事件</li>
+<li>Keydown：用户按下键盘时会触发的事件</li>
+<li>load：浏览器完成页面加载时会触发的事件</li>
+</ol>
+</li>
+</ol>
+<p>如在下图中，浏览器中选中下面的翻页后查看对应的EventListeners我们可以点击后面的JavaScript代码后跟踪到Sources面板打开对应的JavaScript代码逻辑</p>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/js01.png" alt="image-20220827130418491"  />
+</p>
+<p>利用好EventListeners，可以轻松找到各个节点绑定事件的处理方法，帮助我们在JavaScript逆向中找到一些突破口</p>
+<h3 id="代码美化">代码美化<a hidden class="anchor" aria-hidden="true" href="#代码美化">#</a></h3>
+<h3 id="断点调试">断点调试<a hidden class="anchor" aria-hidden="true" href="#断点调试">#</a></h3>
+<p>在调试JavaScript代码的时候，我们可以在需要的位置上打上断点，当对应事件触发时，浏览器会自动停在断点的位置等待调试，此时我们可以选择单步调试，在面板中观察调用栈、变量值，以更好地跟踪对应位置的执行逻辑</p>
+<p>在点击页面下的换页按钮时并选中断点调试后，点击第二页的按钮，接着可以在右侧的Scope面板处观察到各个变量的值，比如Local域下的当前方法的局部变量，还可以看到对象的各个属性</p>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/js02.png" alt="image-20220827133915433"  />
+</p>
+<p>Watch面板可以自定添加想要查看的变量和方法，只要点击上面的+号即可</p>
+<ul>
+<li>Step Over Next Function Call：逐语句执行</li>
+<li>Step Into Function Call：进入方法内部执行</li>
+<li>Step Out of Current Function：跳出当前方法</li>
+</ul>
+<h3 id="恢复javascript执行">恢复JavaScript执行<a hidden class="anchor" aria-hidden="true" href="#恢复javascript执行">#</a></h3>
+<p>如果在调试过程中，想快速跳到下一个断点或者让JavaScript代码运行下去可以点击Resume script execution按钮，这时如果有断点浏览器则会自动跳转到下一个断点处，否则没有断点时会自动恢复页面的正常执行</p>
+<p>取消断点</p>
+<p>则是切换到Sources面板下然后展开XHR/fetch Breakpoint面板取消即可</p>
+<h3 id="ajax断点">Ajax断点<a hidden class="anchor" aria-hidden="true" href="#ajax断点">#</a></h3>
+<p>首先点击第二页后观察Ajax请求</p>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/js003.png" alt="image-20220827145513294"  />
+</p>
+<p>接着来到Sources面板下面的XHR/fetch Breakpoint下面按<code>+</code>意识是当Ajax请求的URL包含填写的内容时，会进入断点停止</p>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/js04.png" alt="image-20220827145720676"  />
+</p>
+<p>添加Ajax断点后，接着点击第三页</p>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/js05.png" alt="image-20220827145815324"  />
+</p>
+<p>一路翻找下来最终可以找到JavaScript的突破口</p>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/js06.png" alt="image-20220827150101385"  />
+</p>
 
 
   </div>

@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>崔庆才爬虫书阅读摘要11 02 | Hanson&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="描述信息">
+<meta name="author" content="
+作者:&nbsp;hanson">
+<link rel="canonical" href="https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8111-02/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hanson00.github.io/posts/imgs/favicon16x16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hanson00.github.io/posts/imgs/favicon32x32.ico">
+<link rel="apple-touch-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="mask-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="崔庆才爬虫书阅读摘要11 02" />
+<meta property="og:description" content="描述信息" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8111-02/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-25T09:09:13&#43;08:00" />
+<meta property="article:modified_time" content="2022-08-25T09:09:13&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="崔庆才爬虫书阅读摘要11 02"/>
+<meta name="twitter:description" content="描述信息"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hanson00.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "💻技术类文章",
+      "item": "https://hanson00.github.io/posts/technology/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Python文章",
+      "item": "https://hanson00.github.io/posts/technology/python/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "崔庆才爬虫书阅读摘要11 02",
+      "item": "https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8111-02/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "崔庆才爬虫书阅读摘要11 02",
+  "name": "崔庆才爬虫书阅读摘要11 02",
+  "description": "描述信息",
+  "keywords": [
+    ""
+  ],
+  "articleBody": "JavaScript的混淆案例 控制流平坦化 打乱函数原有代码的执行流程及函数调用关系，使代码逻辑变得混乱\n下面的代码定义了两个变量，一个是要被混淆的代码，另一个是混淆选项options，接下来引入了javascript-obfuscator这个库\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  const code = ` let x = '1' + 1 console.log('x', x) ` const options = { compact: false, controlFlowFlattening: true } const obfuscator = require('javascript-obfuscator') function obfuscate(code, options) { return obfuscator.obfuscate(code, options).getObfuscatedCode() } console.log(obfuscate(code, options))   代码混淆后：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43  function _0x84d8(_0x232b63, _0x7c8409) { const _0xae8ca9 = _0xae8c(); return _0x84d8 = function (_0x84d803, _0x468060) { _0x84d803 = _0x84d803 - 0x119; let _0x2a41f0 = _0xae8ca9[_0x84d803]; return _0x2a41f0; }, _0x84d8(_0x232b63, _0x7c8409); } const _0x338b67 = _0x84d8; (function (_0x34f352, _0x496f80) { const _0x6ae8 = _0x84d8, _0x508e1f = _0x34f352(); while (!![]) { try { const _0x13338a = parseInt(_0x6ae8(0x11f)) / 0x1 + parseInt(_0x6ae8(0x120)) / 0x2 + -parseInt(_0x6ae8(0x119)) / 0x3 + parseInt(_0x6ae8(0x11e)) / 0x4 + -parseInt(_0x6ae8(0x11b)) / 0x5 * (-parseInt(_0x6ae8(0x11d)) / 0x6) + -parseInt(_0x6ae8(0x122)) / 0x7 + parseInt(_0x6ae8(0x121)) / 0x8 * (parseInt(_0x6ae8(0x11a)) / 0x9); if (_0x13338a === _0x496f80) break; else _0x508e1f['push'](_0x508e1f['shift']()); } catch (_0x5501e1) { _0x508e1f['push'](_0x508e1f['shift']()); } } }(_0xae8c, 0x3bafe)); let x = '1' + 0x1; function _0xae8c() { const _0x313245 = [ '1086765ZUQWlZ', '2745xICdrf', '15RqRpej', 'log', '87216zPpbQZ', '1269180jrZhoJ', '171687rKBNSE', '268350KSFeZM', '912HWTQLX', '663614txjhyP' ]; _0xae8c = function () { return _0x313245; }; return _0xae8c(); } console[_0x338b67(0x11c)]('x', x);   等等几种不同的代码混淆，上面只列举了其中一种\n代码压缩 javascript-obfuscator也提供了代码压缩功能，使用参数compact即可完成代码压缩，compact代码的默认值是true，如果定义为false，则混淆后的代码会分行显示。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14  const code = ` let x = '1' + 1 console.log('x', x) ` const options = { compact: false, } const obfuscator = require('javascript-obfuscator') function obfuscate(code, options) { return obfuscator.obfuscate(code, options).getObfuscatedCode() } console.log(obfuscate(code, options))   代码混淆压缩后：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44  const _0x2ab95d = _0x1f84; function _0x1a23() { const _0x578d08 = [ '96eRWDpg', '8984928gWKMJA', '9002630KfHyUm', '22966670jhIRCB', 'log', '9ZRbZcX', '732322MIgNFb', '8644oLTwYz', '8735136AsKbiE', '115yehIcV', '165476VyvkLP' ]; _0x1a23 = function () { return _0x578d08; }; return _0x1a23(); } function _0x1f84(_0x5ab312, _0x4dd400) { const _0x1a2343 = _0x1a23(); return _0x1f84 = function (_0x1f84f0, _0x4618ff) { _0x1f84f0 = _0x1f84f0 - 0x106; let _0x4f0728 = _0x1a2343[_0x1f84f0]; return _0x4f0728; }, _0x1f84(_0x5ab312, _0x4dd400); } (function (_0x41caab, _0x244416) { const _0x41158a = _0x1f84, _0x1bcd5f = _0x41caab(); while (!![]) { try { const _0x307e14 = -parseInt(_0x41158a(0x10e)) / 0x1 + -parseInt(_0x41158a(0x10f)) / 0x2 * (parseInt(_0x41158a(0x108)) / 0x3) + -parseInt(_0x41158a(0x107)) / 0x4 * (-parseInt(_0x41158a(0x106)) / 0x5) + -parseInt(_0x41158a(0x110)) / 0x6 + -parseInt(_0x41158a(0x10a)) / 0x7 + parseInt(_0x41158a(0x109)) / 0x8 + parseInt(_0x41158a(0x10d)) / 0x9 * (parseInt(_0x41158a(0x10b)) / 0xa); if (_0x307e14 === _0x244416) break; else _0x1bcd5f['push'](_0x1bcd5f['shift']()); } catch (_0x11dbd9) { _0x1bcd5f['push'](_0x1bcd5f['shift']()); } } }(_0x1a23, 0xb93aa)); let x = '1' + 0x1; console[_0x2ab95d(0x10c)]('x', x);   使用参数的true后：\n1  const _0x5a4df1=_0x7697;(function(_0x55b341,_0x15ac40){const _0x414762=_0x7697,_0x3d9d03=_0x55b341();while(!![]){try{const _0x5cc75a=parseInt(_0x414762(0x19c))/0x1*(parseInt(_0x414762(0x19e))/0x2)+parseInt(_0x414762(0x194))/0x3*(-parseInt(_0x414762(0x19b))/0x4)+-parseInt(_0x414762(0x19f))/0x5*(parseInt(_0x414762(0x197))/0x6)+-parseInt(_0x414762(0x198))/0x7*(-parseInt(_0x414762(0x19a))/0x8)+parseInt(_0x414762(0x193))/0x9*(-parseInt(_0x414762(0x19d))/0xa)+parseInt(_0x414762(0x192))/0xb*(-parseInt(_0x414762(0x199))/0xc)+parseInt(_0x414762(0x196))/0xd;if(_0x5cc75a===_0x15ac40)break;else _0x3d9d03['push'](_0x3d9d03['shift']());}catch(_0x16786b){_0x3d9d03['push'](_0x3d9d03['shift']());}}}(_0x21e4,0xa579a));function _0x21e4(){const _0x38d601=['270DYTzMt','7lcowcx','3322776MrAtBz','6726536GxTMrv','39660vmtnkf','11069YwvBsu','10hhpWog','244bVHKjm','98915yOeVVc','11MZcRZk','3926520biJLHV','93MRIvnp','log','5165277CxRoGq'];_0x21e4=function(){return _0x38d601;};return _0x21e4();}let x='1'+0x1;function _0x7697(_0x5dac0d,_0xf2496b){const _0x21e494=_0x21e4();return _0x7697=function(_0x7697b1,_0x4e7c9e){_0x7697b1=_0x7697b1-0x192;let _0x460700=_0x21e494[_0x7697b1];return _0x460700;},_0x7697(_0x5dac0d,_0xf2496b);}console[_0x5a4df1(0x195)]('x',x);   变量名混淆 变量名混淆在javascript-obfuscator中配置identifierNamesGenerator参数来实现，如果将其值设置为hexadecimal，则会将变量名替换为十六进制形式的字符串 hexadecimal：将变量名替换为十六进制形式的字符串，如0xabc123 mangled：将变量名替换成普通的简写字符，如a，b等\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  const code = ` let x = '1' + 1 console.log('x', x) ` const options = { compact: true, identifierNamesGenerator: 'mangled', } const obfuscator = require('javascript-obfuscator') function obfuscate(code, options) { return obfuscator.obfuscate(code, options).getObfuscatedCode() } console.log(obfuscate(code, options))   混淆后：\n1  function a(){const j=['258231xUxfBs','7819904LvqlCs','979982uYIPDx','453426qgzSUB','7290FZDoxL','5712655GSQcsE','7kogAFv','36SmeNkk','1804860OZVDEi','log','2763EqCXTz'];a=function(){return j;};return a();}function b(c,d){const e=a();return b=function(f,g){f=f-0x1a9;let h=e[f];return h;},b(c,d);}const i=b;(function(c,d){const h=b,e=c();while(!![]){try{const f=-parseInt(h(0x1ad))/0x1+-parseInt(h(0x1b2))/0x2*(-parseInt(h(0x1ab))/0x3)+parseInt(h(0x1b3))/0x4+parseInt(h(0x1b0))/0x5+-parseInt(h(0x1ae))/0x6*(parseInt(h(0x1b1))/0x7)+-parseInt(h(0x1ac))/0x8+parseInt(h(0x1aa))/0x9*(-parseInt(h(0x1af))/0xa);if(f===d)break;else e['push'](e['shift']());}catch(g){e['push'](e['shift']());}}}(a,0xd8610));let x='1'+0x1;console[i(0x1a9)]('x',x);   另外，renameGlobals这个参数还可以指定是否混淆全局变量和函数名称，默认值是false\n字符串混淆 将一个字符串声明放到一个数组里面，使之无法被直接搜索到。这个参数通过stringArray来控制，默认是true\n1 2 3 4 5 6 7 8 9 10  const code = ` var a = 'hello world' ` const options = { stringArray: true, rotateStringArray: true, stringArrayEncoding: true, // 'base64' or 'rc4' or false  stringArrayThreshold: 1, }   代码自我保护 可以通过selfDefending参数来开启代码自我保护功能。开启后，混淆的JavaScript代码会强制以一行的形式显示。如果我们将混淆后的代码进行格式化或重命名，该段代码将无法执行。\n1 2 3 4 5 6 7 8 9 10 11 12 13  const code = ` console.log('hello world') ` const options = { selfDefending: true } const obfuscator = require('javascript-obfuscator') function obfuscate(code, options) { return obfuscator.obfuscate(code, options).getObfuscatedCode() } console.log(obfuscate(code, options))   混淆后的代码：\n1  var _0x45b49a=_0x43da;(function(_0x59aaf2,_0x4b59ef){var _0x1b8d82=_0x43da,_0x3968c7=_0x59aaf2();while(!![]){try{var _0x3af556=-parseInt(_0x1b8d82(0x9b))/0x1*(-parseInt(_0x1b8d82(0xa0))/0x2)+parseInt(_0x1b8d82(0xaa))/0x3*(parseInt(_0x1b8d82(0x98))/0x4)+-parseInt(_0x1b8d82(0x9d))/0x5*(-parseInt(_0x1b8d82(0x99))/0x6)+parseInt(_0x1b8d82(0xa9))/0x7+parseInt(_0x1b8d82(0xa3))/0x8*(parseInt(_0x1b8d82(0xa4))/0x9)+-parseInt(_0x1b8d82(0x9a))/0xa*(parseInt(_0x1b8d82(0xa8))/0xb)+-parseInt(_0x1b8d82(0xa6))/0xc;if(_0x3af556===_0x4b59ef)break;else _0x3968c7['push'](_0x3968c7['shift']());}catch(_0x34506f){_0x3968c7['push'](_0x3968c7['shift']());}}}(_0x626d,0xc0b82));function _0x626d(){var _0x1ad3d3=['constructor','5YFEyCe','toString','(((.+)+)+)+$','2zmmKZw','apply','search','376VGKKAg','50247ICTFpG','hello\\x20world','33992208CZwJly','log','173822NaLfqC','8996029QHyncx','5517PHPoSl','948gpqWlh','5564292VwLISd','260UHMpCM','1122141cIoqoQ'];_0x626d=function(){return _0x1ad3d3;};return _0x626d();}var _0x407526=(function(){var _0x116741=!![];return function(_0x3a0166,_0x2acdf4){var _0x3e664e=_0x116741?function(){var _0x1c18b1=_0x43da;if(_0x2acdf4){var _0x36e5a7=_0x2acdf4[_0x1c18b1(0xa1)](_0x3a0166,arguments);return _0x2acdf4=null,_0x36e5a7;}}:function(){};return _0x116741=![],_0x3e664e;};}()),_0x191b2a=_0x407526(this,function(){var _0x367b78=_0x43da;return _0x191b2a['toString']()[_0x367b78(0xa2)](_0x367b78(0x9f))[_0x367b78(0x9e)]()[_0x367b78(0x9c)](_0x191b2a)[_0x367b78(0xa2)]('(((.+)+)+)+$');});function _0x43da(_0x5ea48d,_0x4aec27){var _0x20ebf3=_0x626d();return _0x43da=function(_0x191b2a,_0x407526){_0x191b2a=_0x191b2a-0x98;var _0x626d2f=_0x20ebf3[_0x191b2a];return _0x626d2f;},_0x43da(_0x5ea48d,_0x4aec27);}_0x191b2a(),console[_0x45b49a(0xa7)](_0x45b49a(0xa5));   控制流平坦化 控制流平坦化就是将代码执行逻辑混淆，基本思想是将一些逻辑处理块都统一加上一个前驱逻辑块，每个逻辑块都有前驱逻辑块进行条件判断触发，构成一个个闭环逻辑\n无用代码注入 无用代码就是不会被执行党的代码或者对上下文没有任何影响的代码，注入之后对现有的JavaScript代码的阅读造成干扰使用deadCodeInjection参数来开启，默认值是false\n对象键名替换 如果是一个对象可以使用transformObjectKeys来对对象的键值进行替换\n禁用控制台输出 使用disableConsoleOutput来禁掉console.log的输出功能增大调试难度\n域名锁定 通过使用domainLock来控制代码只能在特定的域名下运行，这样可以降低代码被模拟和盗用的风险\n特殊编码 还有一些特殊的工具包可以对代码进行混淆，工具有（aaencode、jjencode、jsfick）这些工具都会把代码转换成完全不可读的代码，但是虽然看起来另类但可以找到规律从而还原\nWebAssembly 随着技术的发展，WebAssembly流行起来，不同于JavaScript混淆技术，WebAssembly的基本思路是将一些核心逻辑使用其他语言（C/C++）来编写，并编译成类似字节码的文件，并通过JavaScript调用执行，从而起到二进制级别的防护作用。\nWebAssemly是一种使用非JavaScript编程语言编写代码并且能在浏览器上运行的技术方案。比如能将C/C++文件利用Emscripten编译工具转换成wasm格式的文件，JavaScript可以直接调用该文件中执行的方法。\nWebAssemly是经过编译器编译后的字节码，可以从C/C++编译而来，得到的字节码具有和JavaScript相同的功能，运行速度更快，体积更小，而且语法上完全脱离JavaScript，具有沙盒化的执行环境\n",
+  "wordCount" : "2093",
+  "inLanguage": "en",
+  "datePublished": "2022-08-25T09:09:13+08:00",
+  "dateModified": "2022-08-25T09:09:13+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "hanson"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8111-02/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hanson's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hanson00.github.io/posts/imgs/66.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hanson00.github.io/" accesskey="h" title="Hanson&#39;s Blog (Alt + H)">Hanson&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hanson00.github.io/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/python/">Python文章</a></div>
+    <h1 class="post-title">
+      崔庆才爬虫书阅读摘要11 02
+    </h1>
+    <div class="post-description">
+      描述信息
+    </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;2022-08-25&nbsp;|&nbsp;字数:&nbsp;2093字&nbsp;|&nbsp;时长: 5分钟&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
+      <ul class="post-tags-meta">
+        <a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
+        <a href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/">、逆向</a>
+      </ul>
+
+      <span id="busuanzi_container_page_pv">
+        &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+      </span>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#javascript%e7%9a%84%e6%b7%b7%e6%b7%86%e6%a1%88%e4%be%8b" aria-label="JavaScript的混淆案例">JavaScript的混淆案例</a><ul>
+                                    <ul>
+                                    
+                        <li>
+                            <a href="#%e6%8e%a7%e5%88%b6%e6%b5%81%e5%b9%b3%e5%9d%a6%e5%8c%96" aria-label="控制流平坦化">控制流平坦化</a></li>
+                        <li>
+                            <a href="#%e4%bb%a3%e7%a0%81%e5%8e%8b%e7%bc%a9" aria-label="代码压缩">代码压缩</a></li>
+                        <li>
+                            <a href="#%e5%8f%98%e9%87%8f%e5%90%8d%e6%b7%b7%e6%b7%86" aria-label="变量名混淆">变量名混淆</a></li>
+                        <li>
+                            <a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%b7%b7%e6%b7%86" aria-label="字符串混淆">字符串混淆</a></li>
+                        <li>
+                            <a href="#%e4%bb%a3%e7%a0%81%e8%87%aa%e6%88%91%e4%bf%9d%e6%8a%a4" aria-label="代码自我保护">代码自我保护</a></li>
+                        <li>
+                            <a href="#%e6%8e%a7%e5%88%b6%e6%b5%81%e5%b9%b3%e5%9d%a6%e5%8c%96-1" aria-label="控制流平坦化">控制流平坦化</a></li>
+                        <li>
+                            <a href="#%e6%97%a0%e7%94%a8%e4%bb%a3%e7%a0%81%e6%b3%a8%e5%85%a5" aria-label="无用代码注入">无用代码注入</a></li>
+                        <li>
+                            <a href="#%e5%af%b9%e8%b1%a1%e9%94%ae%e5%90%8d%e6%9b%bf%e6%8d%a2" aria-label="对象键名替换">对象键名替换</a></li>
+                        <li>
+                            <a href="#%e7%a6%81%e7%94%a8%e6%8e%a7%e5%88%b6%e5%8f%b0%e8%be%93%e5%87%ba" aria-label="禁用控制台输出">禁用控制台输出</a></li>
+                        <li>
+                            <a href="#%e5%9f%9f%e5%90%8d%e9%94%81%e5%ae%9a" aria-label="域名锁定">域名锁定</a></li>
+                        <li>
+                            <a href="#%e7%89%b9%e6%ae%8a%e7%bc%96%e7%a0%81" aria-label="特殊编码">特殊编码</a></li>
+                        <li>
+                            <a href="#webassembly" aria-label="WebAssembly">WebAssembly</a>
+                        </li>
+                    </ul>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h1 id="javascript的混淆案例">JavaScript的混淆案例<a hidden class="anchor" aria-hidden="true" href="#javascript的混淆案例">#</a></h1>
+<h3 id="控制流平坦化">控制流平坦化<a hidden class="anchor" aria-hidden="true" href="#控制流平坦化">#</a></h3>
+<p>打乱函数原有代码的执行流程及函数调用关系，使代码逻辑变得混乱</p>
+<p>下面的代码定义了两个变量，一个是要被混淆的代码，另一个是混淆选项options，接下来引入了javascript-obfuscator这个库</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#2c5dcd;font-weight:bold">const</span> code <span style="color:#2c5dcd">=</span> <span style="color:#0c6">`
+</span><span style="color:#0c6">let x = &#39;1&#39; + 1
+</span><span style="color:#0c6">console.log(&#39;x&#39;, x)
+</span><span style="color:#0c6">`</span>
+
+<span style="color:#2c5dcd;font-weight:bold">const</span> options <span style="color:#2c5dcd">=</span> {
+    compact<span style="color:#2c5dcd">:</span> <span style="color:#2c5dcd;font-weight:bold">false</span>,
+    controlFlowFlattening<span style="color:#2c5dcd">:</span> <span style="color:#2c5dcd;font-weight:bold">true</span>
+}
+
+<span style="color:#2c5dcd;font-weight:bold">const</span> obfuscator <span style="color:#2c5dcd">=</span> require(<span style="color:#0c6">&#39;javascript-obfuscator&#39;</span>)
+<span style="color:#2c5dcd;font-weight:bold">function</span> obfuscate(code, options) {
+    <span style="color:#2c5dcd;font-weight:bold">return</span> obfuscator.obfuscate(code, options).getObfuscatedCode()
+}
+console.log(obfuscate(code, options))
+</code></pre></td></tr></table>
+</div>
+</div><p>代码混淆后：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#2c5dcd;font-weight:bold">function</span> _0x84d8(_0x232b63, _0x7c8409) {
+    <span style="color:#2c5dcd;font-weight:bold">const</span> _0xae8ca9 <span style="color:#2c5dcd">=</span> _0xae8c();
+    <span style="color:#2c5dcd;font-weight:bold">return</span> _0x84d8 <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">function</span> (_0x84d803, _0x468060) {
+        _0x84d803 <span style="color:#2c5dcd">=</span> _0x84d803 <span style="color:#2c5dcd">-</span> <span style="color:#5918bb;font-weight:bold">0x119</span>;
+        <span style="color:#2c5dcd;font-weight:bold">let</span> _0x2a41f0 <span style="color:#2c5dcd">=</span> _0xae8ca9[_0x84d803];
+        <span style="color:#2c5dcd;font-weight:bold">return</span> _0x2a41f0;
+    }, _0x84d8(_0x232b63, _0x7c8409);
+}
+<span style="color:#2c5dcd;font-weight:bold">const</span> _0x338b67 <span style="color:#2c5dcd">=</span> _0x84d8;
+(<span style="color:#2c5dcd;font-weight:bold">function</span> (_0x34f352, _0x496f80) {
+    <span style="color:#2c5dcd;font-weight:bold">const</span> _0x6ae8 <span style="color:#2c5dcd">=</span> _0x84d8, _0x508e1f <span style="color:#2c5dcd">=</span> _0x34f352();
+    <span style="color:#2c5dcd;font-weight:bold">while</span> (<span style="color:#2c5dcd">!!</span>[]) {
+        <span style="color:#2c5dcd;font-weight:bold">try</span> {
+            <span style="color:#2c5dcd;font-weight:bold">const</span> _0x13338a <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x6ae8(<span style="color:#5918bb;font-weight:bold">0x11f</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x1</span> <span style="color:#2c5dcd">+</span> <span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x6ae8(<span style="color:#5918bb;font-weight:bold">0x120</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x2</span> <span style="color:#2c5dcd">+</span> <span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x6ae8(<span style="color:#5918bb;font-weight:bold">0x119</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x3</span> <span style="color:#2c5dcd">+</span> <span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x6ae8(<span style="color:#5918bb;font-weight:bold">0x11e</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x4</span> <span style="color:#2c5dcd">+</span> <span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x6ae8(<span style="color:#5918bb;font-weight:bold">0x11b</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x5</span> <span style="color:#2c5dcd">*</span> (<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x6ae8(<span style="color:#5918bb;font-weight:bold">0x11d</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x6</span>) <span style="color:#2c5dcd">+</span> <span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x6ae8(<span style="color:#5918bb;font-weight:bold">0x122</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x7</span> <span style="color:#2c5dcd">+</span> <span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x6ae8(<span style="color:#5918bb;font-weight:bold">0x121</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x8</span> <span style="color:#2c5dcd">*</span> (<span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x6ae8(<span style="color:#5918bb;font-weight:bold">0x11a</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x9</span>);       
+            <span style="color:#2c5dcd;font-weight:bold">if</span> (_0x13338a <span style="color:#2c5dcd">===</span> _0x496f80)
+                <span style="color:#2c5dcd;font-weight:bold">break</span>;
+            <span style="color:#2c5dcd;font-weight:bold">else</span>
+                _0x508e1f[<span style="color:#0c6">&#39;push&#39;</span>](_0x508e1f[<span style="color:#0c6">&#39;shift&#39;</span>]());
+        } <span style="color:#2c5dcd;font-weight:bold">catch</span> (_0x5501e1) {
+            _0x508e1f[<span style="color:#0c6">&#39;push&#39;</span>](_0x508e1f[<span style="color:#0c6">&#39;shift&#39;</span>]());
+        }
+    }
+}(_0xae8c, <span style="color:#5918bb;font-weight:bold">0x3bafe</span>));
+<span style="color:#2c5dcd;font-weight:bold">let</span> x <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;1&#39;</span> <span style="color:#2c5dcd">+</span> <span style="color:#5918bb;font-weight:bold">0x1</span>;
+<span style="color:#2c5dcd;font-weight:bold">function</span> _0xae8c() {
+    <span style="color:#2c5dcd;font-weight:bold">const</span> _0x313245 <span style="color:#2c5dcd">=</span> [
+        <span style="color:#0c6">&#39;1086765ZUQWlZ&#39;</span>,
+        <span style="color:#0c6">&#39;2745xICdrf&#39;</span>,
+        <span style="color:#0c6">&#39;15RqRpej&#39;</span>,
+        <span style="color:#0c6">&#39;log&#39;</span>,
+        <span style="color:#0c6">&#39;87216zPpbQZ&#39;</span>,
+        <span style="color:#0c6">&#39;1269180jrZhoJ&#39;</span>,
+        <span style="color:#0c6">&#39;171687rKBNSE&#39;</span>,
+        <span style="color:#0c6">&#39;268350KSFeZM&#39;</span>,
+        <span style="color:#0c6">&#39;912HWTQLX&#39;</span>,
+        <span style="color:#0c6">&#39;663614txjhyP&#39;</span>
+    ];
+    _0xae8c <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">function</span> () {
+        <span style="color:#2c5dcd;font-weight:bold">return</span> _0x313245;
+    };
+    <span style="color:#2c5dcd;font-weight:bold">return</span> _0xae8c();
+}
+console[_0x338b67(<span style="color:#5918bb;font-weight:bold">0x11c</span>)](<span style="color:#0c6">&#39;x&#39;</span>, x);
+</code></pre></td></tr></table>
+</div>
+</div><p>等等几种不同的代码混淆，上面只列举了其中一种</p>
+<h3 id="代码压缩">代码压缩<a hidden class="anchor" aria-hidden="true" href="#代码压缩">#</a></h3>
+<p>javascript-obfuscator也提供了代码压缩功能，使用参数compact即可完成代码压缩，compact代码的默认值是true，如果定义为false，则混淆后的代码会分行显示。</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#2c5dcd;font-weight:bold">const</span> code <span style="color:#2c5dcd">=</span> <span style="color:#0c6">`
+</span><span style="color:#0c6">let x = &#39;1&#39; + 1
+</span><span style="color:#0c6">console.log(&#39;x&#39;, x)
+</span><span style="color:#0c6">`</span>
+
+<span style="color:#2c5dcd;font-weight:bold">const</span> options <span style="color:#2c5dcd">=</span> {
+    compact<span style="color:#2c5dcd">:</span> <span style="color:#2c5dcd;font-weight:bold">false</span>,
+}
+
+<span style="color:#2c5dcd;font-weight:bold">const</span> obfuscator <span style="color:#2c5dcd">=</span> require(<span style="color:#0c6">&#39;javascript-obfuscator&#39;</span>)
+<span style="color:#2c5dcd;font-weight:bold">function</span> obfuscate(code, options) {
+    <span style="color:#2c5dcd;font-weight:bold">return</span> obfuscator.obfuscate(code, options).getObfuscatedCode()
+}
+console.log(obfuscate(code, options))
+</code></pre></td></tr></table>
+</div>
+</div><p>代码混淆压缩后：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#2c5dcd;font-weight:bold">const</span> _0x2ab95d <span style="color:#2c5dcd">=</span> _0x1f84;
+<span style="color:#2c5dcd;font-weight:bold">function</span> _0x1a23() {      
+    <span style="color:#2c5dcd;font-weight:bold">const</span> _0x578d08 <span style="color:#2c5dcd">=</span> [   
+        <span style="color:#0c6">&#39;96eRWDpg&#39;</span>,       
+        <span style="color:#0c6">&#39;8984928gWKMJA&#39;</span>,  
+        <span style="color:#0c6">&#39;9002630KfHyUm&#39;</span>,  
+        <span style="color:#0c6">&#39;22966670jhIRCB&#39;</span>, 
+        <span style="color:#0c6">&#39;log&#39;</span>,
+        <span style="color:#0c6">&#39;9ZRbZcX&#39;</span>,        
+        <span style="color:#0c6">&#39;732322MIgNFb&#39;</span>,   
+        <span style="color:#0c6">&#39;8644oLTwYz&#39;</span>,     
+        <span style="color:#0c6">&#39;8735136AsKbiE&#39;</span>,  
+        <span style="color:#0c6">&#39;115yehIcV&#39;</span>,      
+        <span style="color:#0c6">&#39;165476VyvkLP&#39;</span>    
+    ];
+    _0x1a23 <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">function</span> () {
+        <span style="color:#2c5dcd;font-weight:bold">return</span> _0x578d08;
+    };
+    <span style="color:#2c5dcd;font-weight:bold">return</span> _0x1a23();
+}
+<span style="color:#2c5dcd;font-weight:bold">function</span> _0x1f84(_0x5ab312, _0x4dd400) {
+    <span style="color:#2c5dcd;font-weight:bold">const</span> _0x1a2343 <span style="color:#2c5dcd">=</span> _0x1a23();
+    <span style="color:#2c5dcd;font-weight:bold">return</span> _0x1f84 <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">function</span> (_0x1f84f0, _0x4618ff) {
+        _0x1f84f0 <span style="color:#2c5dcd">=</span> _0x1f84f0 <span style="color:#2c5dcd">-</span> <span style="color:#5918bb;font-weight:bold">0x106</span>;
+        <span style="color:#2c5dcd;font-weight:bold">let</span> _0x4f0728 <span style="color:#2c5dcd">=</span> _0x1a2343[_0x1f84f0];
+        <span style="color:#2c5dcd;font-weight:bold">return</span> _0x4f0728;
+    }, _0x1f84(_0x5ab312, _0x4dd400);
+}
+(<span style="color:#2c5dcd;font-weight:bold">function</span> (_0x41caab, _0x244416) {
+    <span style="color:#2c5dcd;font-weight:bold">const</span> _0x41158a <span style="color:#2c5dcd">=</span> _0x1f84, _0x1bcd5f <span style="color:#2c5dcd">=</span> _0x41caab();
+    <span style="color:#2c5dcd;font-weight:bold">while</span> (<span style="color:#2c5dcd">!!</span>[]) {
+        <span style="color:#2c5dcd;font-weight:bold">try</span> {
+            <span style="color:#2c5dcd;font-weight:bold">const</span> _0x307e14 <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x41158a(<span style="color:#5918bb;font-weight:bold">0x10e</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x1</span> <span style="color:#2c5dcd">+</span> <span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x41158a(<span style="color:#5918bb;font-weight:bold">0x10f</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x2</span> <span style="color:#2c5dcd">*</span> (<span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x41158a(<span style="color:#5918bb;font-weight:bold">0x108</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x3</span>) <span style="color:#2c5dcd">+</span> <span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x41158a(<span style="color:#5918bb;font-weight:bold">0x107</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x4</span> <span style="color:#2c5dcd">*</span> (<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x41158a(<span style="color:#5918bb;font-weight:bold">0x106</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x5</span>) <span style="color:#2c5dcd">+</span> <span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x41158a(<span style="color:#5918bb;font-weight:bold">0x110</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x6</span> <span style="color:#2c5dcd">+</span> <span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x41158a(<span style="color:#5918bb;font-weight:bold">0x10a</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x7</span> <span style="color:#2c5dcd">+</span> <span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x41158a(<span style="color:#5918bb;font-weight:bold">0x109</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x8</span> <span style="color:#2c5dcd">+</span> <span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x41158a(<span style="color:#5918bb;font-weight:bold">0x10d</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0x9</span> <span style="color:#2c5dcd">*</span> (<span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x41158a(<span style="color:#5918bb;font-weight:bold">0x10b</span>)) <span style="color:#2c5dcd">/</span> <span style="color:#5918bb;font-weight:bold">0xa</span>);
+            <span style="color:#2c5dcd;font-weight:bold">if</span> (_0x307e14 <span style="color:#2c5dcd">===</span> _0x244416)
+                <span style="color:#2c5dcd;font-weight:bold">break</span>;
+            <span style="color:#2c5dcd;font-weight:bold">else</span>
+                _0x1bcd5f[<span style="color:#0c6">&#39;push&#39;</span>](_0x1bcd5f[<span style="color:#0c6">&#39;shift&#39;</span>]());
+        } <span style="color:#2c5dcd;font-weight:bold">catch</span> (_0x11dbd9) {
+            _0x1bcd5f[<span style="color:#0c6">&#39;push&#39;</span>](_0x1bcd5f[<span style="color:#0c6">&#39;shift&#39;</span>]());
+        }
+    }
+}(_0x1a23, <span style="color:#5918bb;font-weight:bold">0xb93aa</span>));
+<span style="color:#2c5dcd;font-weight:bold">let</span> x <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;1&#39;</span> <span style="color:#2c5dcd">+</span> <span style="color:#5918bb;font-weight:bold">0x1</span>;
+console[_0x2ab95d(<span style="color:#5918bb;font-weight:bold">0x10c</span>)](<span style="color:#0c6">&#39;x&#39;</span>, x);
+</code></pre></td></tr></table>
+</div>
+</div><p>使用参数的true后：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#2c5dcd;font-weight:bold">const</span> _0x5a4df1<span style="color:#2c5dcd">=</span>_0x7697;(<span style="color:#2c5dcd;font-weight:bold">function</span>(_0x55b341,_0x15ac40){<span style="color:#2c5dcd;font-weight:bold">const</span> _0x414762<span style="color:#2c5dcd">=</span>_0x7697,_0x3d9d03<span style="color:#2c5dcd">=</span>_0x55b341();<span style="color:#2c5dcd;font-weight:bold">while</span>(<span style="color:#2c5dcd">!!</span>[]){<span style="color:#2c5dcd;font-weight:bold">try</span>{<span style="color:#2c5dcd;font-weight:bold">const</span> _0x5cc75a<span style="color:#2c5dcd">=</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x414762(<span style="color:#5918bb;font-weight:bold">0x19c</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x1</span><span style="color:#2c5dcd">*</span>(<span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x414762(<span style="color:#5918bb;font-weight:bold">0x19e</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x2</span>)<span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x414762(<span style="color:#5918bb;font-weight:bold">0x194</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x3</span><span style="color:#2c5dcd">*</span>(<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x414762(<span style="color:#5918bb;font-weight:bold">0x19b</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x4</span>)<span style="color:#2c5dcd">+-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x414762(<span style="color:#5918bb;font-weight:bold">0x19f</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x5</span><span style="color:#2c5dcd">*</span>(<span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x414762(<span style="color:#5918bb;font-weight:bold">0x197</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x6</span>)<span style="color:#2c5dcd">+-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x414762(<span style="color:#5918bb;font-weight:bold">0x198</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x7</span><span style="color:#2c5dcd">*</span>(<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x414762(<span style="color:#5918bb;font-weight:bold">0x19a</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x8</span>)<span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x414762(<span style="color:#5918bb;font-weight:bold">0x193</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x9</span><span style="color:#2c5dcd">*</span>(<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x414762(<span style="color:#5918bb;font-weight:bold">0x19d</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0xa</span>)<span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x414762(<span style="color:#5918bb;font-weight:bold">0x192</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0xb</span><span style="color:#2c5dcd">*</span>(<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x414762(<span style="color:#5918bb;font-weight:bold">0x199</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0xc</span>)<span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x414762(<span style="color:#5918bb;font-weight:bold">0x196</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0xd</span>;<span style="color:#2c5dcd;font-weight:bold">if</span>(_0x5cc75a<span style="color:#2c5dcd">===</span>_0x15ac40)<span style="color:#2c5dcd;font-weight:bold">break</span>;<span style="color:#2c5dcd;font-weight:bold">else</span> _0x3d9d03[<span style="color:#0c6">&#39;push&#39;</span>](_0x3d9d03[<span style="color:#0c6">&#39;shift&#39;</span>]());}<span style="color:#2c5dcd;font-weight:bold">catch</span>(_0x16786b){_0x3d9d03[<span style="color:#0c6">&#39;push&#39;</span>](_0x3d9d03[<span style="color:#0c6">&#39;shift&#39;</span>]());}}}(_0x21e4,<span style="color:#5918bb;font-weight:bold">0xa579a</span>));<span style="color:#2c5dcd;font-weight:bold">function</span> _0x21e4(){<span style="color:#2c5dcd;font-weight:bold">const</span> _0x38d601<span style="color:#2c5dcd">=</span>[<span style="color:#0c6">&#39;270DYTzMt&#39;</span>,<span style="color:#0c6">&#39;7lcowcx&#39;</span>,<span style="color:#0c6">&#39;3322776MrAtBz&#39;</span>,<span style="color:#0c6">&#39;6726536GxTMrv&#39;</span>,<span style="color:#0c6">&#39;39660vmtnkf&#39;</span>,<span style="color:#0c6">&#39;11069YwvBsu&#39;</span>,<span style="color:#0c6">&#39;10hhpWog&#39;</span>,<span style="color:#0c6">&#39;244bVHKjm&#39;</span>,<span style="color:#0c6">&#39;98915yOeVVc&#39;</span>,<span style="color:#0c6">&#39;11MZcRZk&#39;</span>,<span style="color:#0c6">&#39;3926520biJLHV&#39;</span>,<span style="color:#0c6">&#39;93MRIvnp&#39;</span>,<span style="color:#0c6">&#39;log&#39;</span>,<span style="color:#0c6">&#39;5165277CxRoGq&#39;</span>];_0x21e4<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">function</span>(){<span style="color:#2c5dcd;font-weight:bold">return</span> _0x38d601;};<span style="color:#2c5dcd;font-weight:bold">return</span> _0x21e4();}<span style="color:#2c5dcd;font-weight:bold">let</span> x<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;1&#39;</span><span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">0x1</span>;<span style="color:#2c5dcd;font-weight:bold">function</span> _0x7697(_0x5dac0d,_0xf2496b){<span style="color:#2c5dcd;font-weight:bold">const</span> _0x21e494<span style="color:#2c5dcd">=</span>_0x21e4();<span style="color:#2c5dcd;font-weight:bold">return</span> _0x7697<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">function</span>(_0x7697b1,_0x4e7c9e){_0x7697b1<span style="color:#2c5dcd">=</span>_0x7697b1<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">0x192</span>;<span style="color:#2c5dcd;font-weight:bold">let</span> _0x460700<span style="color:#2c5dcd">=</span>_0x21e494[_0x7697b1];<span style="color:#2c5dcd;font-weight:bold">return</span> _0x460700;},_0x7697(_0x5dac0d,_0xf2496b);}console[_0x5a4df1(<span style="color:#5918bb;font-weight:bold">0x195</span>)](<span style="color:#0c6">&#39;x&#39;</span>,x);
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="变量名混淆">变量名混淆<a hidden class="anchor" aria-hidden="true" href="#变量名混淆">#</a></h3>
+<p>变量名混淆在javascript-obfuscator中配置identifierNamesGenerator参数来实现，如果将其值设置为hexadecimal，则会将变量名替换为十六进制形式的字符串
+hexadecimal：将变量名替换为十六进制形式的字符串，如0xabc123
+mangled：将变量名替换成普通的简写字符，如a，b等</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#2c5dcd;font-weight:bold">const</span> code <span style="color:#2c5dcd">=</span> <span style="color:#0c6">`
+</span><span style="color:#0c6">let x = &#39;1&#39; + 1
+</span><span style="color:#0c6">console.log(&#39;x&#39;, x)
+</span><span style="color:#0c6">`</span>
+
+<span style="color:#2c5dcd;font-weight:bold">const</span> options <span style="color:#2c5dcd">=</span> {
+    compact<span style="color:#2c5dcd">:</span> <span style="color:#2c5dcd;font-weight:bold">true</span>,
+    identifierNamesGenerator<span style="color:#2c5dcd">:</span> <span style="color:#0c6">&#39;mangled&#39;</span>,
+}
+
+<span style="color:#2c5dcd;font-weight:bold">const</span> obfuscator <span style="color:#2c5dcd">=</span> require(<span style="color:#0c6">&#39;javascript-obfuscator&#39;</span>)
+<span style="color:#2c5dcd;font-weight:bold">function</span> obfuscate(code, options) {
+    <span style="color:#2c5dcd;font-weight:bold">return</span> obfuscator.obfuscate(code, options).getObfuscatedCode()
+}
+console.log(obfuscate(code, options))
+</code></pre></td></tr></table>
+</div>
+</div><p>混淆后：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#2c5dcd;font-weight:bold">function</span> a(){<span style="color:#2c5dcd;font-weight:bold">const</span> j<span style="color:#2c5dcd">=</span>[<span style="color:#0c6">&#39;258231xUxfBs&#39;</span>,<span style="color:#0c6">&#39;7819904LvqlCs&#39;</span>,<span style="color:#0c6">&#39;979982uYIPDx&#39;</span>,<span style="color:#0c6">&#39;453426qgzSUB&#39;</span>,<span style="color:#0c6">&#39;7290FZDoxL&#39;</span>,<span style="color:#0c6">&#39;5712655GSQcsE&#39;</span>,<span style="color:#0c6">&#39;7kogAFv&#39;</span>,<span style="color:#0c6">&#39;36SmeNkk&#39;</span>,<span style="color:#0c6">&#39;1804860OZVDEi&#39;</span>,<span style="color:#0c6">&#39;log&#39;</span>,<span style="color:#0c6">&#39;2763EqCXTz&#39;</span>];a<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">function</span>(){<span style="color:#2c5dcd;font-weight:bold">return</span> j;};<span style="color:#2c5dcd;font-weight:bold">return</span> a();}<span style="color:#2c5dcd;font-weight:bold">function</span> b(c,d){<span style="color:#2c5dcd;font-weight:bold">const</span> e<span style="color:#2c5dcd">=</span>a();<span style="color:#2c5dcd;font-weight:bold">return</span> b<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">function</span>(f,g){f<span style="color:#2c5dcd">=</span>f<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">0x1a9</span>;<span style="color:#2c5dcd;font-weight:bold">let</span> h<span style="color:#2c5dcd">=</span>e[f];<span style="color:#2c5dcd;font-weight:bold">return</span> h;},b(c,d);}<span style="color:#2c5dcd;font-weight:bold">const</span> i<span style="color:#2c5dcd">=</span>b;(<span style="color:#2c5dcd;font-weight:bold">function</span>(c,d){<span style="color:#2c5dcd;font-weight:bold">const</span> h<span style="color:#2c5dcd">=</span>b,e<span style="color:#2c5dcd">=</span>c();<span style="color:#2c5dcd;font-weight:bold">while</span>(<span style="color:#2c5dcd">!!</span>[]){<span style="color:#2c5dcd;font-weight:bold">try</span>{<span style="color:#2c5dcd;font-weight:bold">const</span> f<span style="color:#2c5dcd">=-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(h(<span style="color:#5918bb;font-weight:bold">0x1ad</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x1</span><span style="color:#2c5dcd">+-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(h(<span style="color:#5918bb;font-weight:bold">0x1b2</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x2</span><span style="color:#2c5dcd">*</span>(<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(h(<span style="color:#5918bb;font-weight:bold">0x1ab</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x3</span>)<span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(h(<span style="color:#5918bb;font-weight:bold">0x1b3</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x4</span><span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(h(<span style="color:#5918bb;font-weight:bold">0x1b0</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x5</span><span style="color:#2c5dcd">+-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(h(<span style="color:#5918bb;font-weight:bold">0x1ae</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x6</span><span style="color:#2c5dcd">*</span>(<span style="color:#5918bb;font-weight:bold">parseInt</span>(h(<span style="color:#5918bb;font-weight:bold">0x1b1</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x7</span>)<span style="color:#2c5dcd">+-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(h(<span style="color:#5918bb;font-weight:bold">0x1ac</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x8</span><span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(h(<span style="color:#5918bb;font-weight:bold">0x1aa</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x9</span><span style="color:#2c5dcd">*</span>(<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(h(<span style="color:#5918bb;font-weight:bold">0x1af</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0xa</span>);<span style="color:#2c5dcd;font-weight:bold">if</span>(f<span style="color:#2c5dcd">===</span>d)<span style="color:#2c5dcd;font-weight:bold">break</span>;<span style="color:#2c5dcd;font-weight:bold">else</span> e[<span style="color:#0c6">&#39;push&#39;</span>](e[<span style="color:#0c6">&#39;shift&#39;</span>]());}<span style="color:#2c5dcd;font-weight:bold">catch</span>(g){e[<span style="color:#0c6">&#39;push&#39;</span>](e[<span style="color:#0c6">&#39;shift&#39;</span>]());}}}(a,<span style="color:#5918bb;font-weight:bold">0xd8610</span>));<span style="color:#2c5dcd;font-weight:bold">let</span> x<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;1&#39;</span><span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">0x1</span>;console[i(<span style="color:#5918bb;font-weight:bold">0x1a9</span>)](<span style="color:#0c6">&#39;x&#39;</span>,x);
+</code></pre></td></tr></table>
+</div>
+</div><p>另外，renameGlobals这个参数还可以指定是否混淆全局变量和函数名称，默认值是false</p>
+<h3 id="字符串混淆">字符串混淆<a hidden class="anchor" aria-hidden="true" href="#字符串混淆">#</a></h3>
+<p>将一个字符串声明放到一个数组里面，使之无法被直接搜索到。这个参数通过stringArray来控制，默认是true</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#2c5dcd;font-weight:bold">const</span> code <span style="color:#2c5dcd">=</span> <span style="color:#0c6">`
+</span><span style="color:#0c6">var a = &#39;hello world&#39;
+</span><span style="color:#0c6">`</span>
+
+<span style="color:#2c5dcd;font-weight:bold">const</span> options <span style="color:#2c5dcd">=</span> {
+    stringArray<span style="color:#2c5dcd">:</span> <span style="color:#2c5dcd;font-weight:bold">true</span>,
+    rotateStringArray<span style="color:#2c5dcd">:</span> <span style="color:#2c5dcd;font-weight:bold">true</span>,
+    stringArrayEncoding<span style="color:#2c5dcd">:</span> <span style="color:#2c5dcd;font-weight:bold">true</span>,  <span style="color:#0080ff;font-style:italic">//  &#39;base64&#39; or &#39;rc4&#39; or false
+</span><span style="color:#0080ff;font-style:italic"></span>    stringArrayThreshold<span style="color:#2c5dcd">:</span> <span style="color:#5918bb;font-weight:bold">1</span>,
+}
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="代码自我保护">代码自我保护<a hidden class="anchor" aria-hidden="true" href="#代码自我保护">#</a></h3>
+<p>可以通过selfDefending参数来开启代码自我保护功能。开启后，混淆的JavaScript代码会强制以一行的形式显示。如果我们将混淆后的代码进行格式化或重命名，该段代码将无法执行。</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#2c5dcd;font-weight:bold">const</span> code <span style="color:#2c5dcd">=</span> <span style="color:#0c6">`
+</span><span style="color:#0c6">console.log(&#39;hello world&#39;)
+</span><span style="color:#0c6">`</span>
+
+<span style="color:#2c5dcd;font-weight:bold">const</span> options <span style="color:#2c5dcd">=</span> {
+    selfDefending<span style="color:#2c5dcd">:</span> <span style="color:#2c5dcd;font-weight:bold">true</span>
+}
+
+<span style="color:#2c5dcd;font-weight:bold">const</span> obfuscator <span style="color:#2c5dcd">=</span> require(<span style="color:#0c6">&#39;javascript-obfuscator&#39;</span>)
+<span style="color:#2c5dcd;font-weight:bold">function</span> obfuscate(code, options) {
+    <span style="color:#2c5dcd;font-weight:bold">return</span> obfuscator.obfuscate(code, options).getObfuscatedCode()
+}
+console.log(obfuscate(code, options))
+</code></pre></td></tr></table>
+</div>
+</div><p>混淆后的代码：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#2c5dcd;font-weight:bold">var</span> _0x45b49a<span style="color:#2c5dcd">=</span>_0x43da;(<span style="color:#2c5dcd;font-weight:bold">function</span>(_0x59aaf2,_0x4b59ef){<span style="color:#2c5dcd;font-weight:bold">var</span> _0x1b8d82<span style="color:#2c5dcd">=</span>_0x43da,_0x3968c7<span style="color:#2c5dcd">=</span>_0x59aaf2();<span style="color:#2c5dcd;font-weight:bold">while</span>(<span style="color:#2c5dcd">!!</span>[]){<span style="color:#2c5dcd;font-weight:bold">try</span>{<span style="color:#2c5dcd;font-weight:bold">var</span> _0x3af556<span style="color:#2c5dcd">=-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x1b8d82(<span style="color:#5918bb;font-weight:bold">0x9b</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x1</span><span style="color:#2c5dcd">*</span>(<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x1b8d82(<span style="color:#5918bb;font-weight:bold">0xa0</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x2</span>)<span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x1b8d82(<span style="color:#5918bb;font-weight:bold">0xaa</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x3</span><span style="color:#2c5dcd">*</span>(<span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x1b8d82(<span style="color:#5918bb;font-weight:bold">0x98</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x4</span>)<span style="color:#2c5dcd">+-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x1b8d82(<span style="color:#5918bb;font-weight:bold">0x9d</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x5</span><span style="color:#2c5dcd">*</span>(<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x1b8d82(<span style="color:#5918bb;font-weight:bold">0x99</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x6</span>)<span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x1b8d82(<span style="color:#5918bb;font-weight:bold">0xa9</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x7</span><span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x1b8d82(<span style="color:#5918bb;font-weight:bold">0xa3</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x8</span><span style="color:#2c5dcd">*</span>(<span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x1b8d82(<span style="color:#5918bb;font-weight:bold">0xa4</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0x9</span>)<span style="color:#2c5dcd">+-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x1b8d82(<span style="color:#5918bb;font-weight:bold">0x9a</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0xa</span><span style="color:#2c5dcd">*</span>(<span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x1b8d82(<span style="color:#5918bb;font-weight:bold">0xa8</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0xb</span>)<span style="color:#2c5dcd">+-</span><span style="color:#5918bb;font-weight:bold">parseInt</span>(_0x1b8d82(<span style="color:#5918bb;font-weight:bold">0xa6</span>))<span style="color:#2c5dcd">/</span><span style="color:#5918bb;font-weight:bold">0xc</span>;<span style="color:#2c5dcd;font-weight:bold">if</span>(_0x3af556<span style="color:#2c5dcd">===</span>_0x4b59ef)<span style="color:#2c5dcd;font-weight:bold">break</span>;<span style="color:#2c5dcd;font-weight:bold">else</span> _0x3968c7[<span style="color:#0c6">&#39;push&#39;</span>](_0x3968c7[<span style="color:#0c6">&#39;shift&#39;</span>]());}<span style="color:#2c5dcd;font-weight:bold">catch</span>(_0x34506f){_0x3968c7[<span style="color:#0c6">&#39;push&#39;</span>](_0x3968c7[<span style="color:#0c6">&#39;shift&#39;</span>]());}}}(_0x626d,<span style="color:#5918bb;font-weight:bold">0xc0b82</span>));<span style="color:#2c5dcd;font-weight:bold">function</span> _0x626d(){<span style="color:#2c5dcd;font-weight:bold">var</span> _0x1ad3d3<span style="color:#2c5dcd">=</span>[<span style="color:#0c6">&#39;constructor&#39;</span>,<span style="color:#0c6">&#39;5YFEyCe&#39;</span>,<span style="color:#0c6">&#39;toString&#39;</span>,<span style="color:#0c6">&#39;(((.+)+)+)+$&#39;</span>,<span style="color:#0c6">&#39;2zmmKZw&#39;</span>,<span style="color:#0c6">&#39;apply&#39;</span>,<span style="color:#0c6">&#39;search&#39;</span>,<span style="color:#0c6">&#39;376VGKKAg&#39;</span>,<span style="color:#0c6">&#39;50247ICTFpG&#39;</span>,<span style="color:#0c6">&#39;hello\x20world&#39;</span>,<span style="color:#0c6">&#39;33992208CZwJly&#39;</span>,<span style="color:#0c6">&#39;log&#39;</span>,<span style="color:#0c6">&#39;173822NaLfqC&#39;</span>,<span style="color:#0c6">&#39;8996029QHyncx&#39;</span>,<span style="color:#0c6">&#39;5517PHPoSl&#39;</span>,<span style="color:#0c6">&#39;948gpqWlh&#39;</span>,<span style="color:#0c6">&#39;5564292VwLISd&#39;</span>,<span style="color:#0c6">&#39;260UHMpCM&#39;</span>,<span style="color:#0c6">&#39;1122141cIoqoQ&#39;</span>];_0x626d<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">function</span>(){<span style="color:#2c5dcd;font-weight:bold">return</span> _0x1ad3d3;};<span style="color:#2c5dcd;font-weight:bold">return</span> _0x626d();}<span style="color:#2c5dcd;font-weight:bold">var</span> _0x407526<span style="color:#2c5dcd">=</span>(<span style="color:#2c5dcd;font-weight:bold">function</span>(){<span style="color:#2c5dcd;font-weight:bold">var</span> _0x116741<span style="color:#2c5dcd">=!!</span>[];<span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#2c5dcd;font-weight:bold">function</span>(_0x3a0166,_0x2acdf4){<span style="color:#2c5dcd;font-weight:bold">var</span> _0x3e664e<span style="color:#2c5dcd">=</span>_0x116741<span style="color:#2c5dcd">?</span><span style="color:#2c5dcd;font-weight:bold">function</span>(){<span style="color:#2c5dcd;font-weight:bold">var</span> _0x1c18b1<span style="color:#2c5dcd">=</span>_0x43da;<span style="color:#2c5dcd;font-weight:bold">if</span>(_0x2acdf4){<span style="color:#2c5dcd;font-weight:bold">var</span> _0x36e5a7<span style="color:#2c5dcd">=</span>_0x2acdf4[_0x1c18b1(<span style="color:#5918bb;font-weight:bold">0xa1</span>)](_0x3a0166,arguments);<span style="color:#2c5dcd;font-weight:bold">return</span> _0x2acdf4<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">null</span>,_0x36e5a7;}}<span style="color:#2c5dcd">:</span><span style="color:#2c5dcd;font-weight:bold">function</span>(){};<span style="color:#2c5dcd;font-weight:bold">return</span> _0x116741<span style="color:#2c5dcd">=!</span>[],_0x3e664e;};}()),_0x191b2a<span style="color:#2c5dcd">=</span>_0x407526(<span style="color:#2c5dcd;font-weight:bold">this</span>,<span style="color:#2c5dcd;font-weight:bold">function</span>(){<span style="color:#2c5dcd;font-weight:bold">var</span> _0x367b78<span style="color:#2c5dcd">=</span>_0x43da;<span style="color:#2c5dcd;font-weight:bold">return</span> _0x191b2a[<span style="color:#0c6">&#39;toString&#39;</span>]()[_0x367b78(<span style="color:#5918bb;font-weight:bold">0xa2</span>)](_0x367b78(<span style="color:#5918bb;font-weight:bold">0x9f</span>))[_0x367b78(<span style="color:#5918bb;font-weight:bold">0x9e</span>)]()[_0x367b78(<span style="color:#5918bb;font-weight:bold">0x9c</span>)](_0x191b2a)[_0x367b78(<span style="color:#5918bb;font-weight:bold">0xa2</span>)](<span style="color:#0c6">&#39;(((.+)+)+)+$&#39;</span>);});<span style="color:#2c5dcd;font-weight:bold">function</span> _0x43da(_0x5ea48d,_0x4aec27){<span style="color:#2c5dcd;font-weight:bold">var</span> _0x20ebf3<span style="color:#2c5dcd">=</span>_0x626d();<span style="color:#2c5dcd;font-weight:bold">return</span> _0x43da<span style="color:#2c5dcd">=</span><span style="color:#2c5dcd;font-weight:bold">function</span>(_0x191b2a,_0x407526){_0x191b2a<span style="color:#2c5dcd">=</span>_0x191b2a<span style="color:#2c5dcd">-</span><span style="color:#5918bb;font-weight:bold">0x98</span>;<span style="color:#2c5dcd;font-weight:bold">var</span> _0x626d2f<span style="color:#2c5dcd">=</span>_0x20ebf3[_0x191b2a];<span style="color:#2c5dcd;font-weight:bold">return</span> _0x626d2f;},_0x43da(_0x5ea48d,_0x4aec27);}_0x191b2a(),console[_0x45b49a(<span style="color:#5918bb;font-weight:bold">0xa7</span>)](_0x45b49a(<span style="color:#5918bb;font-weight:bold">0xa5</span>));
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="控制流平坦化-1">控制流平坦化<a hidden class="anchor" aria-hidden="true" href="#控制流平坦化-1">#</a></h3>
+<p>控制流平坦化就是将代码执行逻辑混淆，基本思想是将一些逻辑处理块都统一加上一个前驱逻辑块，每个逻辑块都有前驱逻辑块进行条件判断触发，构成一个个闭环逻辑</p>
+<h3 id="无用代码注入">无用代码注入<a hidden class="anchor" aria-hidden="true" href="#无用代码注入">#</a></h3>
+<p>无用代码就是不会被执行党的代码或者对上下文没有任何影响的代码，注入之后对现有的JavaScript代码的阅读造成干扰使用deadCodeInjection参数来开启，默认值是false</p>
+<h3 id="对象键名替换">对象键名替换<a hidden class="anchor" aria-hidden="true" href="#对象键名替换">#</a></h3>
+<p>如果是一个对象可以使用transformObjectKeys来对对象的键值进行替换</p>
+<h3 id="禁用控制台输出">禁用控制台输出<a hidden class="anchor" aria-hidden="true" href="#禁用控制台输出">#</a></h3>
+<p>使用disableConsoleOutput来禁掉console.log的输出功能增大调试难度</p>
+<h3 id="域名锁定">域名锁定<a hidden class="anchor" aria-hidden="true" href="#域名锁定">#</a></h3>
+<p>通过使用domainLock来控制代码只能在特定的域名下运行，这样可以降低代码被模拟和盗用的风险</p>
+<h3 id="特殊编码">特殊编码<a hidden class="anchor" aria-hidden="true" href="#特殊编码">#</a></h3>
+<p>还有一些特殊的工具包可以对代码进行混淆，工具有（aaencode、jjencode、jsfick）这些工具都会把代码转换成完全不可读的代码，但是虽然看起来另类但可以找到规律从而还原</p>
+<h3 id="webassembly">WebAssembly<a hidden class="anchor" aria-hidden="true" href="#webassembly">#</a></h3>
+<p>随着技术的发展，WebAssembly流行起来，不同于JavaScript混淆技术，WebAssembly的基本思路是将一些核心逻辑使用其他语言（C/C++）来编写，并编译成类似字节码的文件，并通过JavaScript调用执行，从而起到二进制级别的防护作用。</p>
+<p>WebAssemly是一种使用非JavaScript编程语言编写代码并且能在浏览器上运行的技术方案。比如能将C/C++文件利用Emscripten编译工具转换成wasm格式的文件，JavaScript可以直接调用该文件中执行的方法。</p>
+<p>WebAssemly是经过编译器编译后的字节码，可以从C/C++编译而来，得到的字节码具有和JavaScript相同的功能，运行速度更快，体积更小，而且语法上完全脱离JavaScript，具有沙盒化的执行环境</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a></li>
+      <li><a href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/">逆向</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8111-03/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>崔庆才爬虫书阅读摘要11 03</span>
+  </a>
+  <a class="next" href="https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8111/">
+    <span class="title">Next »</span>
+    <br>
+    <span>崔庆才爬虫书阅读摘要11</span>
+  </a>
+</nav>
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>✨昵称输入QQ号可以自动关联✨
+        <hr />
+
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo1-mu.vercel.app/",  
+            el: "#tcomment",
+            lang: 'zh-CN',
+            region: 'ap-guangzhou',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

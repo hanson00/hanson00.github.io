@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>崔庆才爬虫书阅读摘要09 | Hanson&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="学习代理来处理请求过多而导致的爬虫封禁">
+<meta name="author" content="
+作者:&nbsp;hanson">
+<link rel="canonical" href="https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8109/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hanson00.github.io/posts/imgs/favicon16x16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hanson00.github.io/posts/imgs/favicon32x32.ico">
+<link rel="apple-touch-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="mask-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="崔庆才爬虫书阅读摘要09" />
+<meta property="og:description" content="学习代理来处理请求过多而导致的爬虫封禁" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8109/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-24T10:41:00&#43;08:00" />
+<meta property="article:modified_time" content="2022-08-24T10:41:00&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="崔庆才爬虫书阅读摘要09"/>
+<meta name="twitter:description" content="学习代理来处理请求过多而导致的爬虫封禁"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hanson00.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "💻技术类文章",
+      "item": "https://hanson00.github.io/posts/technology/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Python文章",
+      "item": "https://hanson00.github.io/posts/technology/python/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "崔庆才爬虫书阅读摘要09",
+      "item": "https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8109/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "崔庆才爬虫书阅读摘要09",
+  "name": "崔庆才爬虫书阅读摘要09",
+  "description": "学习代理来处理请求过多而导致的爬虫封禁",
+  "keywords": [
+    ""
+  ],
+  "articleBody": " 引言：在执行爬虫程序的时候,有时候爬虫在最初的时候可以运行但运行一段时间后可能会出现”IP访问过于频繁“或者出现验证码让我们输入等问题。\n这些问题都是网站对爬虫采取的一种反爬虫措施，例如服务器会检测某个IP在单位时间内的请求次数，如果请求次数过多则会拒绝服务，这种手段被称为封IP。\n 常见的代理IP类型： 按匿名度分类\n按照匿名度分类可将代理IP分为高匿名代理IP、普通匿名代理IP、透明代理IP三种。高匿名代理IP是匿名度最高的代理IP，一般来说目标网站服务器无法识别出用户使用了代理；普通匿名代理IP的匿名度较低，目标网站服务器可以发现用户正在使用代理IP进行访问，往往会限制访问；透明代理IP不能匿名访问，将会直接暴露用户终端的真实IP，存在着一定的风险。\n按时效划分\n按照时效划分可将代理IP分为静态代理IP和动态代理IP。静态代理IP是固定的，动态代理IP有时效性，时效过后会失效。动态代理IP可以分为长期代理IP和短期代理IP，短期代理IP的时效一般从几秒到几分钟不等；长期代理IP的时效通常从几分钟到几天不等。\n按协议类型分类\n按照协议类型划分可将代理IP分为http(s)代理IP和socks5代理IP。当然互联网协议并不止这些，但这两者或者说三者是目前市场上较为常见的协议。http(s)代理IP同时支持http和https协议，socks5代理则只是单纯的进行数据传输，对于协议类型没有要求。\n按纯度分类\n按照纯度划分可将代理IP分为独独享IP池和共享IP池。使用代理IP的人越少，纯度越高。比如独享IP池，一个人使用的代理IP，纯度极高；共享IP池，不超过10人使用，可以算是纯度高的共享IP池；其他未解释的代理IP包通常是共享IP池。\nurllib的代理设置 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  \"\"\" urllib的代理设置 handler和opener \"\"\" from urllib.error import URLError from urllib.request import ProxyHandler, build_opener proxy = '127.0.0.1:7890' proxy_handler = ProxyHandler({ 'http':'http://' + proxy, 'https': 'https://' + proxy }) # opener = build_opener() opener = build_opener(proxy_handler) try: response = opener.open('https://www.httpbin.org/get') print(response.read().decode('UTF-8')) except URLError as e: print(e.reason)   输出结果如下：\n如果遇到需要认证的代理只需把上面的代码proxy = '127.0.0.1:7890'改写成proxy = 'username:password@127.0.0.1:7890'，username是用户名，password是密码。\n SOCKS类型的代理设置\n 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  \"\"\" 代理类型是SOCKS的如何设置 \"\"\" import socks import socket from urllib import request from urllib.error import URLError socks.setdefaultproxy(socks.SOCKS5, '127.0.0.1', 7890) socket.socket = socks.socksocket try: response = request.urlopen('https://www.httpbin.org/get') print(response.read().decode('utf-8')) except URLError as e: print(e.reason)   requests代理设置 1 2 3 4 5 6 7 8 9 10 11 12 13  import requests url = 'https://www.httpbin.org/get' proxy = '127.0.0.1:7890' proxies = { 'http':'http://' + proxy, 'https':'http://' + proxy } try: response = requests.get(url=url, proxies=proxies) print(response.text) except requests.exceptions.ConnectionError as e: print('代理发生错误', e.args)   使用的https代理项的时候也要写成http匹配，认证代理同urllib的方法相同。\n SOCKS类型的代理设置\n 1 2 3 4 5 6 7 8 9 10 11 12 13  import requests url = 'https://www.httpbin.org/get' proxy = '127.0.0.1:7890' proxies = { 'http':'socks5://' + proxy, 'https':'socks5://' + proxy } try: response = requests.get(url=url, proxies=proxies) print(response.text) except requests.exceptions.ConnectionError as e: print('代理发生错误', e.args)   httpx代理设置 httpx的代理设置和requests的代理设置稍有不同，在配置代理的时候将键名改为http://和https://即可\n1 2 3 4 5 6 7 8 9 10 11  import httpx url = 'https://www.httpbin.org/get' proxy = '127.0.0.1:7890' proxies = { 'http://':'http://' + proxy, 'https://':'http://' + proxy } with httpx.Client(proxies=proxies) as client: response = client.get(url=url) print(response.text)    SOCKS类型的代理设置分为同步和异步代理\n 同步代理如下：\n1 2 3 4 5 6 7 8 9 10  import httpx from httpx_socks import SyncProxyTransport url = 'https://www.httpbin.org/get' transport = SyncProxyTransport.from_url('socks5://127.0.0.1:7890') proxy = '127.0.0.1:7890' with httpx.Client(transport=transport) as client: response = client.get(url=url) print(response.text)   异步代理则使用AsyncProxyTransport即可\nselenium代理设置 1 2 3 4 5 6 7 8 9 10  from selenium import webdriver url = \"https://www.httpbin.org/get\" proxy = '127.0.0.1:7890' chrome_opt = webdriver.ChromeOptions() chrome_opt.add_argument(\"--proxy-server=http://\" + proxy) browser = webdriver.Chrome(options=chrome_opt) browser.get(url=url) print(browser.page_source) browser.close()   selenium的认证代理设置较为麻烦，要使用的时候网上查阅即可。\naiohttp代理设置 1 2 3 4 5 6 7 8 9 10 11 12 13  import aiohttp import asyncio url = \"https://www.httpbin.org/get\" proxy = '127.0.0.1:7890' async def main(): async with aiohttp.ClientSession() as session: async with session.get(url=url, proxy=proxy) as response: print(await response.text()) if __name__ == '__main__': asyncio.run(main())   Pyppeteer代理设置 1 2 3 4 5 6 7 8 9 10 11 12 13 14  import asyncio from pyppeteer import launch url = \"https://www.httpbin.org/get\" proxy = '127.0.0.1:7890' async def main(): browser = await launch({'args':['--proxy-server=http://' + proxy], 'headless': False}) page = await browser.newPage() await page.goto(url=url) print(await page.content()) await browser.close() if __name__ == '__main__': asyncio.run(main())   ",
+  "wordCount" : "1595",
+  "inLanguage": "en",
+  "datePublished": "2022-08-24T10:41:00+08:00",
+  "dateModified": "2022-08-24T10:41:00+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "hanson"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8109/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hanson's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hanson00.github.io/posts/imgs/66.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hanson00.github.io/" accesskey="h" title="Hanson&#39;s Blog (Alt + H)">Hanson&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hanson00.github.io/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/python/">Python文章</a></div>
+    <h1 class="post-title">
+      崔庆才爬虫书阅读摘要09
+    </h1>
+    <div class="post-description">
+      学习代理来处理请求过多而导致的爬虫封禁
+    </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;2022-08-24&nbsp;|&nbsp;字数:&nbsp;1595字&nbsp;|&nbsp;时长: 4分钟&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
+      <ul class="post-tags-meta">
+        <a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
+      </ul>
+
+      <span id="busuanzi_container_page_pv">
+        &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+      </span>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#%e5%b8%b8%e8%a7%81%e7%9a%84%e4%bb%a3%e7%90%86ip%e7%b1%bb%e5%9e%8b" aria-label="常见的代理IP类型：">常见的代理IP类型：</a><ul>
+                                    
+                        <li>
+                            <a href="#urllib%e7%9a%84%e4%bb%a3%e7%90%86%e8%ae%be%e7%bd%ae" aria-label="urllib的代理设置">urllib的代理设置</a></li>
+                        <li>
+                            <a href="#requests%e4%bb%a3%e7%90%86%e8%ae%be%e7%bd%ae" aria-label="requests代理设置">requests代理设置</a></li>
+                        <li>
+                            <a href="#httpx%e4%bb%a3%e7%90%86%e8%ae%be%e7%bd%ae" aria-label="httpx代理设置">httpx代理设置</a></li>
+                        <li>
+                            <a href="#selenium%e4%bb%a3%e7%90%86%e8%ae%be%e7%bd%ae" aria-label="selenium代理设置">selenium代理设置</a></li>
+                        <li>
+                            <a href="#aiohttp%e4%bb%a3%e7%90%86%e8%ae%be%e7%bd%ae" aria-label="aiohttp代理设置">aiohttp代理设置</a></li>
+                        <li>
+                            <a href="#pyppeteer%e4%bb%a3%e7%90%86%e8%ae%be%e7%bd%ae" aria-label="Pyppeteer代理设置">Pyppeteer代理设置</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><blockquote>
+<p>引言：在执行爬虫程序的时候,有时候爬虫在最初的时候可以运行但运行一段时间后可能会出现”IP访问过于频繁“或者出现验证码让我们输入等问题。</p>
+<p>这些问题都是网站对爬虫采取的一种反爬虫措施，例如服务器会检测某个IP在单位时间内的请求次数，如果请求次数过多则会拒绝服务，这种手段被称为封IP。</p>
+</blockquote>
+<h1 id="常见的代理ip类型">常见的代理IP类型：<a hidden class="anchor" aria-hidden="true" href="#常见的代理ip类型">#</a></h1>
+<p><strong>按匿名度分类</strong></p>
+<p>按照<strong>匿名度分类</strong>可将代理IP分为高匿名代理IP、普通匿名代理IP、透明代理IP三种。高匿名代理IP是匿名度最高的代理IP，一般来说目标网站服务器无法识别出用户使用了代理；普通匿名代理IP的匿名度较低，目标网站服务器可以发现用户正在使用代理IP进行访问，往往会限制访问；透明代理IP不能匿名访问，将会直接暴露用户终端的真实IP，存在着一定的风险。</p>
+<p><strong>按时效划分</strong></p>
+<p>按照时效划分可将代理IP分为静态代理IP和动态代理IP。静态代理IP是固定的，动态代理IP有时效性，时效过后会失效。动态代理IP可以分为长期代理IP和短期代理IP，短期代理IP的时效一般从几秒到几分钟不等；长期代理IP的时效通常从几分钟到几天不等。</p>
+<p><strong>按协议类型分类</strong></p>
+<p>按照协议类型划分可将代理IP分为http(s)代理IP和socks5代理IP。当然互联网协议并不止这些，但这两者或者说三者是目前市场上较为常见的协议。http(s)代理IP同时支持http和https协议，socks5代理则只是单纯的进行数据传输，对于协议类型没有要求。</p>
+<p><strong>按纯度分类</strong></p>
+<p>按照纯度划分可将代理IP分为独独享IP池和共享IP池。使用代理IP的人越少，纯度越高。比如独享IP池，一个人使用的代理IP，纯度极高；共享IP池，不超过10人使用，可以算是纯度高的共享IP池；其他未解释的代理IP包通常是共享IP池。</p>
+<h2 id="urllib的代理设置">urllib的代理设置<a hidden class="anchor" aria-hidden="true" href="#urllib的代理设置">#</a></h2>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0c6">&#34;&#34;&#34;
+</span><span style="color:#0c6">urllib的代理设置
+</span><span style="color:#0c6">handler和opener
+</span><span style="color:#0c6">&#34;&#34;&#34;</span>
+<span style="color:#2c5dcd;font-weight:bold">from</span> urllib.error <span style="color:#2c5dcd;font-weight:bold">import</span> URLError
+<span style="color:#2c5dcd;font-weight:bold">from</span> urllib.request <span style="color:#2c5dcd;font-weight:bold">import</span> ProxyHandler, build_opener
+
+proxy <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;127.0.0.1:7890&#39;</span>
+
+proxy_handler <span style="color:#2c5dcd">=</span> ProxyHandler({
+    <span style="color:#0c6">&#39;http&#39;</span>:<span style="color:#0c6">&#39;http://&#39;</span> <span style="color:#2c5dcd">+</span> proxy,
+    <span style="color:#0c6">&#39;https&#39;</span>: <span style="color:#0c6">&#39;https://&#39;</span> <span style="color:#2c5dcd">+</span> proxy
+})
+
+<span style="color:#0080ff;font-style:italic"># opener = build_opener()</span>
+opener <span style="color:#2c5dcd">=</span> build_opener(proxy_handler)
+<span style="color:#2c5dcd;font-weight:bold">try</span>:
+    response <span style="color:#2c5dcd">=</span> opener<span style="color:#2c5dcd">.</span>open(<span style="color:#0c6">&#39;https://www.httpbin.org/get&#39;</span>)
+    <span style="color:#5918bb;font-weight:bold">print</span>(response<span style="color:#2c5dcd">.</span>read()<span style="color:#2c5dcd">.</span>decode(<span style="color:#0c6">&#39;UTF-8&#39;</span>))
+<span style="color:#2c5dcd;font-weight:bold">except</span> URLError <span style="color:#2c5dcd;font-weight:bold">as</span> e:
+    <span style="color:#5918bb;font-weight:bold">print</span>(e<span style="color:#2c5dcd">.</span>reason)
+</code></pre></td></tr></table>
+</div>
+</div><p>输出结果如下：</p>
+<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/proxy01.png" alt="image-20220824155036420"  />
+</p>
+<p>如果遇到需要认证的代理只需把上面的代码<code>proxy = '127.0.0.1:7890'</code>改写成<code>proxy = 'username:password@127.0.0.1:7890'</code>，username是用户名，password是密码。</p>
+<blockquote>
+<p>SOCKS类型的代理设置</p>
+</blockquote>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0c6">&#34;&#34;&#34;
+</span><span style="color:#0c6">代理类型是SOCKS的如何设置
+</span><span style="color:#0c6">&#34;&#34;&#34;</span>
+<span style="color:#2c5dcd;font-weight:bold">import</span> socks
+<span style="color:#2c5dcd;font-weight:bold">import</span> socket
+<span style="color:#2c5dcd;font-weight:bold">from</span> urllib <span style="color:#2c5dcd;font-weight:bold">import</span> request
+<span style="color:#2c5dcd;font-weight:bold">from</span> urllib.error <span style="color:#2c5dcd;font-weight:bold">import</span> URLError
+
+socks<span style="color:#2c5dcd">.</span>setdefaultproxy(socks<span style="color:#2c5dcd">.</span>SOCKS5, <span style="color:#0c6">&#39;127.0.0.1&#39;</span>, <span style="color:#5918bb;font-weight:bold">7890</span>)
+socket<span style="color:#2c5dcd">.</span>socket <span style="color:#2c5dcd">=</span> socks<span style="color:#2c5dcd">.</span>socksocket
+<span style="color:#2c5dcd;font-weight:bold">try</span>:
+    response <span style="color:#2c5dcd">=</span> request<span style="color:#2c5dcd">.</span>urlopen(<span style="color:#0c6">&#39;https://www.httpbin.org/get&#39;</span>)
+    <span style="color:#5918bb;font-weight:bold">print</span>(response<span style="color:#2c5dcd">.</span>read()<span style="color:#2c5dcd">.</span>decode(<span style="color:#0c6">&#39;utf-8&#39;</span>))
+<span style="color:#2c5dcd;font-weight:bold">except</span> URLError <span style="color:#2c5dcd;font-weight:bold">as</span> e:
+    <span style="color:#5918bb;font-weight:bold">print</span>(e<span style="color:#2c5dcd">.</span>reason)
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="requests代理设置">requests代理设置<a hidden class="anchor" aria-hidden="true" href="#requests代理设置">#</a></h2>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> requests
+
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;https://www.httpbin.org/get&#39;</span>
+proxy <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;127.0.0.1:7890&#39;</span>
+proxies <span style="color:#2c5dcd">=</span> {
+    <span style="color:#0c6">&#39;http&#39;</span>:<span style="color:#0c6">&#39;http://&#39;</span> <span style="color:#2c5dcd">+</span> proxy,
+    <span style="color:#0c6">&#39;https&#39;</span>:<span style="color:#0c6">&#39;http://&#39;</span> <span style="color:#2c5dcd">+</span> proxy
+}
+<span style="color:#2c5dcd;font-weight:bold">try</span>:
+    response <span style="color:#2c5dcd">=</span> requests<span style="color:#2c5dcd">.</span>get(url<span style="color:#2c5dcd">=</span>url, proxies<span style="color:#2c5dcd">=</span>proxies)
+    <span style="color:#5918bb;font-weight:bold">print</span>(response<span style="color:#2c5dcd">.</span>text)
+<span style="color:#2c5dcd;font-weight:bold">except</span> requests<span style="color:#2c5dcd">.</span>exceptions<span style="color:#2c5dcd">.</span>ConnectionError <span style="color:#2c5dcd;font-weight:bold">as</span> e:
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#39;代理发生错误&#39;</span>, e<span style="color:#2c5dcd">.</span>args)
+</code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202208241609352.png" alt="image-20220824160914263"  />
+</p>
+<p>使用的https代理项的时候也要写成http匹配，认证代理同urllib的方法相同。</p>
+<blockquote>
+<p>SOCKS类型的代理设置</p>
+</blockquote>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> requests
+
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;https://www.httpbin.org/get&#39;</span>
+proxy <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;127.0.0.1:7890&#39;</span>
+proxies <span style="color:#2c5dcd">=</span> {
+    <span style="color:#0c6">&#39;http&#39;</span>:<span style="color:#0c6">&#39;socks5://&#39;</span> <span style="color:#2c5dcd">+</span> proxy,
+    <span style="color:#0c6">&#39;https&#39;</span>:<span style="color:#0c6">&#39;socks5://&#39;</span> <span style="color:#2c5dcd">+</span> proxy
+}
+<span style="color:#2c5dcd;font-weight:bold">try</span>:
+    response <span style="color:#2c5dcd">=</span> requests<span style="color:#2c5dcd">.</span>get(url<span style="color:#2c5dcd">=</span>url, proxies<span style="color:#2c5dcd">=</span>proxies)
+    <span style="color:#5918bb;font-weight:bold">print</span>(response<span style="color:#2c5dcd">.</span>text)
+<span style="color:#2c5dcd;font-weight:bold">except</span> requests<span style="color:#2c5dcd">.</span>exceptions<span style="color:#2c5dcd">.</span>ConnectionError <span style="color:#2c5dcd;font-weight:bold">as</span> e:
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#39;代理发生错误&#39;</span>, e<span style="color:#2c5dcd">.</span>args)
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="httpx代理设置">httpx代理设置<a hidden class="anchor" aria-hidden="true" href="#httpx代理设置">#</a></h2>
+<p>httpx的代理设置和requests的代理设置稍有不同，在配置代理的时候将键名改为<code>http://</code>和<code>https://</code>即可</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> httpx
+
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;https://www.httpbin.org/get&#39;</span>
+proxy <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;127.0.0.1:7890&#39;</span>
+proxies <span style="color:#2c5dcd">=</span> {
+    <span style="color:#0c6">&#39;http://&#39;</span>:<span style="color:#0c6">&#39;http://&#39;</span> <span style="color:#2c5dcd">+</span> proxy,
+    <span style="color:#0c6">&#39;https://&#39;</span>:<span style="color:#0c6">&#39;http://&#39;</span> <span style="color:#2c5dcd">+</span> proxy
+}
+<span style="color:#2c5dcd;font-weight:bold">with</span> httpx<span style="color:#2c5dcd">.</span>Client(proxies<span style="color:#2c5dcd">=</span>proxies) <span style="color:#2c5dcd;font-weight:bold">as</span> client:
+    response <span style="color:#2c5dcd">=</span> client<span style="color:#2c5dcd">.</span>get(url<span style="color:#2c5dcd">=</span>url)
+    <span style="color:#5918bb;font-weight:bold">print</span>(response<span style="color:#2c5dcd">.</span>text)
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>SOCKS类型的代理设置分为同步和异步代理</p>
+</blockquote>
+<p>同步代理如下：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> httpx
+<span style="color:#2c5dcd;font-weight:bold">from</span> httpx_socks <span style="color:#2c5dcd;font-weight:bold">import</span> SyncProxyTransport
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;https://www.httpbin.org/get&#39;</span>
+transport <span style="color:#2c5dcd">=</span> SyncProxyTransport<span style="color:#2c5dcd">.</span>from_url(<span style="color:#0c6">&#39;socks5://127.0.0.1:7890&#39;</span>)
+
+proxy <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;127.0.0.1:7890&#39;</span>
+
+<span style="color:#2c5dcd;font-weight:bold">with</span> httpx<span style="color:#2c5dcd">.</span>Client(transport<span style="color:#2c5dcd">=</span>transport) <span style="color:#2c5dcd;font-weight:bold">as</span> client:
+    response <span style="color:#2c5dcd">=</span> client<span style="color:#2c5dcd">.</span>get(url<span style="color:#2c5dcd">=</span>url)
+    <span style="color:#5918bb;font-weight:bold">print</span>(response<span style="color:#2c5dcd">.</span>text)
+</code></pre></td></tr></table>
+</div>
+</div><p>异步代理则使用AsyncProxyTransport即可</p>
+<h2 id="selenium代理设置">selenium代理设置<a hidden class="anchor" aria-hidden="true" href="#selenium代理设置">#</a></h2>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">from</span> selenium <span style="color:#2c5dcd;font-weight:bold">import</span> webdriver
+
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;https://www.httpbin.org/get&#34;</span>
+proxy <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;127.0.0.1:7890&#39;</span>
+chrome_opt <span style="color:#2c5dcd">=</span> webdriver<span style="color:#2c5dcd">.</span>ChromeOptions()
+chrome_opt<span style="color:#2c5dcd">.</span>add_argument(<span style="color:#0c6">&#34;--proxy-server=http://&#34;</span> <span style="color:#2c5dcd">+</span> proxy)
+browser <span style="color:#2c5dcd">=</span> webdriver<span style="color:#2c5dcd">.</span>Chrome(options<span style="color:#2c5dcd">=</span>chrome_opt)
+browser<span style="color:#2c5dcd">.</span>get(url<span style="color:#2c5dcd">=</span>url)
+<span style="color:#5918bb;font-weight:bold">print</span>(browser<span style="color:#2c5dcd">.</span>page_source)
+browser<span style="color:#2c5dcd">.</span>close()
+</code></pre></td></tr></table>
+</div>
+</div><p>selenium的认证代理设置较为麻烦，要使用的时候网上查阅即可。</p>
+<h2 id="aiohttp代理设置">aiohttp代理设置<a hidden class="anchor" aria-hidden="true" href="#aiohttp代理设置">#</a></h2>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> aiohttp
+<span style="color:#2c5dcd;font-weight:bold">import</span> asyncio
+
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;https://www.httpbin.org/get&#34;</span>
+proxy <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;127.0.0.1:7890&#39;</span>
+
+<span style="color:#2c5dcd;font-weight:bold">async</span> <span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">main</span>():
+    <span style="color:#2c5dcd;font-weight:bold">async</span> <span style="color:#2c5dcd;font-weight:bold">with</span> aiohttp<span style="color:#2c5dcd">.</span>ClientSession() <span style="color:#2c5dcd;font-weight:bold">as</span> session:
+        <span style="color:#2c5dcd;font-weight:bold">async</span> <span style="color:#2c5dcd;font-weight:bold">with</span> session<span style="color:#2c5dcd">.</span>get(url<span style="color:#2c5dcd">=</span>url, proxy<span style="color:#2c5dcd">=</span>proxy) <span style="color:#2c5dcd;font-weight:bold">as</span> response:
+            <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#2c5dcd;font-weight:bold">await</span> response<span style="color:#2c5dcd">.</span>text())
+
+<span style="color:#2c5dcd;font-weight:bold">if</span> __name__ <span style="color:#2c5dcd">==</span> <span style="color:#0c6">&#39;__main__&#39;</span>:
+    asyncio<span style="color:#2c5dcd">.</span>run(main())
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="pyppeteer代理设置">Pyppeteer代理设置<a hidden class="anchor" aria-hidden="true" href="#pyppeteer代理设置">#</a></h2>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> asyncio
+<span style="color:#2c5dcd;font-weight:bold">from</span> pyppeteer <span style="color:#2c5dcd;font-weight:bold">import</span> launch
+
+url <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;https://www.httpbin.org/get&#34;</span>
+proxy <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;127.0.0.1:7890&#39;</span>
+<span style="color:#2c5dcd;font-weight:bold">async</span> <span style="color:#2c5dcd;font-weight:bold">def</span> <span style="color:#ff8000;font-weight:bold">main</span>():
+    browser <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">await</span> launch({<span style="color:#0c6">&#39;args&#39;</span>:[<span style="color:#0c6">&#39;--proxy-server=http://&#39;</span> <span style="color:#2c5dcd">+</span> proxy], <span style="color:#0c6">&#39;headless&#39;</span>: <span style="color:#2c5dcd;font-weight:bold">False</span>})
+    page <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">await</span> browser<span style="color:#2c5dcd">.</span>newPage()
+    <span style="color:#2c5dcd;font-weight:bold">await</span> page<span style="color:#2c5dcd">.</span>goto(url<span style="color:#2c5dcd">=</span>url)
+    <span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#2c5dcd;font-weight:bold">await</span> page<span style="color:#2c5dcd">.</span>content())
+    <span style="color:#2c5dcd;font-weight:bold">await</span> browser<span style="color:#2c5dcd">.</span>close()
+    
+<span style="color:#2c5dcd;font-weight:bold">if</span> __name__ <span style="color:#2c5dcd">==</span> <span style="color:#0c6">&#39;__main__&#39;</span>:
+    asyncio<span style="color:#2c5dcd">.</span>run(main())
+</code></pre></td></tr></table>
+</div>
+</div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8110/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>崔庆才爬虫书阅读摘要10</span>
+  </a>
+  <a class="next" href="https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8107-2/">
+    <span class="title">Next »</span>
+    <br>
+    <span>崔庆才爬虫书阅读摘要07 2</span>
+  </a>
+</nav>
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>✨昵称输入QQ号可以自动关联✨
+        <hr />
+
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo1-mu.vercel.app/",  
+            el: "#tcomment",
+            lang: 'zh-CN',
+            region: 'ap-guangzhou',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
