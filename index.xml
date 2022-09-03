@@ -6,7 +6,16 @@
     <description>Recent content on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 27 Aug 2022 16:39:54 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Sep 2022 13:16:18 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker基础</title>
+      <link>https://hanson00.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3/docker%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Fri, 02 Sep 2022 13:16:18 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3/docker%E5%9F%BA%E7%A1%80/</guid>
+      <description>对Docker的一些理解性学习|浅学Docker</description>
+    </item>
+    
     <item>
       <title>崔庆才爬虫书阅读摘要11 03</title>
       <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8111-03/</link>

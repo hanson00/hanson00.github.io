@@ -6,7 +6,16 @@
     <description>Recent content in 💻计算机相关 on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 25 Jun 2022 17:05:39 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Sep 2022 13:16:18 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker基础</title>
+      <link>https://hanson00.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3/docker%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Fri, 02 Sep 2022 13:16:18 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3/docker%E5%9F%BA%E7%A1%80/</guid>
+      <description>对Docker的一些理解性学习|浅学Docker</description>
+    </item>
+    
     <item>
       <title>Git学习</title>
       <link>https://hanson00.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3/git%E5%AD%A6%E4%B9%A0/</link>
