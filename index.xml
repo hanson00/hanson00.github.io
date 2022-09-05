@@ -6,7 +6,52 @@
     <description>Recent content on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 02 Sep 2022 13:16:18 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 05 Sep 2022 16:57:21 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>闭包函数与装饰器2.0</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%97%AD%E5%8C%85%E5%87%BD%E6%95%B0%E4%B8%8E%E8%A3%85%E9%A5%B0%E5%99%A82.0/</link>
+      <pubDate>Mon, 05 Sep 2022 16:57:21 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%97%AD%E5%8C%85%E5%87%BD%E6%95%B0%E4%B8%8E%E8%A3%85%E9%A5%B0%E5%99%A82.0/</guid>
+      <description>描述信息</description>
+    </item>
+    
+    <item>
+      <title>闭包函数与装饰器</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%97%AD%E5%8C%85%E5%87%BD%E6%95%B0%E4%B8%8E%E8%A3%85%E9%A5%B0%E5%99%A8/</link>
+      <pubDate>Mon, 05 Sep 2022 16:08:46 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%97%AD%E5%8C%85%E5%87%BD%E6%95%B0%E4%B8%8E%E8%A3%85%E9%A5%B0%E5%99%A8/</guid>
+      <description>描述信息</description>
+    </item>
+    
+    <item>
+      <title>浅拷贝和深拷贝</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D/</link>
+      <pubDate>Mon, 05 Sep 2022 13:19:37 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B7%B1%E6%8B%B7%E8%B4%9D/</guid>
+      <description>对Python浅拷贝和深拷贝的学习总结</description>
+    </item>
+    
+    <item>
+      <title>Python异常知识记录</title>
+      <link>https://hanson00.github.io/posts/thinking/python%E5%BC%82%E5%B8%B8%E7%9F%A5%E8%AF%86%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Mon, 05 Sep 2022 11:11:29 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/thinking/python%E5%BC%82%E5%B8%B8%E7%9F%A5%E8%AF%86%E8%AE%B0%E5%BD%95/</guid>
+      <description>对于一些异常还有traceback的一些用法</description>
+    </item>
+    
+    <item>
+      <title>Python设计模式</title>
+      <link>https://hanson00.github.io/posts/thinking/python%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Mon, 05 Sep 2022 08:57:02 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/thinking/python%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description>Python设计模式的一些实现例子</description>
+    </item>
+    
     <item>
       <title>Docker基础</title>
       <link>https://hanson00.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9B%B8%E5%85%B3/docker%E5%9F%BA%E7%A1%80/</link>
