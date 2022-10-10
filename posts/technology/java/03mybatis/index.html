@@ -111,8 +111,8 @@
   "keywords": [
     "JavaWeb相关学习"
   ],
-  "articleBody": "MyBatis(持久层/数据访问层)持久层的优秀框架  Mybatis2.0 1.创建模块导入坐标（官网）,除了mybatis的必要包外，还要导入其他所要的依赖包\n1 2 3 4 5   org.mybatis mybatis x.x.x    2.编写Mybatis核心配置文件（mybatis-config.xml文件的命名）–==替换连接信息，解决硬编码问题==（官网）\n上面的是需要修改的 上面的mappers是指定sql的映射文件的\n 3.编写SQL映射文件–》统一管理sql语句(官网也有)，，命名规则是要操作的表名Mapper.xml\n    编码\n 定义pojo类 加载核心配置文件，获取SQL session factory对象（官网）   获取sqlsession对象，执行sql语句（下面的Mapper代理开发可以替换）   释放资源    Mapper代理开发 1.定义与SQL映射文件同名的Mapper接口，并放在同一目录下2.设置namespace为全限名3.接口的方法名是要与id的名称相同，并且返回值要与编码相同\nMabatis的具体使用(三步走:编写接口方法，编写sql，执行方法)  编写接口方法Mapper接口 生成相应的sql映射文件  2.步骤的图    执行方法\n 数据库的列名和实体类的名称对应不上的时候使用 除了主键外的起别名用 主键起别名用 上面图片的resultMap替换了原先的resultType\n void selectById(int id);\n占位符使用 #{}\n不同的接收参数的方式\n多条件查询(使用if实现)，\n单条件查询(类似于switch语句)\n增删改操作后需要提交事务\n添加-主键返回需要使用useGeneratedKeys和keyProperty\n批量删除接受的数组是要使用注解名的，否则传递不进去 separator分隔符\n",
-  "wordCount" : "964",
+  "articleBody": "MyBatis(持久层/数据访问层)持久层的优秀框架  Mybatis2.0 1.创建模块导入坐标（官网）,除了mybatis的必要包外，还要导入其他所要的依赖包\n1 2 3 4 5   org.mybatis mybatis x.x.x    2.编写Mybatis核心配置文件（mybatis-config.xml文件的命名）–==替换连接信息，解决硬编码问题==（官网）\n上面的是需要修改的 上面的mappers是指定sql的映射文件的\n 3.编写SQL映射文件–》统一管理sql语句(官网也有)，，命名规则是要操作的表名Mapper.xml\n    编码\n 定义pojo类 加载核心配置文件，获取SQL session factory对象（官网）   获取sqlsession对象，执行sql语句（下面的Mapper代理开发可以替换）   释放资源    Mapper代理开发 !1.定义与SQL映射文件同名的Mapper接口，并放在同一目录下2.设置namespace为全限名3.接口的方法名是要与id的名称相同，并且返回值要与编码相同\nMabatis的具体使用(三步走:编写接口方法，编写sql，执行方法)  编写接口方法Mapper接口 生成相应的sql映射文件  2.步骤的图    执行方法\n 数据库的列名和实体类的名称对应不上的时候使用 除了主键外的起别名用 主键起别名用 上面图片的resultMap替换了原先的resultType\n void selectById(int id);\n占位符使用 #{}\n不同的接收参数的方式\n多条件查询(使用if实现)，\n单条件查询(类似于switch语句)\n增删改操作后需要提交事务\n添加-主键返回需要使用useGeneratedKeys和keyProperty\n批量删除接受的数组是要使用注解名的，否则传递不进去 separator分隔符\n",
+  "wordCount" : "747",
   "inLanguage": "en",
   "datePublished": "2022-07-02T14:18:00+08:00",
   "dateModified": "2022-07-02T14:18:00+08:00",
@@ -232,7 +232,7 @@
 
 
 
-更新:&nbsp;2022-07-02&nbsp;|&nbsp;字数:&nbsp;964字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
+更新:&nbsp;2022-07-02&nbsp;|&nbsp;字数:&nbsp;747字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
 作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
       <ul class="post-tags-meta">
         <a href="https://hanson00.github.io/tags/javaweb%E7%9B%B8%E5%85%B3%E5%AD%A6%E4%B9%A0/">JavaWeb相关学习</a>
@@ -333,7 +333,7 @@
 <hr>
 <h1 id="mybatis20">Mybatis2.0<a hidden class="anchor" aria-hidden="true" href="#mybatis20">#</a></h1>
 <p>1.创建模块导入坐标（官网）,除了mybatis的必要包外，还要导入其他所要的依赖包</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/01MyBatis.png" alt="image-20220104103307276"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/01MyBatis.png" alt="01MyBatis"  />
 </p>
 <div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -352,17 +352,17 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>2.编写Mybatis核心配置文件（mybatis-config.xml文件的命名）&ndash;&gt;==替换连接信息，解决硬编码问题==（官网）</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/02MyBatis.png" alt="image-20220104103613696"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/02MyBatis.png" alt="02MyBatis"  />
 </p>
 <p>上面的是需要修改的  上面的mappers是指定<strong>sql的映射文件</strong>的</p>
 <p>&lt;mapper resource=&ldquo;这一段字符串是要替换的sql映射文件(sql语句的文件)的地址&rdquo;</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/03MyBatis.png" alt="image-20220104104359545"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/03MyBatis.png" alt="03MyBatis"  />
 </p>
 <hr>
 <p>3.<strong>编写SQL映射文件&ndash;》统一管理sql语句</strong>(官网也有)，，命名规则是要<strong>操作的表名Mapper.xml</strong></p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/04MyBatis.png" alt="image-20220104104107493"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/04MyBatis.png" alt="04MyBatis"  />
 </p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/05Mybatis.png" alt="image-20220104104826892"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/05Mybatis.png" alt="05Mybatis"  />
 </p>
 <ol start="4">
 <li></li>
@@ -374,14 +374,14 @@
 <li>定义pojo类</li>
 <li>加载核心配置文件，获取SQL session factory对象（官网）</li>
 </ul>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021415575.png" alt="image-20220104104613490"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021415575.png" alt="202207021415575"  />
 </p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021415083.png" alt="image-20220104104658141"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021415083.png" alt="202207021415083"  />
 </p>
 <ul>
 <li>获取sqlsession对象，执行sql语句（下面的Mapper代理开发可以替换）</li>
 </ul>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021415191.png" alt="image-20220104104903528"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021415191.png" alt="202207021415191"  />
 </p>
 <ul>
 <li>释放资源</li>
@@ -389,13 +389,13 @@
 </li>
 </ul>
 <h2 id="mapper代理开发">Mapper代理开发<a hidden class="anchor" aria-hidden="true" href="#mapper代理开发">#</a></h2>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021415921.png" alt="image-20220104105008271"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021415921.png" alt="202207021415921"  />
 </p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416348.png" alt="image-20220104105244004"  />
+<p>!<img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021416348.png" alt="202207021416348"  />
 </p>
-<p>1.定义与SQL映射文件同名的Mapper接口，并放在同一目录下<img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416604.png" alt="image-20220104105425412"  />
+<p>1.定义与SQL映射文件同名的Mapper接口，并放在同一目录下<img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021416604.png" alt="202207021416604"  />
 </p>
-<p>2.设置namespace为全限名<img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416802.png" alt="image-20220104105507186"  />
+<p>2.设置namespace为全限名<img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021416802.png" alt="202207021416802"  />
 </p>
 <p>3.接口的方法名是要与id的名称相同，并且返回值要与编码相同</p>
 <h2 id="mabatis的具体使用三步走编写接口方法编写sql执行方法">Mabatis的具体使用(三步走:编写接口方法，编写sql，执行方法)<a hidden class="anchor" aria-hidden="true" href="#mabatis的具体使用三步走编写接口方法编写sql执行方法">#</a></h2>
@@ -403,50 +403,50 @@
 <li>编写接口方法Mapper接口</li>
 <li>生成相应的sql映射文件
 <ol>
-<li>2.步骤的图<img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416271.png" alt="image-20220104110021897"  />
+<li>2.步骤的图<img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021416271.png" alt="202207021416271"  />
 </li>
 </ol>
 </li>
 </ol>
 <p>执行方法</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416645.png" alt="image-20220104110409738"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021416645.png" alt="202207021416645"  />
 </p>
 <hr>
 <h2 id="数据库的列名和实体类的名称对应不上的时候使用">数据库的列名和实体类的名称对应不上的时候使用<a hidden class="anchor" aria-hidden="true" href="#数据库的列名和实体类的名称对应不上的时候使用">#</a></h2>
-<p>除了主键外的起别名用&lt;==result==  &gt;</p>
+<p>除了主键外的起别名用<result  ></p>
 <resultMap id="" type="">
-<p>&lt;==result== column=&ldquo;数据库的列名&rdquo; property=&ldquo;实体类对应映射的名&rdquo;&gt;</p>
-<p>&lt;==id== column=&ldquo;数据库的列名&rdquo; property=&ldquo;实体类对应映射的名&rdquo;&gt;</p>
+<result column="数据库的列名" property="实体类对应映射的名">
+<id column="数据库的列名" property="实体类对应映射的名">
 </resultMap>
-<p>主键起别名用&lt;==id== &gt;</p>
+<p>主键起别名用<id ></p>
 <resultMap id="" type="">
-<p>&lt;==id== column=&ldquo;数据库的列名&rdquo; property=&ldquo;实体类对应映射的名&rdquo;&gt;</p>
+<id column="数据库的列名" property="实体类对应映射的名">
 </resultMap>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416744.jpg" alt="image-20220104111147626"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021416744.jpg" alt="202207021416744"  />
 </p>
 <p>上面图片的resultMap替换了原先的resultType</p>
 <hr>
 <p>void selectById(int id);</p>
 <p>占位符使用  #{}</p>
 <p>不同的接收参数的方式</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416719.png" alt="image-20220104124436241"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021416719.png" alt="202207021416719"  />
 </p>
 <p>多条件查询(使用if实现)，</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021416324.png" alt="image-20220104130157335"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021416324.png" alt="202207021416324"  />
 </p>
 <p>单条件查询(类似于switch语句)</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021417635.png" alt="image-20220104130426668"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021417635.png" alt="202207021417635"  />
 </p>
 <p>增删改操作后需要提交事务</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021417463.png" alt="image-20220104131540970"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021417463.png" alt="202207021417463"  />
 </p>
 <p>添加-主键返回<insert useGeneratedKeys="true" keyProperty="id"></p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021417926.png" alt="image-20220104131824381"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021417926.png" alt="202207021417926"  />
 </p>
 <p>需要使用<strong>useGeneratedKeys</strong>和<strong>keyProperty</strong></p>
 <p>批量删除接受的数组是要使用注解名的，否则传递不进去
 separator分隔符</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/202207021417006.png" alt="image-20220104133055734"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202207021417006.png" alt="202207021417006"  />
 </p>
 
 

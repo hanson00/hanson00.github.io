@@ -321,7 +321,7 @@
     </script>
   <div class="post-content"><h1 id="python编码与爬虫">Python编码与爬虫<a hidden class="anchor" aria-hidden="true" href="#python编码与爬虫">#</a></h1>
 <p>Python3在内存中使用的是Unicode编码方式存储的，所以不能直接存储和传输，必须要转换成其他编码进行存储和传输。</p>
-<p><img loading="lazy" src="https://cdn.jsdelivr.net/gh/hanson00/img@master/bianma01.png" alt="image-20220906184921046"  />
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/bianma01.png" alt="bianma01"  />
 </p>
 <p>Python的编码解码过程：<code>源文件===》encode(编码方式)===》decode(解码方式)</code> 。即<code>字符串通过编码转换成字节码(str-&gt;bytes)，字节码通过解码转换成字符串(bytes-&gt;str)</code>
 如果在爬虫遇到返回文件不正确时，建议使用<code>encode</code>和<code>decode</code>的方式来处理文本。</p>
