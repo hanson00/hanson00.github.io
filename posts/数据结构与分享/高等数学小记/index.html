@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>高等数学小记 | Hanson&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="记录一些和机器学习有关的高数知识要点">
+<meta name="author" content="
+作者:&nbsp;hanson">
+<link rel="canonical" href="https://hanson00.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%86%E4%BA%AB/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%B0%8F%E8%AE%B0/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hanson00.github.io/posts/imgs/favicon16x16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hanson00.github.io/posts/imgs/favicon32x32.ico">
+<link rel="apple-touch-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="mask-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="高等数学小记" />
+<meta property="og:description" content="记录一些和机器学习有关的高数知识要点" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanson00.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%86%E4%BA%AB/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%B0%8F%E8%AE%B0/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-18T20:12:28&#43;08:00" />
+<meta property="article:modified_time" content="2022-10-18T20:12:28&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="高等数学小记"/>
+<meta name="twitter:description" content="记录一些和机器学习有关的高数知识要点"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hanson00.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "高等数学小记",
+      "item": "https://hanson00.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%86%E4%BA%AB/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%B0%8F%E8%AE%B0/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "高等数学小记",
+  "name": "高等数学小记",
+  "description": "记录一些和机器学习有关的高数知识要点",
+  "keywords": [
+    ""
+  ],
+  "articleBody": "高等数学小记录 高等数学的核心思想：以直代曲，线性近似\n求导的常用结论 极值的意义与运用举例 洛必达法则的例子 微分 可以将复杂的问题简单化\n微分是对变化量的一种逼近，在某一小段的范围内的曲线用该点的切线来近似代替\ndy表示y的变化量的线性近似\ndx表示x的变化量\n误差：\n目前用一次函数加上一阶导数信息对曲线近似（近似区域窄）\n二次及高次的信息被当作误差，是否能用二阶或者多阶导数来对曲线进行多项式近似\n多项式次数越高，是否近似程度越高\n由此引出泰勒公式\n微分的结论公式 泰勒公式 猜想：能否通过一个点上函数值和该点上的各阶导数值，利用多项式去逼近一个函数\n用二次逼近推导 对上面解出的未知数套入方程中\n多项式逼近 以下是泰勒公式的结论和存在条件，Rn为误差\n阶数越高，越逼近\n不足之处：误差项无法具体估计，领域范围无法确定【泰勒中值定理2来解决该问题】\n",
+  "wordCount" : "355",
+  "inLanguage": "en",
+  "datePublished": "2022-10-18T20:12:28+08:00",
+  "dateModified": "2022-10-18T20:12:28+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "hanson"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hanson00.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%86%E4%BA%AB/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E5%B0%8F%E8%AE%B0/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hanson's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hanson00.github.io/posts/imgs/66.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hanson00.github.io/" accesskey="h" title="Hanson&#39;s Blog (Alt + H)">Hanson&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hanson00.github.io/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a></div>
+    <h1 class="post-title">
+      高等数学小记
+    </h1>
+    <div class="post-description">
+      记录一些和机器学习有关的高数知识要点
+    </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;2022-10-18&nbsp;|&nbsp;字数:&nbsp;355字&nbsp;|&nbsp;时长: 1分钟&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
+      <ul class="post-tags-meta">
+        <a href="https://hanson00.github.io/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+      </ul>
+
+      <span id="busuanzi_container_page_pv">
+        &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+      </span>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#%e9%ab%98%e7%ad%89%e6%95%b0%e5%ad%a6%e5%b0%8f%e8%ae%b0%e5%bd%95" aria-label="高等数学小记录">高等数学小记录</a><ul>
+                                    <ul>
+                                    
+                        <li>
+                            <a href="#%e6%b1%82%e5%af%bc%e7%9a%84%e5%b8%b8%e7%94%a8%e7%bb%93%e8%ae%ba" aria-label="求导的常用结论">求导的常用结论</a></li>
+                        <li>
+                            <a href="#%e6%9e%81%e5%80%bc%e7%9a%84%e6%84%8f%e4%b9%89%e4%b8%8e%e8%bf%90%e7%94%a8%e4%b8%be%e4%be%8b" aria-label="极值的意义与运用举例">极值的意义与运用举例</a></li>
+                        <li>
+                            <a href="#%e6%b4%9b%e5%bf%85%e8%be%be%e6%b3%95%e5%88%99%e7%9a%84%e4%be%8b%e5%ad%90" aria-label="洛必达法则的例子">洛必达法则的例子</a></li>
+                        <li>
+                            <a href="#%e5%be%ae%e5%88%86" aria-label="微分">微分</a></li>
+                        <li>
+                            <a href="#%e5%be%ae%e5%88%86%e7%9a%84%e7%bb%93%e8%ae%ba%e5%85%ac%e5%bc%8f" aria-label="微分的结论公式">微分的结论公式</a></li>
+                        <li>
+                            <a href="#%e6%b3%b0%e5%8b%92%e5%85%ac%e5%bc%8f" aria-label="泰勒公式">泰勒公式</a><ul>
+                                    
+                        <li>
+                            <a href="#%e7%94%a8%e4%ba%8c%e6%ac%a1%e9%80%bc%e8%bf%91%e6%8e%a8%e5%af%bc" aria-label="用二次逼近推导">用二次逼近推导</a></li>
+                        <li>
+                            <a href="#%e5%a4%9a%e9%a1%b9%e5%bc%8f%e9%80%bc%e8%bf%91" aria-label="多项式逼近">多项式逼近</a>
+                        </li>
+                    </ul>
+                    </ul>
+                    </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h1 id="高等数学小记录">高等数学小记录<a hidden class="anchor" aria-hidden="true" href="#高等数学小记录">#</a></h1>
+<p>高等数学的核心思想：以直代曲，线性近似</p>
+<h3 id="求导的常用结论">求导的常用结论<a hidden class="anchor" aria-hidden="true" href="#求导的常用结论">#</a></h3>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx01.png" alt="image-20221018201631817"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx02.png" alt="image-20221018201739972"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx03.png" alt="image-20221018201924666"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx04.png" alt="image-20221018202021513"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx05.png" alt="image-20221018202100142"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx06.png" alt="image-20221018202128642"  />
+</p>
+<h3 id="极值的意义与运用举例">极值的意义与运用举例<a hidden class="anchor" aria-hidden="true" href="#极值的意义与运用举例">#</a></h3>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx07.png" alt="image-20221018203725539"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx08.png" alt="image-20221018203805106"  />
+</p>
+<h3 id="洛必达法则的例子">洛必达法则的例子<a hidden class="anchor" aria-hidden="true" href="#洛必达法则的例子">#</a></h3>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx09.png" alt="image-20221018210331004"  />
+</p>
+<h3 id="微分">微分<a hidden class="anchor" aria-hidden="true" href="#微分">#</a></h3>
+<p>可以将复杂的问题简单化</p>
+<p>微分是对变化量的一种逼近，在某一小段的范围内的曲线用该点的切线来近似代替</p>
+<p>dy表示y的变化量的线性近似</p>
+<p>dx表示x的变化量</p>
+<p>误差：</p>
+<p>目前用一次函数加上一阶导数信息对曲线近似（近似区域窄）</p>
+<p>二次及高次的信息被当作误差，是否能用二阶或者多阶导数来对曲线进行多项式近似</p>
+<p>多项式次数越高，是否近似程度越高</p>
+<p>由此引出泰勒公式</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx10.png" alt="image-20221018212344300"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx12.png" alt="image-20221018213859891"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx13.png" alt="image-20221018214205827"  />
+</p>
+<h3 id="微分的结论公式">微分的结论公式<a hidden class="anchor" aria-hidden="true" href="#微分的结论公式">#</a></h3>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx11.png" alt="image-20221018213639903"  />
+</p>
+<h3 id="泰勒公式">泰勒公式<a hidden class="anchor" aria-hidden="true" href="#泰勒公式">#</a></h3>
+<p>猜想：能否通过一个点上函数值和该点上的各阶导数值，利用多项式去逼近一个函数</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx14.png" alt="image-20221018215128735"  />
+</p>
+<h4 id="用二次逼近推导">用二次逼近推导<a hidden class="anchor" aria-hidden="true" href="#用二次逼近推导">#</a></h4>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx15.png" alt="image-20221018215334692"  />
+</p>
+<p>对上面解出的未知数套入方程中</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx16.png" alt="image-20221018215416254"  />
+</p>
+<h4 id="多项式逼近">多项式逼近<a hidden class="anchor" aria-hidden="true" href="#多项式逼近">#</a></h4>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx17.png" alt="image-20221018215625977"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx18.png" alt="image-20221018215655486"  />
+</p>
+<p>以下是泰勒公式的结论和存在条件，Rn为误差</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx19.png" alt="image-20221018215857065"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx20.png" alt="image-20221018220116707"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx21.png" alt="image-20221018220136126"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/gdsx24.png" alt="image-20221018220255053"  />
+</p>
+<p>阶数越高，越逼近</p>
+<p>不足之处：误差项无法具体估计，领域范围无法确定【泰勒中值定理2来解决该问题】</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hanson00.github.io/tags/%E6%95%B0%E5%AD%A6/">数学</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://hanson00.github.io/posts/technology/python/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E8%AF%84%E8%AE%BA%E9%80%86%E5%90%91/">
+    <span class="title">Next »</span>
+    <br>
+    <span>网易云音乐评论逆向</span>
+  </a>
+</nav>
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>✨昵称输入QQ号可以自动关联✨
+        <hr />
+
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo1-mu.vercel.app/",  
+            el: "#tcomment",
+            lang: 'zh-CN',
+            region: 'ap-guangzhou',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

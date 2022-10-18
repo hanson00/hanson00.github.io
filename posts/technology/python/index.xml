@@ -6,7 +6,25 @@
     <description>Recent content in Python文章 on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 05 Sep 2022 16:57:21 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/posts/technology/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Oct 2022 21:06:10 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/posts/technology/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>网易云音乐评论逆向</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E8%AF%84%E8%AE%BA%E9%80%86%E5%90%91/</link>
+      <pubDate>Sun, 16 Oct 2022 21:06:10 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E8%AF%84%E8%AE%BA%E9%80%86%E5%90%91/</guid>
+      <description>对网易云音乐的评论进行爬取，记录逆向思路以及过程</description>
+    </item>
+    
+    <item>
+      <title>Old_lufei_bobo</title>
+      <link>https://hanson00.github.io/posts/technology/python/old_lufei_bobo/</link>
+      <pubDate>Sat, 15 Oct 2022 09:47:56 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/old_lufei_bobo/</guid>
+      <description>描述信息</description>
+    </item>
+    
     <item>
       <title>闭包函数与装饰器2.0</title>
       <link>https://hanson00.github.io/posts/technology/python/%E9%97%AD%E5%8C%85%E5%87%BD%E6%95%B0%E4%B8%8E%E8%A3%85%E9%A5%B0%E5%99%A82.0/</link>
@@ -140,6 +158,15 @@
       
       <guid>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8102/</guid>
       <description>崔庆才爬虫书的第三章部分内容摘要</description>
+    </item>
+    
+    <item>
+      <title>爬虫书籍小项目</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E7%88%AC%E8%99%AB%E4%B9%A6%E7%B1%8D%E5%B0%8F%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Tue, 09 Aug 2022 22:29:51 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E7%88%AC%E8%99%AB%E4%B9%A6%E7%B1%8D%E5%B0%8F%E9%A1%B9%E7%9B%AE/</guid>
+      <description>使用简单的reuqests和re对网页实现爬取和保存数据</description>
     </item>
     
     <item>
