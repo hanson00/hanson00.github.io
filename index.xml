@@ -40,7 +40,7 @@
       <pubDate>Wed, 12 Oct 2022 15:36:36 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/thinking/python-yield/</guid>
-      <description>描述信息</description>
+      <description>Python的yield的一些用法的示例</description>
     </item>
     
     <item>
@@ -58,7 +58,7 @@
       <pubDate>Mon, 05 Sep 2022 16:57:21 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/python/%E9%97%AD%E5%8C%85%E5%87%BD%E6%95%B0%E4%B8%8E%E8%A3%85%E9%A5%B0%E5%99%A82.0/</guid>
-      <description>描述信息</description>
+      <description>对Python闭包函数与装饰器的学习记录</description>
     </item>
     
     <item>
@@ -67,7 +67,7 @@
       <pubDate>Mon, 05 Sep 2022 16:08:46 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/python/%E9%97%AD%E5%8C%85%E5%87%BD%E6%95%B0%E4%B8%8E%E8%A3%85%E9%A5%B0%E5%99%A8/</guid>
-      <description>描述信息</description>
+      <description>对Python闭包函数与装饰器的学习记录</description>
     </item>
     
     <item>
@@ -143,7 +143,7 @@
     </item>
     
     <item>
-      <title>崔庆才爬虫书阅读摘要09</title>
+      <title>各个请求库的代理运用崔庆才爬虫书</title>
       <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8109/</link>
       <pubDate>Wed, 24 Aug 2022 10:41:00 +0800</pubDate>
       
@@ -152,7 +152,7 @@
     </item>
     
     <item>
-      <title>崔庆才爬虫书阅读摘要07 2</title>
+      <title>Playwright自动化-崔庆才爬虫书</title>
       <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8107-2/</link>
       <pubDate>Mon, 22 Aug 2022 08:07:01 +0800</pubDate>
       
@@ -161,7 +161,7 @@
     </item>
     
     <item>
-      <title>崔庆才爬虫书阅读摘要07</title>
+      <title>Pyppeteer的运用-崔庆才爬虫书</title>
       <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8107/</link>
       <pubDate>Sun, 21 Aug 2022 16:02:03 +0800</pubDate>
       
@@ -170,7 +170,7 @@
     </item>
     
     <item>
-      <title>崔庆才爬虫书阅读摘要06</title>
+      <title>爬虫的异步协程运用崔庆才爬虫书</title>
       <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8106/</link>
       <pubDate>Thu, 18 Aug 2022 15:34:13 +0800</pubDate>
       
@@ -179,7 +179,7 @@
     </item>
     
     <item>
-      <title>崔庆才爬虫书阅读摘要03 3</title>
+      <title>爬虫保存到数据库(RabbitMQ)的运用崔庆才爬虫书</title>
       <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8103-3/</link>
       <pubDate>Wed, 17 Aug 2022 10:28:53 +0800</pubDate>
       
@@ -188,7 +188,7 @@
     </item>
     
     <item>
-      <title>崔庆才爬虫书阅读摘要03 2</title>
+      <title>爬虫保存到数据库(Redis、elasticsearch)的运用崔庆才爬虫书</title>
       <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8103-2/</link>
       <pubDate>Tue, 16 Aug 2022 08:59:52 +0800</pubDate>
       
@@ -197,7 +197,7 @@
     </item>
     
     <item>
-      <title>崔庆才爬虫书阅读摘要03</title>
+      <title>爬虫保存到数据库(Mysql、MongoDB)的运用崔庆才爬虫书</title>
       <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8103/</link>
       <pubDate>Fri, 12 Aug 2022 06:59:00 +0800</pubDate>
       
@@ -206,12 +206,12 @@
     </item>
     
     <item>
-      <title>崔庆才爬虫书阅读摘要02</title>
+      <title>爬虫的网页数据解析库崔庆才爬虫书</title>
       <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8102/</link>
       <pubDate>Thu, 11 Aug 2022 07:47:32 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8102/</guid>
-      <description>崔庆才爬虫书的第三章部分内容摘要</description>
+      <description>爬虫的网页数据解析库（BeautifulSoup、lxml[xpath]、pyquery、parsel）崔庆才爬虫书</description>
     </item>
     
     <item>
@@ -224,7 +224,7 @@
     </item>
     
     <item>
-      <title>崔庆才爬虫书阅读摘要01</title>
+      <title>Python网络请求的库（urllib，requests）崔庆才爬虫书</title>
       <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8101/</link>
       <pubDate>Mon, 08 Aug 2022 09:19:40 +0800</pubDate>
       
@@ -319,7 +319,7 @@
       <pubDate>Sun, 03 Jul 2022 07:01:37 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/thinking/%E7%88%AC%E8%99%AB%E8%A7%81%E9%97%BB%E5%BD%95/</guid>
-      <description>在使用Python爬虫中所遇到的一些问题或疑惑的地方进行记录</description>
+      <description>Python爬虫中所遇到的一些问题或疑惑的地方进行记录</description>
     </item>
     
     <item>
@@ -337,7 +337,7 @@
       <pubDate>Sat, 02 Jul 2022 15:44:26 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%88%86%E4%BA%AB/%E9%94%BB%E7%82%BC%E5%88%86%E4%BA%AB/</guid>
-      <description>锻炼分享</description>
+      <description>锻炼分享以及对健身饮食的一些记录</description>
     </item>
     
     <item>
@@ -454,7 +454,7 @@
       <pubDate>Sun, 26 Jun 2022 17:11:46 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/golang/01gin/</guid>
-      <description>gin的基本使用1</description>
+      <description>对gin的基本使用1.0(视频学习)</description>
     </item>
     
     <item>
