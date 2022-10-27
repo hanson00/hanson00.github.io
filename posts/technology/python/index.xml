@@ -6,7 +6,16 @@
     <description>Recent content in Python文章 on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 16 Oct 2022 21:06:10 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/posts/technology/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 27 Oct 2022 08:33:50 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/posts/technology/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>福建省公共资源交易电子公共服务平台逆向</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E7%A6%8F%E5%BB%BA%E7%9C%81%E5%85%AC%E5%85%B1%E8%B5%84%E6%BA%90%E4%BA%A4%E6%98%93%E7%94%B5%E5%AD%90%E5%85%AC%E5%85%B1%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E9%80%86%E5%90%91/</link>
+      <pubDate>Thu, 27 Oct 2022 08:33:50 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E7%A6%8F%E5%BB%BA%E7%9C%81%E5%85%AC%E5%85%B1%E8%B5%84%E6%BA%90%E4%BA%A4%E6%98%93%E7%94%B5%E5%AD%90%E5%85%AC%E5%85%B1%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E9%80%86%E5%90%91/</guid>
+      <description>没有混淆的js，服务器返回的数据是加密型的（服务器发送给浏览器的数据是密文数据）</description>
+    </item>
+    
     <item>
       <title>网易云音乐评论逆向</title>
       <link>https://hanson00.github.io/posts/technology/python/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E8%AF%84%E8%AE%BA%E9%80%86%E5%90%91/</link>
