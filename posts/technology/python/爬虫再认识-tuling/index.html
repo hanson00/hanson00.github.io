@@ -5,12 +5,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Python Hashlib | Hanson&#39;s Blog</title>
+<title>爬虫再认识 Tuling | Hanson&#39;s Blog</title>
 <meta name="keywords" content="">
-<meta name="description" content="哈希hash hash是一类算法，该算法接受传入的内容，经过运算后得到一串hash值 hash值的特点： 只要传入的内容一样得到的hash值必然是">
+<meta name="description" content="对爬虫到逆向的重新再记录的第一块笔记">
 <meta name="author" content="
 作者:&nbsp;hanson">
-<link rel="canonical" href="https://hanson00.github.io/posts/technology/python/python-hashlib/">
+<link rel="canonical" href="https://hanson00.github.io/posts/technology/python/%E7%88%AC%E8%99%AB%E5%86%8D%E8%AE%A4%E8%AF%86-tuling/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -57,16 +57,16 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="Python Hashlib" />
-<meta property="og:description" content="哈希hash hash是一类算法，该算法接受传入的内容，经过运算后得到一串hash值 hash值的特点： 只要传入的内容一样得到的hash值必然是" />
+</noscript><meta property="og:title" content="爬虫再认识 Tuling" />
+<meta property="og:description" content="对爬虫到逆向的重新再记录的第一块笔记" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://hanson00.github.io/posts/technology/python/python-hashlib/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-10-27T17:21:54&#43;08:00" />
-<meta property="article:modified_time" content="2022-10-27T17:21:54&#43;08:00" />
+<meta property="og:url" content="https://hanson00.github.io/posts/technology/python/%E7%88%AC%E8%99%AB%E5%86%8D%E8%AE%A4%E8%AF%86-tuling/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-02T16:02:54&#43;08:00" />
+<meta property="article:modified_time" content="2022-11-02T16:02:54&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Python Hashlib"/>
-<meta name="twitter:description" content="哈希hash hash是一类算法，该算法接受传入的内容，经过运算后得到一串hash值 hash值的特点： 只要传入的内容一样得到的hash值必然是"/>
+<meta name="twitter:title" content="爬虫再认识 Tuling"/>
+<meta name="twitter:description" content="对爬虫到逆向的重新再记录的第一块笔记"/>
 
 
 <script type="application/ld+json">
@@ -95,8 +95,8 @@
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "Python Hashlib",
-      "item": "https://hanson00.github.io/posts/technology/python/python-hashlib/"
+      "name": "爬虫再认识 Tuling",
+      "item": "https://hanson00.github.io/posts/technology/python/%E7%88%AC%E8%99%AB%E5%86%8D%E8%AE%A4%E8%AF%86-tuling/"
     }
   ]
 }
@@ -105,24 +105,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Python Hashlib",
-  "name": "Python Hashlib",
-  "description": "哈希hash hash是一类算法，该算法接受传入的内容，经过运算后得到一串hash值 hash值的特点： 只要传入的内容一样得到的hash值必然是",
+  "headline": "爬虫再认识 Tuling",
+  "name": "爬虫再认识 Tuling",
+  "description": "对爬虫到逆向的重新再记录的第一块笔记",
   "keywords": [
     ""
   ],
-  "articleBody": "哈希hash hash是一类算法，该算法接受传入的内容，经过运算后得到一串hash值\nhash值的特点：\n 只要传入的内容一样得到的hash值必然是一样的 不能由hash反推内容 只要hash算法一样，无论校验的内容有多大得到的hash长度都是固定的  1 2 3 4 5 6 7 8 9 10 11 12 13  import hashlib # 创建了一个hash工厂 hash_factory = hashlib.md5() # 给工厂运送原材料 hash_factory.update(\"hello\".encode('utf-8')) hash_factory.update(\"world\".encode('utf-8')) res = hash_factory.hexdigest() #helloworld print(res) hash_factory2 = hashlib.md5(\"helloworld\".encode(\"utf-8\")) print(hash_factory2.hexdigest())   ",
-  "wordCount" : "169",
+  "articleBody": "爬虫的概念 为什么要学爬虫 如今我们所处的时代就是一个大数据时代，很多有用的信息都藏在巨大的数据中，并且人工智能，大数据中有一个至关重要的东西，那就是数据，但是我们的数据从哪里来呢？—爬虫\n数据的来源  去第三方公司购买数据（企查查） 去免费的数据网站下载数据（国家统计局） 爬虫爬取数据 人工收集数据（问卷调查）  爬取的数据的用途  展示到网站上面（今日热榜等网站） 数据分析 抢票软件 投票软件 短信轰炸（通过不断把手机号注册网站）  爬虫的分类  通用爬虫 聚焦爬虫 增量爬虫  ",
+  "wordCount" : "226",
   "inLanguage": "en",
-  "datePublished": "2022-10-27T17:21:54+08:00",
-  "dateModified": "2022-10-27T17:21:54+08:00",
+  "datePublished": "2022-11-02T16:02:54+08:00",
+  "dateModified": "2022-11-02T16:02:54+08:00",
   "author":[{
     "@type": "Person",
     "name": "hanson"
   }],
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://hanson00.github.io/posts/technology/python/python-hashlib/"
+    "@id": "https://hanson00.github.io/posts/technology/python/%E7%88%AC%E8%99%AB%E5%86%8D%E8%AE%A4%E8%AF%86-tuling/"
   },
   "publisher": {
     "@type": "Organization",
@@ -216,8 +216,11 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/python/">Python文章</a></div>
     <h1 class="post-title">
-      Python Hashlib
+      爬虫再认识 Tuling
     </h1>
+    <div class="post-description">
+      对爬虫到逆向的重新再记录的第一块笔记
+    </div>
     <div class="post-meta">
 
 
@@ -229,11 +232,10 @@
 
 
 
-更新:&nbsp;2022-10-27&nbsp;|&nbsp;字数:&nbsp;169字&nbsp;|&nbsp;时长: 1分钟&nbsp;|&nbsp;
+更新:&nbsp;2022-11-02&nbsp;|&nbsp;字数:&nbsp;226字&nbsp;|&nbsp;时长: 1分钟&nbsp;|&nbsp;
 作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
       <ul class="post-tags-meta">
-        <a href="https://hanson00.github.io/tags/python%E7%9B%B8%E5%85%B3%E5%BA%93%E5%AD%A6%E4%B9%A0/">Python相关库学习</a>
-        <a href="https://hanson00.github.io/tags/python/">、Python</a>
+        <a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
       </ul>
 
       <span id="busuanzi_container_page_pv">
@@ -250,8 +252,23 @@
 
                 <div class="inner"><ul>
                         <li>
-                            <a href="#%e5%93%88%e5%b8%8chash" aria-label="哈希hash">哈希hash</a>
+                            <a href="#%e7%88%ac%e8%99%ab%e7%9a%84%e6%a6%82%e5%bf%b5" aria-label="爬虫的概念">爬虫的概念</a><ul>
+                                    <ul>
+                                    
+                        <li>
+                            <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e5%ad%a6%e7%88%ac%e8%99%ab" aria-label="为什么要学爬虫">为什么要学爬虫</a><ul>
+                                    
+                        <li>
+                            <a href="#%e6%95%b0%e6%8d%ae%e7%9a%84%e6%9d%a5%e6%ba%90" aria-label="数据的来源">数据的来源</a></li>
+                        <li>
+                            <a href="#%e7%88%ac%e5%8f%96%e7%9a%84%e6%95%b0%e6%8d%ae%e7%9a%84%e7%94%a8%e9%80%94" aria-label="爬取的数据的用途">爬取的数据的用途</a></li></ul>
                         </li>
+                        <li>
+                            <a href="#%e7%88%ac%e8%99%ab%e7%9a%84%e5%88%86%e7%b1%bb" aria-label="爬虫的分类">爬虫的分类</a>
+                        </li>
+                    </ul>
+                    </ul>
+                    </li>
                     </ul>
                 </div>
             </details>
@@ -316,67 +333,48 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h1 id="哈希hash">哈希hash<a hidden class="anchor" aria-hidden="true" href="#哈希hash">#</a></h1>
-<p>hash是一类算法，该算法接受传入的内容，经过运算后得到一串hash值</p>
-<p>hash值的特点：</p>
-<ol>
-<li>只要传入的内容一样得到的hash值必然是一样的</li>
-<li>不能由hash反推内容</li>
-<li>只要hash算法一样，无论校验的内容有多大得到的hash长度都是固定的</li>
-</ol>
-<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/hash.png" alt="image-20221027174219828"  />
-</p>
-<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> hashlib
+  <div class="post-content"><h1 id="爬虫的概念">爬虫的概念<a hidden class="anchor" aria-hidden="true" href="#爬虫的概念">#</a></h1>
+<h3 id="为什么要学爬虫">为什么要学爬虫<a hidden class="anchor" aria-hidden="true" href="#为什么要学爬虫">#</a></h3>
+<p>如今我们所处的时代就是一个大数据时代，很多有用的信息都藏在巨大的数据中，并且人工智能，大数据中有一个至关重要的东西，那就是数据，但是我们的数据从哪里来呢？&mdash;爬虫</p>
+<h4 id="数据的来源">数据的来源<a hidden class="anchor" aria-hidden="true" href="#数据的来源">#</a></h4>
+<ul>
+<li>去第三方公司购买数据（企查查）</li>
+<li>去免费的数据网站下载数据（国家统计局）</li>
+<li>爬虫爬取数据</li>
+<li>人工收集数据（问卷调查）</li>
+</ul>
+<h4 id="爬取的数据的用途">爬取的数据的用途<a hidden class="anchor" aria-hidden="true" href="#爬取的数据的用途">#</a></h4>
+<ul>
+<li>展示到网站上面（今日热榜等网站）</li>
+<li>数据分析</li>
+<li>抢票软件</li>
+<li>投票软件</li>
+<li>短信轰炸（通过不断把手机号注册网站）</li>
+</ul>
+<h3 id="爬虫的分类">爬虫的分类<a hidden class="anchor" aria-hidden="true" href="#爬虫的分类">#</a></h3>
+<ul>
+<li>通用爬虫</li>
+<li>聚焦爬虫</li>
+<li>增量爬虫</li>
+</ul>
 
-<span style="color:#0080ff;font-style:italic"># 创建了一个hash工厂</span>
-hash_factory <span style="color:#2c5dcd">=</span> hashlib<span style="color:#2c5dcd">.</span>md5()
-
-<span style="color:#0080ff;font-style:italic"># 给工厂运送原材料</span>
-hash_factory<span style="color:#2c5dcd">.</span>update(<span style="color:#0c6">&#34;hello&#34;</span><span style="color:#2c5dcd">.</span>encode(<span style="color:#0c6">&#39;utf-8&#39;</span>))
-hash_factory<span style="color:#2c5dcd">.</span>update(<span style="color:#0c6">&#34;world&#34;</span><span style="color:#2c5dcd">.</span>encode(<span style="color:#0c6">&#39;utf-8&#39;</span>))
-res <span style="color:#2c5dcd">=</span> hash_factory<span style="color:#2c5dcd">.</span>hexdigest()  <span style="color:#0080ff;font-style:italic">#helloworld</span>
-<span style="color:#5918bb;font-weight:bold">print</span>(res)
-
-hash_factory2 <span style="color:#2c5dcd">=</span> hashlib<span style="color:#2c5dcd">.</span>md5(<span style="color:#0c6">&#34;helloworld&#34;</span><span style="color:#2c5dcd">.</span>encode(<span style="color:#0c6">&#34;utf-8&#34;</span>))
-<span style="color:#5918bb;font-weight:bold">print</span>(hash_factory2<span style="color:#2c5dcd">.</span>hexdigest())
-</code></pre></td></tr></table>
-</div>
-</div>
 
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://hanson00.github.io/tags/python%E7%9B%B8%E5%85%B3%E5%BA%93%E5%AD%A6%E4%B9%A0/">Python相关库学习</a></li>
-      <li><a href="https://hanson00.github.io/tags/python/">Python</a></li>
+      <li><a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://hanson00.github.io/posts/technology/python/%E7%88%AC%E8%99%AB%E5%86%8D%E8%AE%A4%E8%AF%86-tuling/">
+  <a class="prev" href="https://hanson00.github.io/posts/technology/python/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%8D%8F%E7%A8%8B%E5%86%8D%E8%AE%A4%E8%AF%86/">
     <span class="title">« Prev</span>
     <br>
-    <span>爬虫再认识 Tuling</span>
+    <span>多线程多进程协程再认识</span>
   </a>
-  <a class="next" href="https://hanson00.github.io/posts/technology/python/python-random/">
+  <a class="next" href="https://hanson00.github.io/posts/technology/python/python-hashlib/">
     <span class="title">Next »</span>
     <br>
-    <span>Python Random</span>
+    <span>Python Hashlib</span>
   </a>
 </nav>
 
