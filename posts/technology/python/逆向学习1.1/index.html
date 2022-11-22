@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>逆向学习1.1 | Hanson&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="关于浏览器的JavaScript调试">
+<meta name="author" content="
+作者:&nbsp;hanson">
+<link rel="canonical" href="https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.1/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hanson00.github.io/posts/imgs/favicon16x16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hanson00.github.io/posts/imgs/favicon32x32.ico">
+<link rel="apple-touch-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="mask-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="逆向学习1.1" />
+<meta property="og:description" content="关于浏览器的JavaScript调试" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.1/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-15T14:56:31&#43;08:00" />
+<meta property="article:modified_time" content="2022-11-15T14:56:31&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="逆向学习1.1"/>
+<meta name="twitter:description" content="关于浏览器的JavaScript调试"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hanson00.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "💻技术类文章",
+      "item": "https://hanson00.github.io/posts/technology/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Python文章",
+      "item": "https://hanson00.github.io/posts/technology/python/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "逆向学习1.1",
+      "item": "https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.1/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "逆向学习1.1",
+  "name": "逆向学习1.1",
+  "description": "关于浏览器的JavaScript调试",
+  "keywords": [
+    ""
+  ],
+  "articleBody": "JavaScript的调试 ctrl + L：清空控制台\nJavaScript的调试还是挺吃经验的\n浏览器面板 是否保留日志、是否停用缓存 善用全局搜索 只要是在源代码里面的文件内容都能被搜索到\n举例：例如有sign关键参数加密，搜索用：sign、sign:、sign =、.sign等等\n源代码面板 可以查看HTML、CSS、JavaScript的全部文件\n 网页：包含了该域名下面的所有文件 替换：将页面替换成自己的页面，可以借助来进行js文件替换  替换的好处：1、方便调试，对于混淆的js文件，可以还原js然后替换进去，方便调试。2、js文件，动态变量名保持名字不变方便调试，瑞数。3、修改js文件，调试输出插入debugger。\n 代码段：可以编写脚本，影响页面，代码记录  应用面板 关于Cookie的Secure和HttpOnly属性，HttpOnly可以理解为设置HttpOnly=true的Cookie不能被js获取到，无法用document.cookie输出Cookie的内容。\nSecure属性就是说明这个Cookie是通过Https协议发送给服务器的，Cookie是在Https的协议下被创建的。\n一般来说Cookie反爬的话如果HttpOnly打勾的话不用分析js文件，可以通过response.cookie来获取Cookie，无打勾说明可能是由接口返回或者js生成的。\n代码的断点 在js调试中进行断点，需要该js的函数代码被调用才能断住，原理和Python的断点相同\n  断点调试\n dom事件断点：执行的比较靠前，距离加密函数较远  位置：在加密参数之前       XHR断点：执行比较靠后，距离加密函数较近，根据栈快速定位  位置：加密参数之后    XHR一般是断发包：send 给服务器发送数据\n该XHR的URLhttps://oauth.d.cn/auth/login?display=web\u0026name=12423424244\u0026pwd=26142e87a93d6306310585f2be3ae86216bd79e6a3c8e7d9fded2d9a59e01cc6c88e79df9bf3f5cfd2875dd37c83032f7b7001014cf03f4d2025f7e0c511038209d827998e8d850d91234bb32e563c16832c967203c97aeac41c1396f4ab28a9b275279744e020b92028708f967dff3b8561fa37bdd9412a5bbd9ed8764ac217\u0026to=https%253A%252F%252Fwww.d.cn%252F一般XHR断点取问号之前的地址即可\n接着添加XHR后再次点击登录查看\n关于两个断点：\n启动器调试 用来分析js\n查看这个请求经过了哪些js文件，一般可以全局搜索该参数然后直接在出现的js文件里面找，但启动器里面有异步调用时可能找不到\n方法栈 栈是一种先进后出的线性表结构\n执行完的函数会出栈\n 找签名关键字  搜索关键字 XHR断点位置抓包 Hook断点调试    ",
+  "wordCount" : "1258",
+  "inLanguage": "en",
+  "datePublished": "2022-11-15T14:56:31+08:00",
+  "dateModified": "2022-11-15T14:56:31+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "hanson"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.1/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hanson's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hanson00.github.io/posts/imgs/66.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hanson00.github.io/" accesskey="h" title="Hanson&#39;s Blog (Alt + H)">Hanson&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hanson00.github.io/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/python/">Python文章</a></div>
+    <h1 class="post-title">
+      逆向学习1.1
+    </h1>
+    <div class="post-description">
+      关于浏览器的JavaScript调试
+    </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;2022-11-15&nbsp;|&nbsp;字数:&nbsp;1258字&nbsp;|&nbsp;时长: 3分钟&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
+      <ul class="post-tags-meta">
+        <a href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/">逆向</a>
+        <a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">、爬虫</a>
+      </ul>
+
+      <span id="busuanzi_container_page_pv">
+        &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+      </span>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#javascript%e7%9a%84%e8%b0%83%e8%af%95" aria-label="JavaScript的调试">JavaScript的调试</a><ul>
+                                    
+                        <li>
+                            <a href="#%e6%b5%8f%e8%a7%88%e5%99%a8%e9%9d%a2%e6%9d%bf" aria-label="浏览器面板">浏览器面板</a><ul>
+                                    <ul>
+                                    
+                        <li>
+                            <a href="#%e6%98%af%e5%90%a6%e4%bf%9d%e7%95%99%e6%97%a5%e5%bf%97%e6%98%af%e5%90%a6%e5%81%9c%e7%94%a8%e7%bc%93%e5%ad%98" aria-label="是否保留日志、是否停用缓存">是否保留日志、是否停用缓存</a></li>
+                        <li>
+                            <a href="#%e5%96%84%e7%94%a8%e5%85%a8%e5%b1%80%e6%90%9c%e7%b4%a2" aria-label="善用全局搜索">善用全局搜索</a></li>
+                        <li>
+                            <a href="#%e6%ba%90%e4%bb%a3%e7%a0%81%e9%9d%a2%e6%9d%bf" aria-label="源代码面板">源代码面板</a></li>
+                        <li>
+                            <a href="#%e5%ba%94%e7%94%a8%e9%9d%a2%e6%9d%bf" aria-label="应用面板">应用面板</a></li>
+                        <li>
+                            <a href="#%e4%bb%a3%e7%a0%81%e7%9a%84%e6%96%ad%e7%82%b9" aria-label="代码的断点">代码的断点</a></li>
+                        <li>
+                            <a href="#%e5%90%af%e5%8a%a8%e5%99%a8%e8%b0%83%e8%af%95" aria-label="启动器调试">启动器调试</a></li>
+                        <li>
+                            <a href="#%e6%96%b9%e6%b3%95%e6%a0%88" aria-label="方法栈">方法栈</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h1 id="javascript的调试">JavaScript的调试<a hidden class="anchor" aria-hidden="true" href="#javascript的调试">#</a></h1>
+<p><code>ctrl + L</code>：清空控制台</p>
+<p>JavaScript的调试还是挺吃经验的</p>
+<h2 id="浏览器面板">浏览器面板<a hidden class="anchor" aria-hidden="true" href="#浏览器面板">#</a></h2>
+<h4 id="是否保留日志是否停用缓存">是否保留日志、是否停用缓存<a hidden class="anchor" aria-hidden="true" href="#是否保留日志是否停用缓存">#</a></h4>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/mianban01.png" alt="image-20221115180348527"  />
+</p>
+<h4 id="善用全局搜索">善用全局搜索<a hidden class="anchor" aria-hidden="true" href="#善用全局搜索">#</a></h4>
+<p>只要是在源代码里面的文件内容都能被搜索到</p>
+<p>举例：例如有sign关键参数加密，搜索用：<code>sign</code>、<code>sign:</code>、<code>sign =</code>、<code>.sign</code>等等</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/mianban02.png" alt="image-20221115180603506"  />
+</p>
+<h4 id="源代码面板">源代码面板<a hidden class="anchor" aria-hidden="true" href="#源代码面板">#</a></h4>
+<p>可以查看HTML、CSS、JavaScript的全部文件</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/mianban03.png" alt="image-20221115181018325"  />
+</p>
+<ul>
+<li>网页：包含了该域名下面的所有文件</li>
+<li>替换：将页面替换成自己的页面，可以借助来进行js文件替换</li>
+</ul>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/tihuan1.png" alt="image-20221115204726141"  />
+</p>
+<p><strong>替换的好处</strong>：1、方便调试，对于混淆的js文件，可以还原js然后替换进去，方便调试。2、js文件，动态变量名保持名字不变方便调试，瑞数。3、修改js文件，调试输出插入debugger。</p>
+<ul>
+<li>代码段：可以编写脚本，影响页面，代码记录</li>
+</ul>
+<h4 id="应用面板">应用面板<a hidden class="anchor" aria-hidden="true" href="#应用面板">#</a></h4>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/mianban05.png" alt="image-20221115181153726"  />
+</p>
+<p>关于Cookie的Secure和HttpOnly属性，HttpOnly可以理解为设置HttpOnly=true的Cookie不能被js获取到，无法用document.cookie输出Cookie的内容。</p>
+<p>Secure属性就是说明这个Cookie是通过Https协议发送给服务器的，Cookie是在Https的协议下被创建的。</p>
+<p>一般来说Cookie反爬的话如果HttpOnly打勾的话不用分析js文件，可以通过response.cookie来获取Cookie，无打勾说明可能是由接口返回或者js生成的。</p>
+<h4 id="代码的断点">代码的断点<a hidden class="anchor" aria-hidden="true" href="#代码的断点">#</a></h4>
+<p>在js调试中进行断点，需要该js的函数代码<strong>被调用才能断住</strong>，原理和Python的断点相同</p>
+<ul>
+<li>
+<p>断点调试</p>
+<ul>
+<li><strong>dom事件断点</strong>：执行的比较靠前，<strong>距离加密函数较远</strong>
+<ul>
+<li>位置：在加密参数之前</li>
+</ul>
+</li>
+</ul>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/dangle1.png" alt="image-20221116091432572"  />
+</p>
+</li>
+</ul>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/dangle3.png" alt="image-20221116092607988"  />
+</p>
+<ul>
+<li><strong>XHR断点</strong>：执行比较靠后，<strong>距离加密函数较近</strong>，根据栈快速定位
+<ul>
+<li>位置：加密参数之后</li>
+</ul>
+</li>
+</ul>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/xhr1.png" alt="image-20221116094527789"  />
+</p>
+<p>XHR一般是断发包：send 给服务器发送数据</p>
+<p>该XHR的URL<code>https://oauth.d.cn/auth/login?display=web&amp;name=12423424244&amp;pwd=26142e87a93d6306310585f2be3ae86216bd79e6a3c8e7d9fded2d9a59e01cc6c88e79df9bf3f5cfd2875dd37c83032f7b7001014cf03f4d2025f7e0c511038209d827998e8d850d91234bb32e563c16832c967203c97aeac41c1396f4ab28a9b275279744e020b92028708f967dff3b8561fa37bdd9412a5bbd9ed8764ac217&amp;to=https%253A%252F%252Fwww.d.cn%252F</code>一般XHR断点取问号之前的地址即可</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/xhr2.png" alt="image-20221116094701237"  />
+</p>
+<p>接着添加XHR后再次点击登录查看</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/xhr4.png" alt="image-20221116094831788"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/xhr6.png" alt="image-20221116095011111"  />
+</p>
+<p><strong>关于两个断点</strong>：</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/xhr7.png" alt="image-20221116095443633"  />
+</p>
+<h4 id="启动器调试">启动器调试<a hidden class="anchor" aria-hidden="true" href="#启动器调试">#</a></h4>
+<p><strong>用来分析js</strong></p>
+<p>查看这个请求经过了哪些js文件，一般可以全局搜索该参数然后直接在出现的js文件里面找，但启动器里面有<strong>异步调用时可能找不到</strong></p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/qidongqi1.png" alt="image-20221116101316479"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/qidongqi2.png" alt="image-20221116101401479"  />
+</p>
+<h4 id="方法栈">方法栈<a hidden class="anchor" aria-hidden="true" href="#方法栈">#</a></h4>
+<p>栈是一种先进后出的线性表结构</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/fangfazhan1.png" alt="image-20221116103325580"  />
+</p>
+<p>执行完的函数会出栈</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/fangfazhan2.png" alt="image-20221116103435734"  />
+</p>
+<ul>
+<li>找签名关键字
+<ul>
+<li>搜索关键字</li>
+<li>XHR断点位置抓包</li>
+<li>Hook断点调试</li>
+</ul>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/">逆向</a></li>
+      <li><a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.2/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>逆向学习1.2</span>
+  </a>
+  <a class="next" href="https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.0/">
+    <span class="title">Next »</span>
+    <br>
+    <span>逆向学习1.0</span>
+  </a>
+</nav>
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>✨昵称输入QQ号可以自动关联✨
+        <hr />
+
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo1-mu.vercel.app/",  
+            el: "#tcomment",
+            lang: 'zh-CN',
+            region: 'ap-guangzhou',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

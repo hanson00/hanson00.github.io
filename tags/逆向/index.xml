@@ -6,7 +6,43 @@
     <description>Recent content in 逆向 on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 27 Oct 2022 08:33:50 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Nov 2022 16:28:26 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>逆向学习1.3</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.3/</link>
+      <pubDate>Mon, 21 Nov 2022 16:28:26 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.3/</guid>
+      <description>关于浏览器的JavaScript调试</description>
+    </item>
+    
+    <item>
+      <title>逆向学习1.2</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.2/</link>
+      <pubDate>Wed, 16 Nov 2022 10:39:17 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.2/</guid>
+      <description>关于浏览器的JavaScript调试</description>
+    </item>
+    
+    <item>
+      <title>逆向学习1.1</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.1/</link>
+      <pubDate>Tue, 15 Nov 2022 14:56:31 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.1/</guid>
+      <description>关于浏览器的JavaScript调试</description>
+    </item>
+    
+    <item>
+      <title>逆向学习1.0</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.0/</link>
+      <pubDate>Tue, 15 Nov 2022 10:12:52 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.0/</guid>
+      <description>进行一个逆向初步系统学习的记录</description>
+    </item>
+    
     <item>
       <title>福建省公共资源交易电子公共服务平台逆向</title>
       <link>https://hanson00.github.io/posts/technology/python/%E7%A6%8F%E5%BB%BA%E7%9C%81%E5%85%AC%E5%85%B1%E8%B5%84%E6%BA%90%E4%BA%A4%E6%98%93%E7%94%B5%E5%AD%90%E5%85%AC%E5%85%B1%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E9%80%86%E5%90%91/</link>

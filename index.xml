@@ -6,7 +6,43 @@
     <description>Recent content on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 07 Nov 2022 19:42:16 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Nov 2022 16:28:26 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>逆向学习1.3</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.3/</link>
+      <pubDate>Mon, 21 Nov 2022 16:28:26 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.3/</guid>
+      <description>关于浏览器的JavaScript调试</description>
+    </item>
+    
+    <item>
+      <title>逆向学习1.2</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.2/</link>
+      <pubDate>Wed, 16 Nov 2022 10:39:17 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.2/</guid>
+      <description>关于浏览器的JavaScript调试</description>
+    </item>
+    
+    <item>
+      <title>逆向学习1.1</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.1/</link>
+      <pubDate>Tue, 15 Nov 2022 14:56:31 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.1/</guid>
+      <description>关于浏览器的JavaScript调试</description>
+    </item>
+    
+    <item>
+      <title>逆向学习1.0</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.0/</link>
+      <pubDate>Tue, 15 Nov 2022 10:12:52 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.0/</guid>
+      <description>进行一个逆向初步系统学习的记录</description>
+    </item>
+    
     <item>
       <title>多线程多进程协程再认识</title>
       <link>https://hanson00.github.io/posts/technology/python/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%8D%8F%E7%A8%8B%E5%86%8D%E8%AE%A4%E8%AF%86/</link>
