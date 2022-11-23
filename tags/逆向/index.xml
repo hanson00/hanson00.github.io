@@ -6,7 +6,16 @@
     <description>Recent content in 逆向 on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 21 Nov 2022 16:28:26 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Nov 2022 08:27:19 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>逆向学习1.4加密算法篇</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.4%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%AF%87/</link>
+      <pubDate>Wed, 23 Nov 2022 08:27:19 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.4%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%AF%87/</guid>
+      <description>关于逆向加密算法的一些学习</description>
+    </item>
+    
     <item>
       <title>逆向学习1.3</title>
       <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.3/</link>
