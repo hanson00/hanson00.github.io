@@ -111,8 +111,8 @@
   "keywords": [
     ""
   ],
-  "articleBody": "json模块 JSON（JavaScript Object Notation）是一种轻量级的数据交换格式。下面给出json模块的常用方法\n json.dump()：将Python数据对象以JSON格式数据流写入文件 json.load()：解析包含JSON数据的文件为Python对象 json.dumps()：将Python数据对象转换成JSON格式的字符串 json.loads()：将包含JSON的字符串、字节以及字节数组解析成为Python对象  生成的json字符串一定是双引号引导的。\n Python中的json模块的使用方法\n    方法 功能     json.dump(obj,fp) 将Python数据类型转换并保存到json格式的文件里   json.dumps(s) 将Python数据类型转换成json格式的字符串   json.load(fp) 将json格式的文件读取数据并转换成Python的类型   json.loads(s) 将json格式的字符串转换成Python类型的字符串     dump和dumps方法\n 1 2 3 4 5 6 7 8 9 10 11 12  import json person = {\"name\": \"hanson\", \"age\": 18, \"tel\":[123, 321]} print(type(person)) print(person) # 将字典转换成json格式的字符串,intent指定缩进，不指定也行 j = json.dumps(person, indent=2) print(type(j)) #  print(j) with open(\"../saves/data.json\", \"w\") as f: json.dump(person, f)    loads方法\n 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  # coding:utf-8 # @Time : 2022/8/11 20:39 # @Author : 软件1194温铭军 # @file : json01.py # $software : PyCharm import json person = {\"name\": \"杰克\", \"age\": 18, \"tel\":[123, 321]} # 将字典转换成json格式的字符串,intent指定缩进，不指定也行,ensure_ascii显示中文 j = json.dumps(person, indent=2, ensure_ascii=False) print(j) # 将json string 转换 python对象 pythonObj = json.loads(j) print(type(pythonObj)) # output:  print(pythonObj)   1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  import json dic = { \"name\" : \"饿饿饿\", \"age\":[ { \"shuah\":\"sodjsijd\" } ] } with open(\"22.txt\", \"w\") as f: json.dump(dic, f) # 将上述json数据写入文件 with open(\"22.txt\", \"r\") as f: print(f.read()) # output:{\"name\": \"\\u997f\\u997f\\u997f\", \"age\": [{\"shuah\": \"sodjsijd\"}]} print(\"--------------------------------\") with open(\"22.txt\", \"r\") as f: print(json.load(f)) # output:{'name': '饿饿饿', 'age': [{'shuah': 'sodjsijd'}]} print(\"OVER\")   ",
-  "wordCount" : "712",
+  "articleBody": "json模块 JSON（JavaScript Object Notation）是一种轻量级的数据交换格式。下面给出json模块的常用方法\n json.dump()：将Python数据对象以JSON格式数据流写入文件 json.load()：解析包含JSON数据的文件为Python对象 json.dumps()：将Python数据对象转换成JSON格式的字符串，结果是JSON格式的字符串 json.loads()：将包含JSON的字符串、字节以及字节数组解析成为Python对象  生成的json字符串一定是双引号引导的。\n Python中的json模块的使用方法\n    方法 功能     json.dump(obj,fp) 将Python数据类型转换并保存到json格式的文件里   json.dumps(s) 将Python数据类型转换成json格式的字符串   json.load(fp) 将json格式的文件读取数据并转换成Python的类型   json.loads(s) 将json格式的字符串转换成Python类型的字符串     dump和dumps方法\n 1 2 3 4 5 6 7 8 9 10 11 12  import json person = {\"name\": \"hanson\", \"age\": 18, \"tel\":[123, 321]} print(type(person)) print(person) # 将字典转换成json格式的字符串,intent指定缩进，不指定也行 j = json.dumps(person, indent=2) print(type(j)) #  print(j) with open(\"../saves/data.json\", \"w\") as f: json.dump(person, f)    loads方法\n 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  # coding:utf-8 # @Time : 2022/8/11 20:39 # @Author : 软件1194温铭军 # @file : json01.py # $software : PyCharm import json person = {\"name\": \"杰克\", \"age\": 18, \"tel\":[123, 321]} # 将字典转换成json格式的字符串,intent指定缩进，不指定也行,ensure_ascii显示中文 j = json.dumps(person, indent=2, ensure_ascii=False) print(j) # 将json string 转换 python对象 pythonObj = json.loads(j) print(type(pythonObj)) # output:  print(pythonObj)   1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  import json dic = { \"name\" : \"饿饿饿\", \"age\":[ { \"shuah\":\"sodjsijd\" } ] } with open(\"22.txt\", \"w\") as f: json.dump(dic, f) # 将上述json数据写入文件 with open(\"22.txt\", \"r\") as f: print(f.read()) # output:{\"name\": \"\\u997f\\u997f\\u997f\", \"age\": [{\"shuah\": \"sodjsijd\"}]} print(\"--------------------------------\") with open(\"22.txt\", \"r\") as f: print(json.load(f)) # output:{'name': '饿饿饿', 'age': [{'shuah': 'sodjsijd'}]} print(\"OVER\")   ",
+  "wordCount" : "726",
   "inLanguage": "en",
   "datePublished": "2022-07-28T15:25:25+08:00",
   "dateModified": "2022-07-28T15:25:25+08:00",
@@ -229,7 +229,7 @@
 
 
 
-更新:&nbsp;2022-07-28&nbsp;|&nbsp;字数:&nbsp;712字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
+更新:&nbsp;2022-07-28&nbsp;|&nbsp;字数:&nbsp;726字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
 作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
       <ul class="post-tags-meta">
         <a href="https://hanson00.github.io/tags/python%E7%9B%B8%E5%85%B3%E5%BA%93%E5%AD%A6%E4%B9%A0/">Python相关库学习</a>
@@ -321,7 +321,7 @@
 <ol>
 <li>json.dump()：将Python数据对象以JSON格式数据流写入文件</li>
 <li>json.load()：解析包含JSON数据的文件为Python对象</li>
-<li>json.dumps()：将Python数据对象转换成JSON格式的字符串</li>
+<li>json.dumps()：将Python数据对象转换成JSON格式的字符串，结果是<strong>JSON格式</strong>的<strong>字符串</strong></li>
 <li>json.loads()：将包含JSON的字符串、字节以及字节数组解析成为Python对象</li>
 </ol>
 <p><strong>生成的json字符串一定是双引号引导的。</strong></p>

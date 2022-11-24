@@ -105,8 +105,8 @@
   "keywords": [
     "爬虫问题记录"
   ],
-  "articleBody": "解决爬虫报错： 问题：关于爬虫爬取网页的编码问题 问题报错：UnicodeEncodeError: ‘gbk’ codec can’t encode character ‘\\xa0’ in position 7067: illegal multibyte sequence\n尝试1：在不断尝试了很多种网页编码问题后仍然没有解决\n之后让别的小伙伴尝试了同样的代码，别人可以运行但自己无法运行，问题关键在于解决编码和解码问题。通常这种问题是由于编译器编码出现问题\n解决方法： 针对编码问题，主要从两个方面进行出发，其一是网页编码，其二是Pycharm编码，顺利解决这个小bug。\n解决步骤如下图：\nselenium浏览器打开后闪退  selenium.common.exceptions.SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 97 Current browser version is 103.0.5060.114 with binary path C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\n  selenium.common.exceptions.SessionNotCreatedException：消息：会话未创建：此版本的 ChromeDriver 仅支持 Chrome 版本 97 当前浏览器版本为 103.0.5060.114\n **解决方法：**重新安装浏览器驱动即可解决\n问题：关于Scrapy框架 问题： Signature of method ‘QiubaiSpider.parse()’ does not match signature of base method in class ‘Spider’\n问题描述： 方法 ‘BaiduSpider.parse()’ 的签名与类 ‘Spider’ 中基方法的签名不匹配\n问题状态： 已解决\n解决方法： 将Scrapy生成的parse()方法的参数后面添加**kwargs即可 即将方法修改为\n1 2  def parse(self, response, **kwargs): pass   问题：关于selenium元素获取过期或被刷新 问题报错：selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: element is not attached to the page document\n问题描述：过期元素引用异常过期元素引用:元素没有附加到页面文档\n问题状态： 已解决\n报错原因：因为所打开的页面进行了刷新或者跳转而导致的元素定位获取失败\n解决方法：\n 重新使用完整的路径定位（在获取了大范围需要在该大范围中在细化查找时） 等待一段时间后再进行元素定位  ",
-  "wordCount" : "701",
+  "articleBody": "解决爬虫报错： 问题：关于爬虫爬取网页的编码问题 问题报错：UnicodeEncodeError: ‘gbk’ codec can’t encode character ‘\\xa0’ in position 7067: illegal multibyte sequence\n尝试1：在不断尝试了很多种网页编码问题后仍然没有解决\n之后让别的小伙伴尝试了同样的代码，别人可以运行但自己无法运行，问题关键在于解决编码和解码问题。通常这种问题是由于编译器编码出现问题\n解决方法： 针对编码问题，主要从两个方面进行出发，其一是网页编码，其二是Pycharm编码，顺利解决这个小bug。\n解决步骤如下图：\nselenium浏览器打开后闪退  selenium.common.exceptions.SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 97 Current browser version is 103.0.5060.114 with binary path C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\n  selenium.common.exceptions.SessionNotCreatedException：消息：会话未创建：此版本的 ChromeDriver 仅支持 Chrome 版本 97 当前浏览器版本为 103.0.5060.114\n **解决方法：**重新安装浏览器驱动即可解决\n问题：关于Scrapy框架 问题： Signature of method ‘QiubaiSpider.parse()’ does not match signature of base method in class ‘Spider’\n问题描述： 方法 ‘BaiduSpider.parse()’ 的签名与类 ‘Spider’ 中基方法的签名不匹配\n问题状态： 已解决\n解决方法： 将Scrapy生成的parse()方法的参数后面添加**kwargs即可 即将方法修改为\n1 2  def parse(self, response, **kwargs): pass   问题：关于selenium元素获取过期或被刷新 问题报错：selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: element is not attached to the page document\n问题描述：过期元素引用异常过期元素引用:元素没有附加到页面文档\n问题状态： 已解决\n报错原因：因为所打开的页面进行了刷新或者跳转而导致的元素定位获取失败\n解决方法：\n 重新使用完整的路径定位（在获取了大范围需要在该大范围中在细化查找时） 等待一段时间后再进行元素定位  问题：关于爬虫表单数据的提交报错 问题报错：{“timestamp”:1669252234132,“status”:415,“error”:“Unsupported Media Type”,“message”:“Content type ‘application/octet-stream’ not supported”,“path”:\"/wechat/phonePwdLogin\"}\n问题描述：“不支持的媒体类型”，“message”：“不支持内容类型”applicationoctet stream“\n问题状态： 已解决\n报错原因：在遇到一些POST是payload报文的时候（该报文是一种json格式的报文），传入的对象应该是JSON格式的。\n 在Python中JSON格式其实也就是所字典对象引用的符号是双引号而不是单引号。\nJSON格式的字符串和str得到的字符串是不同的。JSON格式的字符串除了要满足字典类型的格式外，所有的字符串对象必须是双引号。\n1 2 3 4 5 6 7 8 9 10 11 12  import json d= {'a': '1', 'b': 2} d_d = {\"a\": '1', \"b\": 2} string = str(d) string_d = str(d_d) js = json.dumps(d) js_d = json.dumps(d_d) print(\"str格式的样子：\",string, string_d, string == string_d) print(\"JSON格式的样子：\",js, js_d, js == js_d) print(string == js)   requests.post() requests.post()进行post请求时，传入的报文参数有两个：data和json，常见的form表单可以使用data参数进行提交，data对象是python中的字典类型，但在上述报错中是因为遇到了payload这种报文，该报文是一种json格式的报文，所以传入的对象也应该是JSON格式。\n下面给出两种不同的表单类型\n解决方法：\n 在POST提交的data中将data参数转换成JSON格式  1  requests.post(url, data=json.dumps(data))   直接使用json提交数据  1  requests.post(url, json=data   仍需注意的问题：\n  如果参数为JSON数据，可以直接传入json参数，它将自动编码并将Content-Type的置为application/json\n  如果data传递的参数为字符串，如：json.dumps(data)，则request对参数进行url编码，Content-Type的值为None，所以data传字符串时，一定要在header中指定Content-Type\n  1 2 3 4  data = {表单数据} headers={\"Content-Type\": \"application/json\"} response = requests.post(\"https://httpbin.org/post\", headers=headers,data=json.dumps(data)) print(response.text)    如果data传递的是字典、元组组成的列表或列表作为值的字典，则request对参数进行url编码，Content-Type的值为application/x-www-form-urlencoded  ",
+  "wordCount" : "1686",
   "inLanguage": "en",
   "datePublished": "2022-07-03T07:01:37+08:00",
   "dateModified": "2022-07-03T07:01:37+08:00",
@@ -226,7 +226,7 @@
 
 
 
-更新:&nbsp;2022-07-03&nbsp;|&nbsp;字数:&nbsp;701字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
+更新:&nbsp;2022-07-03&nbsp;|&nbsp;字数:&nbsp;1686字&nbsp;|&nbsp;时长: 4分钟&nbsp;|&nbsp;
 作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
       <ul class="post-tags-meta">
         <a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
@@ -257,9 +257,16 @@
                         <li>
                             <a href="#%e9%97%ae%e9%a2%98%e5%85%b3%e4%ba%8escrapy%e6%a1%86%e6%9e%b6" aria-label="问题：关于Scrapy框架">问题：关于Scrapy框架</a></li>
                         <li>
-                            <a href="#%e9%97%ae%e9%a2%98%e5%85%b3%e4%ba%8eselenium%e5%85%83%e7%b4%a0%e8%8e%b7%e5%8f%96%e8%bf%87%e6%9c%9f%e6%88%96%e8%a2%ab%e5%88%b7%e6%96%b0" aria-label="问题：关于selenium元素获取过期或被刷新">问题：关于selenium元素获取过期或被刷新</a>
+                            <a href="#%e9%97%ae%e9%a2%98%e5%85%b3%e4%ba%8eselenium%e5%85%83%e7%b4%a0%e8%8e%b7%e5%8f%96%e8%bf%87%e6%9c%9f%e6%88%96%e8%a2%ab%e5%88%b7%e6%96%b0" aria-label="问题：关于selenium元素获取过期或被刷新">问题：关于selenium元素获取过期或被刷新</a></li>
+                        <li>
+                            <a href="#%e9%97%ae%e9%a2%98%e5%85%b3%e4%ba%8e%e7%88%ac%e8%99%ab%e8%a1%a8%e5%8d%95%e6%95%b0%e6%8d%ae%e7%9a%84%e6%8f%90%e4%ba%a4%e6%8a%a5%e9%94%99" aria-label="问题：关于爬虫表单数据的提交报错">问题：关于爬虫表单数据的提交报错</a><ul>
+                                    
+                        <li>
+                            <a href="#requestspost" aria-label="requests.post()">requests.post()</a>
                         </li>
                     </ul>
+                    </ul>
+                    </li>
                     </ul>
                     </li>
                     </ul>
@@ -378,6 +385,103 @@ Signature of method &lsquo;QiubaiSpider.parse()&rsquo; does not match signature 
 <li>重新使用完整的路径定位（在获取了大范围需要在该大范围中在细化查找时）</li>
 <li>等待一段时间后再进行元素定位</li>
 </ol>
+<h3 id="问题关于爬虫表单数据的提交报错">问题：关于爬虫表单数据的提交报错<a hidden class="anchor" aria-hidden="true" href="#问题关于爬虫表单数据的提交报错">#</a></h3>
+<p><strong>问题报错</strong>：{&ldquo;timestamp&rdquo;:1669252234132,&ldquo;status&rdquo;:415,&ldquo;error&rdquo;:&ldquo;Unsupported Media Type&rdquo;,&ldquo;message&rdquo;:&ldquo;Content type &lsquo;application/octet-stream&rsquo; not supported&rdquo;,&ldquo;path&rdquo;:&quot;/wechat/phonePwdLogin&quot;}</p>
+<p><strong>问题描述</strong>：“不支持的媒体类型”，“message”：“不支持内容类型”applicationoctet stream“</p>
+<p><strong>问题状态</strong>：
+已解决</p>
+<p><strong>报错原因</strong>：在遇到一些POST是payload报文的时候（该报文是一种json格式的报文），传入的对象应该是JSON格式的。</p>
+<hr>
+<p>在Python中JSON格式其实也就是所字典对象引用的符号是双引号而不是单引号。</p>
+<p>JSON格式的字符串和str得到的字符串是不同的。JSON格式的字符串除了要满足字典类型的格式外，所有的字符串对象必须是双引号。</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">import</span> json
+d<span style="color:#2c5dcd">=</span> {<span style="color:#0c6">&#39;a&#39;</span>: <span style="color:#0c6">&#39;1&#39;</span>, <span style="color:#0c6">&#39;b&#39;</span>: <span style="color:#5918bb;font-weight:bold">2</span>}
+d_d <span style="color:#2c5dcd">=</span> {<span style="color:#0c6">&#34;a&#34;</span>: <span style="color:#0c6">&#39;1&#39;</span>, <span style="color:#0c6">&#34;b&#34;</span>: <span style="color:#5918bb;font-weight:bold">2</span>}
+string <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">str</span>(d)
+string_d <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">str</span>(d_d)
+js <span style="color:#2c5dcd">=</span> json<span style="color:#2c5dcd">.</span>dumps(d)
+js_d <span style="color:#2c5dcd">=</span> json<span style="color:#2c5dcd">.</span>dumps(d_d)
+<span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;str格式的样子：&#34;</span>,string, string_d, string <span style="color:#2c5dcd">==</span> string_d)
+
+<span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#34;JSON格式的样子：&#34;</span>,js, js_d, js <span style="color:#2c5dcd">==</span> js_d)
+
+<span style="color:#5918bb;font-weight:bold">print</span>(string <span style="color:#2c5dcd">==</span> js)
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="requestspost">requests.post()<a hidden class="anchor" aria-hidden="true" href="#requestspost">#</a></h4>
+<p>requests.post()进行post请求时，传入的报文参数有两个：data和json，常见的form表单可以使用data参数进行提交，data对象是python中的字典类型，但在上述报错中是因为遇到了payload这种报文，该报文是一种json格式的报文，所以传入的对象也应该是JSON格式。</p>
+<p>下面给出两种不同的表单类型</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/putongbiaodan1.png" alt="image-20221124092616661"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/putongbiaodan2.png" alt="image-20221124092647827"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/teshubiaodan1.png" alt="image-20221124092729662"  />
+</p>
+<p><strong>解决方法</strong>：</p>
+<ol>
+<li>在POST提交的data中将data参数转换成JSON格式</li>
+</ol>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">requests<span style="color:#2c5dcd">.</span>post(url, data<span style="color:#2c5dcd">=</span>json<span style="color:#2c5dcd">.</span>dumps(data))
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>直接使用json提交数据</li>
+</ol>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">requests<span style="color:#2c5dcd">.</span>post(url, json<span style="color:#2c5dcd">=</span>data
+</code></pre></td></tr></table>
+</div>
+</div><p>仍需注意的问题：</p>
+<ul>
+<li>
+<p>如果参数为JSON数据，可以直接传入json参数，它将自动编码并将Content-Type的置为application/json</p>
+</li>
+<li>
+<p>如果data传递的参数为字符串，如：json.dumps(data)，则request对参数进行url编码，Content-Type的值为None，所以data传字符串时，一定要在header中指定Content-Type</p>
+</li>
+</ul>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py" data-lang="py">data <span style="color:#2c5dcd">=</span> {表单数据}
+headers<span style="color:#2c5dcd">=</span>{<span style="color:#0c6">&#34;Content-Type&#34;</span>: <span style="color:#0c6">&#34;application/json&#34;</span>}
+response <span style="color:#2c5dcd">=</span> requests<span style="color:#2c5dcd">.</span>post(<span style="color:#0c6">&#34;https://httpbin.org/post&#34;</span>, headers<span style="color:#2c5dcd">=</span>headers,data<span style="color:#2c5dcd">=</span>json<span style="color:#2c5dcd">.</span>dumps(data))
+<span style="color:#5918bb;font-weight:bold">print</span>(response<span style="color:#2c5dcd">.</span>text)
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>如果data传递的是字典、元组组成的列表或列表作为值的字典，则request对参数进行url编码，Content-Type的值为application/x-www-form-urlencoded</li>
+</ul>
 
 
   </div>
