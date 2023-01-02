@@ -6,7 +6,25 @@
     <description>Recent content in 逆向 on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 28 Nov 2022 19:05:58 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 05 Dec 2022 09:30:42 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>逆向学习1.5混淆篇</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.5%E6%B7%B7%E6%B7%86%E7%AF%87/</link>
+      <pubDate>Mon, 05 Dec 2022 09:30:42 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.5%E6%B7%B7%E6%B7%86%E7%AF%87/</guid>
+      <description>关于混淆逆向</description>
+    </item>
+    
+    <item>
+      <title>逆向学习1.5加密算法篇国密</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.5%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%AF%87%E5%9B%BD%E5%AF%86/</link>
+      <pubDate>Wed, 30 Nov 2022 15:02:28 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.5%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%AF%87%E5%9B%BD%E5%AF%86/</guid>
+      <description>关于逆向加密算法的一些学习，国家加密标准</description>
+    </item>
+    
     <item>
       <title>逆向学习 Webpack</title>
       <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0-webpack/</link>

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>逆向学习1.5加密算法篇国密 | Hanson&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="关于逆向加密算法的一些学习，国家加密标准">
+<meta name="author" content="
+作者:&nbsp;hanson">
+<link rel="canonical" href="https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.5%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%AF%87%E5%9B%BD%E5%AF%86/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hanson00.github.io/posts/imgs/favicon16x16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hanson00.github.io/posts/imgs/favicon32x32.ico">
+<link rel="apple-touch-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="mask-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="逆向学习1.5加密算法篇国密" />
+<meta property="og:description" content="关于逆向加密算法的一些学习，国家加密标准" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.5%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%AF%87%E5%9B%BD%E5%AF%86/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-30T15:02:28&#43;08:00" />
+<meta property="article:modified_time" content="2022-11-30T15:02:28&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="逆向学习1.5加密算法篇国密"/>
+<meta name="twitter:description" content="关于逆向加密算法的一些学习，国家加密标准"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hanson00.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "💻技术类文章",
+      "item": "https://hanson00.github.io/posts/technology/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Python文章",
+      "item": "https://hanson00.github.io/posts/technology/python/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "逆向学习1.5加密算法篇国密",
+      "item": "https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.5%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%AF%87%E5%9B%BD%E5%AF%86/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "逆向学习1.5加密算法篇国密",
+  "name": "逆向学习1.5加密算法篇国密",
+  "description": "关于逆向加密算法的一些学习，国家加密标准",
+  "keywords": [
+    ""
+  ],
+  "articleBody": "SM系列 说明\n1  本教程仅供学习交流使用，严禁用于商业用途和非法用途，否则由此产生的一切后果均与作者无关，请各学员自觉遵守相关法律法规。   算法简介 从 2010 年开始，我国国家密码管理局就已经开始陆续发布了一系列国产加密算法，这其中就包括 SM1、SM2、SM3 、SM4、SM7、SM9、ZUC（祖冲之加密算法）等，SM 代表商密，即商业密码，是指用于商业的、不涉及国家秘密的密码技术。SM1 和 SM7 的算法不公开，其余算法都已成为 ISO/IEC 国际标准。\n在这些国产加密算法中，SM2、SM3、SM4  三种加密算法是比较常见的，在爬取部分网站时，也可能会遇到这些算法.\n算法分类    算法名称 算法类别 应用领域 特点     SM1 对称（分组）加密算法 芯片 分组长度、密钥长度均为 128 比特   SM2 非对称（基于椭圆曲线 ECC）加密算法 数据加密 ECC 椭圆曲线密码机制 256 位，相比 RSA 处理速度快，消耗更少   SM3 散列（hash）函数算法 完整性校验 安全性及效率与 SHA-256 相当，压缩函数更复杂   SM4 对称（分组）加密算法 数据加密和局域网产品 分组长度、密钥长度均为 128 比特，计算轮数多   SM7 对称（分组）加密算法 非接触式 IC 卡 分组长度、密钥长度均为 128 比特   SM9 标识加密算法（IBE） 端对端离线安全通讯 加密强度等同于 3072 位密钥的 RSA 加密算法   ZUC 对称（序列）加密算法 移动通信 4G 网络 流密码    SM2 椭圆曲线公钥加密算法 SM2 为椭圆曲线（ECC）公钥加密算法，非对称加密，SM2 算法和 RSA 算法都是公钥加密算法，SM2 算法是一种更先进安全的算法，在我们国家商用密码体系中被用来替换 RSA 算法，在不少官方网站会见到此类加密算法。我国学者对椭圆曲线密码的研究从 20 世纪 80 年代开始，目前已取得不少成果，SM2 椭圆曲线公钥密码算法比 RSA 算法有以下优势：\n    SM2 RSA     安全性 256 位 SM2 强度已超过 RSA-2048 一般   算法结构 基本椭圆曲线（ECC） 基于特殊的可逆模幂运算   计算复杂度 完全指数级 亚指数级   存储空间（密钥长度） 192-256 bit 2048-4096 bit   秘钥生成速度 较 RSA 算法快百倍以上 慢   解密加密速度 较快 一般    SM4分组加密算法 SM4 为无线局域网标准的分组加密算法，对称加密，用于替代 DES/AES 等国际算法，SM4 算法与 AES 算法具有相同的密钥长度和分组长度，均为 128 位，故对消息进行加解密时，若消息长度过长，需要进行分组，要消息长度不足，则要进行填充。加密算法与密钥扩展算法都采用 32 轮非线性迭代结构，解密算法与加密算法的结构相同，只是轮密钥的使用顺序相反，解密轮密钥是加密轮密钥的逆序。\n    SM4 DES AES     计算轮数 32 16（3DES 为 16*3） 10/12/14   密码部件 S 盒、非线性变换、线性变换、合成变换 标准算术和逻辑运算、先替换后置换，不含线性变换 S 盒、行移位变换、列混合变换、圈密钥加变换（AddRoundKey）    sm2-JavaScript还原 在 JavaScript 中已有比较成熟的实现库，这里推荐 sm-crypto[4]，目前支持 SM2、SM3 和 SM4，需要注意的是，SM2 非对称加密的结果由 C1、C2、C3 三部分组成，其中 C1 是生成随机数的计算出的椭圆曲线点，C2 是密文数据，C3 是 SM3 的摘要值，最开始的国密标准的结果是按 C1C2C3 顺序的，新标准的是按 C1C3C2 顺序存放的，sm-crypto 支持设置 cipherMode，也就是 C1C2C3 的排列顺序。\n以 SM2 算法为例，实现如下（其他算法和详细用法可参考其官方文档）：\nSM2 加密（encrypt）和解密（decrypt）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  // npm install sm-crypto --save  const sm2 = require('sm-crypto').sm2 // 1 - C1C3C2，0 - C1C2C3，默认为1 const cipherMode = 1 // 获取密钥对 let keypair = sm2.generateKeyPairHex() let publicKey = keypair.publicKey // 公钥 let privateKey = keypair.privateKey // 私钥  let msgString = \"this is the data to be encrypted\" let encryptData = sm2.doEncrypt(msgString, publicKey, cipherMode) // 加密结果 let decryptData = sm2.doDecrypt(encryptData, privateKey, cipherMode) // 解密结果  console.log(\"encryptData: \", encryptData) console.log(\"decryptData: \", decryptData)   sm2-python还原 在 Python 里面并没有比较官方的库来实现国密算法，这里仅列出了其中两个较为完善的第三方库，需要注意的是，SM1 和 SM7 算法不公开，目前大多库仅实现了 SM2、SM3、SM4 三种密算法。\n若要使用 SM9 算法，可下载 gmssl-python 源码手动安装。\n1  pip install gmssl   python实现功能 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  from gmssl import sm2 # 16 进制的公钥和私钥 private_key = '00B9AB0B828FF68872F21A837FC303668428DEA11DCD1B24429D0C99E24EED83D5' public_key = 'B9C9A6E04E9C91F7BA880429273747D7EF5DDEB0BB2FF6317EB00BEF331A83081A6994B8993F3F5D6EADDDB81872266C87C018FB4162F5AF347B483E24620207' sm2_crypt = sm2.CryptSM2(public_key=public_key, private_key=private_key) # 待加密数据和加密后数据为 bytes 类型 data = b\"this is the data to be encrypted\" enc_data = sm2_crypt.encrypt(data) dec_data = sm2_crypt.decrypt(enc_data) print('enc_data: ', enc_data.hex()) print('dec_data: ', dec_data)   sm4-JavaScript还原 1 2 3 4 5 6 7 8 9 10 11 12  const sm4 =require('sm-crypto').sm4 const msg='hel1o world!我是juneandgreen.'//可以为utf8串或字节数组 const key='0123456789abcdeffedcba9876543210'//可以为16进制串或字节数组，要求为128比特 let encryptData1=sm4.encrypt(msg,key) //加密，默认输出I6进制字符串，默认使用pkcs#7填充（传pkcs#5 也会走 pkcs#7 填充） let encryptData2=sm4.encrypt(msg,key,{padding:'none'}) //加密，不使用padding let encryptData3=sm4.encrypt(msg,key,{padding:'none',output:'array'}) //加，不使用padding,输出为字节数组 let encryptData4= sm4.encrypt(msg,key,{mode:'cbc',iv:'fedcba98765432100123456789abcdef'}) //加密，abc模式  console.log(encryptData1) console.log(encryptData2) console.log(encryptData3) console.log(encryptData4)   ",
+  "wordCount" : "1890",
+  "inLanguage": "en",
+  "datePublished": "2022-11-30T15:02:28+08:00",
+  "dateModified": "2022-11-30T15:02:28+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "hanson"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.5%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%AF%87%E5%9B%BD%E5%AF%86/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hanson's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hanson00.github.io/posts/imgs/66.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hanson00.github.io/" accesskey="h" title="Hanson&#39;s Blog (Alt + H)">Hanson&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hanson00.github.io/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/python/">Python文章</a></div>
+    <h1 class="post-title">
+      逆向学习1.5加密算法篇国密
+    </h1>
+    <div class="post-description">
+      关于逆向加密算法的一些学习，国家加密标准
+    </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;2022-11-30&nbsp;|&nbsp;字数:&nbsp;1890字&nbsp;|&nbsp;时长: 4分钟&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
+      <ul class="post-tags-meta">
+        <a href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/">逆向</a>
+        <a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">、爬虫</a>
+      </ul>
+
+      <span id="busuanzi_container_page_pv">
+        &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+      </span>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#sm%e7%b3%bb%e5%88%97" aria-label="SM系列">SM系列</a><ul>
+                                    
+                        <li>
+                            <a href="#%e7%ae%97%e6%b3%95%e7%ae%80%e4%bb%8b" aria-label="算法简介">算法简介</a></li>
+                        <li>
+                            <a href="#%e7%ae%97%e6%b3%95%e5%88%86%e7%b1%bb" aria-label="算法分类">算法分类</a><ul>
+                                    
+                        <li>
+                            <a href="#sm2-%e6%a4%ad%e5%9c%86%e6%9b%b2%e7%ba%bf%e5%85%ac%e9%92%a5%e5%8a%a0%e5%af%86%e7%ae%97%e6%b3%95" aria-label="SM2 椭圆曲线公钥加密算法">SM2 椭圆曲线公钥加密算法</a></li>
+                        <li>
+                            <a href="#sm4%e5%88%86%e7%bb%84%e5%8a%a0%e5%af%86%e7%ae%97%e6%b3%95" aria-label="SM4分组加密算法">SM4分组加密算法</a><ul>
+                                    
+                        <li>
+                            <a href="#sm2-javascript%e8%bf%98%e5%8e%9f" aria-label="sm2-JavaScript还原">sm2-JavaScript还原</a></li>
+                        <li>
+                            <a href="#sm2-python%e8%bf%98%e5%8e%9f" aria-label="sm2-python还原">sm2-python还原</a><ul>
+                                    
+                        <li>
+                            <a href="#python%e5%ae%9e%e7%8e%b0%e5%8a%9f%e8%83%bd" aria-label="python实现功能">python实现功能</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#sm4-javascript%e8%bf%98%e5%8e%9f" aria-label="sm4-JavaScript还原">sm4-JavaScript还原</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h1 id="sm系列">SM系列<a hidden class="anchor" aria-hidden="true" href="#sm系列">#</a></h1>
+<p><strong>说明</strong></p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">本教程仅供学习交流使用，严禁用于商业用途和非法用途，否则由此产生的一切后果均与作者无关，请各学员自觉遵守相关法律法规。
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="算法简介">算法简介<a hidden class="anchor" aria-hidden="true" href="#算法简介">#</a></h2>
+<p>从 2010 年开始，我国国家密码管理局就已经开始陆续发布了一系列国产加密算法，这其中就包括 <code>SM1、SM2、SM3 、SM4、SM7、SM9、ZUC</code>（祖冲之加密算法）等，<code>SM</code> 代表商密，即商业密码，是指用于商业的、不涉及国家秘密的密码技术。<code>SM1</code> 和 <code>SM7 </code>的算法不公开，其余算法都已成为<code> ISO/IEC</code> 国际标准。</p>
+<p>在这些国产加密算法中，<code>SM2、SM3、SM4 </code> <strong>三种加密算法是比较常见的</strong>，在爬取部分网站时，也可能会遇到这些算法.</p>
+<h2 id="算法分类">算法分类<a hidden class="anchor" aria-hidden="true" href="#算法分类">#</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">算法名称</th>
+<th style="text-align:center">算法类别</th>
+<th style="text-align:center">应用领域</th>
+<th style="text-align:center">特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">SM1</td>
+<td style="text-align:center">对称（分组）加密算法</td>
+<td style="text-align:center">芯片</td>
+<td style="text-align:center">分组长度、密钥长度均为 128 比特</td>
+</tr>
+<tr>
+<td style="text-align:center">SM2</td>
+<td style="text-align:center">非对称（基于椭圆曲线 ECC）加密算法</td>
+<td style="text-align:center">数据加密</td>
+<td style="text-align:center">ECC 椭圆曲线密码机制 256 位，相比 RSA 处理速度快，消耗更少</td>
+</tr>
+<tr>
+<td style="text-align:center">SM3</td>
+<td style="text-align:center">散列（hash）函数算法</td>
+<td style="text-align:center">完整性校验</td>
+<td style="text-align:center">安全性及效率与 SHA-256 相当，压缩函数更复杂</td>
+</tr>
+<tr>
+<td style="text-align:center">SM4</td>
+<td style="text-align:center">对称（分组）加密算法</td>
+<td style="text-align:center">数据加密和局域网产品</td>
+<td style="text-align:center">分组长度、密钥长度均为 128 比特，计算轮数多</td>
+</tr>
+<tr>
+<td style="text-align:center">SM7</td>
+<td style="text-align:center">对称（分组）加密算法</td>
+<td style="text-align:center">非接触式 IC 卡</td>
+<td style="text-align:center">分组长度、密钥长度均为 128 比特</td>
+</tr>
+<tr>
+<td style="text-align:center">SM9</td>
+<td style="text-align:center">标识加密算法（IBE）</td>
+<td style="text-align:center">端对端离线安全通讯</td>
+<td style="text-align:center">加密强度等同于 3072 位密钥的 RSA 加密算法</td>
+</tr>
+<tr>
+<td style="text-align:center">ZUC</td>
+<td style="text-align:center">对称（序列）加密算法</td>
+<td style="text-align:center">移动通信 4G 网络</td>
+<td style="text-align:center">流密码</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sm2-椭圆曲线公钥加密算法">SM2 椭圆曲线公钥加密算法<a hidden class="anchor" aria-hidden="true" href="#sm2-椭圆曲线公钥加密算法">#</a></h3>
+<p><code>SM2</code> 为椭圆曲线（<code>ECC</code>）公钥加密算法，非对称加密，<code>SM2</code> 算法和 <code>RSA </code>算法都是公钥加密算法，<code>SM2</code> 算法是一种更先进安全的算法，在我们国家商用密码体系中被用来替换<code> RSA</code> 算法，在不少官方网站会见到此类加密算法。我国学者对椭圆曲线密码的研究从 20 世纪 80 年代开始，目前已取得不少成果，<code>SM2</code> 椭圆曲线公钥密码算法比 <code>RSA </code>算法有以下优势：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>SM2</th>
+<th>RSA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安全性</td>
+<td>256 位 SM2 强度已超过 RSA-2048</td>
+<td>一般</td>
+</tr>
+<tr>
+<td>算法结构</td>
+<td>基本椭圆曲线（ECC）</td>
+<td>基于特殊的可逆模幂运算</td>
+</tr>
+<tr>
+<td>计算复杂度</td>
+<td>完全指数级</td>
+<td>亚指数级</td>
+</tr>
+<tr>
+<td>存储空间（密钥长度）</td>
+<td>192-256 bit</td>
+<td>2048-4096 bit</td>
+</tr>
+<tr>
+<td>秘钥生成速度</td>
+<td>较 RSA 算法快百倍以上</td>
+<td>慢</td>
+</tr>
+<tr>
+<td>解密加密速度</td>
+<td>较快</td>
+<td>一般</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sm4分组加密算法">SM4分组加密算法<a hidden class="anchor" aria-hidden="true" href="#sm4分组加密算法">#</a></h3>
+<p><code>SM4</code> 为无线局域网标准的分组加密算法，对称加密，用于替代 <code>DES/AES</code> 等国际算法，<code>SM4</code> 算法与 <code>AES </code>算法具有相同的密钥长度和分组长度，均为 128 位，故对消息进行加解密时，若消息长度过长，需要进行分组，要消息长度不足，则要进行填充。加密算法与密钥扩展算法都采用 32 轮非线性迭代结构，解密算法与加密算法的结构相同，只是轮密钥的使用顺序相反，解密轮密钥是加密轮密钥的逆序。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>SM4</th>
+<th>DES</th>
+<th>AES</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算轮数</td>
+<td>32</td>
+<td>16（3DES 为 16*3）</td>
+<td>10/12/14</td>
+</tr>
+<tr>
+<td>密码部件</td>
+<td>S 盒、非线性变换、线性变换、合成变换</td>
+<td>标准算术和逻辑运算、先替换后置换，不含线性变换</td>
+<td>S 盒、行移位变换、列混合变换、圈密钥加变换（AddRoundKey）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sm2-javascript还原">sm2-JavaScript还原<a hidden class="anchor" aria-hidden="true" href="#sm2-javascript还原">#</a></h4>
+<p>在 JavaScript 中已有比较成熟的实现库，这里推荐 <code>sm-crypto[4]</code>，目前支持<code> SM2、SM3 和 SM4</code>，需要注意的是，SM2 非对称加密的结果由 <code>C1、C2、C3</code> 三部分组成，其中 <code>C1</code> 是生成随机数的计算出的椭圆曲线点，<code>C2 </code>是密文数据，<code>C3 </code>是<code> SM3</code> 的摘要值，最开始的国密标准的结果是按 <code>C1C2C3</code> 顺序的，新标准的是按 <code>C1C3C2</code> 顺序存放的，<code>sm-crypto</code> 支持设置<code> cipherMode</code>，也就是 <code>C1C2C3</code> 的排列顺序。</p>
+<p>以 <code>SM2 </code>算法为例，实现如下（其他算法和详细用法可参考其官方文档）：</p>
+<p><code>SM2 </code>加密（encrypt）和解密（decrypt）：</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#0080ff;font-style:italic">// npm install sm-crypto --save
+</span><span style="color:#0080ff;font-style:italic"></span>
+<span style="color:#2c5dcd;font-weight:bold">const</span> sm2 <span style="color:#2c5dcd">=</span> require(<span style="color:#0c6">&#39;sm-crypto&#39;</span>).sm2
+ 
+<span style="color:#0080ff;font-style:italic">// 1 - C1C3C2，0 - C1C2C3，默认为1
+</span><span style="color:#0080ff;font-style:italic"></span><span style="color:#2c5dcd;font-weight:bold">const</span> cipherMode <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">1</span>
+ 
+<span style="color:#0080ff;font-style:italic">// 获取密钥对
+</span><span style="color:#0080ff;font-style:italic"></span><span style="color:#2c5dcd;font-weight:bold">let</span> keypair <span style="color:#2c5dcd">=</span> sm2.generateKeyPairHex()
+<span style="color:#2c5dcd;font-weight:bold">let</span> publicKey <span style="color:#2c5dcd">=</span> keypair.publicKey   <span style="color:#0080ff;font-style:italic">// 公钥
+</span><span style="color:#0080ff;font-style:italic"></span><span style="color:#2c5dcd;font-weight:bold">let</span> privateKey <span style="color:#2c5dcd">=</span> keypair.privateKey <span style="color:#0080ff;font-style:italic">// 私钥
+</span><span style="color:#0080ff;font-style:italic"></span> 
+<span style="color:#2c5dcd;font-weight:bold">let</span> msgString <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#34;this is the data to be encrypted&#34;</span>
+<span style="color:#2c5dcd;font-weight:bold">let</span> encryptData <span style="color:#2c5dcd">=</span> sm2.doEncrypt(msgString, publicKey, cipherMode)    <span style="color:#0080ff;font-style:italic">// 加密结果
+</span><span style="color:#0080ff;font-style:italic"></span><span style="color:#2c5dcd;font-weight:bold">let</span> decryptData <span style="color:#2c5dcd">=</span> sm2.doDecrypt(encryptData, privateKey, cipherMode) <span style="color:#0080ff;font-style:italic">// 解密结果
+</span><span style="color:#0080ff;font-style:italic"></span> 
+console.log(<span style="color:#0c6">&#34;encryptData: &#34;</span>, encryptData)
+console.log(<span style="color:#0c6">&#34;decryptData: &#34;</span>, decryptData)
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="sm2-python还原">sm2-python还原<a hidden class="anchor" aria-hidden="true" href="#sm2-python还原">#</a></h4>
+<p>在 Python 里面并没有比较官方的库来实现国密算法，这里仅列出了其中两个较为完善的第三方库，需要注意的是，<code>SM1 和 SM7</code> 算法不公开，目前大多库仅实现了 <code>SM2、SM3、SM4</code> 三种密算法。</p>
+<p>若要使用 <code>SM9</code> 算法，可下载 <code>gmssl-python</code> 源码手动安装。</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pip install gmssl
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="python实现功能">python实现功能<a hidden class="anchor" aria-hidden="true" href="#python实现功能">#</a></h5>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#2c5dcd;font-weight:bold">from</span> gmssl <span style="color:#2c5dcd;font-weight:bold">import</span> sm2
+ 
+ 
+<span style="color:#0080ff;font-style:italic"># 16 进制的公钥和私钥</span>
+private_key <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;00B9AB0B828FF68872F21A837FC303668428DEA11DCD1B24429D0C99E24EED83D5&#39;</span>
+public_key <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;B9C9A6E04E9C91F7BA880429273747D7EF5DDEB0BB2FF6317EB00BEF331A83081A6994B8993F3F5D6EADDDB81872266C87C018FB4162F5AF347B483E24620207&#39;</span>
+sm2_crypt <span style="color:#2c5dcd">=</span> sm2<span style="color:#2c5dcd">.</span>CryptSM2(public_key<span style="color:#2c5dcd">=</span>public_key, private_key<span style="color:#2c5dcd">=</span>private_key)
+ 
+<span style="color:#0080ff;font-style:italic"># 待加密数据和加密后数据为 bytes 类型</span>
+data <span style="color:#2c5dcd">=</span> <span style="color:#0c6">b</span><span style="color:#0c6">&#34;this is the data to be encrypted&#34;</span>
+enc_data <span style="color:#2c5dcd">=</span> sm2_crypt<span style="color:#2c5dcd">.</span>encrypt(data)
+dec_data <span style="color:#2c5dcd">=</span> sm2_crypt<span style="color:#2c5dcd">.</span>decrypt(enc_data)
+ 
+<span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#39;enc_data: &#39;</span>, enc_data<span style="color:#2c5dcd">.</span>hex())
+<span style="color:#5918bb;font-weight:bold">print</span>(<span style="color:#0c6">&#39;dec_data: &#39;</span>, dec_data)
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="sm4-javascript还原">sm4-JavaScript还原<a hidden class="anchor" aria-hidden="true" href="#sm4-javascript还原">#</a></h4>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#2c5dcd;font-weight:bold">const</span> sm4 <span style="color:#2c5dcd">=</span>require(<span style="color:#0c6">&#39;sm-crypto&#39;</span>).sm4
+<span style="color:#2c5dcd;font-weight:bold">const</span> msg<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;hel1o world!我是juneandgreen.&#39;</span><span style="color:#0080ff;font-style:italic">//可以为utf8串或字节数组
+</span><span style="color:#0080ff;font-style:italic"></span><span style="color:#2c5dcd;font-weight:bold">const</span> key<span style="color:#2c5dcd">=</span><span style="color:#0c6">&#39;0123456789abcdeffedcba9876543210&#39;</span><span style="color:#0080ff;font-style:italic">//可以为16进制串或字节数组，要求为128比特
+</span><span style="color:#0080ff;font-style:italic"></span><span style="color:#2c5dcd;font-weight:bold">let</span> encryptData1<span style="color:#2c5dcd">=</span>sm4.encrypt(msg,key)    <span style="color:#0080ff;font-style:italic">//加密，默认输出I6进制字符串，默认使用pkcs#7填充（传pkcs#5 也会走 pkcs#7 填充）
+</span><span style="color:#0080ff;font-style:italic"></span><span style="color:#2c5dcd;font-weight:bold">let</span> encryptData2<span style="color:#2c5dcd">=</span>sm4.encrypt(msg,key,{padding<span style="color:#2c5dcd">:</span><span style="color:#0c6">&#39;none&#39;</span>})   <span style="color:#0080ff;font-style:italic">//加密，不使用padding
+</span><span style="color:#0080ff;font-style:italic"></span><span style="color:#2c5dcd;font-weight:bold">let</span> encryptData3<span style="color:#2c5dcd">=</span>sm4.encrypt(msg,key,{padding<span style="color:#2c5dcd">:</span><span style="color:#0c6">&#39;none&#39;</span>,output<span style="color:#2c5dcd">:</span><span style="color:#0c6">&#39;array&#39;</span>})    <span style="color:#0080ff;font-style:italic">//加，不使用padding,输出为字节数组
+</span><span style="color:#0080ff;font-style:italic"></span><span style="color:#2c5dcd;font-weight:bold">let</span> encryptData4<span style="color:#2c5dcd">=</span> sm4.encrypt(msg,key,{mode<span style="color:#2c5dcd">:</span><span style="color:#0c6">&#39;cbc&#39;</span>,iv<span style="color:#2c5dcd">:</span><span style="color:#0c6">&#39;fedcba98765432100123456789abcdef&#39;</span>})    <span style="color:#0080ff;font-style:italic">//加密，abc模式
+</span><span style="color:#0080ff;font-style:italic"></span>
+console.log(encryptData1)
+console.log(encryptData2)
+console.log(encryptData3)
+console.log(encryptData4)
+</code></pre></td></tr></table>
+</div>
+</div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/">逆向</a></li>
+      <li><a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.5%E6%B7%B7%E6%B7%86%E7%AF%87/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>逆向学习1.5混淆篇</span>
+  </a>
+  <a class="next" href="https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0-webpack/">
+    <span class="title">Next »</span>
+    <br>
+    <span>逆向学习 Webpack</span>
+  </a>
+</nav>
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>✨昵称输入QQ号可以自动关联✨
+        <hr />
+
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo1-mu.vercel.app/",  
+            el: "#tcomment",
+            lang: 'zh-CN',
+            region: 'ap-guangzhou',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

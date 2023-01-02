@@ -111,8 +111,8 @@
   "keywords": [
     ""
   ],
-  "articleBody": "JavaScript逆向基础 逆向的一些举例 头部签名验证  在请求头中有类似base64或者16进制的数据 测试：可以通过重放XHR或者重新请求观看接口参数是否改变 https://www.oklink.com/zh-cn/btc/tx-list?limit=20\u0026pageNum=1  请求参数加密  在请求参数中有类似base64或16进制的数据加密 https://www.qimai.cn/rank/index/brand/paid/device/ipad/country/cn/genre/36  响应数据加密  载荷正常，但在请求参数中可能隐藏有加密数据 https://ggzyfw.fj.gov.cn/business/list/  Cookie验证  Cookie反爬虫中一般使用无痕浏览器调试 一般步骤为：  首先请求的时候不带Cookie或者Cookie失效 定向到请求Cookie的接口，服务器返回Cookie 带着Cookie再次请求最开始请求的网址   https://www.dsedt.gov.mo/zh_CN/pg_home  打无痕浏览器并清空Cookie进行请求观察\n观察如下\nJavaScript的一些小记录   补环境，扣js最好使用var声明变量，变量放最上方\n  使用var可以重复声明变量，并最新的变量覆盖旧变量，但let不行\n  1 2 3 4 5 6  var a = 20 var a = 10 console.log(a) let b = 99 let b = 22 console.log(b)     let 声明的变量只在 let 命令所在的代码块内有效。\n  const 声明一个只读的常量，一旦声明，常量的值就不能改变。\n  总结：\n var 声明的变量属于函数作用域 var 声明的变量存在提升（hoisting）（将变量提升到当前作用域的顶部） var 变量可以重复声明 var在函数中声明的变量是属于局部变量   对象的调用  以下的方法赋值会用到扣js赋值加密函数的逻辑\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  var Person = { name:\"hanson\", age:22, func:function (){ return this.name + this.age } } console.log(Person.name) console.log(Person.func()) //注意下面这两句的写法是不会调用当前对象的 recv_func = Person.func console.log(recv_func()) //NaN  recv2 = Person.func() console.log(recv2) //hanson22    方法的使用  1 2 3 4 5 6 7 8 9  var ll !(function (){ console.log(\"out\") function oo(){ console.log(\"inner\") } ll = oo })() ll()     两个对逆向加密十分有用的方法\n JSON.parse()：将JSON字符串转换成JavaScript的对象 JSON.stringify()：将JavaScript的值转换成JSON字符串  1 2 3 4 5 6 7  // JSON.parse()：将JSON字符串转换成JavaScript对象 var obj = JSON.parse('{\"name\":\"hanson\", \"age\":18}') console.log(obj); // JSON.stringify()：将JavaScript对象转换成JSON字符串 var json = JSON.stringify(obj) console.log(json);     注：经常使用在数据的处理方面： 比如后端返回的数据（JSON字符串）前端需要把JSON字符串转换为JavaScript值。（JSON.parse()）。体现在请求后 前端往后端传送数据，前端把JavaScript的数据转换成JSON字符串后往后端传送（JSON.stringify()）。体现在请求前\n",
-  "wordCount" : "950",
+  "articleBody": "JavaScript逆向基础 逆向的一些举例 头部签名验证  在请求头中有类似base64或者16进制的数据 测试：可以通过重放XHR或者重新请求观看接口参数是否改变 https://www.oklink.com/zh-cn/btc/tx-list?limit=20\u0026pageNum=1  请求参数加密  在请求参数中有类似base64或16进制的数据加密 https://www.qimai.cn/rank/index/brand/paid/device/ipad/country/cn/genre/36  响应数据加密  载荷正常，但在请求参数中可能隐藏有加密数据 https://ggzyfw.fj.gov.cn/business/list/  Cookie验证  Cookie反爬虫中一般使用无痕浏览器调试 一般步骤为：  首先请求的时候不带Cookie或者Cookie失效 定向到请求Cookie的接口，服务器返回Cookie 带着Cookie再次请求最开始请求的网址   https://www.dsedt.gov.mo/zh_CN/pg_home  打无痕浏览器并清空Cookie进行请求观察\n观察如下\nJavaScript的一些小记录   补环境，扣js最好使用var声明变量，变量放最上方\n  使用var可以重复声明变量，并最新的变量覆盖旧变量，但let不行\n  1 2 3 4 5 6  var a = 20 var a = 10 console.log(a) let b = 99 let b = 22 console.log(b)     let 声明的变量只在 let 命令所在的代码块内有效。\n  const 声明一个只读的常量，一旦声明，常量的值就不能改变。\n  总结：\n var 声明的变量属于函数作用域 var 声明的变量存在提升（hoisting）（将变量提升到当前作用域的顶部） var 变量可以重复声明 var在函数中声明的变量是属于局部变量  js的\u0026\u0026输出前后\n1 2 3 4 5 6 7 8 9 10 11 12  script alert(\"oooo\") var c = null var a = 1 var b = 10 // 如果a为真返回的结果是\u0026\u0026后面的值 \talert(a \u0026\u0026 b)\t//alert 10 \talert(a \u0026\u0026 b+2) alert(a10 \u0026\u0026 b)\t//这里是alert false \talert(c \u0026\u0026 b)\t//为假的话输出前面的c，null \t/script    对象的调用  以下的方法赋值会用到扣js赋值加密函数的逻辑\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  var Person = { name:\"hanson\", age:22, func:function (){ return this.name + this.age } } console.log(Person.name) console.log(Person.func()) //注意下面这两句的写法是不会调用当前对象的 recv_func = Person.func console.log(recv_func()) //NaN  recv2 = Person.func() console.log(recv2) //hanson22    方法的使用  1 2 3 4 5 6 7 8 9  var ll !(function (){ console.log(\"out\") function oo(){ console.log(\"inner\") } ll = oo })() ll()     两个对逆向加密十分有用的方法\n JSON.parse()：将JSON字符串转换成JavaScript的对象 JSON.stringify()：将JavaScript的值转换成JSON字符串  1 2 3 4 5 6 7  // JSON.parse()：将JSON字符串转换成JavaScript对象 var obj = JSON.parse('{\"name\":\"hanson\", \"age\":18}') console.log(obj); // JSON.stringify()：将JavaScript对象转换成JSON字符串 var json = JSON.stringify(obj) console.log(json);     注：经常使用在数据的处理方面： 比如后端返回的数据（JSON字符串）前端需要把JSON字符串转换为JavaScript值。（JSON.parse()）。体现在请求后 前端往后端传送数据，前端把JavaScript的数据转换成JSON字符串后往后端传送（JSON.stringify()）。体现在请求前\n",
+  "wordCount" : "1062",
   "inLanguage": "en",
   "datePublished": "2022-11-15T10:12:52+08:00",
   "dateModified": "2022-11-15T10:12:52+08:00",
@@ -232,7 +232,7 @@
 
 
 
-更新:&nbsp;2022-11-15&nbsp;|&nbsp;字数:&nbsp;950字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
+更新:&nbsp;2022-11-15&nbsp;|&nbsp;字数:&nbsp;1062字&nbsp;|&nbsp;时长: 3分钟&nbsp;|&nbsp;
 作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
       <ul class="post-tags-meta">
         <a href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/">逆向</a>
@@ -428,7 +428,38 @@ console.log(b)
 <li><strong>var</strong> 变量可以重复声明</li>
 <li><strong>var</strong>在函数中声明的变量是属于局部变量</li>
 </ol>
-<ul>
+<p>js的&amp;&amp;输出前后</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">	<span style="color:#2c5dcd">&lt;</span>script<span style="color:#2c5dcd">&gt;</span>
+		
+		alert(<span style="color:#0c6">&#34;oooo&#34;</span>)
+		<span style="color:#2c5dcd;font-weight:bold">var</span> c <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">null</span>
+		<span style="color:#2c5dcd;font-weight:bold">var</span> a <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">1</span>
+		<span style="color:#2c5dcd;font-weight:bold">var</span> b <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">10</span>
+		<span style="color:#0080ff;font-style:italic">// 如果a为真返回的结果是&amp;&amp;后面的值
+</span><span style="color:#0080ff;font-style:italic"></span>		alert(a <span style="color:#2c5dcd">&amp;&amp;</span> b)	<span style="color:#0080ff;font-style:italic">//alert  10
+</span><span style="color:#0080ff;font-style:italic"></span>		alert(a <span style="color:#2c5dcd">&amp;&amp;</span> b<span style="color:#2c5dcd">+</span><span style="color:#5918bb;font-weight:bold">2</span>)
+		alert(a<span style="color:#2c5dcd">&gt;</span><span style="color:#5918bb;font-weight:bold">10</span> <span style="color:#2c5dcd">&amp;&amp;</span> b)	<span style="color:#0080ff;font-style:italic">//这里是alert false
+</span><span style="color:#0080ff;font-style:italic"></span>		alert(c <span style="color:#2c5dcd">&amp;&amp;</span> b)	<span style="color:#0080ff;font-style:italic">//为假的话输出前面的c，null
+</span><span style="color:#0080ff;font-style:italic"></span>	<span style="color:#2c5dcd">&lt;</span><span style="color:#fff;background-color:#c00">/script&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>对象的调用</li>
 </ul>
 <p>以下的方法赋值会用到扣js赋值加密函数的逻辑</p>
@@ -576,7 +607,7 @@ console.log(json);
     </main>
     
 <footer class="footer">
-    <span>&copy; 2022 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>&copy; 2023 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
