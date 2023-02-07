@@ -6,7 +6,16 @@
     <description>Recent content in 爬虫 on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 27 Jan 2023 09:36:12 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Jan 2023 17:29:44 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Webpack学习2.0</title>
+      <link>https://hanson00.github.io/posts/technology/python/webpack%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Fri, 27 Jan 2023 17:29:44 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/webpack%E5%AD%A6%E4%B9%A0/</guid>
+      <description>描述信息</description>
+    </item>
+    
     <item>
       <title>非对称加密案例</title>
       <link>https://hanson00.github.io/posts/technology/python/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E6%A1%88%E4%BE%8B/</link>
