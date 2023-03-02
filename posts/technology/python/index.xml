@@ -6,7 +6,25 @@
     <description>Recent content in Python文章 on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 27 Jan 2023 17:29:44 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/posts/technology/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Feb 2023 07:16:39 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/posts/technology/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>逆向学习RPC</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0rpc/</link>
+      <pubDate>Fri, 24 Feb 2023 07:16:39 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0rpc/</guid>
+      <description>关于逆向加密算法的一些学习</description>
+    </item>
+    
+    <item>
+      <title>逆向学习websocket</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0websocket/</link>
+      <pubDate>Tue, 21 Feb 2023 15:05:35 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0websocket/</guid>
+      <description>关于逆向websocket的一些学习</description>
+    </item>
+    
     <item>
       <title>Webpack学习2.0</title>
       <link>https://hanson00.github.io/posts/technology/python/webpack%E5%AD%A6%E4%B9%A0/</link>

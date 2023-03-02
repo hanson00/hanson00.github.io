@@ -111,8 +111,8 @@
   "keywords": [
     ""
   ],
-  "articleBody": "SM系列 说明\n1  本教程仅供学习交流使用，严禁用于商业用途和非法用途，否则由此产生的一切后果均与作者无关，请各学员自觉遵守相关法律法规。   算法简介 从 2010 年开始，我国国家密码管理局就已经开始陆续发布了一系列国产加密算法，这其中就包括 SM1、SM2、SM3 、SM4、SM7、SM9、ZUC（祖冲之加密算法）等，SM 代表商密，即商业密码，是指用于商业的、不涉及国家秘密的密码技术。SM1 和 SM7 的算法不公开，其余算法都已成为 ISO/IEC 国际标准。\n在这些国产加密算法中，SM2、SM3、SM4  三种加密算法是比较常见的，在爬取部分网站时，也可能会遇到这些算法.\n算法分类    算法名称 算法类别 应用领域 特点     SM1 对称（分组）加密算法 芯片 分组长度、密钥长度均为 128 比特   SM2 非对称（基于椭圆曲线 ECC）加密算法 数据加密 ECC 椭圆曲线密码机制 256 位，相比 RSA 处理速度快，消耗更少   SM3 散列（hash）函数算法 完整性校验 安全性及效率与 SHA-256 相当，压缩函数更复杂   SM4 对称（分组）加密算法 数据加密和局域网产品 分组长度、密钥长度均为 128 比特，计算轮数多   SM7 对称（分组）加密算法 非接触式 IC 卡 分组长度、密钥长度均为 128 比特   SM9 标识加密算法（IBE） 端对端离线安全通讯 加密强度等同于 3072 位密钥的 RSA 加密算法   ZUC 对称（序列）加密算法 移动通信 4G 网络 流密码    SM2 椭圆曲线公钥加密算法 SM2 为椭圆曲线（ECC）公钥加密算法，非对称加密，SM2 算法和 RSA 算法都是公钥加密算法，SM2 算法是一种更先进安全的算法，在我们国家商用密码体系中被用来替换 RSA 算法，在不少官方网站会见到此类加密算法。我国学者对椭圆曲线密码的研究从 20 世纪 80 年代开始，目前已取得不少成果，SM2 椭圆曲线公钥密码算法比 RSA 算法有以下优势：\n    SM2 RSA     安全性 256 位 SM2 强度已超过 RSA-2048 一般   算法结构 基本椭圆曲线（ECC） 基于特殊的可逆模幂运算   计算复杂度 完全指数级 亚指数级   存储空间（密钥长度） 192-256 bit 2048-4096 bit   秘钥生成速度 较 RSA 算法快百倍以上 慢   解密加密速度 较快 一般    SM4分组加密算法 SM4 为无线局域网标准的分组加密算法，对称加密，用于替代 DES/AES 等国际算法，SM4 算法与 AES 算法具有相同的密钥长度和分组长度，均为 128 位，故对消息进行加解密时，若消息长度过长，需要进行分组，要消息长度不足，则要进行填充。加密算法与密钥扩展算法都采用 32 轮非线性迭代结构，解密算法与加密算法的结构相同，只是轮密钥的使用顺序相反，解密轮密钥是加密轮密钥的逆序。\n    SM4 DES AES     计算轮数 32 16（3DES 为 16*3） 10/12/14   密码部件 S 盒、非线性变换、线性变换、合成变换 标准算术和逻辑运算、先替换后置换，不含线性变换 S 盒、行移位变换、列混合变换、圈密钥加变换（AddRoundKey）    sm2-JavaScript还原 在 JavaScript 中已有比较成熟的实现库，这里推荐 sm-crypto[4]，目前支持 SM2、SM3 和 SM4，需要注意的是，SM2 非对称加密的结果由 C1、C2、C3 三部分组成，其中 C1 是生成随机数的计算出的椭圆曲线点，C2 是密文数据，C3 是 SM3 的摘要值，最开始的国密标准的结果是按 C1C2C3 顺序的，新标准的是按 C1C3C2 顺序存放的，sm-crypto 支持设置 cipherMode，也就是 C1C2C3 的排列顺序。\n以 SM2 算法为例，实现如下（其他算法和详细用法可参考其官方文档）：\nSM2 加密（encrypt）和解密（decrypt）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  // npm install sm-crypto --save  const sm2 = require('sm-crypto').sm2 // 1 - C1C3C2，0 - C1C2C3，默认为1 const cipherMode = 1 // 获取密钥对 let keypair = sm2.generateKeyPairHex() let publicKey = keypair.publicKey // 公钥 let privateKey = keypair.privateKey // 私钥  let msgString = \"this is the data to be encrypted\" let encryptData = sm2.doEncrypt(msgString, publicKey, cipherMode) // 加密结果 let decryptData = sm2.doDecrypt(encryptData, privateKey, cipherMode) // 解密结果  console.log(\"encryptData: \", encryptData) console.log(\"decryptData: \", decryptData)   sm2-python还原 在 Python 里面并没有比较官方的库来实现国密算法，这里仅列出了其中两个较为完善的第三方库，需要注意的是，SM1 和 SM7 算法不公开，目前大多库仅实现了 SM2、SM3、SM4 三种密算法。\n若要使用 SM9 算法，可下载 gmssl-python 源码手动安装。\n1  pip install gmssl   python实现功能 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  from gmssl import sm2 # 16 进制的公钥和私钥 private_key = '00B9AB0B828FF68872F21A837FC303668428DEA11DCD1B24429D0C99E24EED83D5' public_key = 'B9C9A6E04E9C91F7BA880429273747D7EF5DDEB0BB2FF6317EB00BEF331A83081A6994B8993F3F5D6EADDDB81872266C87C018FB4162F5AF347B483E24620207' sm2_crypt = sm2.CryptSM2(public_key=public_key, private_key=private_key) # 待加密数据和加密后数据为 bytes 类型 data = b\"this is the data to be encrypted\" enc_data = sm2_crypt.encrypt(data) dec_data = sm2_crypt.decrypt(enc_data) print('enc_data: ', enc_data.hex()) print('dec_data: ', dec_data)   sm4-JavaScript还原 1 2 3 4 5 6 7 8 9 10 11 12  const sm4 =require('sm-crypto').sm4 const msg='hel1o world!我是juneandgreen.'//可以为utf8串或字节数组 const key='0123456789abcdeffedcba9876543210'//可以为16进制串或字节数组，要求为128比特 let encryptData1=sm4.encrypt(msg,key) //加密，默认输出I6进制字符串，默认使用pkcs#7填充（传pkcs#5 也会走 pkcs#7 填充） let encryptData2=sm4.encrypt(msg,key,{padding:'none'}) //加密，不使用padding let encryptData3=sm4.encrypt(msg,key,{padding:'none',output:'array'}) //加，不使用padding,输出为字节数组 let encryptData4= sm4.encrypt(msg,key,{mode:'cbc',iv:'fedcba98765432100123456789abcdef'}) //加密，abc模式  console.log(encryptData1) console.log(encryptData2) console.log(encryptData3) console.log(encryptData4)   ",
-  "wordCount" : "1890",
+  "articleBody": "SM系列 说明\n1  本教程仅供学习交流使用，严禁用于商业用途和非法用途，否则由此产生的一切后果均与作者无关，请各学员自觉遵守相关法律法规。   算法简介 从 2010 年开始，我国国家密码管理局就已经开始陆续发布了一系列国产加密算法，这其中就包括 SM1、SM2、SM3 、SM4、SM7、SM9、ZUC（祖冲之加密算法）等，SM 代表商密，即商业密码，是指用于商业的、不涉及国家秘密的密码技术。SM1 和 SM7 的算法不公开，其余算法都已成为 ISO/IEC 国际标准。\n在这些国产加密算法中，SM2、SM3、SM4  三种加密算法是比较常见的，在爬取部分网站时，也可能会遇到这些算法.\n算法分类    算法名称 算法类别 应用领域 特点     SM1 对称（分组）加密算法 芯片 分组长度、密钥长度均为 128 比特   SM2 非对称（基于椭圆曲线 ECC）加密算法 数据加密 ECC 椭圆曲线密码机制 256 位，相比 RSA 处理速度快，消耗更少   SM3 散列（hash）函数算法 完整性校验 安全性及效率与 SHA-256 相当，压缩函数更复杂   SM4 对称（分组）加密算法 数据加密和局域网产品 分组长度、密钥长度均为 128 比特，计算轮数多   SM7 对称（分组）加密算法 非接触式 IC 卡 分组长度、密钥长度均为 128 比特   SM9 标识加密算法（IBE） 端对端离线安全通讯 加密强度等同于 3072 位密钥的 RSA 加密算法   ZUC 对称（序列）加密算法 移动通信 4G 网络 流密码    SM2 椭圆曲线公钥加密算法 SM2 为椭圆曲线（ECC）公钥加密算法，非对称加密，SM2 算法和 RSA 算法都是公钥加密算法，SM2 算法是一种更先进安全的算法，在我们国家商用密码体系中被用来替换 RSA 算法，在不少官方网站会见到此类加密算法。我国学者对椭圆曲线密码的研究从 20 世纪 80 年代开始，目前已取得不少成果，SM2 椭圆曲线公钥密码算法比 RSA 算法有以下优势：\n    SM2 RSA     安全性 256 位 SM2 强度已超过 RSA-2048 一般   算法结构 基本椭圆曲线（ECC） 基于特殊的可逆模幂运算   计算复杂度 完全指数级 亚指数级   存储空间（密钥长度） 192-256 bit 2048-4096 bit   秘钥生成速度 较 RSA 算法快百倍以上 慢   解密加密速度 较快 一般    SM4分组加密算法 SM4 为无线局域网标准的分组加密算法，对称加密，用于替代 DES/AES 等国际算法，SM4 算法与 AES 算法具有相同的密钥长度和分组长度，均为 128 位，故对消息进行加解密时，若消息长度过长，需要进行分组，要消息长度不足，则要进行填充。加密算法与密钥扩展算法都采用 32 轮非线性迭代结构，解密算法与加密算法的结构相同，只是轮密钥的使用顺序相反，解密轮密钥是加密轮密钥的逆序。\n    SM4 DES AES     计算轮数 32 16（3DES 为 16*3） 10/12/14   密码部件 S 盒、非线性变换、线性变换、合成变换 标准算术和逻辑运算、先替换后置换，不含线性变换 S 盒、行移位变换、列混合变换、圈密钥加变换（AddRoundKey）    sm2-JavaScript还原 在 JavaScript 中已有比较成熟的实现库，这里推荐 sm-crypto[4]，目前支持 SM2、SM3 和 SM4，需要注意的是，SM2 非对称加密的结果由 C1、C2、C3 三部分组成，其中 C1 是生成随机数的计算出的椭圆曲线点，C2 是密文数据，C3 是 SM3 的摘要值，最开始的国密标准的结果是按 C1C2C3 顺序的，新标准的是按 C1C3C2 顺序存放的，sm-crypto 支持设置 cipherMode，也就是 C1C2C3 的排列顺序。\n以 SM2 算法为例，实现如下（其他算法和详细用法可参考其官方文档）：\nSM2 加密（encrypt）和解密（decrypt）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  // npm install sm-crypto --save  const sm2 = require('sm-crypto').sm2 // 1 - C1C3C2，0 - C1C2C3，默认为1 const cipherMode = 1 // 获取密钥对 let keypair = sm2.generateKeyPairHex() let publicKey = keypair.publicKey // 公钥 let privateKey = keypair.privateKey // 私钥  let msgString = \"this is the data to be encrypted\" let encryptData = sm2.doEncrypt(msgString, publicKey, cipherMode) // 加密结果 let decryptData = sm2.doDecrypt(encryptData, privateKey, cipherMode) // 解密结果  console.log(\"encryptData: \", encryptData) console.log(\"decryptData: \", decryptData)   sm2-python还原 在 Python 里面并没有比较官方的库来实现国密算法，这里仅列出了其中两个较为完善的第三方库，需要注意的是，SM1 和 SM7 算法不公开，目前大多库仅实现了 SM2、SM3、SM4 三种密算法。\n若要使用 SM9 算法，可下载 gmssl-python 源码手动安装。\n1  pip install gmssl   python实现功能 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  from gmssl import sm2 # 16 进制的公钥和私钥 private_key = '00B9AB0B828FF68872F21A837FC303668428DEA11DCD1B24429D0C99E24EED83D5' public_key = 'B9C9A6E04E9C91F7BA880429273747D7EF5DDEB0BB2FF6317EB00BEF331A83081A6994B8993F3F5D6EADDDB81872266C87C018FB4162F5AF347B483E24620207' sm2_crypt = sm2.CryptSM2(public_key=public_key, private_key=private_key) # 待加密数据和加密后数据为 bytes 类型 data = b\"this is the data to be encrypted\" enc_data = sm2_crypt.encrypt(data) dec_data = sm2_crypt.decrypt(enc_data) print('enc_data: ', enc_data.hex()) print('dec_data: ', dec_data)   sm4-JavaScript还原 1 2 3 4 5 6 7 8 9 10 11 12  const sm4 =require('sm-crypto').sm4 const msg='hel1o world!我是juneandgreen.'//可以为utf8串或字节数组 const key='0123456789abcdeffedcba9876543210'//可以为16进制串或字节数组，要求为128比特 let encryptData1=sm4.encrypt(msg,key) //加密，默认输出I6进制字符串，默认使用pkcs#7填充（传pkcs#5 也会走 pkcs#7 填充） let encryptData2=sm4.encrypt(msg,key,{padding:'none'}) //加密，不使用padding let encryptData3=sm4.encrypt(msg,key,{padding:'none',output:'array'}) //加，不使用padding,输出为字节数组 let encryptData4= sm4.encrypt(msg,key,{mode:'cbc',iv:'fedcba98765432100123456789abcdef'}) //加密，abc模式  console.log(encryptData1) console.log(encryptData2) console.log(encryptData3) console.log(encryptData4)   医保局实战 网站：aHR0cHM6Ly9mdXd1Lm5oc2EuZ292LmNuL25hdGlvbmFsSGFsbFN0LyMvc2VhcmNoL21lZGljYWw=\n确定逆向目标 1 2 3 4 5 6 7 8 9  请求标头 x-tif-nonce: a9osMVJb x-tif-signature: 8a99de0e6875f1ea575e5fe484e7d9c439b75af6eb6da3c5a5db162631906a78 x-tif-timestamp: 1676680203 X-Tingyun: c=B|4Nl_NnGbjwY;x=b942e523b1a7414b 请求载荷 \"SM4\" encData: \"3DFBCA4667B978F639BB23B95DCE4CC74D29CA42DCCAD792BCBAB6FA6D6C0F20CCD20943B4DAE96380B41164D761DE9742C84A985FE3BABC31CB352556BB87C9C1495DB24A29AB6BC3A85AB7FCA00F338EE714ACFC4C924F01CF575098AEF16755EE6C2B00989F3CBDACE061021CBD577D334AF16D66C5F4C5E72412B915CB27\" 写死 appCode: \"T98HPCGN5ZVVQBS8LZQNOAEXVI9GYHKQ\" \"SM2\" signData: \"UNdIK1dj7k1ENbqKA9tJxFBWtguA8iUynn4FSUp3BKdkSLQFNX4kgOkkKKShErwLTFtw3sQ4hcjnkcs8Ty8eJw==\"   全局搜索关键字，找到加密位置 请求参数加密位置如下图\n请求载荷位置如下图\n部分参数讲解 当前加密位置的js文件是通过webpack加密得出，直接整段js扣出后，全局命名变量后替换加载器\n1  var r = n(\"6c27\").sha256   下面再举一个例子\n1  h = Object(i.a)()   从该加密位置进入后如下图\n接着我们在js中导出1602模块，并打印看我们需要的方法怎么调用\n全站爬取数据只要替换数据t和数据接口URL即可 signData中的数据t\nencData中的数据t\n",
+  "wordCount" : "2212",
   "inLanguage": "en",
   "datePublished": "2022-11-30T15:02:28+08:00",
   "dateModified": "2022-11-30T15:02:28+08:00",
@@ -232,7 +232,7 @@
 
 
 
-更新:&nbsp;2022-11-30&nbsp;|&nbsp;字数:&nbsp;1890字&nbsp;|&nbsp;时长: 4分钟&nbsp;|&nbsp;
+更新:&nbsp;2022-11-30&nbsp;|&nbsp;字数:&nbsp;2212字&nbsp;|&nbsp;时长: 5分钟&nbsp;|&nbsp;
 作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
       <ul class="post-tags-meta">
         <a href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/">逆向</a>
@@ -268,18 +268,29 @@
                         <li>
                             <a href="#sm2-javascript%e8%bf%98%e5%8e%9f" aria-label="sm2-JavaScript还原">sm2-JavaScript还原</a></li>
                         <li>
-                            <a href="#sm2-python%e8%bf%98%e5%8e%9f" aria-label="sm2-python还原">sm2-python还原</a><ul>
+                            <a href="#sm2-python%e8%bf%98%e5%8e%9f" aria-label="sm2-python还原">sm2-python还原</a></li>
+                        <li>
+                            <a href="#python%e5%ae%9e%e7%8e%b0%e5%8a%9f%e8%83%bd" aria-label="python实现功能">python实现功能</a></li>
+                        <li>
+                            <a href="#sm4-javascript%e8%bf%98%e5%8e%9f" aria-label="sm4-JavaScript还原">sm4-JavaScript还原</a></li></ul>
+                        </li></ul>
+                        </li>
+                        <li>
+                            <a href="#%e5%8c%bb%e4%bf%9d%e5%b1%80%e5%ae%9e%e6%88%98" aria-label="医保局实战">医保局实战</a><ul>
+                                    <ul>
                                     
                         <li>
-                            <a href="#python%e5%ae%9e%e7%8e%b0%e5%8a%9f%e8%83%bd" aria-label="python实现功能">python实现功能</a></li></ul>
-                        </li>
+                            <a href="#%e7%a1%ae%e5%ae%9a%e9%80%86%e5%90%91%e7%9b%ae%e6%a0%87" aria-label="确定逆向目标">确定逆向目标</a></li>
                         <li>
-                            <a href="#sm4-javascript%e8%bf%98%e5%8e%9f" aria-label="sm4-JavaScript还原">sm4-JavaScript还原</a>
+                            <a href="#%e5%85%a8%e5%b1%80%e6%90%9c%e7%b4%a2%e5%85%b3%e9%94%ae%e5%ad%97%e6%89%be%e5%88%b0%e5%8a%a0%e5%af%86%e4%bd%8d%e7%bd%ae" aria-label="全局搜索关键字，找到加密位置">全局搜索关键字，找到加密位置</a></li>
+                        <li>
+                            <a href="#%e9%83%a8%e5%88%86%e5%8f%82%e6%95%b0%e8%ae%b2%e8%a7%a3" aria-label="部分参数讲解">部分参数讲解</a></li>
+                        <li>
+                            <a href="#%e5%85%a8%e7%ab%99%e7%88%ac%e5%8f%96%e6%95%b0%e6%8d%ae%e5%8f%aa%e8%a6%81%e6%9b%bf%e6%8d%a2%e6%95%b0%e6%8d%aet%e5%92%8c%e6%95%b0%e6%8d%ae%e6%8e%a5%e5%8f%a3url%e5%8d%b3%e5%8f%af" aria-label="全站爬取数据只要替换数据t和数据接口URL即可">全站爬取数据只要替换数据t和数据接口URL即可</a>
                         </li>
                     </ul>
                     </li>
                     </ul>
-                    </li>
                     </ul>
                     </li>
                     </ul>
@@ -540,7 +551,7 @@ console.log(<span style="color:#0c6">&#34;decryptData: &#34;</span>, decryptData
 <pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pip install gmssl
 </code></pre></td></tr></table>
 </div>
-</div><h5 id="python实现功能">python实现功能<a hidden class="anchor" aria-hidden="true" href="#python实现功能">#</a></h5>
+</div><h4 id="python实现功能">python实现功能<a hidden class="anchor" aria-hidden="true" href="#python实现功能">#</a></h4>
 <div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
@@ -608,7 +619,81 @@ console.log(encryptData3)
 console.log(encryptData4)
 </code></pre></td></tr></table>
 </div>
+</div><h2 id="医保局实战">医保局实战<a hidden class="anchor" aria-hidden="true" href="#医保局实战">#</a></h2>
+<p>网站：<code>aHR0cHM6Ly9mdXd1Lm5oc2EuZ292LmNuL25hdGlvbmFsSGFsbFN0LyMvc2VhcmNoL21lZGljYWw=</code></p>
+<h4 id="确定逆向目标">确定逆向目标<a hidden class="anchor" aria-hidden="true" href="#确定逆向目标">#</a></h4>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">请求标头
+    x-tif-nonce: a9osMVJb
+    x-tif-signature: 8a99de0e6875f1ea575e5fe484e7d9c439b75af6eb6da3c5a5db162631906a78
+    x-tif-timestamp: 1676680203
+    X-Tingyun: c=B|4Nl_NnGbjwY;x=b942e523b1a7414b
+请求载荷
+&#34;SM4&#34;     encData: &#34;3DFBCA4667B978F639BB23B95DCE4CC74D29CA42DCCAD792BCBAB6FA6D6C0F20CCD20943B4DAE96380B41164D761DE9742C84A985FE3BABC31CB352556BB87C9C1495DB24A29AB6BC3A85AB7FCA00F338EE714ACFC4C924F01CF575098AEF16755EE6C2B00989F3CBDACE061021CBD577D334AF16D66C5F4C5E72412B915CB27&#34;
+写死      appCode: &#34;T98HPCGN5ZVVQBS8LZQNOAEXVI9GYHKQ&#34;
+&#34;SM2&#34;    signData: &#34;UNdIK1dj7k1ENbqKA9tJxFBWtguA8iUynn4FSUp3BKdkSLQFNX4kgOkkKKShErwLTFtw3sQ4hcjnkcs8Ty8eJw==&#34;
+</code></pre></td></tr></table>
 </div>
+</div><p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/ybj01.png" alt="image-20230219224526209"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/ybj02.png" alt="image-20230219224702631"  />
+</p>
+<h4 id="全局搜索关键字找到加密位置">全局搜索关键字，找到加密位置<a hidden class="anchor" aria-hidden="true" href="#全局搜索关键字找到加密位置">#</a></h4>
+<p>请求参数加密位置如下图</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/ybj03.png" alt="image-20230219224835127"  />
+</p>
+<p>请求载荷位置如下图</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/ybj04.png" alt="image-20230219224926577"  />
+</p>
+<h4 id="部分参数讲解">部分参数讲解<a hidden class="anchor" aria-hidden="true" href="#部分参数讲解">#</a></h4>
+<p>当前加密位置的js文件是通过webpack加密得出，直接整段js扣出后，全局命名变量后替换加载器</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">var r = n(&#34;6c27&#34;).sha256
+</code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/ybj05.png" alt="image-20230219225500342"  />
+</p>
+<p>下面再举一个例子</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">h = Object(i.a)()
+</code></pre></td></tr></table>
+</div>
+</div><p>从该加密位置进入后如下图</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/ybj06.png" alt="image-20230219225640918"  />
+</p>
+<p>接着我们在js中导出<code>1602</code>模块，并打印看我们需要的方法怎么调用</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/ybj07.png" alt="image-20230219225829834"  />
+</p>
+<h4 id="全站爬取数据只要替换数据t和数据接口url即可">全站爬取数据只要替换数据t和数据接口URL即可<a hidden class="anchor" aria-hidden="true" href="#全站爬取数据只要替换数据t和数据接口url即可">#</a></h4>
+<p>signData中的数据t</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/ybj08.png" alt="image-20230219230027304"  />
+</p>
+<p>encData中的数据t</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/ybj09.png" alt="image-20230219230109631"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/ybj10.png" alt="image-20230219230324484"  />
+</p>
+
 
   </div>
 
