@@ -111,8 +111,8 @@
   "keywords": [
     ""
   ],
-  "articleBody": "JavaScript逆向基础 逆向的一些举例 头部签名验证  在请求头中有类似base64或者16进制的数据 测试：可以通过重放XHR或者重新请求观看接口参数是否改变 https://www.oklink.com/zh-cn/btc/tx-list?limit=20\u0026pageNum=1  请求参数加密  在请求参数中有类似base64或16进制的数据加密 https://www.qimai.cn/rank/index/brand/paid/device/ipad/country/cn/genre/36  响应数据加密  载荷正常，但在请求参数中可能隐藏有加密数据 https://ggzyfw.fj.gov.cn/business/list/  Cookie验证  Cookie反爬虫中一般使用无痕浏览器调试 一般步骤为：  首先请求的时候不带Cookie或者Cookie失效 定向到请求Cookie的接口，服务器返回Cookie 带着Cookie再次请求最开始请求的网址   https://www.dsedt.gov.mo/zh_CN/pg_home  打无痕浏览器并清空Cookie进行请求观察\n观察如下\nJavaScript的一些小记录   补环境，扣js最好使用var声明变量，变量放最上方\n  使用var可以重复声明变量，并最新的变量覆盖旧变量，但let不行\n  1 2 3 4 5 6  var a = 20 var a = 10 console.log(a) let b = 99 let b = 22 console.log(b)     let 声明的变量只在 let 命令所在的代码块内有效。\n  const 声明一个只读的常量，一旦声明，常量的值就不能改变。\n  总结：\n var 声明的变量属于函数作用域 var 声明的变量存在提升（hoisting）（将变量提升到当前作用域的顶部） var 变量可以重复声明 var在函数中声明的变量是属于局部变量  js的\u0026\u0026输出前后\n1 2 3 4 5 6 7 8 9 10 11 12  script alert(\"oooo\") var c = null var a = 1 var b = 10 // 如果a为真返回的结果是\u0026\u0026后面的值 \talert(a \u0026\u0026 b)\t//alert 10 \talert(a \u0026\u0026 b+2) alert(a10 \u0026\u0026 b)\t//这里是alert false \talert(c \u0026\u0026 b)\t//为假的话输出前面的c，null \tscript    对象的调用  以下的方法赋值会用到扣js赋值加密函数的逻辑\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  var Person = { name:\"hanson\", age:22, func:function (){ return this.name + this.age } } console.log(Person.name) console.log(Person.func()) //注意下面这两句的写法是不会调用当前对象的 recv_func = Person.func console.log(recv_func()) //NaN  recv2 = Person.func() console.log(recv2) //hanson22    方法的使用  1 2 3 4 5 6 7 8 9  var ll !(function (){ console.log(\"out\") function oo(){ console.log(\"inner\") } ll = oo })() ll()     两个对逆向加密十分有用的方法\n JSON.parse()：将JSON字符串转换成JavaScript的对象 JSON.stringify()：将JavaScript的值转换成JSON字符串  1 2 3 4 5 6 7  // JSON.parse()：将JSON字符串转换成JavaScript对象 var obj = JSON.parse('{\"name\":\"hanson\", \"age\":18}') console.log(obj); // JSON.stringify()：将JavaScript对象转换成JSON字符串 var json = JSON.stringify(obj) console.log(json);     注：经常使用在数据的处理方面： 比如后端返回的数据（JSON字符串）前端需要把JSON字符串转换为JavaScript值。（JSON.parse()）。体现在请求后 前端往后端传送数据，前端把JavaScript的数据转换成JSON字符串后往后端传送（JSON.stringify()）。体现在请求前\n arguments的使用  1 2 3 4 5 6 7 8 9 10 11 12  function gy(x, y) { console.log(arguments) //[Arguments] { '0': 66, '1': 99, '2': 100 }  console.log(arguments[0]) //66  console.log(arguments[2]) //100 } function gy2(x, y) { console.log(arguments) //[Arguments] {} } gy(66, 99, 100) gy2()    对象  创建了对象的一个新实例\n1  person = new Object();   这里的Object相当于祖宗一样，创建Object的实例并没有什么用处。\n特点：\n每个Object类型的实例共有的属性和方法：\n constructor： 保存着用于创建当前对象的函数。 hasOwnProperty：用于检测给定的属性在当前对象的实例中是否存在。 isPrototypeOf ： 用于检查传入的对象是否是当前对象的原型 propertyIsEnumerble ： 用于检查给定属性能否使用for-in来枚举 toLocaleString() : 返回对象的字符串表示。 toString() : 返回对象的字符串表示。 valueOf() : 返回对象的字符串，数值，或布尔表示。通常和toString() 返回的值相同。   js逆向有时候遇到{}里面有this的时候可能要全扣\n 1 2 3 4 5 6  obj = { name:'hanson' xl:function(){ return this.name + } }   ",
-  "wordCount" : "1413",
+  "articleBody": "JavaScript逆向基础 逆向的一些举例 头部签名验证  在请求头中有类似base64或者16进制的数据 测试：可以通过重放XHR或者重新请求观看接口参数是否改变 https://www.oklink.com/zh-cn/btc/tx-list?limit=20\u0026pageNum=1  请求参数加密  在请求参数中有类似base64或16进制的数据加密 https://www.qimai.cn/rank/index/brand/paid/device/ipad/country/cn/genre/36  响应数据加密  载荷正常，但在请求参数中可能隐藏有加密数据 https://ggzyfw.fj.gov.cn/business/list/  Cookie验证  Cookie反爬虫中一般使用无痕浏览器调试 一般步骤为：  首先请求的时候不带Cookie或者Cookie失效 定向到请求Cookie的接口，服务器返回Cookie 带着Cookie再次请求最开始请求的网址   https://www.dsedt.gov.mo/zh_CN/pg_home  打无痕浏览器并清空Cookie进行请求观察\n观察如下\nJavaScript的一些小记录   补环境，扣js最好使用var声明变量，变量放最上方\n  使用var可以重复声明变量，并最新的变量覆盖旧变量，但let不行\n  1 2 3 4 5 6 7 8  console.log(a); //输出：undefined var a = 1; //---------------------- //上面的两行代码相当于下面的这段代码 var a; console.log(a); a = 1;     let 声明的变量只在 let 命令所在的代码块内有效。\n  const 声明一个只读的常量，一旦声明，常量的值就不能改变。\n  总结：\n var 声明的变量属于函数作用域 var 声明的变量存在提升（hoisting）（将变量提升到当前作用域的顶部） var 变量可以重复声明 var在函数中声明的变量是属于局部变量  js的\u0026\u0026输出前后\n1 2 3 4 5 6 7 8 9 10 11 12  script alert(\"oooo\") var c = null var a = 1 var b = 10 // 如果a为真返回的结果是\u0026\u0026后面的值 \talert(a \u0026\u0026 b)\t//alert 10 \talert(a \u0026\u0026 b+2) alert(a10 \u0026\u0026 b)\t//这里是alert false \talert(c \u0026\u0026 b)\t//为假的话输出前面的c，null \tscript    对象的调用  以下的方法赋值会用到扣js赋值加密函数的逻辑\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  var Person = { name:\"hanson\", age:22, func:function (){ return this.name + this.age } } console.log(Person.name) console.log(Person.func()) //注意下面这两句的写法是不会调用当前对象的 recv_func = Person.func console.log(recv_func()) //NaN  recv2 = Person.func() console.log(recv2) //hanson22    方法的使用  1 2 3 4 5 6 7 8 9  var ll !(function (){ console.log(\"out\") function oo(){ console.log(\"inner\") } ll = oo })() ll()     两个对逆向加密十分有用的方法\n JSON.parse()：将JSON字符串转换成JavaScript的对象 JSON.stringify()：将JavaScript的值转换成JSON字符串  1 2 3 4 5 6 7  // JSON.parse()：将JSON字符串转换成JavaScript对象 var obj = JSON.parse('{\"name\":\"hanson\", \"age\":18}') console.log(obj); // JSON.stringify()：将JavaScript对象转换成JSON字符串 var json = JSON.stringify(obj) console.log(json);     注：经常使用在数据的处理方面： 比如后端返回的数据（JSON字符串）前端需要把JSON字符串转换为JavaScript值。（JSON.parse()）。体现在请求后 前端往后端传送数据，前端把JavaScript的数据转换成JSON字符串后往后端传送（JSON.stringify()）。体现在请求前\n arguments的使用  1 2 3 4 5 6 7 8 9 10 11 12  function gy(x, y) { console.log(arguments) //[Arguments] { '0': 66, '1': 99, '2': 100 }  console.log(arguments[0]) //66  console.log(arguments[2]) //100 } function gy2(x, y) { console.log(arguments) //[Arguments] {} } gy(66, 99, 100) gy2()    对象  创建了对象的一个新实例\n1  person = new Object();   这里的Object相当于祖宗一样，创建Object的实例并没有什么用处。\n特点：\n每个Object类型的实例共有的属性和方法：\n constructor： 保存着用于创建当前对象的函数。 hasOwnProperty：用于检测给定的属性在当前对象的实例中是否存在。 isPrototypeOf ： 用于检查传入的对象是否是当前对象的原型 propertyIsEnumerble ： 用于检查给定属性能否使用for-in来枚举 toLocaleString() : 返回对象的字符串表示。 toString() : 返回对象的字符串表示。 valueOf() : 返回对象的字符串，数值，或布尔表示。通常和toString() 返回的值相同。   js逆向有时候遇到{}里面有this的时候可能要全扣\n 1 2 3 4 5 6  obj = { name:'hanson' xl:function(){ return this.name + } }   补充：\n toString()  函数的toString()就是返回函数的源码，在扣取方法时可以采用这种方式直接获取（webpack）\n String()方法同样可以复制方法   逗号运算符  1 2 3 4 5  'a', 'b' // \"b\" var x = 0; var y = (x++, 10); x // 1 y // 10   ",
+  "wordCount" : "1543",
   "inLanguage": "en",
   "datePublished": "2022-11-15T10:12:52+08:00",
   "dateModified": "2022-11-15T10:12:52+08:00",
@@ -232,7 +232,7 @@
 
 
 
-更新:&nbsp;2022-11-15&nbsp;|&nbsp;字数:&nbsp;1413字&nbsp;|&nbsp;时长: 3分钟&nbsp;|&nbsp;
+更新:&nbsp;2022-11-15&nbsp;|&nbsp;字数:&nbsp;1543字&nbsp;|&nbsp;时长: 4分钟&nbsp;|&nbsp;
 作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
       <ul class="post-tags-meta">
         <a href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/">逆向</a>
@@ -403,14 +403,18 @@
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#2c5dcd;font-weight:bold">var</span> a <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">20</span>
-<span style="color:#2c5dcd;font-weight:bold">var</span> a <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">10</span>
-console.log(a)
-<span style="color:#2c5dcd;font-weight:bold">let</span> b <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">99</span>
-<span style="color:#2c5dcd;font-weight:bold">let</span> b <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">22</span>
-console.log(b)
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">console.log(a); <span style="color:#0080ff;font-style:italic">//输出：undefined
+</span><span style="color:#0080ff;font-style:italic"></span><span style="color:#2c5dcd;font-weight:bold">var</span> a <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">1</span>;
+
+<span style="color:#0080ff;font-style:italic">//----------------------
+</span><span style="color:#0080ff;font-style:italic">//上面的两行代码相当于下面的这段代码
+</span><span style="color:#0080ff;font-style:italic"></span><span style="color:#2c5dcd;font-weight:bold">var</span> a;
+console.log(a);
+a <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">1</span>;
 </code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -638,6 +642,37 @@ gy2()
         <span style="color:#2c5dcd;font-weight:bold">return</span> <span style="color:#2c5dcd;font-weight:bold">this</span>.name <span style="color:#2c5dcd">+</span>
     }
 }
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>补充</strong>：</p>
+<ul>
+<li>toString()</li>
+</ul>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202303031101064.png" alt="image-20230303110126948"  />
+</p>
+<p>函数的toString()就是返回函数的源码，在扣取方法时可以采用这种方式直接获取（webpack）</p>
+<ul>
+<li>String()方法同样可以复制方法</li>
+</ul>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202303031133092.png" alt="image-20230303113309018"  />
+</p>
+<ul>
+<li>逗号运算符</li>
+</ul>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&#39;a&#39;, &#39;b&#39; // &#34;b&#34;
+var x = 0;
+var y = (x++, 10);
+x // 1
+y // 10
 </code></pre></td></tr></table>
 </div>
 </div>
