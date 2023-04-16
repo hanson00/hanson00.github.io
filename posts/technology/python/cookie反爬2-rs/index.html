@@ -5,12 +5,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>补环境01 | Hanson&#39;s Blog</title>
+<title>Cookie反爬2 Rs | Hanson&#39;s Blog</title>
 <meta name="keywords" content="">
-<meta name="description" content="JSVMP JSVMP：js虚拟机保护方案JavaScript virtual machine protection scheme 参考文章：https://mp.weixin.qq.com/s/YDx5Dr-H">
+<meta name="description" content="描述信息">
 <meta name="author" content="
 作者:&nbsp;hanson">
-<link rel="canonical" href="https://hanson00.github.io/posts/technology/python/%E8%A1%A5%E7%8E%AF%E5%A2%8301/">
+<link rel="canonical" href="https://hanson00.github.io/posts/technology/python/cookie%E5%8F%8D%E7%88%AC2-rs/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -57,16 +57,16 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="补环境01" />
-<meta property="og:description" content="JSVMP JSVMP：js虚拟机保护方案JavaScript virtual machine protection scheme 参考文章：https://mp.weixin.qq.com/s/YDx5Dr-H" />
+</noscript><meta property="og:title" content="Cookie反爬2 Rs" />
+<meta property="og:description" content="描述信息" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://hanson00.github.io/posts/technology/python/%E8%A1%A5%E7%8E%AF%E5%A2%8301/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-03-21T16:55:49&#43;08:00" />
-<meta property="article:modified_time" content="2023-03-21T16:55:49&#43;08:00" />
+<meta property="og:url" content="https://hanson00.github.io/posts/technology/python/cookie%E5%8F%8D%E7%88%AC2-rs/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-04-11T15:08:47&#43;08:00" />
+<meta property="article:modified_time" content="2023-04-11T15:08:47&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="补环境01"/>
-<meta name="twitter:description" content="JSVMP JSVMP：js虚拟机保护方案JavaScript virtual machine protection scheme 参考文章：https://mp.weixin.qq.com/s/YDx5Dr-H"/>
+<meta name="twitter:title" content="Cookie反爬2 Rs"/>
+<meta name="twitter:description" content="描述信息"/>
 
 
 <script type="application/ld+json">
@@ -95,8 +95,8 @@
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "补环境01",
-      "item": "https://hanson00.github.io/posts/technology/python/%E8%A1%A5%E7%8E%AF%E5%A2%8301/"
+      "name": "Cookie反爬2 Rs",
+      "item": "https://hanson00.github.io/posts/technology/python/cookie%E5%8F%8D%E7%88%AC2-rs/"
     }
   ]
 }
@@ -105,24 +105,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "补环境01",
-  "name": "补环境01",
-  "description": "JSVMP JSVMP：js虚拟机保护方案JavaScript virtual machine protection scheme 参考文章：https://mp.weixin.qq.com/s/YDx5Dr-H",
+  "headline": "Cookie反爬2 Rs",
+  "name": "Cookie反爬2 Rs",
+  "description": "描述信息",
   "keywords": [
     ""
   ],
-  "articleBody": "JSVMP JSVMP：js虚拟机保护方案JavaScript virtual machine protection scheme\n参考文章：https://mp.weixin.qq.com/s/YDx5Dr-HDfAm-sAqeWW0qg\n关于JSVMP一般破解方法有三种：\n 补环境 插桩调试扣逻辑 jsrpc 自动化扣代码  头条实战  目标：https://www.toutiao.com/ 参数：_signature: _02B4Z6wo00901-PSSggAAIDC  通过查找关键字找到加密位置，进行全扣代码，有时候在补完代码后无报错，但没有正确的数据时可能是走了环境检测的假数据（空数据）可以去js里面下断点查看哪些属性没有补到。如果是遇到try…catch的异常1.可以把try…catch删掉让他报错2.可以在catch中打印报错\n逆向分析 确认加密位置 搜索关键字_signature并找到加密位置\n分析最后一句return得到\n1 2 3  t.data \u0026\u0026 (o.body = t.data), (null === (n = window.byted_acrawler) || void 0 === n || null === (a = n.sign) || void 0 === a ? void 0 : a.call(n, o)) || \"\"   最终的加密逻辑：window.byted_acrawler.sign(o)，所以该加密参数是由window.byted_acrawler.sign生成\n一、补环境 在扣出加密函数window.byted_acrawler.sign所有的js代码后，不断地调试运行补环境\n 在扣出代码后，直接运行观察报错  添加条件断点（插桩调试）\n调试报错的错误：A == 'referrer'\n得到所缺的环境\n所以补充该环境\n1 2  document = {} document.referrer = ''   补充完该环境后发现代码运行暂无问题，接着把加密代码补充上去接着运行console.log(window.byted_acrawler);，接着观察到需要补充window，并且观察代码发现需要判断window的类型（补充成global还是{}）\n经过测试，赋值为global\n接着继续运行代码后，发现并没有打印该加密方法，可能还有些环境判断不一致\n接着观察代码，把环境补一致，把目光放到jsvmp那段代码的环境判断\n直接把那段三元表示式的值修改正确\"undefined\" != typeof exports ? exports : void 0修改为void 0\n成功发现打印了sign方法，补充完整加密函数window.byted_acrawler.sign(o)运行看看\n使用完整加密逻辑后继续报错\n接着我们使用相同的方法对该环境进行补充\n到length报错，length是获取属性值的长度\n我们在Pycharm中调试观察\n发现是protocol的缺失导致长度length没有找到\n1 2 3 4  // 补环境 location = { protocol:\"https:\" }   二、补真正的浏览器环境  通过flask框架去跑JavaScript代码 通过selenium跑  ",
-  "wordCount" : "1056",
+  "articleBody": "瑞数安全 补环境-简单 在遇到缺失的环境时，\n 要不直接观察吐出的环境直接补 或者去浏览器中调试观察后再进行补环境 成功跑出环境后  只需要替换content和自执行方法（可能有随机数和时间戳） js文件可以固定    扣代码-有难度 扣代码可以知道需要补什么环境\n",
+  "wordCount" : "118",
   "inLanguage": "en",
-  "datePublished": "2023-03-21T16:55:49+08:00",
-  "dateModified": "2023-03-21T16:55:49+08:00",
+  "datePublished": "2023-04-11T15:08:47+08:00",
+  "dateModified": "2023-04-11T15:08:47+08:00",
   "author":[{
     "@type": "Person",
     "name": "hanson"
   }],
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://hanson00.github.io/posts/technology/python/%E8%A1%A5%E7%8E%AF%E5%A2%8301/"
+    "@id": "https://hanson00.github.io/posts/technology/python/cookie%E5%8F%8D%E7%88%AC2-rs/"
   },
   "publisher": {
     "@type": "Organization",
@@ -216,8 +216,11 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/python/">Python文章</a></div>
     <h1 class="post-title">
-      补环境01
+      Cookie反爬2 Rs
     </h1>
+    <div class="post-description">
+      描述信息
+    </div>
     <div class="post-meta">
 
 
@@ -229,7 +232,7 @@
 
 
 
-更新:&nbsp;2023-03-21&nbsp;|&nbsp;字数:&nbsp;1056字&nbsp;|&nbsp;时长: 3分钟&nbsp;|&nbsp;
+更新:&nbsp;2023-04-11&nbsp;|&nbsp;字数:&nbsp;118字&nbsp;|&nbsp;时长: 1分钟&nbsp;|&nbsp;
 作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
       <ul class="post-tags-meta">
         <a href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/">逆向</a>
@@ -250,25 +253,13 @@
 
                 <div class="inner"><ul>
                         <li>
-                            <a href="#jsvmp" aria-label="JSVMP">JSVMP</a><ul>
+                            <a href="#%e7%91%9e%e6%95%b0%e5%ae%89%e5%85%a8" aria-label="瑞数安全">瑞数安全</a><ul>
                                     
                         <li>
-                            <a href="#%e5%a4%b4%e6%9d%a1%e5%ae%9e%e6%88%98" aria-label="头条实战">头条实战</a><ul>
-                                    
+                            <a href="#%e8%a1%a5%e7%8e%af%e5%a2%83-%e7%ae%80%e5%8d%95" aria-label="补环境-简单">补环境-简单</a></li>
                         <li>
-                            <a href="#%e9%80%86%e5%90%91%e5%88%86%e6%9e%90" aria-label="逆向分析">逆向分析</a><ul>
-                                    
-                        <li>
-                            <a href="#%e7%a1%ae%e8%ae%a4%e5%8a%a0%e5%af%86%e4%bd%8d%e7%bd%ae" aria-label="确认加密位置">确认加密位置</a></li>
-                        <li>
-                            <a href="#%e4%b8%80%e8%a1%a5%e7%8e%af%e5%a2%83" aria-label="一、补环境">一、补环境</a></li>
-                        <li>
-                            <a href="#%e4%ba%8c%e8%a1%a5%e7%9c%9f%e6%ad%a3%e7%9a%84%e6%b5%8f%e8%a7%88%e5%99%a8%e7%8e%af%e5%a2%83" aria-label="二、补真正的浏览器环境">二、补真正的浏览器环境</a>
+                            <a href="#%e6%89%a3%e4%bb%a3%e7%a0%81-%e6%9c%89%e9%9a%be%e5%ba%a6" aria-label="扣代码-有难度">扣代码-有难度</a>
                         </li>
-                    </ul>
-                    </li>
-                    </ul>
-                    </li>
                     </ul>
                     </li>
                     </ul>
@@ -335,114 +326,21 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h1 id="jsvmp">JSVMP<a hidden class="anchor" aria-hidden="true" href="#jsvmp">#</a></h1>
-<p><code>JSVMP</code>：js虚拟机保护方案JavaScript virtual machine protection scheme</p>
-<p>参考文章：https://mp.weixin.qq.com/s/YDx5Dr-HDfAm-sAqeWW0qg</p>
-<p>关于JSVMP一般破解方法有三种：</p>
+  <div class="post-content"><h1 id="瑞数安全">瑞数安全<a hidden class="anchor" aria-hidden="true" href="#瑞数安全">#</a></h1>
+<h2 id="补环境-简单">补环境-简单<a hidden class="anchor" aria-hidden="true" href="#补环境-简单">#</a></h2>
+<p>在遇到缺失的环境时，</p>
 <ol>
-<li>补环境</li>
-<li>插桩调试扣逻辑</li>
-<li>jsrpc</li>
-<li>自动化扣代码</li>
-</ol>
-<h2 id="头条实战">头条实战<a hidden class="anchor" aria-hidden="true" href="#头条实战">#</a></h2>
-<ul>
-<li>目标：https://www.toutiao.com/</li>
-<li>参数：<code>_signature:  _02B4Z6wo00901-PSSggAAIDC</code></li>
-</ul>
-<p>通过查找关键字找到加密位置，进行全扣代码，有时候在补完代码后无报错，但没有正确的数据时可能是走了环境检测的假数据（空数据）可以去js里面下断点查看哪些属性没有补到。如果是遇到try&hellip;catch的异常1.可以把try&hellip;catch删掉让他报错2.可以在catch中打印报错</p>
-<h3 id="逆向分析">逆向分析<a hidden class="anchor" aria-hidden="true" href="#逆向分析">#</a></h3>
-<h4 id="确认加密位置">确认加密位置<a hidden class="anchor" aria-hidden="true" href="#确认加密位置">#</a></h4>
-<p>搜索关键字<code>_signature</code>并找到加密位置</p>
-<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/tt32201.png" alt="image-20230322080943251"  />
-</p>
-<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/tt32202.png" alt="image-20230322081037489"  />
-</p>
-<p>分析最后一句return得到</p>
-<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">t.data <span style="color:#2c5dcd">&amp;&amp;</span> (o.body <span style="color:#2c5dcd">=</span> t.data),
-            (<span style="color:#2c5dcd;font-weight:bold">null</span> <span style="color:#2c5dcd">===</span> (n <span style="color:#2c5dcd">=</span> <span style="color:#5918bb;font-weight:bold">window</span>.byted_acrawler) <span style="color:#2c5dcd">||</span> <span style="color:#2c5dcd;font-weight:bold">void</span> <span style="color:#5918bb;font-weight:bold">0</span> <span style="color:#2c5dcd">===</span> n <span style="color:#2c5dcd">||</span> <span style="color:#2c5dcd;font-weight:bold">null</span> <span style="color:#2c5dcd">===</span> (a <span style="color:#2c5dcd">=</span> n.sign) <span style="color:#2c5dcd">||</span> <span style="color:#2c5dcd;font-weight:bold">void</span> <span style="color:#5918bb;font-weight:bold">0</span> <span style="color:#2c5dcd">===</span> a <span style="color:#2c5dcd">?</span> <span style="color:#2c5dcd;font-weight:bold">void</span> <span style="color:#5918bb;font-weight:bold">0</span> <span style="color:#2c5dcd">:</span> a.call(n, o)) <span style="color:#2c5dcd">||</span> <span style="color:#0c6">&#34;&#34;</span>
-
-</code></pre></td></tr></table>
-</div>
-</div><p>最终的加密逻辑：<code>window.byted_acrawler.sign(o)</code>，所以该加密参数是由window.byted_acrawler.sign生成</p>
-<h4 id="一补环境">一、补环境<a hidden class="anchor" aria-hidden="true" href="#一补环境">#</a></h4>
-<p>在扣出加密函数window.byted_acrawler.sign所有的js代码后，不断地调试运行补环境</p>
+<li>要不直接观察吐出的环境直接补</li>
+<li>或者去浏览器中调试观察后再进行补环境</li>
+<li>成功跑出环境后
 <ol>
-<li>在扣出代码后，直接运行观察报错</li>
+<li>只需要替换content和自执行方法（可能有随机数和时间戳）</li>
+<li>js文件可以固定</li>
 </ol>
-<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/tt32203.png" alt="image-20230322081743064"  />
-</p>
-<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/tt032204.png" alt="image-20230322082113363"  />
-</p>
-<p>添加条件断点（插桩调试）</p>
-<p><code>调试报错的错误：A == 'referrer'</code></p>
-<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/tt032205.png" alt="image-20230322082244326"  />
-</p>
-<p>得到所缺的环境</p>
-<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/tt032206.png" alt="image-20230322082414165"  />
-</p>
-<p>所以补充该环境</p>
-<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#5918bb;font-weight:bold">document</span> <span style="color:#2c5dcd">=</span> {}
-<span style="color:#5918bb;font-weight:bold">document</span>.referrer <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;&#39;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>补充完该环境后发现代码运行暂无问题，接着把加密代码补充上去接着运行<code>console.log(window.byted_acrawler);</code>，接着观察到需要补充window，并且观察代码发现需要判断window的类型（补充成global还是{}）</p>
-<p>经过测试，赋值为global</p>
-<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/tt032207.png" alt="image-20230322082837574"  />
-</p>
-<p>接着继续运行代码后，发现并没有打印该加密方法，可能还有些环境判断不一致</p>
-<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/tt032208.png" alt="image-20230322083008778"  />
-</p>
-<p>接着观察代码，把环境补一致，把目光放到jsvmp那段代码的环境判断</p>
-<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/tt032209.png" alt="image-20230322083310290"  />
-</p>
-<p>直接把那段三元表示式的值修改正确<code>&quot;undefined&quot; != typeof exports ? exports : void 0</code>修改为<code>void 0</code></p>
-<p>成功发现打印了sign方法，补充完整加密函数window.byted_acrawler.sign(o)运行看看</p>
-<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/tt032210.png" alt="image-20230322083453987"  />
-</p>
-<p>使用完整加密逻辑后继续报错</p>
-<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/tt032211.png" alt="image-20230322102907331"  />
-</p>
-<p>接着我们使用相同的方法对该环境进行补充</p>
-<p>到<code>length</code>报错，length是获取属性值的长度</p>
-<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/tt032212.png" alt="image-20230322103631000"  />
-</p>
-<p>我们在Pycharm中调试观察</p>
-<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/tt032213.png" alt="image-20230322103849705"  />
-</p>
-<p>发现是protocol的缺失导致长度length没有找到</p>
-<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#0080ff;font-style:italic">// 补环境
-</span><span style="color:#0080ff;font-style:italic"></span>location <span style="color:#2c5dcd">=</span> {
-    protocol<span style="color:#2c5dcd">:</span><span style="color:#0c6">&#34;https:&#34;</span>
-}
-</code></pre></td></tr></table>
-</div>
-</div><h4 id="二补真正的浏览器环境">二、补真正的浏览器环境<a hidden class="anchor" aria-hidden="true" href="#二补真正的浏览器环境">#</a></h4>
-<ol>
-<li>通过flask框架去跑JavaScript代码</li>
-<li>通过selenium跑</li>
+</li>
 </ol>
+<h2 id="扣代码-有难度">扣代码-有难度<a hidden class="anchor" aria-hidden="true" href="#扣代码-有难度">#</a></h2>
+<p>扣代码可以知道需要补什么环境</p>
 
 
   </div>
@@ -453,15 +351,15 @@
       <li><a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://hanson00.github.io/posts/technology/python/%E8%A1%A5%E7%8E%AF%E5%A2%8302/">
+  <a class="prev" href="https://hanson00.github.io/posts/technology/python/%E9%AA%8C%E8%AF%81%E7%A0%81/">
     <span class="title">« Prev</span>
     <br>
-    <span>补环境02</span>
+    <span>验证码</span>
   </a>
-  <a class="next" href="https://hanson00.github.io/posts/technology/python/ast%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF/">
+  <a class="next" href="https://hanson00.github.io/posts/technology/python/ast%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF2/">
     <span class="title">Next »</span>
     <br>
-    <span>Ast混淆技术</span>
+    <span>Ast混淆技术2</span>
   </a>
 </nav>
 

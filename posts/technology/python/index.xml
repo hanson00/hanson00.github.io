@@ -6,7 +6,61 @@
     <description>Recent content in Python文章 on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 21 Mar 2023 16:55:49 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/posts/technology/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Apr 2023 10:04:44 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/posts/technology/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Scrapy学习2.0</title>
+      <link>https://hanson00.github.io/posts/technology/python/scrapy%E5%AD%A6%E4%B9%A02.0/</link>
+      <pubDate>Sun, 16 Apr 2023 10:04:44 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/scrapy%E5%AD%A6%E4%B9%A02.0/</guid>
+      <description>描述信息</description>
+    </item>
+    
+    <item>
+      <title>验证码</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E9%AA%8C%E8%AF%81%E7%A0%81/</link>
+      <pubDate>Wed, 12 Apr 2023 15:35:08 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E9%AA%8C%E8%AF%81%E7%A0%81/</guid>
+      <description>描述信息</description>
+    </item>
+    
+    <item>
+      <title>Cookie反爬2 Rs</title>
+      <link>https://hanson00.github.io/posts/technology/python/cookie%E5%8F%8D%E7%88%AC2-rs/</link>
+      <pubDate>Tue, 11 Apr 2023 15:08:47 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/cookie%E5%8F%8D%E7%88%AC2-rs/</guid>
+      <description>描述信息</description>
+    </item>
+    
+    <item>
+      <title>Ast混淆技术2</title>
+      <link>https://hanson00.github.io/posts/technology/python/ast%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF2/</link>
+      <pubDate>Thu, 06 Apr 2023 07:40:15 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/ast%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF2/</guid>
+      <description>描述信息</description>
+    </item>
+    
+    <item>
+      <title>Cookie反爬</title>
+      <link>https://hanson00.github.io/posts/technology/python/cookie%E5%8F%8D%E7%88%AC/</link>
+      <pubDate>Sat, 25 Mar 2023 22:33:33 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/cookie%E5%8F%8D%E7%88%AC/</guid>
+      <description>描述信息</description>
+    </item>
+    
+    <item>
+      <title>补环境02</title>
+      <link>https://hanson00.github.io/posts/technology/python/%E8%A1%A5%E7%8E%AF%E5%A2%8302/</link>
+      <pubDate>Fri, 24 Mar 2023 10:01:17 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/python/%E8%A1%A5%E7%8E%AF%E5%A2%8302/</guid>
+      <description>补环境 掌握自动吐坏境操作 掌握环境差异化hook操作 补JS里面这个方法报错的环境、让他与浏览器尽量保持一致 让代码能够正常按流程执行 自动吐环境脚</description>
+    </item>
+    
     <item>
       <title>补环境01</title>
       <link>https://hanson00.github.io/posts/technology/python/%E8%A1%A5%E7%8E%AF%E5%A2%8301/</link>
