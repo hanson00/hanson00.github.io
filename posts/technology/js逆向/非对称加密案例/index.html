@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>非对称加密案例 | Hanson&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="关于逆向加密算法的一些学习，非对称加密">
+<meta name="author" content="
+作者:&nbsp;hanson">
+<link rel="canonical" href="https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E6%A1%88%E4%BE%8B/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.845a44c8f19c77e054f472b3a0bacb3d33effea14f20590af5e97de848f8ab8b.css" integrity="sha256-hFpEyPGcd&#43;BU9HKzoLrLPTPv/qFPIFkK9el96Ej4q4s=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hanson00.github.io/posts/imgs/favicon16x16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hanson00.github.io/posts/imgs/favicon32x32.ico">
+<link rel="apple-touch-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<link rel="mask-icon" href="https://hanson00.github.io/posts/imgs/66.jpg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="非对称加密案例" />
+<meta property="og:description" content="关于逆向加密算法的一些学习，非对称加密" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E6%A1%88%E4%BE%8B/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-27T09:36:12&#43;08:00" />
+<meta property="article:modified_time" content="2023-01-27T09:36:12&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="非对称加密案例"/>
+<meta name="twitter:description" content="关于逆向加密算法的一些学习，非对称加密"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hanson00.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "💻技术类文章",
+      "item": "https://hanson00.github.io/posts/technology/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "非对称加密案例",
+      "item": "https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E6%A1%88%E4%BE%8B/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "非对称加密案例",
+  "name": "非对称加密案例",
+  "description": "关于逆向加密算法的一些学习，非对称加密",
+  "keywords": [
+    ""
+  ],
+  "articleBody": "早期一些非对称加密的记录 苏宁密码逆向 苏宁密码是采用标准的非对称加密算法包进行加密\n1 2 3  var encrypt = new JSEncrypt(); // 创建加密算法包JSEncrypt() encrypt.setPublicKey(loginPBK); var pwd2 = encrypt.encrypt(pwd);   1.观察密文特征大致猜测加密算法，并定位加密位置 通过启动器定位加密位置\n接着再次发包，断点观察\n2.进入加密算法创建位置后，观察加密算法，进行全扣 从**var encrypt = new JSEncrypt()**进入后跳到var a3 = function\n稍微从该位置往后观察发现如下\n全扣代码如下，定位到所需代码的位置进行观察看他在哪一个包\n然后删除无用的代码，保留目标代码\n3.加密代码分析 var encrypt = new JSEncrypt() 相当于创建了 a3算法包\n1 2 3  var encrypt = new JSEncrypt(); // 创建加密算法包JSEncrypt() \tencrypt.setPublicKey(loginPBK); var pwd2 = encrypt.encrypt(pwd);   a3是一开始**new JSEncrypt()加密算法跳的位置，所以a3是关键字，下面的a3.prototype.encrypt =…**可以理解为都是a3的一些算法包\n 1  encrypt.setPublicKey(loginPBK);   loginPBK在当前js文件往上查找，或者直接搜索，有时候publicKey可能是通过前一次请求响应得到，苏宁是写死的\n1 2  var loginPBK=\"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQComqoAyvbCqO1EGsADwfNTWFQIUbm8CLdeb9TgjGLcz95mAo204SqTYdSEUxFsOnPfROOTxhkhfjbRxBV4/xjS06Y+kkUdiMGFtABIxRQHQIh0LrVvEZQs4NrixxcPI+b1bpE0gO/GAFSNWm9ejhZGj7UnqiHphnSJAVQNz2lgowIDAQAB\";   最后补充完逻辑，并补环境运行即可\n百度密码逆向 百度的登录请求不是XHR请求，无法从启动器中观察逻辑，并且百度的publicKey是前一次请求返回的\n1  password = e.RSA.encrypt(o)   1.发包和观察包，以及密码加密位置定位 2.进入加密位置 3.全扣代码后，定位到我们所需的加密位置，判断是哪个加密函数（包）里 扣出目标代码后还需要补充publicKey的代码逻辑，publicKey在别的接口返回\n1 2 3 4 5 6 7  bd__cbs__bnt33n({ \"errno\": '0', \"msg\": '', \"pubkey\": '-----BEGIN PUBLIC KEY-----\\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC9xMWOxIyBXG2NqmQ+VCJlOeWE\\nvHmJ+sOlNbU1qLcuOw+G8rzj4PBlIDx9A2AECuSOABn01Ctqb64c85RNzjeCs0QR\\nqyGF4oS4dmv+2ida2utVy8Q39+K8bH8Aq93wf\\/YOceq0A8f1rezqusrL2NkHglif\\nFkblo2ymOBa2kMtxhwIDAQAB\\n-----END PUBLIC KEY-----\\n', \"key\": '1SfwQAQyX0q6Sm0jMJAmoDwW6seHrkjq', \"traceid\": \"A3CBDB01\" })   根据密码的加密逻辑，然后搜索e.RAS找到publicKey的加密逻辑\n进入后发现与我们扣出的代码有相同之处\n补充代码后删除无用逻辑，最后代码如下\n",
+  "wordCount" : "719",
+  "inLanguage": "en",
+  "datePublished": "2023-01-27T09:36:12+08:00",
+  "dateModified": "2023-01-27T09:36:12+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "hanson"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E6%A1%88%E4%BE%8B/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hanson's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hanson00.github.io/posts/imgs/66.jpg"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hanson00.github.io/" accesskey="h" title="Hanson&#39;s Blog (Alt + H)">Hanson&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hanson00.github.io/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hanson00.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://hanson00.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://hanson00.github.io/posts/technology/">💻技术类文章</a></div>
+    <h1 class="post-title">
+      非对称加密案例
+    </h1>
+    <div class="post-description">
+      关于逆向加密算法的一些学习，非对称加密
+    </div>
+    <div class="post-meta">
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;2023-01-27&nbsp;|&nbsp;字数:&nbsp;719字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
+作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
+      <ul class="post-tags-meta">
+        <a href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/">逆向</a>
+        <a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">、爬虫</a>
+      </ul>
+
+      <span id="busuanzi_container_page_pv">
+        &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+      </span>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#%e6%97%a9%e6%9c%9f%e4%b8%80%e4%ba%9b%e9%9d%9e%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86%e7%9a%84%e8%ae%b0%e5%bd%95" aria-label="早期一些非对称加密的记录">早期一些非对称加密的记录</a><ul>
+                                    
+                        <li>
+                            <a href="#%e8%8b%8f%e5%ae%81%e5%af%86%e7%a0%81%e9%80%86%e5%90%91" aria-label="苏宁密码逆向">苏宁密码逆向</a><ul>
+                                    <ul>
+                                    
+                        <li>
+                            <a href="#1%e8%a7%82%e5%af%9f%e5%af%86%e6%96%87%e7%89%b9%e5%be%81%e5%a4%a7%e8%87%b4%e7%8c%9c%e6%b5%8b%e5%8a%a0%e5%af%86%e7%ae%97%e6%b3%95%e5%b9%b6%e5%ae%9a%e4%bd%8d%e5%8a%a0%e5%af%86%e4%bd%8d%e7%bd%ae" aria-label="1.观察密文特征大致猜测加密算法，并定位加密位置">1.观察密文特征大致猜测加密算法，并定位加密位置</a></li>
+                        <li>
+                            <a href="#2%e8%bf%9b%e5%85%a5%e5%8a%a0%e5%af%86%e7%ae%97%e6%b3%95%e5%88%9b%e5%bb%ba%e4%bd%8d%e7%bd%ae%e5%90%8e%e8%a7%82%e5%af%9f%e5%8a%a0%e5%af%86%e7%ae%97%e6%b3%95%e8%bf%9b%e8%a1%8c%e5%85%a8%e6%89%a3" aria-label="2.进入加密算法创建位置后，观察加密算法，进行全扣">2.进入加密算法创建位置后，观察加密算法，进行全扣</a></li>
+                        <li>
+                            <a href="#3%e5%8a%a0%e5%af%86%e4%bb%a3%e7%a0%81%e5%88%86%e6%9e%90" aria-label="3.加密代码分析">3.加密代码分析</a></li></ul>
+                                </ul>
+                        </li>
+                        <li>
+                            <a href="#%e7%99%be%e5%ba%a6%e5%af%86%e7%a0%81%e9%80%86%e5%90%91" aria-label="百度密码逆向">百度密码逆向</a><ul>
+                                    <ul>
+                                    
+                        <li>
+                            <a href="#1%e5%8f%91%e5%8c%85%e5%92%8c%e8%a7%82%e5%af%9f%e5%8c%85%e4%bb%a5%e5%8f%8a%e5%af%86%e7%a0%81%e5%8a%a0%e5%af%86%e4%bd%8d%e7%bd%ae%e5%ae%9a%e4%bd%8d" aria-label="1.发包和观察包，以及密码加密位置定位">1.发包和观察包，以及密码加密位置定位</a></li>
+                        <li>
+                            <a href="#2%e8%bf%9b%e5%85%a5%e5%8a%a0%e5%af%86%e4%bd%8d%e7%bd%ae" aria-label="2.进入加密位置">2.进入加密位置</a></li>
+                        <li>
+                            <a href="#3%e5%85%a8%e6%89%a3%e4%bb%a3%e7%a0%81%e5%90%8e%e5%ae%9a%e4%bd%8d%e5%88%b0%e6%88%91%e4%bb%ac%e6%89%80%e9%9c%80%e7%9a%84%e5%8a%a0%e5%af%86%e4%bd%8d%e7%bd%ae%e5%88%a4%e6%96%ad%e6%98%af%e5%93%aa%e4%b8%aa%e5%8a%a0%e5%af%86%e5%87%bd%e6%95%b0%e5%8c%85%e9%87%8c" aria-label="3.全扣代码后，定位到我们所需的加密位置，判断是哪个加密函数（包）里">3.全扣代码后，定位到我们所需的加密位置，判断是哪个加密函数（包）里</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h1 id="早期一些非对称加密的记录">早期一些非对称加密的记录<a hidden class="anchor" aria-hidden="true" href="#早期一些非对称加密的记录">#</a></h1>
+<h2 id="苏宁密码逆向">苏宁密码逆向<a hidden class="anchor" aria-hidden="true" href="#苏宁密码逆向">#</a></h2>
+<p>苏宁密码是采用标准的非对称加密算法包进行加密</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#2c5dcd;font-weight:bold">var</span> encrypt <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">new</span> JSEncrypt();  <span style="color:#0080ff;font-style:italic">// 创建加密算法包JSEncrypt()
+</span><span style="color:#0080ff;font-style:italic"></span>encrypt.setPublicKey(loginPBK);
+<span style="color:#2c5dcd;font-weight:bold">var</span> pwd2 <span style="color:#2c5dcd">=</span> encrypt.encrypt(pwd);
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="1观察密文特征大致猜测加密算法并定位加密位置">1.观察密文特征大致猜测加密算法，并定位加密位置<a hidden class="anchor" aria-hidden="true" href="#1观察密文特征大致猜测加密算法并定位加密位置">#</a></h4>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/suning2301.png" alt="image-20230127094643393"  />
+</p>
+<p><strong>通过启动器定位加密位置</strong></p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/suning2302.png" alt="image-20230127094806201"  />
+</p>
+<p>接着再次发包，断点观察</p>
+<h4 id="2进入加密算法创建位置后观察加密算法进行全扣">2.进入加密算法创建位置后，观察加密算法，进行全扣<a hidden class="anchor" aria-hidden="true" href="#2进入加密算法创建位置后观察加密算法进行全扣">#</a></h4>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/suning2303.png" alt="image-20230127094916412"  />
+</p>
+<p>从**var encrypt = new JSEncrypt()**进入后跳到var a3 = function</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/suning2304.png" alt="image-20230127094947158"  />
+</p>
+<p>稍微从该位置往后观察发现如下</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/suning2305.png" alt="image-20230127095448234"  />
+</p>
+<p>全扣代码如下，定位到所需代码的位置进行观察看他在哪一个包</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/suning2306.png" alt="image-20230127095719331"  />
+</p>
+<p>然后删除无用的代码，保留目标代码</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/suning2307.png" alt="image-20230127095822062"  />
+</p>
+<h4 id="3加密代码分析">3.加密代码分析<a hidden class="anchor" aria-hidden="true" href="#3加密代码分析">#</a></h4>
+<p>var encrypt = new JSEncrypt()  相当于创建了 a3算法包</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">			<span style="color:#2c5dcd;font-weight:bold">var</span> encrypt <span style="color:#2c5dcd">=</span> <span style="color:#2c5dcd;font-weight:bold">new</span> JSEncrypt();  <span style="color:#0080ff;font-style:italic">// 创建加密算法包JSEncrypt()
+</span><span style="color:#0080ff;font-style:italic"></span>			encrypt.setPublicKey(loginPBK);
+			<span style="color:#2c5dcd;font-weight:bold">var</span> pwd2 <span style="color:#2c5dcd">=</span> encrypt.encrypt(pwd);
+</code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/suning2308.png" alt="image-20230127100117201"  />
+</p>
+<p>a3是一开始**new JSEncrypt()<strong>加密算法跳的位置，所以a3是关键字，下面的</strong>a3.prototype.encrypt =&hellip;**可以理解为都是a3的一些算法包</p>
+<hr>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">encrypt.setPublicKey(loginPBK);
+</code></pre></td></tr></table>
+</div>
+</div><p>loginPBK在当前js文件往上查找，或者直接搜索，有时候publicKey可能是通过前一次请求响应得到，苏宁是写死的</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">        var loginPBK=&#34;MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQComqoAyvbCqO1EGsADwfNTWFQIUbm8CLdeb9TgjGLcz95mAo204SqTYdSEUxFsOnPfROOTxhkhfjbRxBV4/xjS06Y+kkUdiMGFtABIxRQHQIh0LrVvEZQs4NrixxcPI+b1bpE0gO/GAFSNWm9ejhZGj7UnqiHphnSJAVQNz2lgowIDAQAB&#34;;
+
+</code></pre></td></tr></table>
+</div>
+</div><p>最后补充完逻辑，并补环境运行即可</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/suning2309.png" alt="image-20230127100746670"  />
+</p>
+<h2 id="百度密码逆向">百度密码逆向<a hidden class="anchor" aria-hidden="true" href="#百度密码逆向">#</a></h2>
+<p>百度的登录请求不是XHR请求，无法从启动器中观察逻辑，并且百度的publicKey是前一次请求返回的</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">password <span style="color:#2c5dcd">=</span> e.RSA.encrypt(o)
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="1发包和观察包以及密码加密位置定位">1.发包和观察包，以及密码加密位置定位<a hidden class="anchor" aria-hidden="true" href="#1发包和观察包以及密码加密位置定位">#</a></h4>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/baidu2301.png" alt="image-20230127104605509"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/baidu2302.png" alt="image-20230127104647248"  />
+</p>
+<h4 id="2进入加密位置">2.进入加密位置<a hidden class="anchor" aria-hidden="true" href="#2进入加密位置">#</a></h4>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/baidu2303.png" alt="image-20230127104817028"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/baidu2304.png" alt="image-20230127104849453"  />
+</p>
+<h4 id="3全扣代码后定位到我们所需的加密位置判断是哪个加密函数包里">3.全扣代码后，定位到我们所需的加密位置，判断是哪个加密函数（包）里<a hidden class="anchor" aria-hidden="true" href="#3全扣代码后定位到我们所需的加密位置判断是哪个加密函数包里">#</a></h4>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/baidu2305.png" alt="image-20230127105109461"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/baidu2306.png" alt="image-20230127105152180"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/baidu2307.png" alt="image-20230127105239947"  />
+</p>
+<p>扣出目标代码后还需要补充publicKey的代码逻辑，publicKey在别的接口返回</p>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">bd__cbs__bnt33n({
+    <span style="color:#0c6">&#34;errno&#34;</span><span style="color:#2c5dcd">:</span> <span style="color:#0c6">&#39;0&#39;</span>,
+    <span style="color:#0c6">&#34;msg&#34;</span><span style="color:#2c5dcd">:</span> <span style="color:#0c6">&#39;&#39;</span>,
+    <span style="color:#0c6">&#34;pubkey&#34;</span><span style="color:#2c5dcd">:</span> <span style="color:#0c6">&#39;-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC9xMWOxIyBXG2NqmQ+VCJlOeWE\nvHmJ+sOlNbU1qLcuOw+G8rzj4PBlIDx9A2AECuSOABn01Ctqb64c85RNzjeCs0QR\nqyGF4oS4dmv+2ida2utVy8Q39+K8bH8Aq93wf\/YOceq0A8f1rezqusrL2NkHglif\nFkblo2ymOBa2kMtxhwIDAQAB\n-----END PUBLIC KEY-----\n&#39;</span>,
+    <span style="color:#0c6">&#34;key&#34;</span><span style="color:#2c5dcd">:</span> <span style="color:#0c6">&#39;1SfwQAQyX0q6Sm0jMJAmoDwW6seHrkjq&#39;</span>,
+    <span style="color:#0c6">&#34;traceid&#34;</span><span style="color:#2c5dcd">:</span> <span style="color:#0c6">&#34;A3CBDB01&#34;</span>
+})
+</code></pre></td></tr></table>
+</div>
+</div><p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/baidu2308.png" alt="image-20230127105819152"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/baidu2309.png" alt="image-20230127105908883"  />
+</p>
+<p>根据密码的加密逻辑，然后搜索<strong>e.RAS</strong>找到publicKey的加密逻辑</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/baidu2310.png" alt="image-20230127110053554"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/baidu2311.png" alt="image-20230127110117854"  />
+</p>
+<p>进入后发现与我们扣出的代码有相同之处</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/baidu2322.png" alt="image-20230127110203646"  />
+</p>
+<p>补充代码后删除无用逻辑，最后代码如下</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/baidu2313.png" alt="image-20230127110626623"  />
+</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/">逆向</a></li>
+      <li><a href="https://hanson00.github.io/tags/%E7%88%AC%E8%99%AB/">爬虫</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/webpack%E5%AD%A6%E4%B9%A0/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Webpack学习2.0</span>
+  </a>
+  <a class="next" href="https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A01.5%E6%B7%B7%E6%B7%86%E7%AF%87/">
+    <span class="title">Next »</span>
+    <br>
+    <span>逆向学习1.5混淆篇</span>
+  </a>
+</nav>
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>✨昵称输入QQ号可以自动关联✨
+        <hr />
+
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.staticfile.org/twikoo/1.5.11/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo1-mu.vercel.app/",  
+            el: "#tcomment",
+            lang: 'zh-CN',
+            region: 'ap-guangzhou',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://hanson00.github.io/">Hanson&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
