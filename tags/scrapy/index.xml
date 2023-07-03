@@ -13,7 +13,7 @@
       <pubDate>Sun, 16 Apr 2023 10:04:44 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/scrapy%E5%AD%A6%E4%B9%A02.0/</guid>
-      <description>描述信息</description>
+      <description>Scrapy学习补充 不论是中间件还是管道都记得在配置文件中打开 Scrapy中间件 Downloader Middleware下载中间件，可以对请求进行处理，也可以</description>
     </item>
     
     <item>

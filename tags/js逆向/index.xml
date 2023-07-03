@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>逆向 on Hanson&#39;s Blog</title>
-    <link>https://hanson00.github.io/tags/%E9%80%86%E5%90%91/</link>
-    <description>Recent content in 逆向 on Hanson&#39;s Blog</description>
+    <title>js逆向 on Hanson&#39;s Blog</title>
+    <link>https://hanson00.github.io/tags/js%E9%80%86%E5%90%91/</link>
+    <description>Recent content in js逆向 on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 12 Apr 2023 15:35:08 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/%E9%80%86%E5%90%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Apr 2023 15:35:08 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/js%E9%80%86%E5%90%91/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>验证码</title>
       <link>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E9%AA%8C%E8%AF%81%E7%A0%81/</link>
       <pubDate>Wed, 12 Apr 2023 15:35:08 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E9%AA%8C%E8%AF%81%E7%A0%81/</guid>
-      <description>描述信息</description>
+      <description>验证码专题 验证码本质上就是难度较大的签名认证信息 当验证成功后会返回一个签名信息，以后携带这个签名信息访问即可 上面的签名参数 验证码验证成功时返</description>
     </item>
     
     <item>
@@ -22,7 +22,7 @@
       <pubDate>Tue, 11 Apr 2023 15:08:47 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/cookie%E5%8F%8D%E7%88%AC2-rs/</guid>
-      <description>描述信息</description>
+      <description>瑞数安全 补环境-简单 在遇到缺失的环境时， 要不直接观察吐出的环境直接补 或者去浏览器中调试观察后再进行补环境 成功跑出环境后 只需要替换conten</description>
     </item>
     
     <item>
@@ -31,7 +31,7 @@
       <pubDate>Thu, 06 Apr 2023 07:40:15 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/ast%E6%B7%B7%E6%B7%86%E6%8A%80%E6%9C%AF2/</guid>
-      <description>描述信息</description>
+      <description>ast还原一些混淆函数的示例 还原混淆函数小demo 混淆是无法混淆一些固定的名称如：window，document 想法：cookie反爬时对d</description>
     </item>
     
     <item>
@@ -40,7 +40,7 @@
       <pubDate>Sat, 25 Mar 2023 22:33:33 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/cookie%E5%8F%8D%E7%88%AC/</guid>
-      <description>描述信息</description>
+      <description>Cookie反爬虫 cookie反爬虫可以归类到参数验证 cookie反爬可以分为两种： 不需要分析js型：第一次访问服务器，服务器返回一个coo</description>
     </item>
     
     <item>
@@ -94,7 +94,7 @@
       <pubDate>Fri, 27 Jan 2023 17:29:44 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/webpack%E5%AD%A6%E4%B9%A0/</guid>
-      <description>描述信息</description>
+      <description>webpack webpack是一个基于模块化的打包工具，把一切是作为模块。 webpack是 JavaScript 应用程序的模块打包器,可以把开发中的所有资源（图片、js文件</description>
     </item>
     
     <item>
@@ -130,7 +130,7 @@
       <pubDate>Mon, 28 Nov 2022 19:05:58 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0-webpack/</guid>
-      <description>描述信息</description>
+      <description>webpack webpack打包的函数，本质上就是闭包函数 总结： 先找加密位置 区分什么是webpack（看顶部，加载器） 半扣：加载的模块少 全扣：加载的模块</description>
     </item>
     
     <item>
@@ -206,12 +206,21 @@
     </item>
     
     <item>
+      <title>网易云音乐评论逆向</title>
+      <link>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E8%AF%84%E8%AE%BA%E9%80%86%E5%90%91/</link>
+      <pubDate>Sun, 16 Oct 2022 21:06:10 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E8%AF%84%E8%AE%BA%E9%80%86%E5%90%91/</guid>
+      <description>对网易云音乐的评论进行爬取，记录逆向思路以及过程</description>
+    </item>
+    
+    <item>
       <title>崔庆才爬虫书阅读摘要11 03</title>
       <link>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8111-03/</link>
       <pubDate>Sat, 27 Aug 2022 16:39:54 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8111-03/</guid>
-      <description>描述信息</description>
+      <description>JavaScript Hook的使用 在JavaScript逆向的时候，经常需要跟踪某些方法的堆栈调用情况，在很多情况下，一些JavaScript变量或者方法名经</description>
     </item>
     
     <item>
@@ -220,7 +229,7 @@
       <pubDate>Thu, 25 Aug 2022 09:09:13 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8111-02/</guid>
-      <description>描述信息</description>
+      <description>JavaScript的混淆案例 控制流平坦化 打乱函数原有代码的执行流程及函数调用关系，使代码逻辑变得混乱 下面的代码定义了两个变量，一个是要被混</description>
     </item>
     
     <item>
@@ -229,7 +238,16 @@
       <pubDate>Thu, 25 Aug 2022 09:09:06 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/python/%E5%B4%94%E5%BA%86%E6%89%8D%E7%88%AC%E8%99%AB%E4%B9%A6%E9%98%85%E8%AF%BB%E6%91%98%E8%A6%8111/</guid>
-      <description>描述信息</description>
+      <description>JavaScript逆向爬虫 网站为了保护数据一般分为两种情况： URL和API参数加密 JavaScript压缩、混淆和加密 网站数据防护介绍 下面</description>
+    </item>
+    
+    <item>
+      <title>爬虫js分析技巧</title>
+      <link>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E7%88%AC%E8%99%ABjs%E5%88%86%E6%9E%90%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Thu, 04 Aug 2022 10:04:43 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E7%88%AC%E8%99%ABjs%E5%88%86%E6%9E%90%E6%8A%80%E5%B7%A7/</guid>
+      <description>对浏览器观察JS提供一些技巧总结</description>
     </item>
     
   </channel>
