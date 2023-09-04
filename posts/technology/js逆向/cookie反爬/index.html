@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Cookie反爬 | Hanson&#39;s Blog</title>
 <meta name="keywords" content="">
-<meta name="description" content="Cookie反爬虫 cookie反爬虫可以归类到参数验证 cookie反爬可以分为两种： 不需要分析js型：第一次访问服务器，服务器返回一个coo">
+<meta name="description" content="Cookie反爬虫 前言：一般早期反爬虫是表单中的签名认证，但是过于简单容易被发现。所以放到cookie中不易被发现。 cookie反爬虫可以归">
 <meta name="author" content="
 作者:&nbsp;hanson">
 <link rel="canonical" href="https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/cookie%E5%8F%8D%E7%88%AC/">
@@ -58,7 +58,7 @@
 
     </style>
 </noscript><meta property="og:title" content="Cookie反爬" />
-<meta property="og:description" content="Cookie反爬虫 cookie反爬虫可以归类到参数验证 cookie反爬可以分为两种： 不需要分析js型：第一次访问服务器，服务器返回一个coo" />
+<meta property="og:description" content="Cookie反爬虫 前言：一般早期反爬虫是表单中的签名认证，但是过于简单容易被发现。所以放到cookie中不易被发现。 cookie反爬虫可以归" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/cookie%E5%8F%8D%E7%88%AC/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-03-25T22:33:33&#43;08:00" />
@@ -66,7 +66,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cookie反爬"/>
-<meta name="twitter:description" content="Cookie反爬虫 cookie反爬虫可以归类到参数验证 cookie反爬可以分为两种： 不需要分析js型：第一次访问服务器，服务器返回一个coo"/>
+<meta name="twitter:description" content="Cookie反爬虫 前言：一般早期反爬虫是表单中的签名认证，但是过于简单容易被发现。所以放到cookie中不易被发现。 cookie反爬虫可以归"/>
 
 
 <script type="application/ld+json">
@@ -101,12 +101,12 @@
   "@type": "BlogPosting",
   "headline": "Cookie反爬",
   "name": "Cookie反爬",
-  "description": "Cookie反爬虫 cookie反爬虫可以归类到参数验证 cookie反爬可以分为两种： 不需要分析js型：第一次访问服务器，服务器返回一个coo",
+  "description": "Cookie反爬虫 前言：一般早期反爬虫是表单中的签名认证，但是过于简单容易被发现。所以放到cookie中不易被发现。 cookie反爬虫可以归",
   "keywords": [
     ""
   ],
-  "articleBody": "Cookie反爬虫 cookie反爬虫可以归类到参数验证\ncookie反爬可以分为两种：\n 不需要分析js型：第一次访问服务器，服务器返回一个cookie值，第二次访问带着cookie值去访问服务器。httponly✔ 需要分析js型：第一次访问服务器，服务器返回一个cookie值，然后浏览器用js对cookie进行加密，然后带着加密后的cookie访问服务器。  不需要分析js型-项目实战 地址：http://www.zjmazhang.gov.cn/hdjlpt/published?via=pc\n经过测试后发现反爬目标：\n Cookie，后端返回 请求头部参数X-CSRF-TOKEN：请求头中的这个参数，经过观察后可以发现是由后端返回到前端主页中的值  X-CSRF-TOKEN作用：后端返回的，防止请求伪造\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43  #!/usr/bin/env python # coding:utf-8 # @Time : 2023/3/26 11:06 # @Author : 糕阳 # @file : 不是session版本.py # $software : PyCharm import requests import re token_reg = re.compile(\"var _CSRF = '(?P.*?)';\") headers = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36', # 'X-CSRF-TOKEN': 'ZN3K1Qzjbe0lXz9V5cN60coh9YzupbfhBMrKU8ij', 防止请求伪造 } def get_cookie_token(): \"\"\" 访问首页得到cookie和token :return: cookie和token \"\"\" url = 'http://www.zjmazhang.gov.cn/hdjlpt/published?via=pc' response = requests.get(url=url, headers=headers) token1 = token_reg.search(response.text).group('token') response.close() # print(token1) return response.cookies, token1 def get_data(): cookies, token = get_cookie_token() headers['X-CSRF-TOKEN'] = token data = { 'offset': '20', 'limit': '20', 'site_id': '759010', } url = 'http://www.zjmazhang.gov.cn/hdjlpt/letter/pubList' response = requests.post(url=url, data=data, cookies=cookies, headers=headers) print(response.json()) response.close() if __name__ == '__main__': get_data()    session版本\n 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35  #!/usr/bin/env python # coding:utf-8 # @Time : 2023/3/26 11:31 # @Author : 糕阳 # @file : session处理cookie反爬.py # $software : PyCharm import requests import re token_reg = re.compile(\"var _CSRF = '(?P.*?)';\") def get_data(): url = 'http://www.zjmazhang.gov.cn/hdjlpt/published?via=pc' headers = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36', # 'X-CSRF-TOKEN': 'ZN3K1Qzjbe0lXz9V5cN60coh9YzupbfhBMrKU8ij', 防止请求伪造 } session = requests.session() response = session.get(url=url, headers=headers) token1 = token_reg.search(response.text).group('token') headers['X-CSRF-TOKEN'] = token1 data = { 'offset': '20', 'limit': '20', 'site_id': '759010', } url = 'http://www.zjmazhang.gov.cn/hdjlpt/letter/pubList' # print(session.cookies) response2 = session.post(url=url, data=data, headers=headers) print(response2.json()) response.close() response2.close() if __name__ == '__main__': get_data()   需要分析js型-项目实战 诸葛找房 地址：https://sh.esfxiaoqu.zhuge.com/page2/\n勾选脚本会把所有js调出来\n 阿里系cookie反爬虫特征：acw_sc__v2\n 逆向分析：\n 观察后发现是静态数据，直接上请求访问数据，会得到如下结果  得到的数据是一串js，并不是403错误或正常的网页，大概率是cookie反爬虫。格式化返回的结果后会发现下面这小部分代码，所以开始逆向分析cookie反爬\n1 2 3 4 5 6 7 8 9 10  function setCookie(name, value) { var expiredate = new Date(); expiredate.setTime(expiredate.getTime() + (3600 * 1000)); document.cookie = name + \"=\" + value + \";expires=\" + expiredate.toGMTString() + \";max-age=3600;path=/\"; } function reload(x) { setCookie(\"acw_sc__v2\", x); document.location.reload(); }    开始针对js进行逆向，对其混淆的js进行部分解混淆，进行观察\n 开启无痕浏览器对该js进行调试，扣出核心加密代码\n开始上断点进行调试\n找到了需要逆向的目标acw_sc__v2，接下来跟栈进行分析value的生成位置\n找到了加密位置'reload(arg2)'，位于一个定时器中不断执行\n还原目标确定：arg2 = _0x23a392[_0x55f3('0x1b', '\\x7a\\x35\\x4f\\x26')](_0x5e8b26);，arg2即为value，在控制台中调试解混淆，还原加密逻辑\n粗略版本的还原结果如下\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35  var arg1 = '447FF22858F95D51FAD37820A42121B410440730'; arg2_arg = '3000176000856006061501533003690027800375' String['prototype']['unsbox'] = function() { var _0x4b082b = [0xf, 0x23, 0x1d, 0x18, 0x21, 0x10, 0x1, 0x26, 0xa, 0x9, 0x13, 0x1f, 0x28, 0x1b, 0x16, 0x17, 0x19, 0xd, 0x6, 0xb, 0x27, 0x12, 0x14, 0x8, 0xe, 0x15, 0x20, 0x1a, 0x2, 0x1e, 0x7, 0x4, 0x11, 0x5, 0x3, 0x1c, 0x22, 0x25, 0xc, 0x24]; var _0x4da0dc = []; var _0x12605e = ''; for (var _0x20a7bf = 0x0; _0x20a7bf  this['\\x6c\\x65\\x6e\\x67\\x74\\x68']; _0x20a7bf++) { var _0x385ee3 = this[_0x20a7bf]; for (var _0x217721 = 0x0; _0x217721  _0x4b082b['length']; _0x217721++) { if (_0x4b082b[_0x217721] == _0x20a7bf + 0x1) { _0x4da0dc[_0x217721] = _0x385ee3; } } } _0x12605e = _0x4da0dc['\\x6a\\x6f\\x69\\x6e'](''); return _0x12605e; } String['prototype']['hexXor'] = function(_0x4e08d8) { var _0x5a5d3b = ''; for (var _0xe89588 = 0x0; _0xe89588  this['length'] \u0026\u0026 _0xe89588  _0x4e08d8['length']; _0xe89588 += 0x2) { var _0x401af1 = parseInt(this['slice'](_0xe89588, _0xe89588 + 0x2), 0x10); var _0x105f59 = parseInt(_0x4e08d8['slice'](_0xe89588, _0xe89588 + 0x2), 0x10); var _0x189e2c = (_0x401af1 ^ _0x105f59)['toString'](0x10); if (_0x189e2c['length'] == 0x1) { _0x189e2c = '\\x30' + _0x189e2c; } _0x5a5d3b += _0x189e2c; } return _0x5a5d3b; } var _0x23a392 = arg1['unsbox'](); arg2 = _0x23a392['hexXor'](arg2_arg); console.log(arg2)   1 2 3 4  arg1 是通过后台每一次传输到前端来获取验证的 arg2_arg 可以写死 var arg1 = '447FF22858F95D51FAD37820A42121B410440730'; arg2_arg = '3000176000856006061501533003690027800375'    Python代码\n 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34  #!/usr/bin/env python # coding:utf-8 # @Time : 2023/3/26 15:41 # @Author : 糕阳 # @file : 请求.py # $software : PyCharm import requests import re import execjs arg1_reg = re.compile(\"var arg1='(?P.*?)';\") url = 'https://sh.esfxiaoqu.zhuge.com/page3/' headers = { # 'Cookie':'acw_tc=2760778816798164025591901e629c3e38356291840f0b525fd6d8963ba96d;', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36', } response = requests.get(url=url, headers=headers) # print(response.cookies) # 观察下第一次返回的cookie信息 arg1 = arg1_reg.search(response.text).group('arg1') ctil = execjs.compile(open('./核心加密算法.js', 'r', encoding='utf-8').read()) arg2 = ctil.call('run', arg1) # 添加更新cookie response.cookies.update({'acw_sc__v2':arg2}) # print(arg2) # 赋值cookie使用 cookies = response.cookies response2 = requests.get(url=url, headers=headers, cookies=cookies) print(response2.text) response2.close() response.close()   马蜂窝  加速乐(jsl)cookie反爬虫特征：\n cookie特征：__jsluid_s、__jsluid_s、__jsl_clearance_s 第一次访问时，会出现两个521(目的是后端返回cookie)，然后加密后再生成一个加密cookie。走三次请求   逆向分析：\n 第一次，直接请求后观察返回数据  返回的是生成cookie的代码\n接下来我们对加密js文件进行算法还原\n下图是第二次请求返回的js文件\n接着插入debugger语句并替换该文件，进行调试还原加密算法\n",
-  "wordCount" : "1871",
+  "articleBody": "Cookie反爬虫 前言：一般早期反爬虫是表单中的签名认证，但是过于简单容易被发现。所以放到cookie中不易被发现。\n cookie反爬虫可以归类到参数验证\ncookie反爬可以分为两种：\n 不需要分析js型：第一次访问服务器，服务器返回一个cookie值，第二次访问带着cookie值去访问服务器。httponly✔ 需要分析js型：第一次访问服务器，服务器返回一个cookie值，然后浏览器用js对cookie进行加密，然后带着加密后的cookie访问服务器。  不需要分析js型-项目实战 地址：http://www.zjmazhang.gov.cn/hdjlpt/published?via=pc\n经过测试后发现反爬目标：\n Cookie，后端返回 请求头部参数X-CSRF-TOKEN：请求头中的这个参数，经过观察后可以发现是由后端返回到前端主页中的值  X-CSRF-TOKEN作用：后端返回的，防止请求伪造\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43  #!/usr/bin/env python # coding:utf-8 # @Time : 2023/3/26 11:06 # @Author : 糕阳 # @file : 不是session版本.py # $software : PyCharm import requests import re token_reg = re.compile(\"var _CSRF = '(?P.*?)';\") headers = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36', # 'X-CSRF-TOKEN': 'ZN3K1Qzjbe0lXz9V5cN60coh9YzupbfhBMrKU8ij', 防止请求伪造 } def get_cookie_token(): \"\"\" 访问首页得到cookie和token :return: cookie和token \"\"\" url = 'http://www.zjmazhang.gov.cn/hdjlpt/published?via=pc' response = requests.get(url=url, headers=headers) token1 = token_reg.search(response.text).group('token') response.close() # print(token1) return response.cookies, token1 def get_data(): cookies, token = get_cookie_token() headers['X-CSRF-TOKEN'] = token data = { 'offset': '20', 'limit': '20', 'site_id': '759010', } url = 'http://www.zjmazhang.gov.cn/hdjlpt/letter/pubList' response = requests.post(url=url, data=data, cookies=cookies, headers=headers) print(response.json()) response.close() if __name__ == '__main__': get_data()    session版本\n 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35  #!/usr/bin/env python # coding:utf-8 # @Time : 2023/3/26 11:31 # @Author : 糕阳 # @file : session处理cookie反爬.py # $software : PyCharm import requests import re token_reg = re.compile(\"var _CSRF = '(?P.*?)';\") def get_data(): url = 'http://www.zjmazhang.gov.cn/hdjlpt/published?via=pc' headers = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36', # 'X-CSRF-TOKEN': 'ZN3K1Qzjbe0lXz9V5cN60coh9YzupbfhBMrKU8ij', 防止请求伪造 } session = requests.session() response = session.get(url=url, headers=headers) token1 = token_reg.search(response.text).group('token') headers['X-CSRF-TOKEN'] = token1 data = { 'offset': '20', 'limit': '20', 'site_id': '759010', } url = 'http://www.zjmazhang.gov.cn/hdjlpt/letter/pubList' # print(session.cookies) response2 = session.post(url=url, data=data, headers=headers) print(response2.json()) response.close() response2.close() if __name__ == '__main__': get_data()   需要分析js型-项目实战 诸葛找房-阿里系cookie反爬 地址：https://sh.esfxiaoqu.zhuge.com/page2/\n勾选脚本会把所有js调出来\n 阿里系cookie反爬虫特征：acw_sc__v2\n 逆向分析：\n 观察后发现是静态数据，直接上请求访问数据，会得到如下结果  得到的数据是一串js，并不是403错误或正常的网页，大概率是cookie反爬虫。格式化返回的结果后会发现下面这小部分代码，所以开始逆向分析cookie反爬\n1 2 3 4 5 6 7 8 9 10  function setCookie(name, value) { var expiredate = new Date(); expiredate.setTime(expiredate.getTime() + (3600 * 1000)); document.cookie = name + \"=\" + value + \";expires=\" + expiredate.toGMTString() + \";max-age=3600;path=/\"; } function reload(x) { setCookie(\"acw_sc__v2\", x); document.location.reload(); }    开始针对js进行逆向，对其混淆的js进行部分解混淆，进行观察\n 开启无痕浏览器对该js进行调试，扣出核心加密代码\n开始上断点进行调试\n找到了需要逆向的目标acw_sc__v2，接下来跟栈进行分析value的生成位置\n找到了加密位置'reload(arg2)'，位于一个定时器中不断执行\n还原目标确定：arg2 = _0x23a392[_0x55f3('0x1b', '\\x7a\\x35\\x4f\\x26')](_0x5e8b26);，arg2即为value，在控制台中调试解混淆，还原加密逻辑\n粗略版本的还原结果如下\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35  var arg1 = '447FF22858F95D51FAD37820A42121B410440730'; arg2_arg = '3000176000856006061501533003690027800375' String['prototype']['unsbox'] = function() { var _0x4b082b = [0xf, 0x23, 0x1d, 0x18, 0x21, 0x10, 0x1, 0x26, 0xa, 0x9, 0x13, 0x1f, 0x28, 0x1b, 0x16, 0x17, 0x19, 0xd, 0x6, 0xb, 0x27, 0x12, 0x14, 0x8, 0xe, 0x15, 0x20, 0x1a, 0x2, 0x1e, 0x7, 0x4, 0x11, 0x5, 0x3, 0x1c, 0x22, 0x25, 0xc, 0x24]; var _0x4da0dc = []; var _0x12605e = ''; for (var _0x20a7bf = 0x0; _0x20a7bf  this['\\x6c\\x65\\x6e\\x67\\x74\\x68']; _0x20a7bf++) { var _0x385ee3 = this[_0x20a7bf]; for (var _0x217721 = 0x0; _0x217721  _0x4b082b['length']; _0x217721++) { if (_0x4b082b[_0x217721] == _0x20a7bf + 0x1) { _0x4da0dc[_0x217721] = _0x385ee3; } } } _0x12605e = _0x4da0dc['\\x6a\\x6f\\x69\\x6e'](''); return _0x12605e; } String['prototype']['hexXor'] = function(_0x4e08d8) { var _0x5a5d3b = ''; for (var _0xe89588 = 0x0; _0xe89588  this['length'] \u0026\u0026 _0xe89588  _0x4e08d8['length']; _0xe89588 += 0x2) { var _0x401af1 = parseInt(this['slice'](_0xe89588, _0xe89588 + 0x2), 0x10); var _0x105f59 = parseInt(_0x4e08d8['slice'](_0xe89588, _0xe89588 + 0x2), 0x10); var _0x189e2c = (_0x401af1 ^ _0x105f59)['toString'](0x10); if (_0x189e2c['length'] == 0x1) { _0x189e2c = '\\x30' + _0x189e2c; } _0x5a5d3b += _0x189e2c; } return _0x5a5d3b; } var _0x23a392 = arg1['unsbox'](); arg2 = _0x23a392['hexXor'](arg2_arg); console.log(arg2)   1 2 3 4  arg1 是通过后台每一次传输到前端来获取验证的 arg2_arg 可以写死 var arg1 = '447FF22858F95D51FAD37820A42121B410440730'; arg2_arg = '3000176000856006061501533003690027800375'    Python代码\n 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34  #!/usr/bin/env python # coding:utf-8 # @Time : 2023/3/26 15:41 # @Author : 糕阳 # @file : 请求.py # $software : PyCharm import requests import re import execjs arg1_reg = re.compile(\"var arg1='(?P.*?)';\") url = 'https://sh.esfxiaoqu.zhuge.com/page3/' headers = { # 'Cookie':'acw_tc=2760778816798164025591901e629c3e38356291840f0b525fd6d8963ba96d;', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36', } response = requests.get(url=url, headers=headers) # print(response.cookies) # 观察下第一次返回的cookie信息 arg1 = arg1_reg.search(response.text).group('arg1') ctil = execjs.compile(open('./核心加密算法.js', 'r', encoding='utf-8').read()) arg2 = ctil.call('run', arg1) # 添加更新cookie response.cookies.update({'acw_sc__v2':arg2}) # print(arg2) # 赋值cookie使用 cookies = response.cookies response2 = requests.get(url=url, headers=headers, cookies=cookies) print(response2.text) response2.close() response.close()   逆向总结：\n  第一次访问时—》会返回200状态码的JavaScript文件\n  接着观察和调试该JavaScript文件(该文件很多十六进制编码的混淆数据)，通过ast解混淆（解编码），搜索document会发现\n  1  setTimeout(\"reload(arg2)\", 2);     1  document.cookie = name + \"=\" + value + \";expires=\" + expiredate.toGMTString() + \";max-age=3600;path=/\";     1 2 3 4  function reload(x) { setCookie(\"acw_sc__v2\", x); document.location.reload(); }       接着扣代码还原cookie生成逻辑即可\n  扣出的代码分为arg1，arg2_arg(通过JavaScript生成的，可以写死)，以及两个加密算法unsbox、hexXor\n 扣出的代码中只有arg1需要赋值，其他都可以写死    分析总结：\n 第一次访问网站获得cookie生成的JavaScript文件，扣出代码完成后，正则获取arg1的值。 接着通过第一次获得的acw-cookie和生成的acw-v2-cookie访问网站  马蜂窝  加速乐(jsl)cookie反爬虫特征：\n cookie特征：__jsluid_s、__jsluid_s、__jsl_clearance_s 第一次访问时，会出现两个521(目的是后端返回cookie)，然后加密后再生成一个加密cookie。走三次请求   逆向分析：\n 第一次，直接请求后观察返回数据  返回的是生成cookie的代码\n接下来我们对加密js文件进行算法还原\n下图是第二次请求返回的js文件\n接着插入debugger语句并替换该文件，进行调试还原加密算法(扣算法)\n逆向总结：\n 会走三次请求，第一次返回一个eval的JavaScript文件用于生成一个cookie，携带着第一次的cookie去请求一个新的JavaScript文件用于生成新的cookie，最后拿着第二次cookie获取最终的数据文件 第二次获取的JavaScript文件，使用ast解混淆后可以方便的扣取加密逻辑，需要替换的是go参数  ",
+  "wordCount" : "2441",
   "inLanguage": "en",
   "datePublished": "2023-03-25T22:33:33+08:00",
   "dateModified": "2023-03-25T22:33:33+08:00",
@@ -223,7 +223,7 @@
 
 
 
-更新:&nbsp;2023-03-25&nbsp;|&nbsp;字数:&nbsp;1871字&nbsp;|&nbsp;时长: 4分钟&nbsp;|&nbsp;
+更新:&nbsp;2023-03-25&nbsp;|&nbsp;字数:&nbsp;2441字&nbsp;|&nbsp;时长: 5分钟&nbsp;|&nbsp;
 作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
       <ul class="post-tags-meta">
         <a href="https://hanson00.github.io/tags/js%E9%80%86%E5%90%91/">js逆向</a>
@@ -252,7 +252,7 @@
                             <a href="#%e9%9c%80%e8%a6%81%e5%88%86%e6%9e%90js%e5%9e%8b-%e9%a1%b9%e7%9b%ae%e5%ae%9e%e6%88%98" aria-label="需要分析js型-项目实战">需要分析js型-项目实战</a><ul>
                                     
                         <li>
-                            <a href="#%e8%af%b8%e8%91%9b%e6%89%be%e6%88%bf" aria-label="诸葛找房">诸葛找房</a></li>
+                            <a href="#%e8%af%b8%e8%91%9b%e6%89%be%e6%88%bf-%e9%98%bf%e9%87%8c%e7%b3%bbcookie%e5%8f%8d%e7%88%ac" aria-label="诸葛找房-阿里系cookie反爬">诸葛找房-阿里系cookie反爬</a></li>
                         <li>
                             <a href="#%e9%a9%ac%e8%9c%82%e7%aa%9d" aria-label="马蜂窝">马蜂窝</a>
                         </li>
@@ -325,6 +325,8 @@
         }
     </script>
   <div class="post-content"><h1 id="cookie反爬虫">Cookie反爬虫<a hidden class="anchor" aria-hidden="true" href="#cookie反爬虫">#</a></h1>
+<p>前言：一般早期反爬虫是表单中的签名认证，但是过于简单容易被发现。所以放到cookie中不易被发现。</p>
+<hr>
 <p>cookie反爬虫可以归类到参数验证</p>
 <p>cookie反爬可以分为两种：</p>
 <ol>
@@ -338,6 +340,8 @@
 <li>Cookie，后端返回</li>
 <li>请求头部参数X-CSRF-TOKEN：请求头中的这个参数，经过观察后可以发现是由后端返回到前端主页中的值</li>
 </ol>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/202307272216866.png" alt="image-20230727221652704"  />
+</p>
 <p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/cookie2332602.png" alt="image-20230326111424030"  />
 </p>
 <p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/cookie2332601.png" alt="image-20230326111227986"  />
@@ -515,7 +519,7 @@ token_reg <span style="color:#2c5dcd">=</span> re<span style="color:#2c5dcd">.</
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="需要分析js型-项目实战">需要分析js型-项目实战<a hidden class="anchor" aria-hidden="true" href="#需要分析js型-项目实战">#</a></h2>
-<h3 id="诸葛找房">诸葛找房<a hidden class="anchor" aria-hidden="true" href="#诸葛找房">#</a></h3>
+<h3 id="诸葛找房-阿里系cookie反爬">诸葛找房-阿里系cookie反爬<a hidden class="anchor" aria-hidden="true" href="#诸葛找房-阿里系cookie反爬">#</a></h3>
 <p>地址：https://sh.esfxiaoqu.zhuge.com/page2/</p>
 <p>勾选<code>脚本</code>会把所有js调出来</p>
 <blockquote>
@@ -740,7 +744,68 @@ response2<span style="color:#2c5dcd">.</span>close()
 response<span style="color:#2c5dcd">.</span>close()
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="马蜂窝">马蜂窝<a hidden class="anchor" aria-hidden="true" href="#马蜂窝">#</a></h3>
+</div><p>逆向总结：</p>
+<ul>
+<li>
+<p>第一次访问时&mdash;》会返回200状态码的JavaScript文件</p>
+</li>
+<li>
+<p>接着观察和调试该JavaScript文件(该文件很多十六进制编码的混淆数据)，通过ast解混淆（解编码），搜索document会发现</p>
+<ul>
+<li>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">setTimeout(&#34;reload(arg2)&#34;, 2);
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">document.cookie = name + &#34;=&#34; + value + &#34;;expires=&#34; + expiredate.toGMTString() + &#34;;max-age=3600;path=/&#34;;
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">function reload(x) {
+    setCookie(&#34;acw_sc__v2&#34;, x);
+    document.location.reload();
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>接着扣代码还原cookie生成逻辑即可</p>
+</li>
+<li>
+<p>扣出的代码分为<strong>arg1</strong>，<strong>arg2_arg</strong>(通过JavaScript生成的，可以写死)，以及两个加密算法unsbox、hexXor</p>
+<ul>
+<li>扣出的代码中只有arg1需要赋值，其他都可以写死</li>
+</ul>
+</li>
+</ul>
+<p>分析总结：</p>
+<ul>
+<li>第一次访问网站获得cookie生成的JavaScript文件，扣出代码完成后，正则获取arg1的值。</li>
+<li>接着通过第一次获得的acw-cookie和生成的acw-v2-cookie访问网站</li>
+</ul>
+<h3 id="马蜂窝">马蜂窝<a hidden class="anchor" aria-hidden="true" href="#马蜂窝">#</a></h3>
 <blockquote>
 <p>加速乐(jsl)cookie反爬虫特征：</p>
 <ol>
@@ -759,7 +824,12 @@ response<span style="color:#2c5dcd">.</span>close()
 <p>下图是第二次请求返回的js文件</p>
 <p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/mfw02.png" alt="image-20230327120049295"  />
 </p>
-<p>接着插入debugger语句并替换该文件，进行调试还原加密算法</p>
+<p>接着插入debugger语句并替换该文件，进行调试还原加密算法(扣算法)</p>
+<p>逆向总结：</p>
+<ul>
+<li>会走三次请求，第一次返回一个eval的JavaScript文件用于生成一个cookie，携带着<strong>第一次的cookie去请求一个新的JavaScript文件用于生成新的cookie</strong>，最后拿着<strong>第二次cookie获取最终的数据文件</strong></li>
+<li>第二次获取的JavaScript文件，使用ast解混淆后可以方便的扣取加密逻辑，需要替换的是go参数</li>
+</ul>
 
 
   </div>

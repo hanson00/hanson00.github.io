@@ -105,8 +105,8 @@
   "keywords": [
     ""
   ],
-  "articleBody": "验证码专题 验证码本质上就是难度较大的签名认证信息\n当验证成功后会返回一个签名信息，以后携带这个签名信息访问即可\n上面的签名参数\n验证码验证成功时返回：validate: \"1d79c64a274c07934da60410c1723d19\"\n登录时携带的签名信息geetest_validate: 1d79c64a274c07934da60410c1723d19\n各类验证码特征 tc开头的验证码标记是腾讯验证码\ngeetest开头是极验滑块验证码\nyidun开头的是网易易盾的验证码\nJDJRV开头的是京东验证码等等\n滑块类型  返回有缺口的图片和缺口图片 返回缺口图片和完整图片  核心步骤  从服务器随机取一张图片，并对图片上的随机x,y坐标和宽高一块区域抠图； 根据步骤一的坐标和宽高，使用二维数组保存原图上抠图区域的像素点坐标； 根据步骤二的坐标点，对原图的抠图区域的颜色进行处理。 完成以上步骤之后得到两张图(扣下来的方块图，带有抠图区域阴影的原图),将这两张图和抠图区域的y坐标传到前台，前端在移动方块验证时，将移动后的x坐标传递到后台与原来的x坐标作比较，如果在阈值内则验证通过。 请求验证的步骤：前台向后台发起请求，后台随机一张图片做处理将处理完的两张图片的base64，抠图y坐标和token(token为后台缓存验证码的唯一token,可以用缓存和分布式缓存)返回给前台。 前台滑动图片将x坐标和token作为参数请求后台验证，服务器根据token取出x坐标与参数的x进行比较。  突破方式   人工智能训练自己的模型破解，确定滑块的位置\n 第三方开源模块  ddddocr：https://github.com/sml2h3/ddddocr      网上的付费验证码破解平台\n  自己处理矩阵\n  selenium自动化过验证码\n  ",
-  "wordCount" : "667",
+  "articleBody": "验证码专题 验证码本质上就是难度较大的签名认证信息\n当验证成功后会返回一个签名信息，以后携带这个签名信息访问即可\n上面的签名参数\n验证码验证成功时返回：validate: \"1d79c64a274c07934da60410c1723d19\"\n登录时携带的签名信息geetest_validate: 1d79c64a274c07934da60410c1723d19\n各类验证码特征 tc-bg、tc开头的验证码标记是腾讯验证码。腾讯：https://007.qq.com/\ngeetest开头是极验滑块验证码。极验：https://www.geetest.com/show\nyidun开头的是网易易盾的验证码。易盾：https://dun.163.com/product/captcha?from=baiduP2_YZM_CP4183\nJDJRV开头的是京东验证码等等\ndx开头的是顶象验证码。顶象：https://www.dingxiang-inc.com/business/captcha\ntd开头的是同盾验证码。同盾：https://xiaodun.com/onlineExperience/slidingPuzzle\nshumei开头的是数美验证码。数美：https://www.ishumei.com/\nVAPTCHA：https://www.vaptcha.com/?lang=cn\u0026from=0\n阿里：225版本，226版本\n谷歌：https://www.google.com/recaptcha/api2/demo\nrecaptcha hcaptcha funcaptcha 三剑客\n解决方案：https://www.yescaptcha.com/auth/register\n滑块类型  返回有缺口的图片和缺口图片 返回缺口图片和完整图片  核心步骤  从服务器随机取一张图片，并对图片上的随机x,y坐标和宽高一块区域抠图； 根据步骤一的坐标和宽高，使用二维数组保存原图上抠图区域的像素点坐标； 根据步骤二的坐标点，对原图的抠图区域的颜色进行处理。 完成以上步骤之后得到两张图(扣下来的方块图，带有抠图区域阴影的原图),将这两张图和抠图区域的y坐标传到前台，前端在移动方块验证时，将移动后的x坐标传递到后台与原来的x坐标作比较，如果在阈值内则验证通过。 请求验证的步骤：前台向后台发起请求，后台随机一张图片做处理将处理完的两张图片的base64，抠图y坐标和token(token为后台缓存验证码的唯一token,可以用缓存和分布式缓存)返回给前台。 前台滑动图片将x坐标和token作为参数请求后台验证，服务器根据token取出x坐标与参数的x进行比较。  验证码识别方式   人工智能训练自己的模型破解，确定滑块的位置\n 第三方开源模块  ddddocr：https://github.com/sml2h3/ddddocr      网上的付费验证码破解平台\n  自己处理矩阵\n  selenium自动化过验证码\n  突破方式   手撕协议\n  自动化\n  走平台开放接口\n  解决验证码的难点  分析JS算法 验证码识别  常见验证码平台介绍 易盾：https://dun.163.com/product/captcha?from=baiduP2_YZM_CP4183\n顶象：https://www.dingxiang-inc.com/business/captcha\n同盾：https://xiaodun.com/onlineExperience/slidingPuzzle\n数美：https://www.ishumei.com/\nVAPTCHA：https://www.vaptcha.com/?lang=cn\u0026from=0\n极验：https://www.geetest.com/show\n腾讯：https://007.qq.com/\n阿里：\n谷歌：https://www.google.com/recaptcha/api2/demo\nrecaptcha hcaptcha funcaptcha 三剑客\n解决方案：https://www.yescaptcha.com/auth/register\ncanvas的验证码图片处理代码   站点:https://www.geetest.com/demo/\n  使用浏览器技术提取滑块图片，进行处理\n  1 2 3 4 5 6 7 8 9 10  # 提取背景图 document.getElementsByClassName('geetest_canvas_bg geetest_absolute')[0].toDataURL('image/png') document.getElementsByClassName('geetest_canvas_fullbg geetest_fade geetest_absolute')[0].toDataURL('image/png') # 保存图片 import base64,io images = q_qt.split(',')[1] images = base64.b64decode(images) images = Image.open(io.BytesIO(images)) images.save('q_qg.png')   ",
+  "wordCount" : "1668",
   "inLanguage": "en",
   "datePublished": "2023-04-12T15:35:08+08:00",
   "dateModified": "2023-04-12T15:35:08+08:00",
@@ -223,7 +223,7 @@
 
 
 
-更新:&nbsp;2023-04-12&nbsp;|&nbsp;字数:&nbsp;667字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
+更新:&nbsp;2023-04-12&nbsp;|&nbsp;字数:&nbsp;1668字&nbsp;|&nbsp;时长: 4分钟&nbsp;|&nbsp;
 作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
       <ul class="post-tags-meta">
         <a href="https://hanson00.github.io/tags/js%E9%80%86%E5%90%91/">js逆向</a>
@@ -253,7 +253,15 @@
                         <li>
                             <a href="#%e6%a0%b8%e5%bf%83%e6%ad%a5%e9%aa%a4" aria-label="核心步骤">核心步骤</a></li>
                         <li>
-                            <a href="#%e7%aa%81%e7%a0%b4%e6%96%b9%e5%bc%8f" aria-label="突破方式">突破方式</a>
+                            <a href="#%e9%aa%8c%e8%af%81%e7%a0%81%e8%af%86%e5%88%ab%e6%96%b9%e5%bc%8f" aria-label="验证码识别方式">验证码识别方式</a></li>
+                        <li>
+                            <a href="#%e7%aa%81%e7%a0%b4%e6%96%b9%e5%bc%8f" aria-label="突破方式">突破方式</a></li>
+                        <li>
+                            <a href="#%e8%a7%a3%e5%86%b3%e9%aa%8c%e8%af%81%e7%a0%81%e7%9a%84%e9%9a%be%e7%82%b9" aria-label="解决验证码的难点">解决验证码的难点</a></li>
+                        <li>
+                            <a href="#%e5%b8%b8%e8%a7%81%e9%aa%8c%e8%af%81%e7%a0%81%e5%b9%b3%e5%8f%b0%e4%bb%8b%e7%bb%8d" aria-label="常见验证码平台介绍">常见验证码平台介绍</a></li>
+                        <li>
+                            <a href="#canvas%e7%9a%84%e9%aa%8c%e8%af%81%e7%a0%81%e5%9b%be%e7%89%87%e5%a4%84%e7%90%86%e4%bb%a3%e7%a0%81" aria-label="canvas的验证码图片处理代码">canvas的验证码图片处理代码</a>
                         </li>
                     </ul>
                     </li>
@@ -332,10 +340,18 @@
 <p>验证码验证成功时返回：<code>validate: &quot;1d79c64a274c07934da60410c1723d19&quot;</code></p>
 <p>登录时携带的签名信息<code>geetest_validate: 1d79c64a274c07934da60410c1723d19</code></p>
 <h2 id="各类验证码特征">各类验证码特征<a hidden class="anchor" aria-hidden="true" href="#各类验证码特征">#</a></h2>
-<p><code>tc</code>开头的验证码标记是腾讯验证码</p>
-<p><code>geetest</code>开头是极验滑块验证码</p>
-<p><code>yidun</code>开头的是网易易盾的验证码</p>
+<p><code>tc-bg</code>、<code>tc</code>开头的验证码标记是腾讯验证码。腾讯：https://007.qq.com/</p>
+<p><code>geetest</code>开头是极验滑块验证码。极验：https://www.geetest.com/show</p>
+<p><code>yidun</code>开头的是网易易盾的验证码。易盾：https://dun.163.com/product/captcha?from=baiduP2_YZM_CP4183</p>
 <p><code>JDJRV</code>开头的是京东验证码等等</p>
+<p><code>dx</code>开头的是顶象验证码。顶象：https://www.dingxiang-inc.com/business/captcha</p>
+<p><code>td</code>开头的是同盾验证码。同盾：https://xiaodun.com/onlineExperience/slidingPuzzle</p>
+<p><code>shumei</code>开头的是数美验证码。数美：https://www.ishumei.com/</p>
+<p>VAPTCHA：https://www.vaptcha.com/?lang=cn&amp;from=0</p>
+<p>阿里：225版本，226版本</p>
+<p>谷歌：https://www.google.com/recaptcha/api2/demo</p>
+<p><code>recaptcha  hcaptcha  funcaptcha</code> 三剑客</p>
+<p>解决方案：https://www.yescaptcha.com/auth/register</p>
 <h2 id="滑块类型">滑块类型<a hidden class="anchor" aria-hidden="true" href="#滑块类型">#</a></h2>
 <ul>
 <li>返回<strong>有缺口的图片</strong>和<strong>缺口图片</strong></li>
@@ -350,7 +366,7 @@
 <li>请求验证的步骤：前台向后台发起请求，后台随机一张图片做处理将处理完的两张图片的<code>base64</code>，抠图y坐标和<code>token</code>(token为后台缓存验证码的唯一<code>token</code>,可以用缓存和分布式缓存)返回给前台。</li>
 <li>前台滑动图片将<code>x</code>坐标和<code>token</code>作为参数请求后台验证，服务器根据<code>token</code>取出<code>x</code>坐标与参数的x进行比较。</li>
 </ol>
-<h2 id="突破方式">突破方式<a hidden class="anchor" aria-hidden="true" href="#突破方式">#</a></h2>
+<h2 id="验证码识别方式">验证码识别方式<a hidden class="anchor" aria-hidden="true" href="#验证码识别方式">#</a></h2>
 <ol>
 <li>
 <p>人工智能训练自己的模型破解，确定滑块的位置</p>
@@ -372,7 +388,71 @@
 <p>selenium自动化过验证码</p>
 </li>
 </ol>
+<h2 id="突破方式">突破方式<a hidden class="anchor" aria-hidden="true" href="#突破方式">#</a></h2>
+<ol>
+<li>
+<p>手撕协议</p>
+</li>
+<li>
+<p>自动化</p>
+</li>
+<li>
+<p>走平台开放接口</p>
+</li>
+</ol>
+<h2 id="解决验证码的难点">解决验证码的难点<a hidden class="anchor" aria-hidden="true" href="#解决验证码的难点">#</a></h2>
+<ol>
+<li>分析JS算法</li>
+<li>验证码识别</li>
+</ol>
+<h2 id="常见验证码平台介绍">常见验证码平台介绍<a hidden class="anchor" aria-hidden="true" href="#常见验证码平台介绍">#</a></h2>
+<p>易盾：https://dun.163.com/product/captcha?from=baiduP2_YZM_CP4183</p>
+<p>顶象：https://www.dingxiang-inc.com/business/captcha</p>
+<p>同盾：https://xiaodun.com/onlineExperience/slidingPuzzle</p>
+<p>数美：https://www.ishumei.com/</p>
+<p>VAPTCHA：https://www.vaptcha.com/?lang=cn&amp;from=0</p>
+<p>极验：https://www.geetest.com/show</p>
+<p>腾讯：https://007.qq.com/</p>
+<p>阿里：</p>
+<p>谷歌：https://www.google.com/recaptcha/api2/demo</p>
+<p><code>recaptcha  hcaptcha  funcaptcha</code> 三剑客</p>
+<p>解决方案：https://www.yescaptcha.com/auth/register</p>
+<h2 id="canvas的验证码图片处理代码">canvas的验证码图片处理代码<a hidden class="anchor" aria-hidden="true" href="#canvas的验证码图片处理代码">#</a></h2>
+<ul>
+<li>
+<p>站点:https://www.geetest.com/demo/</p>
+</li>
+<li>
+<p>使用浏览器技术提取滑块图片，进行处理</p>
+</li>
+</ul>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#0080ff;font-style:italic"># 提取背景图</span>
+document<span style="color:#2c5dcd">.</span>getElementsByClassName(<span style="color:#0c6">&#39;geetest_canvas_bg geetest_absolute&#39;</span>)[<span style="color:#5918bb;font-weight:bold">0</span>]<span style="color:#2c5dcd">.</span>toDataURL(<span style="color:#0c6">&#39;image/png&#39;</span>)
+document<span style="color:#2c5dcd">.</span>getElementsByClassName(<span style="color:#0c6">&#39;geetest_canvas_fullbg geetest_fade geetest_absolute&#39;</span>)[<span style="color:#5918bb;font-weight:bold">0</span>]<span style="color:#2c5dcd">.</span>toDataURL(<span style="color:#0c6">&#39;image/png&#39;</span>)
 
+<span style="color:#0080ff;font-style:italic"># 保存图片</span>
+<span style="color:#2c5dcd;font-weight:bold">import</span> base64<span style="color:#2c5dcd">,</span>io
+images <span style="color:#2c5dcd">=</span> q_qt<span style="color:#2c5dcd">.</span>split(<span style="color:#0c6">&#39;,&#39;</span>)[<span style="color:#5918bb;font-weight:bold">1</span>]
+images <span style="color:#2c5dcd">=</span> base64<span style="color:#2c5dcd">.</span>b64decode(images)
+images <span style="color:#2c5dcd">=</span> Image<span style="color:#2c5dcd">.</span>open(io<span style="color:#2c5dcd">.</span>BytesIO(images))
+images<span style="color:#2c5dcd">.</span>save(<span style="color:#0c6">&#39;q_qg.png&#39;</span>)
+</code></pre></td></tr></table>
+</div>
+</div>
 
   </div>
 

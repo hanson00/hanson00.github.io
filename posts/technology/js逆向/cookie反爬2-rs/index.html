@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Cookie反爬2 Rs | Hanson&#39;s Blog</title>
 <meta name="keywords" content="">
-<meta name="description" content="瑞数安全 补环境-简单 在遇到缺失的环境时， 要不直接观察吐出的环境直接补 或者去浏览器中调试观察后再进行补环境 成功跑出环境后 只需要替换conten">
+<meta name="description" content="瑞数安全 认识瑞数 瑞数4代特征： 两层debugger Cookie特征80S后端返回的、80T通过JS文件生成的。Cookie的值的第一个数字是">
 <meta name="author" content="
 作者:&nbsp;hanson">
 <link rel="canonical" href="https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/cookie%E5%8F%8D%E7%88%AC2-rs/">
@@ -58,7 +58,7 @@
 
     </style>
 </noscript><meta property="og:title" content="Cookie反爬2 Rs" />
-<meta property="og:description" content="瑞数安全 补环境-简单 在遇到缺失的环境时， 要不直接观察吐出的环境直接补 或者去浏览器中调试观察后再进行补环境 成功跑出环境后 只需要替换conten" />
+<meta property="og:description" content="瑞数安全 认识瑞数 瑞数4代特征： 两层debugger Cookie特征80S后端返回的、80T通过JS文件生成的。Cookie的值的第一个数字是" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/cookie%E5%8F%8D%E7%88%AC2-rs/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-04-11T15:08:47&#43;08:00" />
@@ -66,7 +66,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cookie反爬2 Rs"/>
-<meta name="twitter:description" content="瑞数安全 补环境-简单 在遇到缺失的环境时， 要不直接观察吐出的环境直接补 或者去浏览器中调试观察后再进行补环境 成功跑出环境后 只需要替换conten"/>
+<meta name="twitter:description" content="瑞数安全 认识瑞数 瑞数4代特征： 两层debugger Cookie特征80S后端返回的、80T通过JS文件生成的。Cookie的值的第一个数字是"/>
 
 
 <script type="application/ld+json">
@@ -101,12 +101,12 @@
   "@type": "BlogPosting",
   "headline": "Cookie反爬2 Rs",
   "name": "Cookie反爬2 Rs",
-  "description": "瑞数安全 补环境-简单 在遇到缺失的环境时， 要不直接观察吐出的环境直接补 或者去浏览器中调试观察后再进行补环境 成功跑出环境后 只需要替换conten",
+  "description": "瑞数安全 认识瑞数 瑞数4代特征： 两层debugger Cookie特征80S后端返回的、80T通过JS文件生成的。Cookie的值的第一个数字是",
   "keywords": [
     ""
   ],
-  "articleBody": "瑞数安全 补环境-简单 在遇到缺失的环境时，\n 要不直接观察吐出的环境直接补 或者去浏览器中调试观察后再进行补环境 成功跑出环境后  只需要替换content和自执行方法（可能有随机数和时间戳） js文件可以固定    扣代码-有难度 扣代码可以知道需要补什么环境\n",
-  "wordCount" : "118",
+  "articleBody": "瑞数安全  认识瑞数\n 瑞数4代特征：\n 两层debugger Cookie特征80S后端返回的、80T通过JS文件生成的。Cookie的值的第一个数字是几就是第几代。Key的名字以T、S结尾 瑞数的混淆方法一般是_$开头 第一次访问状态码202，第二次访问是200  瑞数5代特征：\n Key的名字以T、O、P结尾，第一个数字是5开头 第一次访问状态码412，第二次访问是200  瑞数6代特征：\n Key的名字以T结尾，第一个数字是5开头 三层debugger、第三层用Hook-constructor过 第一次访问状态码412，第二次访问是200   瑞数Cookie生成逻辑分析\n 瑞数初分析 处理三部分\n  202html里面的content\n  202html里面的自执行方法\n  TS加密js文件\n  自执行方法会解密TS文件，eval解密后的js+content—–》生成cookie值\n瑞数生成入口：ret = _$e5.call(_$q_, _$6W);\n瑞数补环境|扣代码步骤  固定一份202html页面进行调试（每次都是动态变化，无法调试需要固定）  补环境-简单 在遇到缺失的环境时，\n 要不直接观察吐出的环境直接补 或者去浏览器中调试观察后再进行补环境 成功跑出环境后  只需要替换content和自执行方法（可能有随机数和时间戳） js文件可以固定    扣代码-有难度 扣代码需要几部分：\n  模拟VM代码部分\n  1 2 3 4 5 6 7 8 9 10 11 12 13  // 模拟 VM执行代码 var eval_js = '' window = { $_ts:{}, eval:function (data) { eval_js = data; return { toString:function () { return eval_js } } } }       加密的TS文件\n  自执行方法\n  Cookie生成的函数位置\n  VM里面的解密指令数据\n     接着不断缺啥补啥，并且还需要补充需要的环境即可\n扣代码可以知道需要补什么环境\nRPC 绕过检查Hook拿数据 ",
+  "wordCount" : "684",
   "inLanguage": "en",
   "datePublished": "2023-04-11T15:08:47+08:00",
   "dateModified": "2023-04-11T15:08:47+08:00",
@@ -223,7 +223,7 @@
 
 
 
-更新:&nbsp;2023-04-11&nbsp;|&nbsp;字数:&nbsp;118字&nbsp;|&nbsp;时长: 1分钟&nbsp;|&nbsp;
+更新:&nbsp;2023-04-11&nbsp;|&nbsp;字数:&nbsp;684字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
 作者:&nbsp;hanson&nbsp;|&nbsp;标签: &nbsp;
       <ul class="post-tags-meta">
         <a href="https://hanson00.github.io/tags/js%E9%80%86%E5%90%91/">js逆向</a>
@@ -247,10 +247,21 @@
                             <a href="#%e7%91%9e%e6%95%b0%e5%ae%89%e5%85%a8" aria-label="瑞数安全">瑞数安全</a><ul>
                                     
                         <li>
+                            <a href="#%e7%91%9e%e6%95%b0%e5%88%9d%e5%88%86%e6%9e%90" aria-label="瑞数初分析">瑞数初分析</a></li>
+                        <li>
+                            <a href="#%e7%91%9e%e6%95%b0%e8%a1%a5%e7%8e%af%e5%a2%83%e6%89%a3%e4%bb%a3%e7%a0%81%e6%ad%a5%e9%aa%a4" aria-label="瑞数补环境|扣代码步骤">瑞数补环境|扣代码步骤</a><ul>
+                                    
+                        <li>
                             <a href="#%e8%a1%a5%e7%8e%af%e5%a2%83-%e7%ae%80%e5%8d%95" aria-label="补环境-简单">补环境-简单</a></li>
                         <li>
-                            <a href="#%e6%89%a3%e4%bb%a3%e7%a0%81-%e6%9c%89%e9%9a%be%e5%ba%a6" aria-label="扣代码-有难度">扣代码-有难度</a>
+                            <a href="#%e6%89%a3%e4%bb%a3%e7%a0%81-%e6%9c%89%e9%9a%be%e5%ba%a6" aria-label="扣代码-有难度">扣代码-有难度</a></li>
+                        <li>
+                            <a href="#rpc" aria-label="RPC">RPC</a></li>
+                        <li>
+                            <a href="#%e7%bb%95%e8%bf%87%e6%a3%80%e6%9f%a5hook%e6%8b%bf%e6%95%b0%e6%8d%ae" aria-label="绕过检查Hook拿数据">绕过检查Hook拿数据</a>
                         </li>
+                    </ul>
+                    </li>
                     </ul>
                     </li>
                     </ul>
@@ -318,7 +329,52 @@
         }
     </script>
   <div class="post-content"><h1 id="瑞数安全">瑞数安全<a hidden class="anchor" aria-hidden="true" href="#瑞数安全">#</a></h1>
-<h2 id="补环境-简单">补环境-简单<a hidden class="anchor" aria-hidden="true" href="#补环境-简单">#</a></h2>
+<blockquote>
+<p>认识瑞数</p>
+</blockquote>
+<p><strong>瑞数4代特征</strong>：</p>
+<ul>
+<li>两层debugger</li>
+<li>Cookie特征<code>80S后端返回的</code>、<code>80T通过JS文件生成的</code>。Cookie的值的第一个数字是几就是第几代。Key的名字以T、S结尾</li>
+<li>瑞数的混淆方法一般是<code>_$</code>开头</li>
+<li>第一次访问状态码202，第二次访问是200</li>
+</ul>
+<p><strong>瑞数5代特征</strong>：</p>
+<ul>
+<li>Key的名字以T、O、P结尾，第一个数字是5开头</li>
+<li>第一次访问状态码412，第二次访问是200</li>
+</ul>
+<p><strong>瑞数6代特征</strong>：</p>
+<ul>
+<li>Key的名字以T结尾，第一个数字是5开头</li>
+<li>三层debugger、第三层用Hook-constructor过</li>
+<li>第一次访问状态码412，第二次访问是200</li>
+</ul>
+<blockquote>
+<p>瑞数Cookie生成逻辑分析</p>
+</blockquote>
+<h2 id="瑞数初分析">瑞数初分析<a hidden class="anchor" aria-hidden="true" href="#瑞数初分析">#</a></h2>
+<p>处理三部分</p>
+<ul>
+<li>
+<p>202html里面的content</p>
+</li>
+<li>
+<p>202html里面的自执行方法</p>
+</li>
+<li>
+<p>TS加密js文件</p>
+</li>
+</ul>
+<p>自执行方法会解密TS文件，eval解密后的js+content&mdash;&ndash;》生成cookie值</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/ruishu23080201.png" alt="image-20230802065446815"  />
+</p>
+<p>瑞数生成入口：<code>ret = _$e5.call(_$q_, _$6W);</code></p>
+<h2 id="瑞数补环境扣代码步骤">瑞数补环境|扣代码步骤<a hidden class="anchor" aria-hidden="true" href="#瑞数补环境扣代码步骤">#</a></h2>
+<ol>
+<li>固定一份202html页面进行调试（每次都是动态变化，无法调试需要固定）</li>
+</ol>
+<h3 id="补环境-简单">补环境-简单<a hidden class="anchor" aria-hidden="true" href="#补环境-简单">#</a></h3>
 <p>在遇到缺失的环境时，</p>
 <ol>
 <li>要不直接观察吐出的环境直接补</li>
@@ -330,8 +386,73 @@
 </ol>
 </li>
 </ol>
-<h2 id="扣代码-有难度">扣代码-有难度<a hidden class="anchor" aria-hidden="true" href="#扣代码-有难度">#</a></h2>
+<h3 id="扣代码-有难度">扣代码-有难度<a hidden class="anchor" aria-hidden="true" href="#扣代码-有难度">#</a></h3>
+<p>扣代码需要几部分：</p>
+<ul>
+<li>
+<p>模拟VM代码部分</p>
+<ul>
+<li>
+<div class="highlight"><div style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#4d4d4d;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#0080ff;font-style:italic">// 模拟 VM执行代码
+</span><span style="color:#0080ff;font-style:italic"></span><span style="color:#2c5dcd;font-weight:bold">var</span> eval_js <span style="color:#2c5dcd">=</span> <span style="color:#0c6">&#39;&#39;</span>
+<span style="color:#5918bb;font-weight:bold">window</span> <span style="color:#2c5dcd">=</span> {
+    $_ts<span style="color:#2c5dcd">:</span>{},
+    <span style="color:#5918bb;font-weight:bold">eval</span><span style="color:#2c5dcd">:</span><span style="color:#2c5dcd;font-weight:bold">function</span> (data) {
+        eval_js <span style="color:#2c5dcd">=</span> data;
+        <span style="color:#2c5dcd;font-weight:bold">return</span> {
+            toString<span style="color:#2c5dcd">:</span><span style="color:#2c5dcd;font-weight:bold">function</span> () {
+                <span style="color:#2c5dcd;font-weight:bold">return</span> eval_js
+            }
+        }
+    }
+}
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>加密的TS文件</p>
+</li>
+<li>
+<p>自执行方法</p>
+</li>
+<li>
+<p>Cookie生成的函数位置</p>
+</li>
+<li>
+<p>VM里面的解密指令数据</p>
+<ul>
+<li><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/koudaimaruishu03.png" alt="image-20230803111428586"  />
+</li>
+</ul>
+</li>
+</ul>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/ruishukoudaima01.png" alt="image-20230803110837281"  />
+</p>
+<p><img loading="lazy" src="https://cdn.staticaly.com/gh/hanson00/img@master/koudaimaruishu02.png" alt="image-20230803110935317"  />
+</p>
+<p>接着不断缺啥补啥，并且还需要补充需要的环境即可</p>
 <p>扣代码可以知道需要补什么环境</p>
+<h3 id="rpc">RPC<a hidden class="anchor" aria-hidden="true" href="#rpc">#</a></h3>
+<h3 id="绕过检查hook拿数据">绕过检查Hook拿数据<a hidden class="anchor" aria-hidden="true" href="#绕过检查hook拿数据">#</a></h3>
 
 
   </div>

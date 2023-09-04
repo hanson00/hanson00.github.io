@@ -6,7 +6,25 @@
     <description>Recent content in js逆向 on Hanson&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 12 Apr 2023 15:35:08 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/js%E9%80%86%E5%90%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Jul 2023 12:41:26 +0800</lastBuildDate><atom:link href="https://hanson00.github.io/tags/js%E9%80%86%E5%90%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>脱环境</title>
+      <link>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E8%84%B1%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Sun, 16 Jul 2023 12:41:26 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E8%84%B1%E7%8E%AF%E5%A2%83/</guid>
+      <description>脱环境学习 vm2是一个沙箱，可以使用列入白名单的node内置模块运行不受信任的代码（安全）。</description>
+    </item>
+    
+    <item>
+      <title>补环境03</title>
+      <link>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E8%A1%A5%E7%8E%AF%E5%A2%8303/</link>
+      <pubDate>Fri, 14 Jul 2023 15:09:54 +0800</pubDate>
+      
+      <guid>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E8%A1%A5%E7%8E%AF%E5%A2%8303/</guid>
+      <description>逆向环境检测 描述符检测 Object.getOwnPropertyDescriptor() 方法返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性</description>
+    </item>
+    
     <item>
       <title>验证码</title>
       <link>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/%E9%AA%8C%E8%AF%81%E7%A0%81/</link>
@@ -22,7 +40,7 @@
       <pubDate>Tue, 11 Apr 2023 15:08:47 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/cookie%E5%8F%8D%E7%88%AC2-rs/</guid>
-      <description>瑞数安全 补环境-简单 在遇到缺失的环境时， 要不直接观察吐出的环境直接补 或者去浏览器中调试观察后再进行补环境 成功跑出环境后 只需要替换conten</description>
+      <description>瑞数安全 认识瑞数 瑞数4代特征： 两层debugger Cookie特征80S后端返回的、80T通过JS文件生成的。Cookie的值的第一个数字是</description>
     </item>
     
     <item>
@@ -40,7 +58,7 @@
       <pubDate>Sat, 25 Mar 2023 22:33:33 +0800</pubDate>
       
       <guid>https://hanson00.github.io/posts/technology/js%E9%80%86%E5%90%91/cookie%E5%8F%8D%E7%88%AC/</guid>
-      <description>Cookie反爬虫 cookie反爬虫可以归类到参数验证 cookie反爬可以分为两种： 不需要分析js型：第一次访问服务器，服务器返回一个coo</description>
+      <description>Cookie反爬虫 前言：一般早期反爬虫是表单中的签名认证，但是过于简单容易被发现。所以放到cookie中不易被发现。 cookie反爬虫可以归</description>
     </item>
     
     <item>
